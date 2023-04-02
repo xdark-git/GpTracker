@@ -1,9 +1,9 @@
 <?php
 namespace Viewpoint\AdminBundle;
 
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
+use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class ViewpointAdminBundle extends AbstractBundle
+class ViewpointAdminBundle extends Bundle
 {
-    
+
 }
