@@ -1,0 +1,11 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  Viewpoint\AdminBundle\:
+    resource: "../../"
+    exclude:
+      - "../../DependencyInjection/"
+      - "../../Resources/"
+      - "../../Tests/"

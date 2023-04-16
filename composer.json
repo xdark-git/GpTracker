@@ -55,7 +55,8 @@
     "autoload": {
         "psr-4": {
             "App\\": "src/",
-            "Viewpoint\\AdminBundle\\": "lib/Viewpoint/AdminBundle/"
+            "Viewpoint\\AdminBundle\\": "lib/Viewpoint/AdminBundle/",
+            "Viewpoint\\ThemeBundle\\": "lib/Viewpoint/ThemeBundle/"
         }
     },
     "autoload-dev": {
