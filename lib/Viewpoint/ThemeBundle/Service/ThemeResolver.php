@@ -29,7 +29,8 @@ class ThemeResolver
     }
 
     /**
-     *  Get the value of the theme path prefix
+     *  Get the file path 
+     * @param string $twigFile
      * @return string
     */
     public function getThemePathPrefix(string $twigFile) : string
