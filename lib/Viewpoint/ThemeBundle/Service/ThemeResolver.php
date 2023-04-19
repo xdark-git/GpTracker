@@ -20,7 +20,7 @@ class ThemeResolver
             $themePath = $parameterBag->get('twig.default_path') .$theme;
 
             if($fileSystem->exists($themePath))
-                $this->themePathPrefix = $themePath;
+                $this->themePathPrefix = $theme;
             else
                 $this->themePathPrefix = "@ViewpointTheme";
         }else{
