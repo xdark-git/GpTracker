@@ -12,7 +12,7 @@ class ThemeResolver
     public function __construct (ParameterBagInterface $parameterBag)
     {   
         
-        $theme = array_key_exists('THEME_PATH_PREFIX',$_ENV) ? "/themes/". $_ENV['THEME_PATH_PREFIX'] : null;
+        $theme = array_key_exists('THEME_PATH_PREFIX',$_ENV) ? "/". $_ENV['THEME_PATH_PREFIX'] : null;
        
         if($theme){
             $fileSystem = new Filesystem();
@@ -32,9 +32,12 @@ class ThemeResolver
      *  Get the value of the theme path prefix
      * @return string
     */
-    public function getThemePathPrefix() : string
+    public function getThemePathPrefix(string $twigFile) : string
     {
-        return $this->themePathPrefix;
+        if($this->themePathPrefix === "@ViewpointTheme")
+            return $this->themePathPrefix."/core/default.html.twig";
+        else
+            return $this->themePathPrefix . $twigFile;
     }
 
     /**
