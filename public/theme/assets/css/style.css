@@ -1,0 +1,11 @@
+.gp-login-email {
+  position: relative;
+  background-color: red;
+}
+
+label {
+  position: absolute;
+  top: -10px;
+  left: 12px;
+  background-color: #ffffff;
+}
