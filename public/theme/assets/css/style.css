@@ -1,11 +1,21 @@
-.gp-login-email {
-  position: relative;
-  background-color: red;
+.gp-btn-primary {
+  color: #ffffff;
+  background-color: #14438b;
+}
+.gp-btn-primary:hover {
+  color: #ffffff;
+  background-color: #3075dd;
+}
+.gp-login-logo-img {
+  width: 100px;
+  height: 100px;
 }
 
-label {
+.gp-login-email {
+  position: relative;
+}
+
+.gp-login-email label {
   position: absolute;
-  top: -10px;
   left: 12px;
-  background-color: #ffffff;
 }
