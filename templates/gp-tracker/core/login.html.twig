@@ -5,26 +5,30 @@
 {% endblock %}
 
 {% block body %}
-    <div class="gp-login-container container vh-100 d-flex flex-column align-items-center pt-5">
-        <div class="gp-login-header w-50 d-flex flex-column align-items-center">
-            <img class="gp-login-logo-img" src="{{asset('/theme/assets/img/logo/gp-tracker-logo-1.png')}}" alt="GP-Tracker">
-            <h2 class="w-75 text-break text-center">Quel est votre adresse email ?</h2>
-            <p class="w-75 text-break text-center">Entrez votre e-mail pour vous connecter ou créer votre compte GP-Tracker</p>
+    <div class="gp-login-container">
+        <div class="header">
+        <img src="{{asset('themes/assets/img/gp-tracker-logo-1.png')}}" alt="Logo Gp-tracker" class="logo">
+        <h1>Quel est votre adresse Email ?</h1>
+        <p>Entrez votre email pour vous connecter ou créer un compte GP-Tracker</p>
         </div>
-        <div class="gp-login-body w-50 d-flex flex-column align-items-center">
-            <form id="gp-login-form" class="gp-login-form gap-4 w-75 d-flex flex-column align-items-center" action="">
-                <div class="gp-login-email w-100 form-group">
-                    {# <label for="gp-login-email">Email</label> #}
-                    <input id="gp-login-email" class="gp-login-email-input w-100 form-control form-control-lg" type="email" placeholder="Email" >
-                    <p class="gp-login-error w-75 mt-1 ms-3 text-break text-danger">L'adresse email renseignée n'est pas valide</p>
-                </div>
-                <div class="gp-login-button w-100">
-                    <button type="button" class="gp-login-button-submit gp-btn-primary btn btn-lg btn-block w-100">Continuer</button>
-                </div>
+        <div class="body">
+            <form action="#" method="post">
+                <input type="email" name="email" id="input-email" placeholder="Email">
+                <p class="error">L'adresse email renseigné est incorrecte</p>
+                <button type="submit">Continuer</button>
+                <p class="phone-option">Enregistez vous avec votre numéro de téléphone</p> 
             </form>
-            <div class="login-button-option">
-
+            <div class="btn-options">
+                <button class="btn-google">
+                    <i class="fa-brands fa-google"></i>
+                    <span>Continuer avec Gmail</span>
+                </button>
+                <button class="btn-facebook">
+                    <i class="fa-brands fa-facebook" style="color: #ffffff;"></i>
+                    <span>Continuer avec Facebook</span>
+                </button>
             </div>
         </div>
+
     </div>
 {% endblock %}
