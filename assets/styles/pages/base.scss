@@ -1,23 +1,39 @@
+@import "../libs/globalVariables.scss";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root {
+    font-family: "Roboto", arial, helvetica, sans-serif;
+    font-size: 18px;
+}
 body {
-  font-family: "Roboto", arial, helvetica, sans-serif;
-  background-color: #f8f9f9;
+    min-height: 100vh;
+    margin: 0 auto;
+    background-color: $page-background-color;
 }
 
 h1 {
-  font-family: "Open Sans", sans-serif;
+    font-size: 1.25rem;
+    font-family: "Open Sans", sans-serif;
+}
+p {
+    font-size: 1rem;
 }
 
 .fa-google {
-  background: conic-gradient(
-      from -45deg,
-      #ea4335 110deg,
-      #4285f4 90deg 180deg,
-      #34a853 180deg 270deg,
-      #fbbc05 270deg
-    )
-    73% 55%/150% 150% no-repeat;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
+    background: conic-gradient(
+            from -45deg,
+            #ea4335 110deg,
+            #4285f4 90deg 180deg,
+            #34a853 180deg 270deg,
+            #fbbc05 270deg
+        )
+        73% 55%/150% 150% no-repeat;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
 }
