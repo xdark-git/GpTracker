@@ -5,17 +5,17 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
        
         {% block stylesheets %}
-            {# {{ encore_entry_link_tags('app') }} #}
-            {% include 'gp-tracker/layout/_stylesheet.html.twig' %}
+            {{ encore_entry_link_tags('app') }}
+            {# {% include 'gp-tracker/layout/_stylesheet.html.twig' %} #}
         {% endblock %}
         
 
         {% block javascripts %}
-            {# {{ encore_entry_script_tags('app') }} #}
-            {% include 'gp-tracker/layout/_script.html.twig'%}
+            {{ encore_entry_script_tags('app') }}
+            {# {% include 'gp-tracker/layout/_script.html.twig'%} #}
         {% endblock %}
     </head>
-    <body style="background-color:#F8F9F9">
+    <body >
         {% block body %}{% endblock %}
     </body>
 </html>
