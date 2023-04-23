@@ -3,99 +3,96 @@
 @import "../libs/mixins/loginMixins.scss";
 
 .gp-register-container {
-  position: relative;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-items: center;
-  padding: 2rem 0 0 0;
-  gap: 12px;
+    @extend .container;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 2rem 0 0 0;
+    gap: 12px;
 }
 .gp-register-container .header {
-  @include login-container-el;
-  gap: 12px;
+    @include login-container-el;
+    gap: 12px;
 
-  img {
-    width: 100px;
-    height: 100px;
-    margin: 0 0 6px 0;
-  }
-  h1,
-  p {
-    text-align: center;
-    margin: unset;
-  }
+    img {
+        width: 100px;
+        height: 100px;
+        margin: 0 0 6px 0;
+    }
+    h1,
+    p {
+        text-align: center;
+        margin: unset;
+    }
 }
 
 .gp-register-container .body {
-  @include login-container-el;
-  padding-top: 16px;
+    @include login-container-el;
+    padding-top: 16px;
 
-  form {
-    width: 100%;
-    & .error {
-      font-size: 0.77rem;
-      color: $txt-color-3;
-      margin: 0.5em 0 0 1em;
+    form {
+        width: 100%;
+        & .error {
+            font-size: 0.77rem;
+            color: $txt-color-3;
+            margin: 0.5em 0 0 1em;
+        }
     }
-  }
 
-  & .btn-options {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    padding: 2rem 0;
-  }
+    & .btn-options {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        padding: 2rem 0;
+    }
 }
 
 .gp-register-container .body form {
-  & input {
-    width: 100%;
-    height: 46px;
-    font-size: 0.875rem;
-    border: 1px solid $base-color;
-    border-radius: 6px;
-    padding: 0 1em;
-    outline: none;
-    -webkit-transition: 0.5s;
-    transition: 0.1s;
+    & input {
+        width: 100%;
+        height: 46px;
+        font-size: 0.875rem;
+        border: 1px solid $base-color;
+        border-radius: 6px;
+        padding: 0 1em;
+        outline: none;
+        -webkit-transition: 0.5s;
+        transition: 0.1s;
 
-    &:hover {
-      border-color: rgba($base-color, 0.6);
+        &:hover {
+            border-color: rgba($base-color, 0.6);
+        }
+        &:focus {
+            border: 2px solid rgba($base-color, 0.6);
+        }
     }
-    &:focus {
-      border: 2px solid rgba($base-color, 0.6);
-    }
-  }
 
-  & .phone-option {
-    $color: $txt-color-4;
-    font-size: 0.88rem;
-    font-weight: 600;
-    width: 100%;
-    text-align: center;
-    margin-top: 1em;
-    color: $color;
-    text-decoration: underline;
-    cursor: pointer;
-    &:hover {
-      color: rgba($color, 0.6);
+    & .phone-option {
+        $color: $txt-color-4;
+        font-size: 0.88rem;
+        font-weight: 600;
+        width: 100%;
+        text-align: center;
+        margin-top: 1em;
+        color: $color;
+        text-decoration: underline;
+        cursor: pointer;
+        &:hover {
+            color: rgba($color, 0.6);
+        }
     }
-  }
 
-  & button {
-    @include login-buttons($btn-color-1);
-  }
+    & button {
+        @include login-buttons($btn-color-1);
+    }
 }
 
 .gp-register-container .body .btn-options {
-  & .btn-facebook {
-    @include bnt-options;
-    @include login-buttons($btn-color-5);
-  }
-  & .btn-google {
-    @include bnt-options;
-    @include login-buttons($btn-color-4);
-  }
+    & .btn-facebook {
+        @include bnt-options;
+        @include login-buttons($btn-color-5);
+    }
+    & .btn-google {
+        @include bnt-options;
+        @include login-buttons($btn-color-4);
+    }
 }
