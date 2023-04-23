@@ -2,12 +2,8 @@
 @import "../libs/global/globalFunctions.scss";
 @import "../libs/mixins/loginMixins.scss";
 
-
 .gp-login-container {
-    position: relative;
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
+    @extend .container;
     flex-wrap: wrap;
     align-items: center;
     padding: 2rem 0 0 0;
