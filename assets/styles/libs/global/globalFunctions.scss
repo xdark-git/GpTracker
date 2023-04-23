@@ -1,5 +1,5 @@
-@function checkLightness($color, $percentage: 50%) {
-    @if (lightness($color) > $percentage) {
+@function checkLightness($color, $percentage: 60%) {
+    @if (lightness($color) >= $percentage) {
         @return true;
     } @else {
         @return false;
