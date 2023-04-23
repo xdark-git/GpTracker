@@ -1,0 +1,47 @@
+@mixin login-container-el {
+    width: 100vw;
+    max-width: 432px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+@mixin login-buttons($background-color) {
+    width: 100%;
+    height: 48px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    box-shadow: $btn-box-shadow;
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+
+    margin-top: 2rem;
+
+    background-color: $background-color;
+    @if (checkLightness($color: $background-color)) {
+        color: $txt-color-2;
+    } @else {
+        color: $txt-color-1;
+    }
+
+    &:hover {
+        background-color: lighten($color: $background-color, $amount: 20%);
+    }
+}
+@mixin bnt-options {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-weight: 500;
+    padding: 0 1rem;
+
+    & span {
+        margin: auto;
+        text-align: center;
+        display: inline-block;
+    }
+}
