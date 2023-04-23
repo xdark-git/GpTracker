@@ -35,31 +35,10 @@
 
     form {
         width: 100%;
-        input {
-            width: 100%;
-            height: 46px;
-            font-size: 0.875rem;
-            border: 1px solid $base-color;
-            border-radius: 6px;
-            padding: 0 1em;
-            outline: none;
-            -webkit-transition: 0.5s;
-            transition: 0.1s;
-        }
         & .error {
-            display: none;
             font-size: 0.77rem;
             color: $txt-color-3;
             margin: 0.5em 0 0 1em;
-        }
-        & .phone-option {
-            font-size: 0.88rem;
-            font-weight: 600;
-            width: 100%;
-            text-align: center;
-            margin-top: 1em;
-            color: $txt-color-4;
-            text-decoration: underline;
         }
     }
 
@@ -71,17 +50,44 @@
     }
 }
 
-.gp-login-container .body form input {
-    &:hover {
-        border-color: rgba($base-color, 0.6);
-    }
-    &:focus {
-        border: 2px solid rgba($base-color, 0.6);
-    }
-}
+.gp-login-container .body form {
+    & input {
+        width: 100%;
+        height: 46px;
+        font-size: 0.875rem;
+        border: 1px solid $base-color;
+        border-radius: 6px;
+        padding: 0 1em;
+        outline: none;
+        -webkit-transition: 0.5s;
+        transition: 0.1s;
 
-.gp-login-container .body form button {
-    @include login-buttons($btn-color-1);
+        &:hover {
+            border-color: rgba($base-color, 0.6);
+        }
+        &:focus {
+            border: 2px solid rgba($base-color, 0.6);
+        }
+    }
+
+    & .phone-option {
+        $color: $txt-color-4;
+        font-size: 0.88rem;
+        font-weight: 600;
+        width: 100%;
+        text-align: center;
+        margin-top: 1em;
+        color: $color;
+        text-decoration: underline;
+        cursor: pointer;
+        &:hover {
+            color: rgba($color, 0.6);
+        }
+    }
+
+    & button {
+        @include login-buttons($btn-color-1);
+    }
 }
 
 .gp-login-container .body .btn-options {
