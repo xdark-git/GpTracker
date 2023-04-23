@@ -1,0 +1,34 @@
+{% extends 'gp-tracker/base.html.twig' %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block body %}
+    <div class="gp-register-container">
+        <div class="header">
+            <img src="{{asset('theme/assets/img/logo/gp-tracker-logo-1.png')}}" alt="Logo Gp-tracker" class="logo">
+            <h1>Quel est votre adresse Email ?</h1>
+            <p>Entrez votre email pour vous connecter ou créer un compte GP-Tracker</p>
+        </div>
+        <div class="body">
+            <form action="#" method="post">
+                <input type="email" name="email" id="input-email" placeholder="Email">
+                <p class="error">L'adresse email renseigné est incorrecte</p>
+                <button type="submit">Continuer</button>
+                <p class="phone-option">Enregistez vous avec votre numéro de téléphone</p> 
+            </form>
+            <div class="btn-options">
+                <button class="btn-google">
+                    <i class="fa-brands fa-google"></i>
+                    <span>Continuer avec Gmail</span>
+                </button>
+                <button class="btn-facebook">
+                    <i class="fa-brands fa-facebook" style="color: #ffffff;"></i>
+                    <span>Continuer avec Facebook</span>
+                </button>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

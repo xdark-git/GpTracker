@@ -14,4 +14,9 @@ class RegisterController extends AbstractController
     {   
         return $this->render($themeResolver->getThemePathPrefix('/core/login.html.twig'));
     }
+    #[Route('/register', name: 'app_register')]
+    public function register (ThemeResolver $themeResolver): Response
+    {   
+        return $this->render($themeResolver->getThemePathPrefix('/core/register.html.twig'));
+    }
 }
