@@ -23,6 +23,13 @@ p {
     font-size: 1rem;
 }
 
+.container {
+    position: relative;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+}
+
 .fa-google {
     background: conic-gradient(
             from -45deg,
