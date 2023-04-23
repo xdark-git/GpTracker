@@ -2,7 +2,7 @@
 @import "../libs/global/globalFunctions.scss";
 @import "../libs/mixins/loginMixins.scss";
 
-.gp-login-container {
+.gp-register-container {
   position: relative;
   width: 100vw;
   display: flex;
@@ -12,7 +12,7 @@
   padding: 2rem 0 0 0;
   gap: 12px;
 }
-.gp-login-container .header {
+.gp-register-container .header {
   @include login-container-el;
   gap: 12px;
 
@@ -28,7 +28,7 @@
   }
 }
 
-.gp-login-container .body {
+.gp-register-container .body {
   @include login-container-el;
   padding-top: 16px;
 
@@ -49,7 +49,7 @@
   }
 }
 
-.gp-login-container .body form {
+.gp-register-container .body form {
   & input {
     width: 100%;
     height: 46px;
@@ -89,7 +89,7 @@
   }
 }
 
-.gp-login-container .body .btn-options {
+.gp-register-container .body .btn-options {
   & .btn-facebook {
     @include bnt-options;
     @include login-buttons($btn-color-5);
