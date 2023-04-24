@@ -1,5 +1,6 @@
 @mixin auth-container-el {
     width: 100vw;
+    padding: 0 12px 0 12px;
     max-width: 432px;
     display: flex;
     flex-direction: column;
@@ -7,6 +8,8 @@
 }
 @mixin auth-buttons($background-color) {
     width: 100%;
+    min-width: fit-content;
+    padding: auto;
     height: 48px;
     font-size: 1rem;
     border: none;
