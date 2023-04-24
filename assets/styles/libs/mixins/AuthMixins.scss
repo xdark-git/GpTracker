@@ -10,8 +10,8 @@
 @mixin auth-buttons($background-color) {
     width: 100%;
     min-width: fit-content;
+    min-height: 48px;
     padding: auto;
-    height: 48px;
     font-size: 1rem;
     border: none;
     border-radius: 6px;
