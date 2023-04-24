@@ -1,6 +1,6 @@
 @import "../libs/global/globalVariables.scss";
 @import "../libs/global/globalFunctions.scss";
-@import "../libs/mixins/loginMixins.scss";
+@import "../libs/mixins/AuthMixins.scss";
 
 .gp-register-container {
   @extend .container;
