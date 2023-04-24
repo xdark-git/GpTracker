@@ -3,105 +3,105 @@
 @import "../libs/mixins/AuthMixins.scss";
 
 .gp-register-container {
-  @extend .container;
-  flex-wrap: wrap;
-  align-items: center;
-  padding: 2rem 0 0 0;
-  gap: 12px;
+    @extend .container;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 2rem 0 0 0;
+    gap: 12px;
 }
 .gp-register-container .header {
-  @include auth-container-el;
-  gap: 12px;
+    @include auth-container-el;
+    gap: 12px;
 
-  img {
-    width: 100px;
-    height: 100px;
-    margin: 0 0 6px 0;
-  }
-  h1,
-  p {
-    color: $txt-color-4;
-    text-align: center;
-    margin: unset;
-  }
+    img {
+        width: 100px;
+        height: 100px;
+        margin: 0 0 6px 0;
+    }
+    h1,
+    p {
+        color: $txt-color-4;
+        text-align: center;
+        margin: unset;
+    }
 }
 
 .gp-register-container .body {
-  @include auth-container-el;
-  padding-top: 16px;
+    @include auth-container-el;
+    padding-top: 16px;
 
-  form {
-    width: 100%;
-    & .error {
-      font-size: 0.77rem;
-      color: $txt-color-3;
-      margin: 0.5em 0 0 1em;
+    form {
+        width: 100%;
+        & .error {
+            font-size: 0.77rem;
+            color: $txt-color-3;
+            margin: 0.5em 0 0 1em;
+        }
     }
-  }
 }
 
 .gp-register-container .body form div {
-  position: relative;
-  input {
-    width: 100%;
-    height: 46px;
-    font-size: 0.875rem;
-    border: 1px solid $btn-color-3;
-    font-weight: 600;
-    border-radius: 6px;
-    padding: 0 1em;
-    text-decoration: underline;
-    outline: none;
-    transition: 0.1s;
-    background-color: $btn-color-3;
-    &:hover {
-      border-color: rgba($btn-color-3, 0.6);
+    position: relative;
+    input {
+        width: 100%;
+        height: 46px;
+        font-size: 0.875rem;
+        border: 1px solid $btn-color-3;
+        font-weight: 600;
+        border-radius: 6px;
+        padding: 0 1em;
+        text-decoration: underline;
+        outline: none;
+        transition: 0.1s;
+        background-color: $btn-color-3;
+        &:hover {
+            border-color: rgba($btn-color-3, 0.6);
+        }
+        &:focus {
+            border: 2px solid rgba($btn-color-3, 0.6);
+        }
     }
-    &:focus {
-      border: 2px solid rgba($btn-color-3, 0.6);
+    a {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        font-size: 0.88rem;
+        color: $txt-color-4;
+        text-decoration: none;
+        cursor: pointer;
+        margin-right: 10px;
     }
-  }
-  a {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    font-size: 0.88rem;
-    color: $txt-color-4;
-    text-decoration: none;
-    cursor: pointer;
-    margin-right: 10px;
-  }
-  & + input {
-    margin-top: 12px;
-  }
+    & + input {
+        margin-top: 12px;
+    }
 }
 
 .gp-register-container .body form {
-  gap: 12px;
-  & input {
-    width: 100%;
-    height: 46px;
-    font-size: 0.875rem;
-    border: 1px solid $base-color;
-    border-radius: 6px;
-    padding: 0 1em;
-    outline: none;
-    -webkit-transition: 0.5s;
-    transition: 0.1s;
+    gap: 12px;
+    & input {
+        width: 100%;
+        height: 46px;
+        font-size: 0.875rem;
+        border: 1px solid $base-color;
+        border-radius: 6px;
+        padding: 0 1em;
+        outline: none;
+        -webkit-transition: 0.5s;
+        transition: 0.1s;
 
-    &:hover {
-      border-color: rgba($base-color, 0.6);
+        &:hover {
+            border-color: rgba($base-color, 0.6);
+        }
+        &:focus {
+            border: 2px solid rgba($base-color, 0.6);
+        }
+        & + input {
+            margin-top: 12px;
+        }
     }
-    &:focus {
-      border: 2px solid rgba($base-color, 0.6);
-    }
-    & + input {
-      margin-top: 12px;
-    }
-  }
 
-  & button {
-    @include auth-buttons($btn-color-1);
-  }
+    & button {
+        @include auth-buttons($btn-color-1);
+    }
 }
