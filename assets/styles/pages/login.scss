@@ -49,22 +49,7 @@
 
 .gp-login-container .body form {
     & input {
-        width: 100%;
-        height: 46px;
-        font-size: 0.875rem;
-        border: 1px solid $base-color;
-        border-radius: 6px;
-        padding: 0 1em;
-        outline: none;
-        -webkit-transition: 0.5s;
-        transition: 0.1s;
-
-        &:hover {
-            border-color: rgba($base-color, 0.6);
-        }
-        &:focus {
-            border: 2px solid rgba($base-color, 0.6);
-        }
+        @include auth-input($borderColor: $base-color);
     }
 
     & .phone-option {
