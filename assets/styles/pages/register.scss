@@ -1,9 +1,10 @@
 @import "../libs/global/globalVariables.scss";
 @import "../libs/global/globalFunctions.scss";
 @import "../libs/mixins/AuthMixins.scss";
+@import "../libs/global/globalMixin.scss";
 
 .gp-register-container {
-    @extend .container;
+    @include global-container;
     flex-wrap: wrap;
     align-items: center;
     padding: 2rem 0 0 0;
