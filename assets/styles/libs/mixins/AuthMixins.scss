@@ -1,11 +1,11 @@
-@mixin login-container-el {
+@mixin auth-container-el {
     width: 100vw;
     max-width: 432px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-@mixin login-buttons($background-color) {
+@mixin auth-buttons($background-color) {
     width: 100%;
     height: 48px;
     font-size: 1rem;

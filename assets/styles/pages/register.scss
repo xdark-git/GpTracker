@@ -10,7 +10,7 @@
   gap: 12px;
 }
 .gp-register-container .header {
-  @include login-container-el;
+  @include auth-container-el;
   gap: 12px;
 
   img {
@@ -27,7 +27,7 @@
 }
 
 .gp-register-container .body {
-  @include login-container-el;
+  @include auth-container-el;
   padding-top: 16px;
 
   form {
@@ -102,6 +102,6 @@
   }
 
   & button {
-    @include login-buttons($btn-color-1);
+    @include auth-buttons($btn-color-1);
   }
 }
