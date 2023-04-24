@@ -43,23 +43,12 @@
 .gp-register-container .body form div {
     position: relative;
     input {
-        width: 100%;
-        height: 46px;
-        font-size: 0.875rem;
-        border: 1px solid $btn-color-3;
-        font-weight: 600;
-        border-radius: 6px;
-        padding: 0 1em;
+        @include auth-input(
+            $borderColor: $btn-color-3,
+            $backgroundColor: $btn-color-3
+        );
+        padding-right: 90px;
         text-decoration: underline;
-        outline: none;
-        transition: 0.1s;
-        background-color: $btn-color-3;
-        &:hover {
-            border-color: rgba($btn-color-3, 0.6);
-        }
-        &:focus {
-            border: 2px solid rgba($btn-color-3, 0.6);
-        }
     }
     a {
         position: absolute;
@@ -72,33 +61,14 @@
         cursor: pointer;
         margin-right: 10px;
     }
-    & + input {
-        margin-top: 12px;
-    }
 }
 
 .gp-register-container .body form {
+    display: flex;
+    flex-direction: column;
     gap: 12px;
     & input {
-        width: 100%;
-        height: 46px;
-        font-size: 0.875rem;
-        border: 1px solid $base-color;
-        border-radius: 6px;
-        padding: 0 1em;
-        outline: none;
-        -webkit-transition: 0.5s;
-        transition: 0.1s;
-
-        &:hover {
-            border-color: rgba($base-color, 0.6);
-        }
-        &:focus {
-            border: 2px solid rgba($base-color, 0.6);
-        }
-        & + input {
-            margin-top: 12px;
-        }
+        @include auth-input($borderColor: $base-color);
     }
 
     & button {
