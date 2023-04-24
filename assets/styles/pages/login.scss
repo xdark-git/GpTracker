@@ -1,16 +1,17 @@
 @import "../libs/global/globalVariables.scss";
 @import "../libs/global/globalFunctions.scss";
-@import "../libs/mixins/loginMixins.scss";
+@import "../libs/mixins/AuthMixins.scss";
+@import "../libs/global/globalMixin.scss";
 
 .gp-login-container {
-    @extend .container;
+    @include global-container;
     flex-wrap: wrap;
     align-items: center;
     padding: 2rem 0 0 0;
     gap: 12px;
 }
 .gp-login-container .header {
-    @include login-container-el;
+    @include auth-container-el;
     gap: 12px;
 
     img {
@@ -26,7 +27,7 @@
 }
 
 .gp-login-container .body {
-    @include login-container-el;
+    @include auth-container-el;
     padding-top: 16px;
 
     form {
@@ -82,17 +83,17 @@
     }
 
     & button {
-        @include login-buttons($btn-color-1);
+        @include auth-buttons($btn-color-1);
     }
 }
 
 .gp-login-container .body .btn-options {
     & .btn-facebook {
-        @include bnt-options;
-        @include login-buttons($btn-color-5);
+        @include btn-options;
+        @include auth-buttons($btn-color-5);
     }
     & .btn-google {
-        @include bnt-options;
-        @include login-buttons($btn-color-4);
+        @include btn-options;
+        @include auth-buttons($btn-color-4);
     }
 }

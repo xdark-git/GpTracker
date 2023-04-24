@@ -1,0 +1,78 @@
+@import "../libs/global/globalVariables.scss";
+@import "../libs/global/globalFunctions.scss";
+@import "../libs/mixins/AuthMixins.scss";
+@import "../libs/global/globalMixin.scss";
+
+.gp-register-container {
+    @include global-container;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 2rem 0 0 0;
+    gap: 12px;
+}
+.gp-register-container .header {
+    @include auth-container-el;
+    gap: 12px;
+
+    img {
+        width: 100px;
+        height: 100px;
+        margin: 0 0 6px 0;
+    }
+    h1,
+    p {
+        color: $txt-color-4;
+        text-align: center;
+        margin: unset;
+    }
+}
+
+.gp-register-container .body {
+    @include auth-container-el;
+    padding-top: 16px;
+
+    form {
+        width: 100%;
+        & .error {
+            font-size: 0.77rem;
+            color: $txt-color-3;
+            margin: 0.5em 0 0 1em;
+        }
+    }
+}
+
+.gp-register-container .body form div {
+    position: relative;
+    input {
+        @include auth-input(
+            $borderColor: $btn-color-3,
+            $backgroundColor: $btn-color-3
+        );
+        padding-right: 90px;
+        text-decoration: underline;
+    }
+    a {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        font-size: 0.88rem;
+        color: $txt-color-4;
+        text-decoration: none;
+        cursor: pointer;
+        margin-right: 10px;
+    }
+}
+
+.gp-register-container .body form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    & input {
+        @include auth-input($borderColor: $base-color);
+    }
+
+    & button {
+        @include auth-buttons($btn-color-1);
+    }
+}

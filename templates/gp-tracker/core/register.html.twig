@@ -1,0 +1,27 @@
+{% extends 'gp-tracker/base.html.twig' %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block body %}
+    <div class="gp-register-container">
+        <div class="header">
+            <img src="{{asset('theme/assets/img/logo/gp-tracker-logo-1.png')}}" alt="Logo Gp-tracker" class="logo">
+            <h1>Creer votre compte</h1>
+            <p>Pour assurer la securité de votre compte, nous vous suggérons d’ajouter un mot de passe fort</p>
+        </div>
+        <div class="body">
+            <form action="#" method="post">
+                <div>
+                    <input type="email" name="email" value="contact@atomic.io" id="gp-register-email" placeholder="Email" disabled>
+                    <a href="#">modifier</a>
+                </div>
+                <input type="password" name="password" id="gp-register-pwd" placeholder="Mot de passe">
+                <input type="password" name="password-confirm" id="gp-register-pwd-confirm" placeholder="Confirmez le mot de passe">
+                <button type="submit">Continuer</button>
+            </form>
+        </div>
+
+    </div>
+{% endblock %}
