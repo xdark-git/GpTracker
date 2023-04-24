@@ -31,7 +31,7 @@
         background-color: lighten($color: $background-color, $amount: 20%);
     }
 }
-@mixin bnt-options {
+@mixin btn-options {
     display: flex;
     flex-direction: row;
     align-content: center;

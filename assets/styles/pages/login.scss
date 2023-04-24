@@ -88,11 +88,11 @@
 
 .gp-login-container .body .btn-options {
     & .btn-facebook {
-        @include bnt-options;
+        @include btn-options;
         @include auth-buttons($btn-color-5);
     }
     & .btn-google {
-        @include bnt-options;
+        @include btn-options;
         @include auth-buttons($btn-color-4);
     }
 }
