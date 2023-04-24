@@ -44,12 +44,35 @@
     font-weight: 500;
     padding: 0 1rem;
 
-    & i{
+    & i {
         font-size: 20px;
     }
     & span {
         margin: auto;
         text-align: center;
         display: inline-block;
+    }
+}
+
+@mixin auth-input ($borderColor, $backgroundColor: 'none') {
+    width: 100%;
+    height: 46px;
+    font-size: 0.875rem;
+    border: 1px solid $borderColor;
+    font-weight: 600;
+    border-radius: 6px;
+    padding: 0 1em;
+    outline: none;
+    transition: 0.1s;
+    @if(backgroundColor != "none")
+    {
+        background-color: $backgroundColor;
+    }
+    
+    &:hover {
+        border-color: rgba($borderColor, 0.6);
+    }
+    &:focus {
+        border: 2px solid rgba($borderColor, 0.6);
     }
 }
