@@ -1,0 +1,95 @@
+@import "../libs/global/globalVariables.scss";
+@import "../libs/global/globalFunctions.scss";
+@import "../libs/mixins/AuthMixins.scss";
+@import "../libs/global/globalMixin.scss";
+@import url("https://fonts.googleapis.com/css?family=Josefin+Sans|Mountains+of+Christmas&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+.gp-nav .top_nav {
+  margin-top: 5px;
+  width: 100%;
+  height: 65px;
+  background: #fff;
+  padding: 0 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gp-nav .top_nav .left {
+  display: flex;
+  align-items: center;
+
+  .logo {
+    width: 80px;
+    margin-right: 25px;
+  }
+}
+
+.gp-nav .top_nav .right ul {
+  display: flex;
+
+  li {
+    margin: 0 12px;
+
+    a {
+      color: black;
+      font-size: 14px;
+    }
+  }
+}
+
+.gp-nav .bottom_nav {
+  width: 100%;
+  background: #f9f9f9;
+  height: 45px;
+  padding: 0 50px;
+
+  ul {
+    width: 100%;
+    height: 45px;
+    display: flex;
+    align-items: center;
+  }
+  li {
+    margin: 0 50px;
+    position: relative;
+  }
+
+  a {
+    font-size: 25px;
+    color: black;
+    background-color: transparent;
+    transition: background-color 0.2s ease;
+    padding: 5px;
+  }
+
+  li.active a,
+  li:hover a,
+  li:focus a {
+    background-color: $hover-btn-1;
+  }
+
+  li.active::after,
+  li:hover::after,
+  li:focus::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: $text-color-5;
+  }
+  li:hover a {
+    background-color: $hover-btn;
+  }
+}
