@@ -1,0 +1,35 @@
+{% extends 'gp-tracker/base.html.twig' %}
+
+{% block title %}
+   Home
+{% endblock %}
+
+{% block body %}
+    <div class="gp-nav">
+    <div class="top_nav">
+        <div class="left">
+        <a href="#">
+  <img class="logo" src="{{asset('theme/assets/img/logo/gp-tracker-logo-1.png')}}" alt="Logo">
+</a>
+      </div> 
+      <div class="right">
+        <ul>
+          <li><a href="?lang=fr">FR</a> | <a href="?lang=en"> EN</a></li>
+          <li><a href="#"> <i class="fa fa-user" aria-hidden="true"></i>
+Se connecter</a></li>
+<li><a href="#"> <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
+Creer mon compter</a></li>
+          
+        </ul>
+      </div>
+    </div>
+    <div class="bottom_nav">
+      <ul>
+        <li class="active"><a href="#">Accueil</a></li>
+        <li><a href="#">Salons</a></li>
+        <li><a href="#">Informations</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+  </div>
+</div>
+{% endblock %}
