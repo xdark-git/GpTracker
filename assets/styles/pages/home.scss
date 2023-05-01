@@ -18,6 +18,12 @@
   left: 0;
   width: 100%;
   z-index: 999;
+  hr {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    top: 668px;
+  }
 }
 .gp-nav .top_nav {
   margin-top: 5px;
@@ -206,12 +212,6 @@ ul {
   color: $txt-color-4;
 }
 
-.gp-nav hr {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  top: 668px;
-}
 .social-media-wrapper {
   position: absolute;
   bottom: 0;
