@@ -5,73 +5,34 @@
 {% endblock %}
 
 {% block body %}
-    <div class="gp-nav">
-        <div class="top_nav">
-            <div class="left">
-                <a href="#">
-                    <img class="logo" src="{{asset('theme/assets/img/logo/gp-tracker-logo-1.png')}}" alt="Logo">
-                </a>
-            </div> 
-            <div class="right">
-                <ul>
-                    <li><a href="?lang=fr">FR</a> | <a href="?lang=en"> EN</a></li>
-                    <li><a href="#"> <i class="fa fa-user" aria-hidden="true"></i> Se connecter</a></li>
-                    <li><a href="#"> <i class="fa-solid fa-user-plus" aria-hidden="true"></i> Creer mon compte</a></li>
-                </ul>
+    <header class="gp-header">
+        <section class="section-1">
+           <img src="{{asset('theme/assets/img/logo/gp-tracker-logo-4.png')}}" alt="logo">
+            <div class="content">
+              <div class="language-switcher">
+                <a href="#">Fr</a>
+                <span class="separator">|</span>
+                <a href="#">En</a>
+              </div>
+              <div class="buttons">
+                <button class="login">
+                    <i class="fa fa-user"></i>
+                    <span>Se Connecter</span>
+                </button>
+                <button class="register">
+                    <i class="fa-solid fa-user-plus"></i>
+                    <span>Créer mon compte</span>
+                </button>
+              </div>
             </div>
-        </div>
-        <div class="bottom_nav">
-            <ul>
-                <li class="active"><a href="#">Accueil</a></li>
-                <li><a href="#">Salons</a></li>
-                <li><a href="#">Informations</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </div>
-        <!-- Social media icons!-->
-        <hr>
-    <div class="social-media-wrapper">
-        <ul class="social-media-icons">
-            <li><a href="#"><i class="fa-brands fa-facebook" style="color: #0450d2;"></i></a></li>
-            <li><a href="#"><i class="fa-brands fa-linkedin" style="color: #5f93ec;"></i></a></li>
-            <li><a href="#"><i class="fab fa-youtube" style="color: #f50a0a;"></i></a></li>
-            <li><a href="#"><i class="fa-brands fa-facebook-messenger" style="color: #2d73eb;"></i></a></li>
-            <li><a href="#"><i class="fa-brands fa-whatsapp" style="color: #0cbb38;"></i></a></li>
-            <li><a href="#"><i class="fa-brands fa-twitter" style="color: #4180ec;"></i></a></li>
-            <li><a href="#"><i class="fa-brands fa-instagram" style="color: #db1a5d;"></i></a></li>
-        </ul>
-    </div>
-    </div>
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="footer-logo-col">
-                    <img class="logo" src="{{ asset('theme/assets/img/logo/gp-tracker-logo-3.png') }}" alt="Logo">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc in risus lacus. Nulla vehicula facilisis lorem id eleifend. Maecenas dignissim est nec massa malesuada, at pellentesque felis sollicitudin. Ut id massa condimentum, commodo odio at turpis duis.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Menu Rapide</h4>
-                    <ul>
-                        <li><a href="#">Accueil</a></li>
-                        <li><a href="#">Salons</a></li>
-                        <li><a href="#">Mes colis</a></li>
-                        <li><a href="#">Information</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>A propos</h4>
-                    <ul>
-                        <li><a href="#">Qui sommes nous ?</a></li>
-                        <li><a href="#">Notification sur la confidentialité</a></li>
-                        <li><a href="#">Notification sur les cookies de GP-Tracker</a></li>
-                        <li><a href="#">Politique de protection des droits de propriété intellectuelle</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-      <div class="footer-bottom">
-          <p>Copyright &copy; 2023 - All Rights Reserved By GP Tracker</p>
-        </div>
-    </footer>
+        </section>
+        <section class="section-2">
 
+        </section>
+    </header>
+    <main>
+    </main>
+    <footer>
+
+    </footer>
 {% endblock %}
