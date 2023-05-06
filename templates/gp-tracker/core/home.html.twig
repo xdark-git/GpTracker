@@ -7,7 +7,11 @@
 {% block body %}
     <header class="gp-header">
         <section class="section-1">
-           <a href="#" class="logo"><img src="{{asset('theme/assets/img/logo/gp-tracker-logo-4.png')}}" alt="logo"></a>
+            <div class="logo">
+                <a href="#">
+                    <img src="{{asset('theme/assets/img/logo/gp-tracker-logo-4.png')}}" alt="logo">
+                </a>
+            </div>
             <div class="content">
               <div class="language-switcher">
                 <a href="#">Fr</a>
@@ -27,7 +31,20 @@
             </div>
         </section>
         <section class="section-2">
-
+            <ul>
+                <li class="active">
+                    <a href="#">Acceuil</a>
+                </li>
+                <li>
+                    <a href="#">Salon</a>
+                </li>
+                <li>
+                    <a href="#">Informations</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li>
+            </ul>
         </section>
     </header>
     <main>
