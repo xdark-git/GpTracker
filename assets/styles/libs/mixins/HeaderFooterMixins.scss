@@ -1,0 +1,3 @@
+@mixin menuItemOnHover {
+    background-color: lighten($color: #000000, $amount: 90%);
+}
