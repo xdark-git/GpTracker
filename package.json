@@ -5,7 +5,9 @@
         "@hotwired/stimulus": "^3.0.0",
         "@symfony/stimulus-bridge": "^3.2.0",
         "@symfony/webpack-encore": "^4.0.0",
+        "autoprefixer": "^10.4.14",
         "core-js": "^3.23.0",
+        "postcss-loader": "^7.0.0",
         "regenerator-runtime": "^0.13.9",
         "sass": "^1.62.0",
         "sass-loader": "^13.0.0",
@@ -24,5 +26,11 @@
     "dependencies": {
         "@fortawesome/fontawesome-free": "^6.4.0",
         "jquery": "^3.6.4"
-    }
+    },
+    "browserslist": [
+        "> .05%",
+        "last 2 versions",
+        "Firefox ESR",
+        "not dead"
+    ]
 }
