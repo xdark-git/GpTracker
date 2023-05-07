@@ -35,17 +35,16 @@
             flex-direction: row;
             align-items: center;
             justify-content: center;
-            div{
-                height: 100%;
-                font-size: 1.2rem;
-                display: flex
-            }
+            gap: 0.7rem;
+            div,
             a {
+                height: 100%;
+                min-width: 30px;
+                font-size: 1.3rem;
                 display: flex;
                 align-items: center;
-                height: 100%;
-                -webkit-box-align: center;
-                -ms-flex-align: center;
+                justify-content: center;
+                cursor: pointer;
             }
         }
         .content {
@@ -77,12 +76,19 @@
     }
 }
 .gp-header .section-1 .logo {
-    img {
+    .icon-menu:hover{
+        background-color: lighten($color: #000000, $amount: 90%);
+    }
+    a img {
         $img-width: 575px;
         $img-height: 85px;
         width: calc($img-width/4);
         height: calc($img-height/4);
-        image-rendering: crisp-edges;
+        image-rendering: auto;
+    }
+    a svg {
+        width: 150px;
+        height: auto;
     }
 }
 .gp-header .section-1 .content {
@@ -168,6 +174,5 @@
     }
 }
 
-@media only screen and (max-width:767px) {
-
+@media only screen and (max-width: 767px) {
 }
