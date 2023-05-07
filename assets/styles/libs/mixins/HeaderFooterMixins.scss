@@ -1,3 +1,7 @@
 @mixin menuItemOnHover {
-    background-color: lighten($color: #000000, $amount: 90%);
+    background-color: lighten($color: #000000, $amount: 97%);
+}
+@mixin headerFontSettings {
+    font-size: 1rem;
+    font-weight: 500;
 }
