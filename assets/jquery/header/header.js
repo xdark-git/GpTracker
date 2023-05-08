@@ -5,12 +5,13 @@ import $ from "jquery";
  -----------------------------------*/
 $(function () {
     var $header = $(".gp-header");
+    var $section1 = $header.find("section.section-1");
     var $section2 = $header.find("section.section-2");
     var $headerNav = $header.find("#gp-header-nav");
-
     var $toggleButton = $header.find("#toggle-menu");
     var $closeMenu = $headerNav.find("i.fa-xmark");
-    var $languageSwitcher = $headerNav.find("li.language-switcher");
+    // var $laguageSwitcher = $section1.find("div.language-switcher");
+    var $responsiveLanguageSwitcher = $headerNav.find("li.language-switcher");
 
     function responsiveNav() {
         var width = window.innerWidth > 0 ? window.innerWidth : screen.width;
@@ -18,10 +19,10 @@ $(function () {
         if (width <= 960) {
             $closeMenu.show();
             $toggleButton.show();
-            $languageSwitcher.css("display", "flex");
+            $responsiveLanguageSwitcher.css("display", "flex");
         } else {
             $closeMenu.hide();
-            $languageSwitcher.hide();
+            $responsiveLanguageSwitcher.hide();
             $toggleButton.hide();
         }
     }
@@ -41,9 +42,9 @@ $(function () {
         }
     });
     // Show/hide language options on click
-    var $languageSelector = $headerNav.find("#current-language");
+    var $currentLanguage = $headerNav.find("#current-language");
     var $options = $headerNav.find(".options");
-    $languageSelector.click(function () {
+    $currentLanguage.click(function () {
         $options.toggle();
     });
 
