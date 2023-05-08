@@ -147,8 +147,13 @@ $section-height: calc(84px / 2);
 }
 .gp-header .section-2 ul {
     li {
+        position: relative;
         min-width: 200px;
         height: 100%;
+        @include headerFontSettings;
+        text-transform: uppercase;
+        // @include headerFontSettings;
+        color: $txt-color-2;
 
         &:hover {
             @include menuItemOnHover;
@@ -162,8 +167,7 @@ $section-height: calc(84px / 2);
             align-items: center;
             text-decoration: none;
             text-transform: uppercase;
-            @include headerFontSettings;
-            color: $txt-color-2;
+            color: inherit;
         }
     }
     .fa-xmark {
@@ -172,14 +176,6 @@ $section-height: calc(84px / 2);
     .language-switcher {
         display: none;
         align-items: center;
-        padding: 0 1rem;
-        gap: 0.6rem;
-        @include headerFontSettings;
-        img {
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-        }
     }
     .active {
         border-bottom: $base-color solid 0.2em;
@@ -189,12 +185,45 @@ $section-height: calc(84px / 2);
         }
     }
 }
+.gp-header .section-2 ul .language-switcher {
+    img {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+    }
+    .current {
+        display: flex;
+        align-items: center;
+        padding: 0 1rem;
+        gap: 0.6rem;
+    }
+    .options {
+        display: none;
+        position: absolute;
+        top: 42px;
+        width: inherit;
+        min-height: fit-content;
+        z-index: 1;
+        background-color: #fff;
+        border-radius: 2%;
+        box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        a {
+            width: 100%;
+            min-height: 100%;
+            display: flex;
+            padding: 0.6rem 1rem;
+            // margin: inherit;
+            gap: 0.6rem;
+        }
+    }
+}
 
 @media only screen and (max-width: 960px) {
     .gp-header .section-1 .logo #icon-menu {
         display: flex;
     }
     .gp-header .section-2 {
+        display: none;
         position: fixed;
         z-index: 100;
         width: 100vw;
@@ -238,12 +267,6 @@ $section-height: calc(84px / 2);
             border-left: $base-color solid 0.2em;
             border-bottom: unset;
             @include menuItemOnHover;
-        }
-        .fa-xmark {
-            display: block;
-        }
-        .language-switcher {
-            display: flex;
         }
     }
 }
