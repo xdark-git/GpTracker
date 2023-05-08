@@ -8,7 +8,7 @@
     <header class="gp-header">
         <section class="section-1">
             <div class="logo">
-                <div id="icon-menu">
+                <div id="toggle-menu">
                     <i class="fa-solid fa-bars"></i>
                 </div>
                 <a href="#">
@@ -46,14 +46,26 @@
             </div>
         </section>
         <section class="section-2">
-            <ul>
+            <ul id="gp-header-nav">
                 <i class="fa-regular fa-xmark"></i>
                 <li class="language-switcher">
-                    <img src="{{asset('/theme/assets/img/flag/fr_img.png')}}" alt="fr">
-                    <span>Français</span>
+                   <div class="current" id="current-language">
+                        <img src="{{asset('/theme/assets/img/flag/fr_img.png')}}" alt="fr">
+                        <span>Français</span>
+                   </div>
+                    <div class="options">
+                        <a href="#">
+                            <img src="{{asset('/theme/assets/img/flag/fr_img.png')}}" alt="fr">
+                            <span>Français</span>
+                        </a>
+                        <a href="#">
+                            <img src="{{asset('/theme/assets/img/flag/fr_img.png')}}" alt="fr">
+                            <span>Français</span>
+                        </a>
+                    </div>
                 </li>
-                <li class="active">
-                    <a href="#">Acceuil</a>
+                <li>
+                    <a href="#" class="active">Acceuil</a>
                 </li>
                 <li>
                     <a href="#">Salon</a>
