@@ -219,9 +219,15 @@ $section-height: calc(84px / 2);
 }
 
 @media only screen and (max-width: 960px) {
-    .gp-header .section-1 .logo #icon-menu {
-        display: flex;
+    .gp-header .section-1 {
+        .logo #icon-menu {
+            display: flex;
+        }
+        .content .language-switcher {
+            display: none;
+        }
     }
+
     .gp-header .section-2 {
         display: none;
         position: fixed;
@@ -267,6 +273,26 @@ $section-height: calc(84px / 2);
             border-left: $base-color solid 0.2em;
             border-bottom: unset;
             @include menuItemOnHover;
+        }
+    }
+}
+
+@media only screen and (max-width: 560px) {
+    .gp-header .section-1 {
+        display: flex;
+        align-content: space-between;
+        gap: 0.5rem;
+        padding: 0 1rem;
+        & > div {
+            position: relative !important;
+            right: unset !important;
+            left: unset !important;
+        }
+    }
+    .gp-header .section-1 .content .buttons button {
+        min-width: auto;
+        span {
+            display: none;
         }
     }
 }
