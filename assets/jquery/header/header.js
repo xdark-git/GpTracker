@@ -36,8 +36,8 @@ $(function () {
 
     // Hide section 2 when clicking xmark or outside the ul
     $(document).on("click", function (event) {
-        if ($(event.target).is($closeMenu)) {
-            $section2.hide();
+        if ($(event.target).is($closeMenu) || $(event.target).is($section2)) {
+            return $section2.hide();
         }
     });
     // Show/hide language options on click
