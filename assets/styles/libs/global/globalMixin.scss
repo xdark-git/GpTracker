@@ -1,6 +1,10 @@
-@mixin global-container{
+@mixin global-container {
     position: relative;
     width: 100vw;
     display: flex;
     flex-direction: column;
+}
+
+@mixin page-max-width {
+    max-width: 1440px;
 }
