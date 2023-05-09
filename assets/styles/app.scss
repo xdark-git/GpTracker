@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto|Open+Sans|arial|helvetica|&display=swap");
-@import "./pages/base.scss";
+@import "./layout/base.scss";
+@import "./layout/header.scss";
+@import "./layout/footer.scss";
 @import "./pages/login.scss";
 @import "./pages/register.scss";
-@import "./pages/header.scss";
