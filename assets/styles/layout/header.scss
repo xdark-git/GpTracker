@@ -4,7 +4,7 @@
 @import "../libs//mixins/HeaderFooterMixins.scss";
 
 $section-height: calc(84px / 2);
-.gp-header {
+header {
     position: fixed;
     top: 0;
     width: 100vw;
@@ -76,7 +76,7 @@ $section-height: calc(84px / 2);
         }
     }
 }
-.gp-header .section-1 .logo {
+header .section-1 .logo {
     #icon-menu {
         display: none;
         &:hover {
@@ -95,7 +95,7 @@ $section-height: calc(84px / 2);
         height: auto;
     }
 }
-.gp-header .section-1 .content {
+header .section-1 .content {
     .language-switcher {
         color: $txt-color-2;
         align-self: center;
@@ -140,12 +140,12 @@ $section-height: calc(84px / 2);
         }
     }
 }
-.gp-header .section-1 .content .buttons button {
+header .section-1 .content .buttons button {
     &:hover {
         @include menuItemOnHover;
     }
 }
-.gp-header .section-2 ul {
+header .section-2 ul {
     li {
         position: relative;
         min-width: 200px;
@@ -185,7 +185,7 @@ $section-height: calc(84px / 2);
         }
     }
 }
-.gp-header .section-2 ul .language-switcher {
+header .section-2 ul .language-switcher {
     img {
         width: 22px;
         height: 22px;
@@ -219,7 +219,7 @@ $section-height: calc(84px / 2);
 }
 
 @media only screen and (max-width: 960px) {
-    .gp-header .section-1 {
+    header .section-1 {
         .logo #icon-menu {
             display: flex;
         }
@@ -228,7 +228,7 @@ $section-height: calc(84px / 2);
         }
     }
 
-    .gp-header .section-2 {
+    header .section-2 {
         display: none;
         position: fixed;
         z-index: 100;
@@ -249,7 +249,7 @@ $section-height: calc(84px / 2);
             flex-direction: column;
         }
     }
-    .gp-header .section-2 ul {
+    header .section-2 ul {
         i {
             position: absolute;
             top: 0.2rem;
@@ -278,7 +278,7 @@ $section-height: calc(84px / 2);
 }
 
 @media only screen and (max-width: 560px) {
-    .gp-header .section-1 {
+    header .section-1 {
         display: flex;
         align-content: space-between;
         gap: 0.5rem;
@@ -289,7 +289,7 @@ $section-height: calc(84px / 2);
             left: unset !important;
         }
     }
-    .gp-header .section-1 .content .buttons button {
+    header .section-1 .content .buttons button {
         min-width: auto;
         span {
             display: none;
