@@ -3,7 +3,6 @@
 @import "../libs/global/globalMixin.scss";
 @import "../libs//mixins/HeaderFooterMixins.scss";
 
-$section-height: calc(84px / 2);
 header {
     position: fixed;
     top: 0;
@@ -21,7 +20,7 @@ header {
         position: relative;
         width: inherit;
         @include page-max-width;
-        height: $section-height;
+        height: $header-section-height;
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
@@ -62,7 +61,7 @@ header {
         position: relative;
         width: inherit;
         @include page-max-width;
-        height: $section-height;
+        height: $header-section-height;
 
         ul {
             width: 100%;
@@ -259,8 +258,8 @@ header .section-2 ul .language-switcher {
         }
         li {
             width: 100%;
-            min-height: $section-height;
-            max-height: $section-height;
+            min-height: $header-section-height;
+            max-height: $header-section-height;
             a {
                 justify-content: flex-start;
                 padding: 0 1rem;
@@ -294,4 +293,3 @@ header .section-2 ul .language-switcher {
         }
     }
 }
-
