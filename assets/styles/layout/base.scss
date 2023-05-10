@@ -24,6 +24,15 @@ p {
     font-size: 1rem;
 }
 
+main {
+    padding: calc($header-section-height * 2) 0 1rem 0;
+}
+
+@mixin main-tag-max-width--960px {
+    main {
+        padding: $header-section-height 0 1rem 0;
+    }
+}
 .container {
     @include global-container;
 }
