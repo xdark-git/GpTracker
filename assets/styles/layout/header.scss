@@ -215,8 +215,7 @@ header .section-2 ul .language-switcher {
         }
     }
 }
-
-@media only screen and (max-width: 960px) {
+@mixin header-max-width--960px {
     header .section-1 {
         .logo #icon-menu {
             display: flex;
@@ -274,8 +273,9 @@ header .section-2 ul .language-switcher {
         }
     }
 }
-
-@media only screen and (max-width: 560px) {
+// @media only screen and (max-width: 960px) {
+// }
+@mixin header-max-width--560px {
     header .section-1 {
         display: flex;
         align-content: space-between;
@@ -294,3 +294,4 @@ header .section-2 ul .language-switcher {
         }
     }
 }
+

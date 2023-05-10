@@ -5,3 +5,11 @@
 @import "./pages/login.scss";
 @import "./pages/register.scss";
 @import "./pages/home.scss";
+
+@media only screen and (max-width: 960px) {
+    @include header-max-width--960px;
+}
+
+@media only screen and (max-width: 560px) {
+    @include header-max-width--560px;
+}
