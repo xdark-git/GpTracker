@@ -18,6 +18,15 @@
         {% endblock %}
     </head>
     <body >
+        {% if path(app.request.attributes.get('_route')) not in ['/login', '/register'] %}
+            {% include 'gp-tracker/layout/_header.html.twig' %}
+        {% endif %}
+
         {% block body %}{% endblock %}
+
+        {% if path(app.request.attributes.get('_route')) not in ['/login', '/register'] %}
+            {% include 'gp-tracker/layout/_footer.html.twig' %}
+        {% endif %}
+
     </body>
 </html>
