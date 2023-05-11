@@ -25,6 +25,10 @@ p {
 }
 
 main {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
     padding: calc($header-section-height * 2) 0 1rem 0;
 }
 
@@ -35,6 +39,7 @@ main {
 }
 .container {
     @include global-container;
+    @include page-max-width;
 }
 
 .fa-google {
