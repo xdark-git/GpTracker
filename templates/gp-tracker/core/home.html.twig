@@ -8,9 +8,39 @@
 
 <main>
     <div class="container">
+        <!-- START SEARCH SALON SECTION -->
+        <div class="search-salon">
+            <ul class="nav">
+                <li class="search">
+                    <i class="fa-solid fa-plane"></i>
+                    <span>Rechercher un salon</span>
+                </li>
+                <li class="create">
+                    <a href="#">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>Créer un salon</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="content">
+                <form action="">
+                    <div class="search">
+                        <div class="departure">
+                            
+                            <label for="departure">Départ de (*)</label>
+                            <input type="text" name="departure" id="departure">
+                        </div>
+                    </div>
+                    <button>Rechercher</button>
+                </form>
+            </div>
+        </div>
+        <!-- END SEARCH SALON SECTION -->
+
+        <!-- START SLIDER SECTION -->
         <div class="slideshow-container">
-            <div class="my-slides fade">
-                <img src="{{asset('theme/assets/img/slider/img2.jpg')}}" alt="slider"> 
+            <div class="my-slides show">
+                <img src="{{asset('theme/assets/img/slider/main-background.png')}}" alt="slider"> 
             </div>
             <div class="buttons">
                 <button class="back">
@@ -21,21 +51,16 @@
                         <i class="fa-solid fa-play"></i>
                 </button>
                 <ul>
-                    <li class="dot active">
-                        {# <button class="dot"></button> #}
-                    </li>
-                    <li class="dot">
-                        {# <button class="dot"></button> #}
-                    </li>
-                    <li class="dot">
-                        {# <button class="dot"></button> #}
-                    </li>
+                    <li class="dot active"></li>
+                    <li class="dot"></li>
+                    <li class="dot"></li>
                 </ul>
                 <button class="next">
                     <i class="fa-solid fa-chevron-right"></i>
                 </button>
             </div>
         </div>
+        <!-- END SLIDER SECTION -->
     </div>
 </main>
     
