@@ -51,18 +51,17 @@ main > .container > .search-salon > .nav > li {
 }
 
 main > .container > .slideshow-container {
-
     & > .my-slides {
         position: absolute;
         display: none;
         width: 100%;
         height: inherit;
-        animation-name: slider-fade;
-        animation-duration: 1.5s;
+        animation: slider-fade 3s;
     }
 
     & > .show {
-        display: flex;        
+        opacity: 1;
+        display: block;
     }
 
     & > .buttons {
@@ -114,12 +113,6 @@ main > .container > .slideshow-container > .buttons {
     }
 }
 
-main > .container > .slideshow-container .buttons .pause-play {
-    & > .fa-play {
-        display: none;
-    }
-}
-
 main > .container > .slideshow-container > .buttons > ul {
     & > li {
         cursor: pointer;
@@ -134,7 +127,5 @@ main > .container > .slideshow-container > .buttons > ul {
     & > .active {
         background-color: $black-color;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
-    }
-    & > .pause-play {
     }
 }
