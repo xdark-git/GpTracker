@@ -43,6 +43,10 @@ main {
     @include page-max-width;
 }
 
+.hidden{
+    display: none;
+}
+
 .fa-google {
     background: conic-gradient(
             from -45deg,
