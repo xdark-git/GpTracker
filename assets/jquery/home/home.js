@@ -1,5 +1,3 @@
-import $ from "jquery";
-
 $(function () {
     const $sliderSection = $("#slideshow-container");
     const $sliders = $sliderSection.find(".my-slides");
@@ -36,6 +34,8 @@ $(function () {
         $dots.removeClass("active");
         $sliders.eq(currentIndex).addClass("show");
         $dots.eq(currentIndex).addClass("active");
+        stopSlider();
+        startSlider();
     }
 
     // Move to next slide
@@ -89,6 +89,13 @@ $(function () {
     $nextButton.on("click", function () {
         stopSlider();
         moveToNext();
+    });
+
+    // Dot click event
+    $dots.on("click", function () {
+        stopSlider();
+        currentIndex = $dots.index(this);
+        showSlide();
     });
 
     // Start the slider
