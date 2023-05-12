@@ -1,3 +1,6 @@
+/*----------------------------------
+    SLIDER FUNCTIONALITY
+ -----------------------------------*/
 $(function () {
     const $sliderSection = $("#slideshow-container");
     const $sliders = $sliderSection.find(".my-slides");
