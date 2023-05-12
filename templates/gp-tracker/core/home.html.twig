@@ -6,10 +6,37 @@
 
 {% block body %}
 
-    <main>
-        <div class="container">
-            
+<main>
+    <div class="container">
+        <div class="slideshow-container">
+            <div class="my-slides fade">
+                <img src="{{asset('theme/assets/img/slider/img2.jpg')}}" alt="slider"> 
+            </div>
+            <div class="buttons">
+                <button class="back">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button class="pause-play">
+                        <i class="fa-solid fa-pause"></i>
+                        <i class="fa-solid fa-play"></i>
+                </button>
+                <ul>
+                    <li class="dot active">
+                        {# <button class="dot"></button> #}
+                    </li>
+                    <li class="dot">
+                        {# <button class="dot"></button> #}
+                    </li>
+                    <li class="dot">
+                        {# <button class="dot"></button> #}
+                    </li>
+                </ul>
+                <button class="next">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
         </div>
-    </main>
+    </div>
+</main>
     
 {% endblock %}
