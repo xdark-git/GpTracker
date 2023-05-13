@@ -25,6 +25,15 @@ main > .container > .search-salon {
         gap: 0.4rem;
         list-style-type: none;
     }
+    & > .content {
+        display: flex;
+        flex-direction: row;
+        width: inherit;
+        max-width: inherit;
+        min-height: 134px;
+        padding: 1rem;
+        background-color: $white-color;
+    }
 }
 
 main > .container > .search-salon > .nav {
