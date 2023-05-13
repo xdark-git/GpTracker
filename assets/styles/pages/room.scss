@@ -166,6 +166,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .btn-reset {
   border: none;
   background-color: transparent;
+  &:hover {
+    background-color: transparent;
+  }
 }
 
 .filter-reset-button {
@@ -182,4 +185,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .filter-options-title {
   margin-bottom: 10px;
+}
+
+.filter-reset-button:hover {
+  background-color: transparent;
 }
