@@ -22,18 +22,33 @@
                     </a>
                 </li>
             </ul>
-            <div class="content">
-                <form action="">
-                    <div class="search">
-                        <div class="departure">
-                            
-                            <label for="departure">Départ de (*)</label>
-                            <input type="text" name="departure" id="departure">
-                        </div>
+            <form class="content" action="">
+                <div class="departure">
+                    <label for="departure">Départ de (*)</label>
+                    <div>
+                        <i class="fa-solid fa-plane-departure"></i>
+                        <input type="text" name="departure" id="departure" required>
+                        <i class="fa-solid fa-xmark"></i>
                     </div>
-                    <button>Rechercher</button>
-                </form>
-            </div>
+                </div>
+                <div class="arrival">
+                    <label for="arrival">Arrivée à (*)</label>
+                    <div>
+                        <i class="fa-solid fa-plane-arrival"></i>
+                        <input type="text" name="arrival" id="arrival" required>
+                        <i class="fa-solid fa-xmark"></i>
+                    </div>
+                </div>
+                <div class="price">
+                    <label for="price">Prix/Kg</label>
+                    <div>
+                        <i class="fa-solid fa-dollar-sign"></i>
+                        <input type="text" name="price" id="price">
+                        <i class="fa-solid fa-xmark"></i>
+                    </div>
+                </div>
+                <button>Rechercher</button>
+            </form>
         </div>
         <!-- END SEARCH SALON SECTION -->
 
