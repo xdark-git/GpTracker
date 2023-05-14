@@ -24,4 +24,14 @@ class RegisterController extends AbstractController
     {   
         return $this->render($themeResolver->getThemePathPrefix('/core/home.html.twig'));
     }
+    
+
+
+
+
+    #[Route('/error', name: 'app_home')]
+    public function notFoundPage (ThemeResolver $themeResolver): Response
+    {   
+        return $this->render($themeResolver->getThemePathPrefix('/core/error.html.twig'));
+    }
 }
