@@ -104,3 +104,33 @@ $(function () {
     // Start the slider
     startSlider();
 });
+
+/*----------------------------------
+    SEARCH ROOM SECTION FUNCTIONALITY
+ -----------------------------------*/
+$(function () {
+    const $form = $(".container > .search-salon > .content");
+    const $inputs = $form.find("input");
+
+    $inputs.each(function () {
+        // Show Xmark icon if the input has a value
+        if ($(this).val().length > 0) {
+            $(this).siblings(".fa-xmark").show();
+        }
+    });
+
+    // Show/hide Xmark icon based on input value
+    $inputs.on("input", function () {
+        if ($(this).val().length > 0) {
+            $(this).siblings(".fa-xmark").show();
+        } else {
+            $(this).siblings(".fa-xmark").hide();
+        }
+    });
+
+    // Clear input when Xmark icon is clicked
+    $(".fa-xmark").on("click", function () {
+        $(this).siblings("input").val("");
+        $(this).hide();
+    });
+});
