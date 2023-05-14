@@ -8,3 +8,11 @@
 @mixin page-max-width {
     max-width: 1440px;
 }
+
+@mixin text-color($background-color) {
+    @if (checkLightness($color: $background-color)) {
+        color: $txt-color-2;
+    } @else {
+        color: $txt-color-1;
+    }
+}
