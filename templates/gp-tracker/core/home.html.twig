@@ -8,7 +8,7 @@
 
 <main>
     <div class="container">
-        <!-- START SEARCH ROOM SECTION -->
+        {# START SEARCH ROOM SECTION  #}
         <div class="search-salon">
             <ul class="nav">
                 <li class="search">
@@ -50,9 +50,9 @@
                 <button>Rechercher</button>
             </form>
         </div>
-        <!-- END SEARCH ROOM SECTION -->
+        {# END SEARCH ROOM SECTION  #}
 
-        <!-- START SLIDER SECTION -->
+        {# START SLIDER SECTION  #}
         <div class="slideshow-container" id="slideshow-container">
             <div class="my-slides show">
                 <img src="{{asset('theme/assets/img/slider/main-background.png')}}" alt="slider"> 
@@ -81,7 +81,40 @@
                 </button>
             </div>
         </div>
-        <!-- END SLIDER SECTION -->
+        {# END SLIDER SECTION  #}
+        {# START ROOMS AND CARRIER SECTION  #}
+        <div class="rooms-carriers">
+            <h2>Annonces</h2>
+            <ul class="nav">
+                <li class="active">Salon</li>
+                <li>Top transporteurs</li>
+            </ul>
+            <class class="content">
+                <div class="rooms">
+                    <div class="room">
+                        <h4>SUNU GP</h4>
+                        <div class="trip-list">
+                            <span class="departure">Paris</span>
+                            <span class="date-scheme">
+                                <div class="scheme">
+                                    <hr>
+                                    <span class="dot dot-1"></span>
+                                    <span class="dot dot-2"></span>
+                                    <i class="fa-solid fa-plane"></i>
+                                </div>
+                                <div class="date">10-12-2023</div>
+                            </span>
+                            <span class="arrival">Dakar</span>
+                        </div>
+                    </div>
+                    <div class="room">
+                    
+                    </div>
+                </div>
+                <a class="see-more" href="#">Plus de resultats</a>
+            </class>
+        </div>
+        {# END ROOMS AND CARRIER SECTION  #}
     </div>
 </main>
     
