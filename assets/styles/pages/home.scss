@@ -1,9 +1,11 @@
+@import "../libs/mixins/HomeMixin.scss";
+
 main > .container {
     & > .search-salon {
         position: absolute;
         top: 2.5rem;
         align-self: center;
-        width: 100vw;
+        width: 100%;
         max-width: 1280px;
         z-index: 1;
     }
@@ -15,7 +17,8 @@ main > .container {
     }
 
     & > .rooms-carriers {
-        width: 100vw;
+        width: 100%;
+        min-width: inherit;
         max-width: 960px;
         display: flex;
         flex-direction: column;
@@ -221,6 +224,9 @@ main > .container > .rooms-carriers {
     & > .content {
         position: relative;
         top: 0.5rem;
+    }
+    & > .see-more {
+        @include btn-see-more;
     }
 }
 main > .container > .rooms-carriers > .content {
