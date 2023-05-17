@@ -294,7 +294,7 @@ main > .container > .rooms-carriers > .content .rooms .room {
         width: 100%;
         display: flex;
         flex-direction: row;
-        padding: 0 0.8rem;
+        padding: 0.8rem;
     }
 
     & > .weight {
@@ -394,7 +394,7 @@ main > .container > .rooms-carriers > .content .rooms .room .price-details {
     }
 
     .see-details {
-        padding: 0.6rem 0.6rem;
+        padding: 0.6rem 1rem;
         text-decoration: none;
         font-size: 0.8rem;
         white-space: nowrap;
