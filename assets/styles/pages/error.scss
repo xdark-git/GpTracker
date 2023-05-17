@@ -64,3 +64,28 @@
     color: #0059b3;
   }
 }
+
+@media (max-width: 1024px) {
+  .error-container {
+    width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .error-container {
+    flex-direction: column;
+    height: auto;
+    padding: 32px;
+  }
+
+  .error-image {
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+
+  .error-content {
+    margin-top: 0;
+  }
+}
