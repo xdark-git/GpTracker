@@ -1,6 +1,7 @@
 @mixin global-container {
     position: relative;
     width: 100vw;
+    min-width: inherit;
     display: flex;
     flex-direction: column;
 }
