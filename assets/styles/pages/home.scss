@@ -20,7 +20,7 @@ main > .container {
         display: flex;
         flex-direction: column;
         align-self: center;
-        padding: 2rem 0 0 0;
+        padding: 2rem 1rem 0 1rem;
     }
 }
 
@@ -214,6 +214,19 @@ main > .container > .slideshow-container > .buttons > ul {
 }
 
 main > .container > .rooms-carriers {
+    & > h2 {
+        font-size: 1.2rem;
+        font-weight: 700;
+    }
+    & > .content {
+        position: relative;
+        top: 0.5rem;
+    }
+}
+main > .container > .rooms-carriers > .content {
+    position: relative;
+    top: 0.5rem;
+
     & > ul {
         width: 100%;
         // padding: 0.5rem 0;
@@ -222,15 +235,9 @@ main > .container > .rooms-carriers {
         border-bottom: 0.5px solid $medium-gray-color;
         list-style-type: none;
     }
-    & > .content {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        padding: 1rem 0;
-    }
 }
 
-main > .container > .rooms-carriers > ul {
+main > .container > .rooms-carriers > .content > ul {
     li {
         min-width: fit-content;
         padding: 0.5rem 1rem;
@@ -249,28 +256,30 @@ main > .container > .rooms-carriers > .content {
         display: flex;
         flex-direction: column;
         gap: 1rem;
+        padding: 1rem 0;
         margin: 0 0 1.5rem 0;
     }
 }
 
 main > .container > .rooms-carriers > .content .rooms {
-    & > .room {
+    .room {
         position: relative;
+        min-width: 284px;
         display: flex;
         flex-direction: column;
         min-height: 150px;
-        padding: 0.8rem 0;
+        padding: 0.8rem 0 0 0;
         border-radius: 8px;
         background-color: $white-color;
         box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
-        &:hover{
+        &:hover {
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         }
     }
 }
 
-main > .container > .rooms-carriers > .content > .rooms > .room {
-    h4 {
+main > .container > .rooms-carriers > .content .rooms .room {
+    & > h4 {
         width: fit-content;
         height: fit-content;
         padding: 0.4rem;
@@ -281,65 +290,68 @@ main > .container > .rooms-carriers > .content > .rooms > .room {
         background-color: mix($base-color, white, 40%);
     }
 
-    & > .trip-list {
-        position: relative;
+    & > .trip {
+        width: 100%;
         display: flex;
         flex-direction: row;
-        justify-content: center;
-        gap: 1rem;
-        color: $txt-color-4;
-        font-size: 1rem;
-    }
-
-    & > .price-details {
-        position: absolute;
-        top: 20%;
-        right: 0.8rem;
-        transform: translate(0, -20%);
-        width: 15%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 0.5rem;
+        padding: 0 0.8rem;
     }
 
     & > .weight {
-        position: absolute;
         width: 100%;
         display: flex;
         flex-direction: row;
         gap: 10px;
         padding: 0.5rem 0.8rem;
+        margin: 0.5rem 0 0 0;
         bottom: 0;
         border-top: 2px solid $gray-color;
-        // background-color: red;
     }
 }
-
-main > .container > .rooms-carriers > .content > .rooms > .room > .trip-list {
-    .date-scheme {
+main > .container > .rooms-carriers > .content .rooms .room .trip {
+    & > .trip-list {
         position: relative;
-        width: 35%;
-        min-height: 50px;
+        width: 100%;
+        align-self: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        color: $txt-color-4;
+        font-size: 1rem;
+    }
+
+    & > .price-details {
+        width: 15%;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        gap: 0.7rem;
+        margin: 0 0 0 1.5rem;
     }
 }
-main > .container > .rooms-carriers > .content > .rooms > .room .date-scheme {
-    .scheme {
-        width: 100%;
-        height: 100%;
+
+main > .container > .rooms-carriers > .content .rooms .room .trip-list {
+    .departure-arrival {
         position: relative;
+        width: 100%;
         display: flex;
         flex-direction: row;
         justify-content: center;
     }
-    i {
+
+    .scheme {
+        position: relative;
+        width: 70%;
+        height: 2px;
+        align-self: center;
+        display: flex;
+        justify-content: center;
+        margin: 0 1rem;
+        background-color: $gray-color;
+    }
+    .fa-plane {
         position: absolute;
-        bottom: 7px;
         align-self: center;
         transform: rotate(312deg);
         font-size: 1rem;
@@ -370,26 +382,22 @@ main > .container > .rooms-carriers > .content > .rooms > .room .date-scheme {
     .date {
         position: relative;
         bottom: 0;
+        align-self: center;
         color: $gray-color;
     }
 }
 
-main
-    > .container
-    > .rooms-carriers
-    > .content
-    > .rooms
-    > .room
-    > .price-details {
+main > .container > .rooms-carriers > .content .rooms .room .price-details {
     .price {
         font-weight: 900;
-        font-size: 1.2rem;
+        font-size: 1rem;
     }
 
     .see-details {
-        padding: 0.6rem 1rem;
+        padding: 0.6rem 0.6rem;
         text-decoration: none;
-        font-size: 1rem;
+        font-size: 0.8rem;
+        white-space: nowrap;
         cursor: pointer;
         border-radius: 10px;
         background-color: $base-color;
@@ -400,7 +408,7 @@ main
         }
     }
 }
-main > .container > .rooms-carriers > .content > .rooms > .room .weight {
+main > .container > .rooms-carriers > .content .rooms .room .weight {
     .divider {
         width: 10px;
         height: 2px;
@@ -420,6 +428,23 @@ main > .container > .rooms-carriers > .content > .rooms > .room .weight {
             display: flex;
             flex-direction: column;
             padding: 1.5rem;
+        }
+    }
+}
+
+@mixin home-max-width--608px {
+    main
+        > .container
+        > .rooms-carriers
+        > .content
+        .rooms
+        .room
+        .trip
+        .price-details {
+        height: 50%;
+
+        .see-details {
+            display: none;
         }
     }
 }
