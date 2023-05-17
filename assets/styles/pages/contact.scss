@@ -6,7 +6,7 @@ form {
   align-items: center;
   width: 77vw;
   background-color: #fff;
-  height: 60vh;
+  height: 80vh;
   margin-top: 111px;
   margin-bottom: 40px;
   border-radius: 48px;
@@ -61,11 +61,17 @@ form {
     textarea {
       resize: none;
       min-height: 100px;
-      min-width: 100%;
-      width: auto;
+      width: 100%;
     }
   }
 
+  .form-group.full {
+    grid-column: 1 / -1;
+  }
+
+  .form-group.full textarea {
+    width: 100%;
+  }
   .submit-group {
     grid-column: 1 / -1;
     display: flex;
@@ -91,5 +97,33 @@ form {
         color: #14438b;
       }
     }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  form {
+    grid-template-columns: 1fr; /* Une seule colonne */
+    width: 90vw; /* Ajuster la largeur */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .form-group.full {
+    grid-column: 1; /* Occupera une seule colonne */
+  }
+}
+
+/* Styles spécifiques aux écrans de petite taille (par exemple, téléphones mobiles) */
+
+@media screen and (max-width: 480px) {
+  form {
+    height: auto; /* Ajuster la hauteur en fonction du contenu */
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 16px;
+  }
+
+  .form-title {
+    margin-top: 0;
   }
 }
