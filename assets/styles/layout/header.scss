@@ -19,6 +19,7 @@ header {
 
     .section-1 {
         position: relative;
+        align-self: center;
         width: 100%;
         @include page-max-width;
         height: $header-section-height;
@@ -60,6 +61,7 @@ header {
     }
     .section-2 {
         position: relative;
+        align-self: center;
         width: inherit;
         @include page-max-width;
         height: $header-section-height;
@@ -71,6 +73,26 @@ header {
             flex-direction: row;
             align-items: center;
             list-style: none;
+        }
+    }
+    & > .notification {
+        position: relative;
+        width: inherit;
+        min-width: inherit;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+        font-size: 1rem;
+        padding: 0.7em;
+        gap: 10px;
+        @include text-color($base-color);
+        background-color: $base-color;
+
+        .text {
+            flex: 1;
+            text-align: center;
+            @include text-color($base-color);
         }
     }
 }
@@ -294,4 +316,3 @@ header .section-2 ul .language-switcher {
         }
     }
 }
-
