@@ -55,3 +55,18 @@ $(function () {
         }
     });
 });
+
+/*----------------------------------
+    UPDATE MAIN ELEMENT PADDING TOP
+ -----------------------------------*/
+$(function () {
+    function resizeMainPaddingTop() {
+        // Get the height of the header element
+        var headerHeight = $("header").outerHeight();
+
+        // Update the padding-top of the main element to match the header height
+        $("main").css("padding-top", headerHeight);
+    }
+    resizeMainPaddingTop();
+    $(window).resize(resizeMainPaddingTop);
+});
