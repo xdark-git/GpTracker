@@ -1,0 +1,19 @@
+@mixin btn-see-more {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    padding: 0.6rem;
+    text-decoration: none;
+    font-size: 1rem;
+    // font-weight: 600;
+    @include text-color($gunmetal-color);
+
+    background-color: $gunmetal-color;
+    border-radius: 13px;
+
+    &:hover {
+        background-color: lighten($color: $gunmetal-color, $amount: 20%);
+    }
+}

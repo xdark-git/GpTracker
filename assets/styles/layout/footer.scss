@@ -5,6 +5,7 @@
 
 footer {
     width: 100vw;
+    min-width: $page-min-width;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -16,7 +17,7 @@ footer {
 
     section {
         position: relative;
-        width: inherit;
+        width: 100%;
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
