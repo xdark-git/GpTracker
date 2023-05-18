@@ -4,12 +4,29 @@
 @import "./layout/footer.scss";
 @import "./pages/login.scss";
 @import "./pages/register.scss";
+@import "./pages/home.scss";
 @import "./pages/room.scss";
+@import "./layout/animations.scss";
+
+@media only screen and (max-width: 1280px) {
+    @include home-max-width--1280px;
+}
 
 @media only screen and (max-width: 960px) {
-  @include header-max-width--960px;
+    @include header-max-width--960px;
+    @include main-tag-max-width--960px;
+}
+
+@media only screen and (max-width: 608px) {
+    @include home-max-width--608px;
 }
 
 @media only screen and (max-width: 560px) {
-  @include header-max-width--560px;
+    @include header-max-width--560px;
+}
+
+@media only screen and (max-width: calc($page-min-width - 1px)) {
+    body {
+        overflow-x: visible;
+    }
 }
