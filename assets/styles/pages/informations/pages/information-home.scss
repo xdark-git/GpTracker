@@ -15,6 +15,7 @@ main .gp-informations {
 
 main > .gp-informations > .nav-content {
     .nav {
+        position: relative;
         width: 25%;
         min-width: 210px;
         height: 100%;
@@ -36,6 +37,19 @@ main > .gp-informations > .nav-content > .nav {
         list-style: none;
         width: 100%;
         height: auto;
+    }
+    > .main-nav {
+        border-bottom: 1px solid $gray-color;
+    }
+    > form {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0.8rem;
+        border-top: 1px solid $gray-color;
     }
 }
 
@@ -67,5 +81,20 @@ main > .gp-informations > .nav-content > .nav > ul {
     i {
         width: 8%;
         color: $base-color;
+    }
+}
+main > .gp-informations > .nav-content > .nav > form {
+    button {
+        border: none;
+        outline: none;
+        background-color: transparent;
+        padding: 0.5em 1em;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        color: $base-color;
+        cursor: pointer;
+        &:hover {
+            background-color: lighten($color: #000000, $amount: 90%);
+        }
     }
 }
