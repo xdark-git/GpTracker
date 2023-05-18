@@ -20,6 +20,7 @@ main > .gp-informations > .nav-content {
         height: 100%;
         border-radius: 8px;
         background-color: $white-color;
+        overflow: hidden;
     }
     .content {
         width: 100%;
@@ -27,5 +28,44 @@ main > .gp-informations > .nav-content {
         border-radius: 8px;
         background-color: $white-color;
         overflow: auto;
+    }
+}
+
+main > .gp-informations > .nav-content > .nav {
+    > ul {
+        list-style: none;
+        width: 100%;
+        height: auto;
+    }
+}
+
+main > .gp-informations > .nav-content > .nav > ul {
+    li {
+        width: 100%;
+    }
+    a {
+        width: inherit;
+        height: inherit;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 0.7rem 1rem;
+        gap: 1rem;
+        text-decoration: none;
+        color: $black-color;
+        cursor: pointer;
+        &:hover {
+            background-color: lighten($color: #000000, $amount: 90%);
+        }
+    }
+    .active {
+        background-color: lighten($color: #000000, $amount: 90%);
+        &:hover {
+            background-color: lighten($color: #000000, $amount: 92%);
+        }
+    }
+    i {
+        width: 8%;
+        color: $base-color;
     }
 }
