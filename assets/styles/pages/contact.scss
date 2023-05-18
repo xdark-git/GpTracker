@@ -1,16 +1,14 @@
-form {
+form.contact-form {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 16px;
-  justify-content: center;
-  align-items: center;
   width: 77vw;
   background-color: #fff;
   height: 80vh;
   margin-top: 111px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   border-radius: 48px;
-  margin-left: 256px;
+  margin-left: 55px;
   padding: 32px;
   box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
 
