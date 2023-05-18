@@ -1,10 +1,198 @@
 @mixin global-container {
     position: relative;
     width: 100vw;
+    min-width: inherit;
     display: flex;
     flex-direction: column;
 }
 
 @mixin page-max-width {
     max-width: 1440px;
+}
+
+@mixin text-color($background-color) {
+    @if (checkLightness($color: $background-color)) {
+        color: $txt-color-2;
+    } @else {
+        color: $txt-color-1;
+    }
+}
+@mixin room-design($selector) {
+    & > .rooms {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem 0;
+        margin: 0 0 1.5rem 0;
+
+        .room {
+            position: relative;
+            min-width: 284px;
+            display: flex;
+            flex-direction: column;
+            min-height: 150px;
+            padding: 0.8rem 0 0 0;
+            border-radius: 8px;
+            background-color: $white-color;
+            box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+
+            &:hover {
+                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            }
+
+            & > h4 {
+                width: fit-content;
+                height: fit-content;
+                padding: 0.4rem;
+                margin: 0 0.8rem;
+                font-size: 0.8rem;
+                color: $black-color;
+                border-radius: 10px;
+                background-color: mix($base-color, white, 40%);
+            }
+
+            & > .trip {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                padding: 0.8rem;
+            }
+
+            & > .weight {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                gap: 10px;
+                padding: 0.5rem 0.8rem;
+                margin: 0.5rem 0 0 0;
+                bottom: 0;
+                border-top: 2px solid $gray-color;
+            }
+
+            .trip-list {
+                position: relative;
+                width: 100%;
+                align-self: center;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                color: $txt-color-4;
+                font-size: 1rem;
+            }
+
+            .price-details {
+                width: 15%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 0.7rem;
+                margin: 0 0 0 1.5rem;
+            }
+
+            .departure-arrival {
+                position: relative;
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+            }
+
+            .scheme {
+                position: relative;
+                width: 70%;
+                height: 2px;
+                align-self: center;
+                display: flex;
+                justify-content: center;
+                margin: 0 1rem;
+                background-color: $gray-color;
+            }
+
+            .fa-plane {
+                position: absolute;
+                align-self: center;
+                transform: rotate(312deg);
+                font-size: 1rem;
+                color: $gray-color;
+            }
+
+            .dot {
+                position: absolute;
+                align-self: center;
+                width: 13px;
+                height: 13px;
+                border-radius: 50px;
+                border: 1px solid $gray-color;
+                background-color: $white-color;
+            }
+
+            .dot-1 {
+                left: 0;
+                font-size: 0.6rem;
+            }
+
+            .dot-2 {
+                right: 0;
+                font-size: 0.6rem;
+            }
+
+            hr {
+                width: 100%;
+                border: 1px solid $gray-color;
+                align-self: center;
+            }
+
+            .date {
+                position: relative;
+                bottom: 0;
+                align-self: center;
+                color: $gray-color;
+            }
+
+            .price {
+                font-weight: 900;
+                font-size: 1rem;
+            }
+
+            .see-details {
+                padding: 0.6rem 1rem;
+                text-decoration: none;
+                font-size: 0.8rem;
+                white-space: nowrap;
+                cursor: pointer;
+                border-radius: 10px;
+                background-color: $base-color;
+                @include text-color($base-color);
+
+                &:hover {
+                    background-color: lighten(
+                        $color: $base-color,
+                        $amount: 20%
+                    );
+                }
+            }
+
+            .divider {
+                width: 10px;
+                height: 2px;
+                align-self: center;
+                background-color: $black-color;
+            }
+
+            .price {
+                color: $gray-color;
+            }
+        }
+    }
+}
+
+@mixin room-design-max-width--608px {
+    .rooms .room .trip .price-details {
+        height: 50%;
+
+        .see-details {
+            display: none;
+        }
+    }
 }
