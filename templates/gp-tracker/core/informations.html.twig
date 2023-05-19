@@ -55,7 +55,45 @@
                 </form>
             </div>
             <div class="content">
+                 <h2 class="title">Votre compte</h2>
+                <hr class="horizontal-line">
+                <div class="profile">
+                    <div class="profile-header">
+                        <h2 class="profile-title">Profil</h2>
+                        <p class="favorites-text">Mes favoris</p>
+                    </div>
+                    <div class="profile-info">
+                        <img src="{{asset('theme/assets/img/profil/gp-profile.png')}}" alt="Profile Image" class="profile-image">
+                        <button class="icon-circle">
+                           <i class="fa-solid fa-plus"></i>
+                        </button>
+                        <p class="profile-description">Avec une photo, vous avez de quoi personnaliser votre profil et rassurer les autres membres!</p>
+                    </div>
+                    <div class="username-container">
+                        <div class="username-label">
+                            <span>Nom d'utilisateur</span>
+                            <span class="required-field">Champ requis</span>
+                        </div>
+                        <input type="text" placeholder="Entrez votre nom d'utilisateur" />
+                    </div>
+                    <div class="account-info-container">
+                        <div class="account-info-header">
+                            <h2 class="account-info-title">Information de compte</h2>
+                        </div>
+                        <div class="gender-selection">
+                            
+                            <label>
+                                <input type="radio" name="gender" value="madame" />
+                                    Madame
+                                </label>
+                            <label>
+                                <input type="radio" name="gender" value="monsieur" />
+                                    Monsieur
+                             </label>
+                        </div>
+                    </div>
 
+                </div>
             </div>
         </section>
     </div>
