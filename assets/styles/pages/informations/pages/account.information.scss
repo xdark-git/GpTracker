@@ -12,8 +12,8 @@
         border-top: 1px solid #D9D9D9;
         margin-bottom: 1rem;
     }
-
-    .profile {
+    .form-info{
+      .profile {
         .profile-header {
             display: flex;
             justify-content: space-between;
@@ -82,11 +82,11 @@
               .required-field {
                 color: #D9D9D9;
                 font-weight: bold;
-                margin-left: 16.5rem;
+                margin-left: 7.5rem;
               }
               
               input[type="text"] {
-                width: 50%;
+                width: 36%;
                 height: 3rem;
                 padding: 0.5rem;
                 border: 1px solid #ccc;
@@ -115,6 +115,54 @@
                   }
               }
           }
+          .user-info {
+            margin-top: 1.5rem;
+            display: flex;
+            margin-left: 1.5rem;
+            justify-content: space-between; 
+            .info-1,
+            .info-2 {
+              margin-bottom: 0.5rem;
+              display: flex;
+              flex-direction: column; /* Afficher les span et les inputs en colonne */
+              justify-content: center;
+              width: 50%; /* Définir la largeur à 50% */
+              .input-field {
+                width: 75%;
+                height: 3rem;
+                padding: 0.5rem;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+              }
+            .label-container {
+              display: flex;
+              align-items: center;
+              gap: 0.5rem;
+      
+              justify-content: flex-start;
+              .info-label {
+                margin-right: 0.5rem;
+              }
+              .required-label {
+                color: #D9D9D9;
+                margin-left: 233px;
+              }
+              .required-label-2{
+                color:#D9D9D9;
+                margin-left: 209px;
+              }
+              .required-label-3{
+                color:#D9D9D9;
+                margin-left: 120px;
+              }
+              .required-label-4{
+                color:#D9D9D9;
+                margin-left: 99px;
+              }
+            }
+          }
+        }   
+    } 
     }
-    
+     
 }
