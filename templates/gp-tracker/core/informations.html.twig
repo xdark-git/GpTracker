@@ -55,45 +55,82 @@
                 </form>
             </div>
             <div class="content">
-                 <h2 class="title">Votre compte</h2>
+                <h2 class="title">Votre compte</h2>
                 <hr class="horizontal-line">
-                <div class="profile">
-                    <div class="profile-header">
-                        <h2 class="profile-title">Profil</h2>
-                        <p class="favorites-text">Mes favoris</p>
-                    </div>
-                    <div class="profile-info">
-                        <img src="{{asset('theme/assets/img/profil/gp-profile.png')}}" alt="Profile Image" class="profile-image">
-                        <button class="icon-circle">
-                           <i class="fa-solid fa-plus"></i>
-                        </button>
-                        <p class="profile-description">Avec une photo, vous avez de quoi personnaliser votre profil et rassurer les autres membres!</p>
-                    </div>
-                    <div class="username-container">
-                        <div class="username-label">
-                            <span>Nom d'utilisateur</span>
-                            <span class="required-field">Champ requis</span>
+                <form action="#" class="form-info">
+                    <div class="profile">
+                        <div class="profile-header">
+                            <h2 class="profile-title">Profil</h2>
+                            <p class="favorites-text">Mes favoris</p>
                         </div>
-                        <input type="text" placeholder="Entrez votre nom d'utilisateur" />
-                    </div>
-                    <div class="account-info-container">
-                        <div class="account-info-header">
-                            <h2 class="account-info-title">Information de compte</h2>
+                        <div class="profile-info">
+                            <img src="{{asset('theme/assets/img/profil/gp-profile.png')}}" alt="Profile Image" class="profile-image">
+                            <button class="icon-circle">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                            <p class="profile-description">Avec une photo, vous avez de quoi personnaliser votre profil et rassurer les autres membres!</p>
                         </div>
-                        <div class="gender-selection">
+                        <div class="username-container">
+                            <div class="username-label">
+                                <span>Nom d'utilisateur</span>
+                                <span class="required-field">Champ requis</span>
+                            </div>
+                            <input type="text" placeholder="Entrez votre nom d'utilisateur" />
+                        </div>
+                        <div class="account-info-container">
+                            <div class="account-info-header">
+                                <h2 class="account-info-title">Information de compte</h2>
+                            </div>
+                            <div class="gender-selection">
                             
-                            <label>
-                                <input type="radio" name="gender" value="madame" />
-                                    Madame
+                                <label>
+                                    <input type="radio" name="gender" value="madame" />
+                                        Madame
+                                    </label>
+                                <label>
+                                    <input type="radio" name="gender" value="monsieur" />
+                                        Monsieur
                                 </label>
-                            <label>
-                                <input type="radio" name="gender" value="monsieur" />
-                                    Monsieur
-                             </label>
+                            </div>
+                        </div>
+                        <div class="user-info">
+                            <div class="info-1">
+                                <div class="label-container">
+                                    <span class="info-label">Nom </span>
+                                    <span class="required-label">champ requis</span>
+                                </div>
+                                <input type="text" name="nom" class="input-field" placeholder="Entrez votre nom " />
+                            </div>
+                            <div class="info-2">
+                                <div class="label-container">
+                                    <span class="info-label">Prenom </span>
+                                    <span class="required-label-2">champ requis</span>
+                                </div>
+                                <input type="text" name="prenom" class="input-field" placeholder="Entrez votre prenom "  />
+                            </div>
+                        </div>
+                        <div class="user-info">
+                            <div class="info-1">
+                                <div class="label-container">
+                                    <span class="info-label">Date de Naissance</span>
+                                    <span class="required-label-3">champ requis</span>
+                                </div>
+                                <input type="date" name="nom" class="input-field"  />
+                            </div>
+                            <div class="info-2">
+                                <div class="label-container">
+                                    <span class="info-label">Numero de telephone </span>
+                                    <span class="required-label-4">champ requis</span>
+                                </div>
+                                <input type="tel" name="prenom" class="input-field" placeholder="Entrez votre numero de telephone"  />
+                            </div>
                         </div>
                     </div>
-
-                </div>
+                    <div class="btn-section">
+                    <input type="submit" value="Enregistrer" class="save-button">
+                    </div>
+                </form> 
+                
             </div>
         </section>
     </div>
