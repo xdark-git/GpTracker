@@ -65,16 +65,25 @@
                             <a href="#" class="my-favorites">Mes favoris</a>
                         </div>
                         <div class="body">
-                            <span class="profile-picture">
-                                <img src="{{asset('theme/assets/img/profil/default-user-profile.png')}}" alt="Profile Image" class="profile-image" id="profile-image-container">
-                                <label for="profile-picture">
-                                    <i class="fa-solid fa-plus"></i>
-                                </label>
-                                <input type="file" name="profile" id="profile-picture" class="profile-picture">
-                            </span>
-                            <span class="description">
-                                Avec une photo, vous avez de quoi personnaliser votre profil et rassurer les autres membres!
-                            </span>
+                           <div>
+                                 <span class="profile-picture">
+                                    <img src="{{asset('theme/assets/img/profil/default-user-profile.png')}}" alt="Profile Image" class="profile-image" id="profile-image-container">
+                                    <label for="profile-picture">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </label>
+                                    <input type="file" name="profile" id="profile-picture" class="profile-picture">
+                                </span>
+                                <span class="description">
+                                    Avec une photo, vous avez de quoi personnaliser votre profil et rassurer les autres membres!
+                                </span>
+                           </div>
+                            <div class="input-container">
+                                <div>
+                                    <label for="username">Nom d'utilisateur</label>
+                                    <span class="required-field">Champ requis</span>
+                                </div>
+                                <input type="text" class="username" id="username" required>
+                            </div>
                         </div>
                     </div>
                     <div class="information">
@@ -82,75 +91,25 @@
                             <h2 class="title">Informations de Compte</h2>
                         </div>
                         <div class="body">
-
+                            <div class="input-container">
+                                <div>
+                                    <span>
+                                        <input type="radio" id="male" name="gender" value="Male">
+                                        <label for="male">Monsieur</label>
+                                    </span>
+                                    <span>
+                                        <input type="radio" id="female" name="gender" value="Female">
+                                        <label for="female">Madame</label>
+                                    </span>
+                                </div>
+                            </div>
+                            
                         </div>
                     </div>
-                    {# <div class="profile">
-                       
-                        <div class="profile-info">
-                            
-                        </div>
-                        <div class="username-container">
-                            <div class="username-label">
-                                <span>Nom d'utilisateur</span>
-                                <span class="required-field">Champ requis</span>
-                            </div>
-                            <input type="text" placeholder="Entrez votre nom d'utilisateur" />
-                        </div>
-                        <div class="account-info-container">
-                            <div class="account-info-header">
-                                <h2 class="account-info-title">Information de compte</h2>
-                            </div>
-                            <div class="gender-selection">
-                            
-                                <label>
-                                    <input type="radio" name="gender" value="madame" />
-                                        Madame
-                                    </label>
-                                <label>
-                                    <input type="radio" name="gender" value="monsieur" />
-                                        Monsieur
-                                </label>
-                            </div>
-                        </div>
-                        <div class="user-info">
-                            <div class="info-1">
-                                <div class="label-container">
-                                    <span class="info-label">Nom </span>
-                                    <span class="required-label">champ requis</span>
-                                </div>
-                                <input type="text" name="nom" class="input-field" placeholder="Entrez votre nom " />
-                            </div>
-                            <div class="info-2">
-                                <div class="label-container">
-                                    <span class="info-label">Prenom </span>
-                                    <span class="required-label-2">champ requis</span>
-                                </div>
-                                <input type="text" name="prenom" class="input-field" placeholder="Entrez votre prenom "  />
-                            </div>
-                        </div>
-                        <div class="user-info">
-                            <div class="info-1">
-                                <div class="label-container">
-                                    <span class="info-label">Date de Naissance</span>
-                                    <span class="required-label-3">champ requis</span>
-                                </div>
-                                <input type="date" name="nom" class="input-field"  />
-                            </div>
-                            <div class="info-2">
-                                <div class="label-container">
-                                    <span class="info-label">Numero de telephone </span>
-                                    <span class="required-label-4">champ requis</span>
-                                </div>
-                                <input type="tel" name="prenom" class="input-field" placeholder="Entrez votre numero de telephone"  />
-                            </div>
-                        </div>
-                    </div> #}
                     <div class="btn-section">
                         <button>Enregistrer</button>
                     </div>
-                </form> 
-                
+                </form>   
             </div>
         </section>
     </div>
