@@ -55,20 +55,37 @@
                 </form>
             </div>
             <div class="content">
-                <h2 class="title">Votre compte</h2>
-                <hr class="horizontal-line">
+               <div class="header">
+                     <h2 class="title">Votre compte</h2>
+               </div>
                 <form action="#" class="form-info">
                     <div class="profile">
                         <div class="profile-header">
-                            <h2 class="profile-title">Profil</h2>
-                            <a href="#" class="favorites-text">Mes favoris</a>
+                            <h2 class="title">Profil</h2>
+                            <a href="#" class="my-favorites">Mes favoris</a>
                         </div>
-                        <div class="profile-info">
-                            <img src="{{asset('theme/assets/img/profil/gp-profile.png')}}" alt="Profile Image" class="profile-image">
-                            <button class="icon-circle">
+                        <div class="body">
+                            <span class="profile-picture">
+                                <img src="{{asset('theme/assets/img/profil/gp-profile.png')}}" alt="Profile Image" class="profile-image">
                                 <i class="fa-solid fa-plus"></i>
-                            </button>
-                            <p class="profile-description">Avec une photo, vous avez de quoi personnaliser votre profil et rassurer les autres membres!</p>
+                            </span>
+                            <span class="description">
+                                Avec une photo, vous avez de quoi personnaliser votre profil et rassurer les autres membres!
+                            </span>
+                        </div>
+                    </div>
+                    <div class="information">
+                        <div class="profile-header">
+                            <h2 class="title">Informations de Compte</h2>
+                        </div>
+                        <div class="body">
+
+                        </div>
+                    </div>
+                    {# <div class="profile">
+                       
+                        <div class="profile-info">
+                            
                         </div>
                         <div class="username-container">
                             <div class="username-label">
@@ -125,9 +142,9 @@
                                 <input type="tel" name="prenom" class="input-field" placeholder="Entrez votre numero de telephone"  />
                             </div>
                         </div>
-                    </div>
+                    </div> #}
                     <div class="btn-section">
-                    <input type="submit" value="Enregistrer" class="save-button">
+                        <button>Enregistrer</button>
                     </div>
                 </form> 
                 
