@@ -22,7 +22,7 @@
         .profile {
             display: flex;
             flex-direction: column;
-            gap:1rem;
+            gap: 1rem;
         }
     }
 
@@ -94,6 +94,7 @@
             width: 134px;
             height: 136px;
             border-radius: 50%;
+            object-fit: cover;
         }
     }
 }
