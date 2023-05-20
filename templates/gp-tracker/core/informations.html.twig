@@ -66,8 +66,11 @@
                         </div>
                         <div class="body">
                             <span class="profile-picture">
-                                <img src="{{asset('theme/assets/img/profil/gp-profile.png')}}" alt="Profile Image" class="profile-image">
-                                <i class="fa-solid fa-plus"></i>
+                                <img src="{{asset('theme/assets/img/profil/default-user-profile.png')}}" alt="Profile Image" class="profile-image">
+                                <label for="profile-picture">
+                                    <i class="fa-solid fa-plus"></i>
+                                </label>
+                                <input type="file" name="profile" id="profile-picture" class="profile-picture">
                             </span>
                             <span class="description">
                                 Avec une photo, vous avez de quoi personnaliser votre profil et rassurer les autres membres!
@@ -75,7 +78,7 @@
                         </div>
                     </div>
                     <div class="information">
-                        <div class="profile-header">
+                        <div class="information-header">
                             <h2 class="title">Informations de Compte</h2>
                         </div>
                         <div class="body">
