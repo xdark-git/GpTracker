@@ -2,7 +2,7 @@
     & > .header {
         width: 100%;
         font-size: 1rem;
-        padding: 0.8rem 1rem;
+        padding: 0 1rem 0.8rem 1rem;
         border-bottom: 2px solid $light-gray-color;
     }
 
@@ -14,15 +14,16 @@
     & > form {
         position: relative;
         width: 100%;
+        height: fit-content;
         padding: 1rem;
         display: flex;
         flex-direction: column;
-        gap: 1rem;
+        gap: 2rem;
         font-size: 1rem;
     }
 
-    & > form .profile,
-    & > form .information {
+    #user-informations .profile,
+    #user-informations .information {
         display: flex;
         flex-direction: column;
         gap: 1rem;
@@ -33,14 +34,14 @@
         }
     }
 
-    & > form .profile .profile-header {
+    #user-informations .profile .profile-header {
         position: relative;
         display: flex;
         flex-direction: row;
         align-items: center;
         font-size: inherit;
     }
-    & > form .profile .profile-header > .my-favorites {
+    #user-informations .profile .profile-header > .my-favorites {
         position: absolute;
         right: 1rem;
         text-decoration: none;
@@ -49,7 +50,8 @@
         color: $red-color;
     }
 
-    & > form .profile .body {
+    #user-informations .profile .body,
+    #user-informations .information .body {
         position: relative;
         display: flex;
         flex-direction: column;
@@ -63,12 +65,12 @@
         }
     }
 
-    & > form .profile .body span {
+    #user-informations .profile .body span {
         display: flex;
         align-self: center;
     }
 
-    & > form .profile .body .profile-picture {
+    #user-informations .profile .body .profile-picture {
         width: min-content;
         position: relative;
         flex-direction: column;
@@ -96,14 +98,21 @@
         }
     }
 
-    & > form .profile .body img {
+    #user-informations .profile .body img {
         width: 134px;
         height: 136px;
         border-radius: 50%;
         object-fit: cover;
     }
-
-    & > form .input-container {
+    #user-informations .form-group {
+        position: relative;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 1rem;
+    }
+    #user-informations .input-container {
         position: relative;
         width: 40%;
         display: flex;
@@ -111,7 +120,8 @@
         gap: 5px;
     }
 
-    & > form .input-container input[type="text"] {
+    #user-informations .input-container input[type="text"],
+    #user-informations .input-container input[type="date"] {
         width: 100%;
         height: 36px;
         font-weight: 500;
@@ -122,25 +132,45 @@
         outline: none;
     }
 
-    & > form .input-container input[type="radio"] {
+    #user-informations .input-container input[type="radio"] {
         height: 25px;
         width: 25px;
     }
 
-    & > form .input-container > div {
+    #user-informations .input-container > div {
         position: relative;
         width: 100%;
         display: flex;
         flex-direction: row;
+        gap: 1rem;
     }
 
-    & > form .input-container > div .required-field {
+    #user-informations .input-container > div .required-field {
         position: absolute;
         right: 0;
         font-size: 0.8rem;
         color: $medium-gray-color;
     }
-
-    & > form > .information {
+    #user-informations .input-container > div .contain-input-radio {
+        width: fit-content;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+    }
+    #user-informations > .submit {
+        align-self: end;
+        width: fit-content;
+        font-size: 1rem;
+        // margin-top: 2rem;
+        padding: 0.5em 2em;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        &:hover {
+            background-color: $base-color;
+            color: $white-color;
+        }
     }
 }
