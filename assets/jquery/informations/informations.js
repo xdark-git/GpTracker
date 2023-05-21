@@ -2,7 +2,7 @@ import $ from "jquery";
 import "./contents/account.informations.js";
 
 /*----------------------------------------
-    DISPLAY ACCOUNT INFORMATIONS ON CLICK
+    DISPLAY INFORMATION CONTENT ON CLICK
  ---------------------------------------*/
 $(function () {
     var $container = $("main > div.gp-informations section.nav-content");
