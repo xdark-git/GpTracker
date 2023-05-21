@@ -175,3 +175,13 @@
         }
     }
 }
+
+@mixin account-information-max-width--775px {
+    #user-informations .form-group {
+        display: flex;
+        flex-direction: column;
+    }
+    #user-informations .input-container{
+        width: 100%;
+    }
+}

@@ -15,6 +15,11 @@
 @media only screen and (max-width: 960px) {
     @include header-max-width--960px;
     @include main-tag-max-width--960px;
+    @include information-max-width--960px;
+}
+
+@media only screen and (max-width: 775px) {
+    @include information-max-width--775px;
 }
 
 @media only screen and (max-width: 608px) {

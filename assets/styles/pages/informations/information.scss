@@ -105,3 +105,19 @@ main > .gp-informations > .nav-content > .nav > form {
 main > .gp-informations > .nav-content > .content {
     @include account-information;
 }
+
+@mixin information-max-width--960px {
+    main > .gp-informations > .nav-content .nav {
+        display: none;
+        width: 100%;
+    }
+    main > .gp-informations > .nav-content > .content {
+        display: none;
+    }
+}
+
+@mixin information-max-width--775px {
+    main > .gp-informations > .nav-content > .content {
+        @include account-information-max-width--775px;
+    }
+}
