@@ -29,4 +29,9 @@ class RegisterController extends AbstractController
     {
         return $this->render($themeResolver->getThemePathPrefix('/core/informations/contents/account.html.twig'));
     }
+    #[Route("/informations/account", name:"app_informations_user")]
+    public function informationUser(ThemeResolver $themeResolver): Response
+    {
+        return $this->render($themeResolver->getThemePathPrefix('/core/informations/contents/account.html.twig'));
+    }
 }
