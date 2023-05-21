@@ -107,12 +107,21 @@ main > .gp-informations > .nav-content > .content {
 }
 
 @mixin information-max-width--960px {
+    main > .gp-informations {
+        min-height: fit-content;
+        padding: unset;
+    }
+    main > .gp-informations > .nav-content {
+        height: inherit;
+    }
     main > .gp-informations > .nav-content .nav {
         display: none;
         width: 100%;
+        height: inherit;
     }
     main > .gp-informations > .nav-content > .content {
         display: none;
+        overflow: unset;
     }
 }
 
