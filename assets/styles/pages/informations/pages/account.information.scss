@@ -123,11 +123,12 @@
     #user-informations .input-container input[type="text"],
     #user-informations .input-container input[type="date"] {
         width: 100%;
-        height: 36px;
+        // height: 36px;
         font-weight: 500;
         font-size: 1rem;
         border-radius: 6px;
-        padding: 1em 0.5em;
+        padding: 0;
+        padding: 0.5em;
         border: 2px solid $light-gray-color;
         outline: none;
     }
