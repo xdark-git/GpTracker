@@ -122,6 +122,7 @@ main > .gp-informations > .nav-content > .content {
     }
     main > .gp-informations > .nav-content > .content {
         display: none;
+        height: inherit;
         overflow: unset;
     }
 }
@@ -131,4 +132,5 @@ main > .gp-informations > .nav-content > .content {
         @include account-information-max-width--775px;
     }
 }
+
 
