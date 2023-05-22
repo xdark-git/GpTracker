@@ -1,0 +1,89 @@
+{% extends 'gp-tracker/core/informations/informations.html.twig' %}
+
+{% block  subtitle %} 
+    Votre compte
+{% endblock %}
+
+{% block content %}
+<form action="#" class="form-info" id="user-informations">
+    <div class="profile">
+        <div class="profile-header">
+            <h2 class="title">Profil</h2>
+            <a href="#" class="my-favorites">Mes favoris</a>
+        </div>
+        <div class="body">
+            <div>
+                <span class="profile-picture">
+                    <img src="{{asset('theme/assets/img/profil/default-user-profile.png')}}" alt="Profile Image" class="profile-image" id="profile-image-container">
+                    <label for="profile-picture">
+                        <i class="fa-solid fa-plus"></i>
+                    </label>
+                    <input type="file" name="profile" id="profile-picture" class="profile-picture">
+                </span>
+                <span class="description">
+                    Avec une photo, vous avez de quoi personnaliser votre profil et rassurer les autres membres!
+                </span>
+            </div>
+            <div class="input-container">
+                <div>
+                    <label for="username">Nom d'utilisateur</label>
+                    <span class="required-field">Champ requis</span>
+                </div>
+                <input type="text" class="username" id="username" required>
+            </div>
+        </div>
+    </div>
+    <div class="information">
+        <div class="information-header">
+            <h2 class="title">Informations de Compte</h2>
+        </div>
+        <div class="body">
+            <div class="input-container">
+                <div>
+                    <span class="contain-input-radio">
+                        <input type="radio" id="male" name="gender" value="Male">
+                        <label for="male">Monsieur</label>
+                    </span>
+                    <span class="contain-input-radio">
+                        <input type="radio" id="female" name="gender" value="Female">
+                        <label for="female">Madame</label>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-container">
+                    <div>
+                        <label for="first-name">Nom</label>
+                        <span class="required-field">Champ requis</span>
+                    </div>
+                    <input type="text" class="first-name" id="first-name" required>
+                </div>
+                <div class="input-container">
+                    <div>
+                        <label for="last-name">Prénom</label>
+                        <span class="required-field">Champ requis</span>
+                    </div>
+                    <input type="text" class="last-name" id="last-name" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-container">
+                    <div>
+                        <label for="birth">Date de naissance</label>
+                        <span class="required-field">Champ requis</span>
+                    </div>
+                    <input type="date" class="birth" id="birth" required>
+                </div>
+                <div class="input-container">
+                    <div>
+                        <label for="phone">Numéro de téléphone</label>
+                        <span class="required-field">Champ requis</span>
+                    </div>
+                    <input type="text" class="phone" id="phone" required>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="submit">Enregistrer</button>
+</form>   
+{% endblock %}

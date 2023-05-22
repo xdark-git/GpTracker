@@ -1,18 +1,16 @@
 {% extends 'gp-tracker/base.html.twig' %}
-
 {% block title %}
-   Home
+   Information 
 {% endblock %}
 
 {% block body %}
-
 <main>
     <div class="container gp-informations">
         <section class="nav-content">
             <div class="nav">
                 <ul class="main-nav">
                     <li class="active">
-                       <a href="#">
+                       <a href="/informations/account">
                              <i class="fa-solid fa-user"></i>
                             <span>Votre compte GP-Tracker</span>
                        </a>
@@ -55,10 +53,14 @@
                 </form>
             </div>
             <div class="content">
-
+               <div class="header">
+                   <h2 class="title">
+                        {% block  subtitle %} {% endblock %}
+                   </h2>
+               </div>
+                {% block content %} {% endblock %}
             </div>
         </section>
     </div>
 </main>
-    
 {% endblock %}

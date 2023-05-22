@@ -1,4 +1,4 @@
-@import "./pages/account-information.scss";
+@import "./pages/account.information.scss";
 
 main .gp-informations {
     position: relative;
@@ -30,6 +30,7 @@ main > .gp-informations > .nav-content {
         width: 100%;
         height: 100%;
         border-radius: 8px;
+        padding: 1rem 0;
         background-color: $white-color;
         overflow: auto;
     }
@@ -103,4 +104,29 @@ main > .gp-informations > .nav-content > .nav > form {
 }
 main > .gp-informations > .nav-content > .content {
     @include account-information;
+}
+
+@mixin information-max-width--960px {
+    main > .gp-informations {
+        min-height: fit-content;
+        padding: unset;
+    }
+    main > .gp-informations > .nav-content {
+        height: inherit;
+    }
+    main > .gp-informations > .nav-content .nav {
+        display: none;
+        width: 100%;
+        height: inherit;
+    }
+    main > .gp-informations > .nav-content > .content {
+        display: none;
+        overflow: unset;
+    }
+}
+
+@mixin information-max-width--775px {
+    main > .gp-informations > .nav-content > .content {
+        @include account-information-max-width--775px;
+    }
 }
