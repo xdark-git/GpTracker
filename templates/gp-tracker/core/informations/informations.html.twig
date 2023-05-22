@@ -1,0 +1,66 @@
+{% extends 'gp-tracker/base.html.twig' %}
+{% block title %}
+   Information 
+{% endblock %}
+
+{% block body %}
+<main>
+    <div class="container gp-informations">
+        <section class="nav-content">
+            <div class="nav">
+                <ul class="main-nav">
+                    <li class="active">
+                       <a href="/informations/account">
+                             <i class="fa-solid fa-user"></i>
+                            <span>Votre compte GP-Tracker</span>
+                       </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa-solid fa-envelope"></i>
+                            <span>Boîte de reception</span>
+                        </a>
+                    </li>
+                    <li>
+                       <a href="#">
+                             <i class="fa-solid fa-box"></i>
+                            <span>Mes colis</span>
+                       </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa-solid fa-truck-fast"></i>
+                            <span>Mes commandes</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa-regular fa-clock-rotate-left"></i>
+                            <span>Vus Récemment</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="params">
+                    <li>
+                        <a href="#">Adresses</a>
+                    </li>
+                    <li>
+                        <a href="#">Paramatère du compte</a>
+                    </li>
+                </ul>
+                <form>
+                    <button>Deconnexion</button>
+                </form>
+            </div>
+            <div class="content">
+               <div class="header">
+                   <h2 class="title">
+                        {% block  subtitle %} {% endblock %}
+                   </h2>
+               </div>
+                {% block content %} {% endblock %}
+            </div>
+        </section>
+    </div>
+</main>
+{% endblock %}
