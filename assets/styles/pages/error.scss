@@ -3,15 +3,12 @@
   position: relative;
   justify-content: center;
   align-items: center;
-  width: 77vw;
+  width: 70vw;
   background-color: #fff;
-
   height: 65vh;
-  margin-top: 111px;
-  margin-bottom: 40px;
-  border-radius: 48px;
-  margin-left: 75px;
-  margin-right: 42px;
+  margin-top: 1rem;
+  border-radius: 52px;
+  
 }
 
 .error-image {
@@ -65,27 +62,9 @@
   }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1434px) {
   .error-container {
-    width: 90vw;
-    margin-left: auto;
-    margin-right: auto;
+    width: 100vw;
   }
 }
 
-@media (max-width: 768px) {
-  .error-container {
-    flex-direction: column;
-    height: auto;
-    padding: 32px;
-  }
-
-  .error-image {
-    margin-top: 0;
-    margin-bottom: 20px;
-  }
-
-  .error-content {
-    margin-top: 0;
-  }
-}
