@@ -1,59 +1,62 @@
 @mixin empty-message{
-    .empty-message-container {
+    .no-content-container {
+        position: relative;
         width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
         text-align: center;
-        padding: 4rem 0 1rem 0;
+        padding: 4rem 1rem 1rem 1rem;
     }
     
-    .empty-message-icon {
+    .no-content-container .no-content-icon {
         position: relative;
-        width: 130px;
-        height: 120px;
-        margin-bottom: 20px;
+        margin-bottom: 1rem;
+    }
+
+    .no-content-container .no-content-icon i{
+         font-size: 3rem;
     }
     
-    .empty-message-icon i {
+    .no-content-container .no-message-icon i {
         position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 60px;
+        top: 50%; 
     }
     
-    .empty-message-icon .fa-creative-commons-zero {
-        position: absolute;
+    
+
+    .no-content-container .no-message-icon .fa-creative-commons-zero {
         top: 50%;
         right: 0;
         transform: translate(15%, -51%);
         font-size: 35px;
         
     }
+    .no-content-container .no-message-icon .fa-envelope-open {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 60px;
+    }
     
-    .empty-message-icon::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: #ccc;
+    .no-content-container .no-message-icon {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        background-color: $light-gray-color;
         border-radius: 50%;
     }
     
-    .empty-message-container h2 {
+    .no-content-container > .message h2 {
         font-size: 1.5rem;
         margin-bottom: 10px;
-        white-space: nowrap;
+        
     }
     
-    .empty-message-container p {
+    .no-content-container > .message  p {
         font-size: 1rem;
         margin-bottom: 5px;
     }
-    
     
 }
 
