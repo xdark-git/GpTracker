@@ -93,10 +93,10 @@ $(function () {
     const $xMark = $banner.find("i.fa-xmark");
 
     setTimeout(function () {
-        $banner.hide();
+        $banner.remove();
     }, 7000);
 
     $xMark.click(function () {
-        $banner.hide();
+        $banner.remove();
     });
 });
