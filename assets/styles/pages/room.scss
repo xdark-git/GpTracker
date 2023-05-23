@@ -126,6 +126,7 @@ main .gp-rooms > .content {
     flex-direction: row;
     width: 100%;
     gap: 1rem;
+    padding-top: 1rem;
 
     & > :first-child,
     & > :last-child {
