@@ -121,15 +121,28 @@ main .gp-rooms > .search .form-container .form-group .input-container > .buttons
         cursor: pointer;
     }
 }
+main .gp-rooms > .content {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 1rem;
 
-@media only screen and (max-width: 960px) {
+    & > :first-child,
+    & > :last-child {
+        width: 30%;
+        background-color: red;
+    }
+
+    @include room-design(&);
+}
+@mixin room-max-width--960px {
     // main .gp-rooms > .search {
-        // display: none;
-        // position: relative;
-        // top: 0;
-        // z-index: 999;
-        // // height: 100vh;
-        // background-color: rgba(0, 0, 0, 0.4);
+    // display: none;
+    // position: relative;
+    // top: 0;
+    // z-index: 999;
+    // // height: 100vh;
+    // background-color: rgba(0, 0, 0, 0.4);
     // }
     main .gp-rooms > .search button[type="submit"] {
         display: flex;
@@ -230,4 +243,22 @@ main .gp-rooms > .search .form-container .form-group .input-container > .buttons
             display: none;
         }
     }
+
+    main .gp-rooms > .content {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        gap: 1rem;
+        padding: 1rem;
+
+        & > :first-child,
+        & > :last-child {
+            display: none;
+        }
+
+        // @include room-design-max-width--608px;
+    }
+}
+@mixin room-max-width--608px{
+    @include room-design-max-width--608px;
 }
