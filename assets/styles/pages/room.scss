@@ -130,7 +130,7 @@ main .gp-rooms > .content {
     & > :first-child,
     & > :last-child {
         width: 30%;
-        background-color: red;
+        // background-color: red;
     }
 
     @include room-design(&);
