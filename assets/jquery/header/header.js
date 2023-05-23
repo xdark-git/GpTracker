@@ -67,6 +67,36 @@ $(function () {
         // Update the padding-top of the main element to match the header height
         $("main").css("padding-top", headerHeight);
     }
+
+    // Initial call to set the padding-top
     resizeMainPaddingTop();
-    $(window).resize(resizeMainPaddingTop);
+
+    var resizeObserver = new ResizeObserver(function (entries) {
+        // Iterate through the entries
+        entries.forEach(function (entry) {
+            // Check if the observed target is the header element
+            if (entry.target === $("header")[0]) {
+                resizeMainPaddingTop();
+            }
+        });
+    });
+
+    // Start observing the header element
+    resizeObserver.observe($("header")[0]);
+});
+
+/*----------------------------------
+            HIDE BANNER
+ -----------------------------------*/
+$(function () {
+    const $banner = $("header").find("section.notification");
+    const $xMark = $banner.find("i.fa-xmark");
+
+    setTimeout(function () {
+        $banner.hide();
+    }, 7000);
+
+    $xMark.click(function () {
+        $banner.hide();
+    });
 });
