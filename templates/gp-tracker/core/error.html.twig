@@ -1,0 +1,25 @@
+{% extends 'gp-tracker/base.html.twig' %}
+
+{% block title %}
+   Error Page
+{% endblock %}
+
+{% block body %}
+    
+    <main>
+    <div class="error-container">
+        <div class="error-image">
+             <img src="{{asset('/theme/assets/img/logo/error-logo.png')}}" alt="error-logo">
+        <div>
+        <div class="error-content">
+    <div class="error-message">
+      <h3> Cette page n'existe pas </h3> 
+    </div>
+    <div class=" error-btn">
+      <button><a href="#"> Retour à l'accueil</a></button>
+    </div> 
+  </div>
+    </div>
+    </main>
+    
+{% endblock %}

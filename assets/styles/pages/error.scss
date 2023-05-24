@@ -1,0 +1,70 @@
+.error-container {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  width: 70vw;
+  background-color: #fff;
+  height: 65vh;
+  margin-top: 1rem;
+  border-radius: 52px;
+}
+
+.error-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: -150px;
+}
+
+.error-image img {
+  width: 296px;
+  height: auto;
+  margin-top: 120px;
+}
+
+.error-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.error-message h3 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.error-btn button {
+  background-color: #0059b3;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 4px;
+  margin-top: 20px;
+  cursor: pointer;
+  a {
+    color: #fff;
+    text-decoration: none;
+  }
+}
+
+.error-btn button:hover {
+  background-color: #fff;
+  a {
+    color: #0059b3;
+  }
+}
+
+@media(max-width: 1434px) {
+  .error-container {
+    width: 100vw;
+    margin-top: 0; /* Add this line to remove the margin-top */
+    border-radius: 0;
+  }
+}
