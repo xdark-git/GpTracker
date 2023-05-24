@@ -24,6 +24,23 @@ class RegisterController extends AbstractController
     {   
         return $this->render($themeResolver->getThemePathPrefix('/core/home.html.twig'));
     }
+    #[Route("/informations", name:"app_informations")]
+    public function informations(ThemeResolver $themeResolver): Response
+    {
+        return $this->render($themeResolver->getThemePathPrefix('/core/informations/contents/account.html.twig'));
+    }
+    #[Route("/informations/account", name:"app_informations_user")]
+    public function informationUser(ThemeResolver $themeResolver): Response
+    {
+        return $this->render($themeResolver->getThemePathPrefix('/core/informations/contents/account.html.twig'));
+    }
+    #[Route("/informations/empty-message", name:"app_empty_message")]
+    public function emptyMessage (ThemeResolver $themeResolver): Response
+    {
+        return $this->render($themeResolver->getThemePathPrefix('/core/informations/contents/emptyMessage.html.twig'));
+    
+    }
+
     #[Route('/error', name: 'app_home')]
     public function notFoundPage (ThemeResolver $themeResolver): Response
     {   
