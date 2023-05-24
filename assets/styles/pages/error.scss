@@ -8,7 +8,6 @@
   height: 65vh;
   margin-top: 1rem;
   border-radius: 52px;
-  
 }
 
 .error-image {
@@ -62,9 +61,10 @@
   }
 }
 
-@media (max-width: 1434px) {
+@media(max-width: 1434px) {
   .error-container {
     width: 100vw;
+    margin-top: 0; /* Add this line to remove the margin-top */
+    border-radius: 0;
   }
 }
-
