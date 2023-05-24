@@ -4,7 +4,6 @@
 @import "./layout/footer.scss";
 @import "./pages/login.scss";
 @import "./pages/register.scss";
-@import "./pages/error.scss";
 @import "./pages/home.scss";
 @import "./pages/informations/information.scss";
 @import "./layout/animations.scss";
@@ -28,7 +27,7 @@
 }
 
 @media only screen and (max-width: 560px) {
-  @include header-max-width--560px;
+    @include header-max-width--560px;
 }
 
 @media only screen and (max-width: calc($page-min-width - 1px)) {
