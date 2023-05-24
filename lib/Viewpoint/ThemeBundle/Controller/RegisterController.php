@@ -38,10 +38,8 @@ class RegisterController extends AbstractController
     public function emptyMessage (ThemeResolver $themeResolver): Response
     {
         return $this->render($themeResolver->getThemePathPrefix('/core/informations/contents/emptyMessage.html.twig'));
-    
     }
-
-    #[Route('/error', name: 'app_home')]
+    #[Route('/error', name: 'app_error')]
     public function notFoundPage (ThemeResolver $themeResolver): Response
     {   
         return $this->render($themeResolver->getThemePathPrefix('/core/error.html.twig'));
