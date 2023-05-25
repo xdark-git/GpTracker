@@ -47,5 +47,5 @@ function convertElementToDivOrAnchor() {
 
 $(function () {
     convertElementToDivOrAnchor();
-    $(window).on("resize", transformElement);
+    $(window).on("resize", convertElementToDivOrAnchor);
 });
