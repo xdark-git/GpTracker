@@ -136,6 +136,41 @@ main .gp-rooms > .content {
 
     @include room-design(&);
 }
+
+main .gp-rooms > .content > .rooms > .actions {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    #filter-select {
+        padding: 0.5rem;
+        font-size: 1rem;
+        color: $base-color;
+        // appearance: none;
+        outline: none;
+        background: transparent;
+        border: 2px solid $base-color;
+        border-radius: 10px;
+    }
+    > .create-room {
+        text-decoration: none;
+        padding: 0.5rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+        border-radius: 4px;
+        background-color: $base-color;
+        @include text-color($base-color);
+
+        &:hover {
+            background-color: lighten($color: $base-color, $amount: 20%);
+        }
+    }
+}
+
 @mixin room-max-width--960px {
     // main .gp-rooms > .search {
     // display: none;
@@ -260,6 +295,6 @@ main .gp-rooms > .content {
         // @include room-design-max-width--608px;
     }
 }
-@mixin room-max-width--608px{
+@mixin room-max-width--608px {
     @include room-design-max-width--608px;
 }
