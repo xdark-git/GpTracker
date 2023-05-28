@@ -1,5 +1,6 @@
 @import "./pages/account.information.scss";
 @import "./pages/empty-message.scss";
+@import "./pages/empty-package.scss";
 main .gp-informations {
     position: relative;
     display: flex;
@@ -105,6 +106,7 @@ main > .gp-informations > .nav-content > .nav > form {
 main > .gp-informations > .nav-content > .content {
     @include account-information;
     @include empty-message;
+    @include empty-package;
 }
 
 @mixin information-max-width--960px {

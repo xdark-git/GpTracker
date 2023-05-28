@@ -1,0 +1,29 @@
+@mixin empty-package{
+    .no-package-container {
+        position: relative;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 4rem 1rem 1rem 1rem;
+    }
+    
+    .no-package-container .no-content-icon {
+        position: relative;
+        margin-bottom: 1rem;
+    }
+     
+    .no-package-container > .message h2 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+        
+    }
+    
+    .no-package-container> .message  p {
+        font-size: 1rem;
+        margin-bottom: 5px;
+    }
+    
+}
+
