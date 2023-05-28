@@ -196,3 +196,30 @@
         }
     }
 }
+
+@mixin empty-btn{
+    .button-container {
+       width: 100%;
+       display: flex;
+       justify-content: center;
+       margin-top: 2rem;
+     }
+   
+      .button-container .btn-block {
+       display: inline-block;
+     }
+   
+      .button-container .btn {
+       display: inline-block;
+       padding: 1rem 2rem;
+       background-color: #14438b;;
+       color: white;
+       text-decoration: none;
+       border-radius: 4px;
+     }
+   
+      .button-container .btn:hover {
+       background-color: white;
+       color: #14438b;;
+     }
+}
