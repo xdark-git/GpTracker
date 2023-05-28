@@ -1,0 +1,53 @@
+@mixin empty-order{
+    .no-order-container {
+        position: relative;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 4rem 1rem 1rem 1rem;
+    }
+    
+    .no-order-container .no-content-icon {
+        position: relative;
+        margin-bottom: 1rem;
+    }
+     
+    .no-order-container > .message h2 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+        
+    }
+    
+    .no-order-container> .message  p {
+        font-size: 1rem;
+        margin-bottom: 5px;
+    }
+    .no-order-container .button-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
+  .no-order-container .button-container .btn-block {
+    display: inline-block;
+  }
+
+  .no-order-container .button-container .btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: #14438b;;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+  }
+
+  .no-order-container .button-container .btn:hover {
+    background-color: white;
+    color: #14438b;;
+  }
+  
+}
+
