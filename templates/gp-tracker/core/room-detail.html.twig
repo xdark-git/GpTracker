@@ -1,0 +1,162 @@
+{% extends 'gp-tracker/base.html.twig' %}
+
+{% block title %}
+   Room Name
+{% endblock %}
+
+{% block body %}
+<main>
+    <div class="container gp-room-detail">
+       <div class="page-root">
+            <a href="#" class="rooms">Salons</a>
+            <span>></span>
+            <a href="#" class="room-title">Sunu GP</a>
+       </div>
+       <div class="content">
+            <section class="section-1">
+                <div class="informations">
+                    <h2>Détails</h2>
+                    <div>
+                        <div>
+                            <span class="icons">
+                                <i class="fa-solid fa-plane-departure"></i>
+                            </span>
+                            <span>
+                                <h3>Zone de depart</h3>
+                                <p>Colobane</p>
+                            </span>
+                        </div>
+                        <div>
+                            <span class="icons">
+                                <i class="fa-solid fa-plane-arrival"></i>
+                            </span>
+                            <span>
+                                <h3>Zone d’arrivée</h3>
+                                <p>Paris</p>
+                            </span>
+                        </div>
+                        <div>
+                            <span class="icons">
+                                <i class="fa-solid fa-truck-plane"></i>
+                            </span>
+                            <span>
+                                <h3>Type de transports</h3>
+                                <p>Avion</p>
+                            </span>
+                        </div>
+                        <div>
+                            <span class="icons">
+                                <i class="fa-solid fa-calendar-days"></i>
+                            </span>
+                            <span>
+                                <h3>Date de départ</h3>
+                                <p>12/12/2020</p>
+                            </span>
+                        </div>
+                        <div>
+                            <span class="icons">
+                                <i class="fa-solid fa-calendar-days"></i>
+                            </span>
+                            <span>
+                                <h3>Date d'arrivéé</h3>
+                                <p>12/12/2020</p>
+                            </span>
+                        </div>
+                        <div>
+                            <span class="icons">
+                                <i class="fa-solid fa-hand-holding-dollar"></i>
+                            </span>
+                            <span>
+                                <h3>Prix</h3>
+                                <p>$5</p>
+                            </span>
+                        </div>
+                        <div>
+                            <span class="icons">
+                                <i class="fa-solid fa-weight-scale"></i>
+                            </span>
+                            <span>
+                                <h3>Espace disponible</h3>
+                                <p>15 Kg</p>
+                            </span>
+                        </div>
+                        <div>
+                            <span class="icons">
+                                <i class="fa-solid fa-map-pin"></i>
+                            </span>
+                            <span>
+                                <h3>Destination Intermediaire</h3>
+                                <p>Aucune</p>
+                            </span>
+                        </div>
+                        <div>
+                            <span class="icons">
+                                <i class="fa-solid fa-cash-register"></i>
+                            </span>
+                            <span>
+                                <h3>Paiement</h3>
+                                <p>À l’arrivée</p>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="safety-advice">
+                    <h2>Conseils de sécurité</h2>
+                    <ul>
+                        <li>
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span>
+                                Il est plus sûr de contacter le transporteur via la section contacter. 
+                                De cette façon, nous aurons vos cordonnées et pourrons vous contacter 
+                                si nous devrons suivre un comportement frauduleux .
+                            </span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span>
+                                Rencontrez le transporteur dans un lieu public sûr .
+                            </span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span>
+                                Renseignez vous  sur la livraison à l’arrivée avant de donner votre produit.
+                            </span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span>
+                                Mieux vaut laisser le recepteur effectué  le paiement.
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="share">
+                    <h2>Partager</h2>
+                    <span>
+                        <a href="#" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-facebook"></i>
+                        </a>
+                        <a href="#" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-twitter"></i>
+                        </a>
+                        <a href="#" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </a>
+                        <a href="#" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-regular fa-envelope"></i>
+                        </a>
+                        <button id="copyButton">
+                            <i class="fa-solid fa-link"></i>
+                        </button>
+                    </span>
+                </div>
+                <div class="report">
+                    <button>Signaler des informations incorrectes liées au transporteur</button>
+                </div>
+            </section>
+            <section class="section-2"></section>
+       </div>
+    </div>
+</main>
+{% endblock %}
