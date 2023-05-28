@@ -39,4 +39,9 @@ class RegisterController extends AbstractController
     {
         return $this->render($themeResolver->getThemePathPrefix('/core/informations/contents/emptyMessage.html.twig'));
     }
+    #[Route("/informations/empty-package", name:"app_empty_message")]
+    public function emptyPackage (ThemeResolver $themeResolver): Response
+    {
+        return $this->render($themeResolver->getThemePathPrefix('/core/informations/contents/emptyPackage.html.twig'));
+    }
 }
