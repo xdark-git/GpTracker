@@ -54,4 +54,9 @@ class RegisterController extends AbstractController
     {
         return $this->render($themeResolver->getThemePathPrefix('/core/informations/contents/emptyVu.html.twig'));
     }
+    #[Route("/informations/empty-adresse", name:"app_empty_adresse")]
+    public function emptyAdresse (ThemeResolver $themeResolver): Response
+    {
+        return $this->render($themeResolver->getThemePathPrefix('/core/informations/contents/emptyAdresse.html.twig'));
+    }
 }

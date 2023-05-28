@@ -3,6 +3,7 @@
 @import "./pages/empty-package.scss";
 @import "./pages/empty-order.scss";
 @import "./pages/empty-vu.scss";
+@import "./pages/empty-adresse.scss";
 main .gp-informations {
     position: relative;
     display: flex;
@@ -111,6 +112,7 @@ main > .gp-informations > .nav-content > .content {
     @include empty-package;
     @include empty-order;
     @include empty-vu;
+    @include empty-adresse;
 }
 
 @mixin information-max-width--960px {
