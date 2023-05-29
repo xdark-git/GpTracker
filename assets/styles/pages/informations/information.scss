@@ -4,6 +4,7 @@
 @import "./pages/empty-order.scss";
 @import "./pages/empty-vu.scss";
 @import "./pages/empty-adresse.scss";
+@import "./pages/settings.scss";
 main .gp-informations {
     position: relative;
     display: flex;
@@ -113,6 +114,7 @@ main > .gp-informations > .nav-content > .content {
     @include empty-order;
     @include empty-vu;
     @include empty-adresse;
+    @include settings-informations;
 }
 
 @mixin information-max-width--960px {
@@ -132,12 +134,14 @@ main > .gp-informations > .nav-content > .content {
         display: none;
         height: inherit;
         overflow: unset;
+        @include settings-informations-max-width--960px;
     }
 }
 
 @mixin information-max-width--775px {
     main > .gp-informations > .nav-content > .content {
         @include account-information-max-width--775px;
+        
     }
 }
 
