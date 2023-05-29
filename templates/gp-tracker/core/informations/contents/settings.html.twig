@@ -1,0 +1,48 @@
+{% extends 'gp-tracker/core/informations/informations.html.twig' %}
+
+{% block  subtitle %} 
+    Parametre de compte
+{% endblock %}
+
+{% block content %}
+<form action="#" class="form-info" id="settings-informations">
+    <div class="profile">
+        <div class="profile-header">
+            <h2 class="title">Mot de passe</h2>
+        </div>
+    </div>
+    <div class="information">
+        <div class="body">
+            <div class="form-group">
+                <div class="input-container">
+                    <div>
+                        <label for="old-pwd">Ancien mot de passe</label>
+                        <span class="required-field">Champ requis</span>
+                    </div>
+                    <input type="password" class="old-pwd" id="old-pwd" placeholder="Entrer votre mot de passe actuel" required>
+                </div>
+                <div class="input-container">
+                    <div>
+                        <label for="new-pwd">Nouveau mot de passe</label>
+                        <span class="required-field">Champ requis</span>
+                    </div>
+                    <input type="password" class="new-pwd" id="new-pwd" placeholder="Entrer le nouveau mot de passe" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-container">
+                    <div>
+                        <label for="confirm-pwd">Confirmer mot de passe</label>
+                        <span class="required-field">Champ requis</span>
+                    </div>
+                    <input type="password" class="confirm-pwd" id="confirm-pwd" placeholder="Confirmer le nouveau mot de passe" required>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="submit">Enregistrer la modification</button>
+</form>   
+<div class="btn-delete">
+    <button class="delete-account">Supprimer mon compte</button>
+</div>
+{% endblock %}
