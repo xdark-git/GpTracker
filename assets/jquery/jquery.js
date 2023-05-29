@@ -1,3 +1,4 @@
-import "./header/header.js";
-import "./home/home.js";
-import "./informations/informations.js";
+import "./global/global";
+import "./header/header";
+import "./home/home";
+import "./informations/informations";

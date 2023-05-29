@@ -5,6 +5,7 @@
 @import "./pages/login.scss";
 @import "./pages/register.scss";
 @import "./pages/home.scss";
+@import "./pages/room.scss";
 @import "./pages/informations/information.scss";
 @import "./layout/animations.scss";
 
@@ -16,6 +17,7 @@
     @include header-max-width--960px;
     @include main-tag-max-width--960px;
     @include information-max-width--960px;
+    @include room-max-width--960px;
 }
 
 @media only screen and (max-width: 775px) {
@@ -24,6 +26,7 @@
 
 @media only screen and (max-width: 608px) {
     @include home-max-width--608px;
+    @include room-max-width--608px;
 }
 
 @media only screen and (max-width: 560px) {
