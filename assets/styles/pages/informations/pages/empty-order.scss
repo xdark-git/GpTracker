@@ -1,4 +1,4 @@
-@mixin empty-order{
+@mixin empty-order {
     .no-order-container {
         position: relative;
         width: 100%;
@@ -8,25 +8,30 @@
         text-align: center;
         padding: 4rem 1rem 1rem 1rem;
     }
-    
+
     .no-order-container .no-content-icon {
         position: relative;
         margin-bottom: 1rem;
     }
-     
+
     .no-order-container > .message h2 {
         font-size: 1.5rem;
         margin-bottom: 10px;
-        
     }
-    
-    .no-order-container> .message  p {
+
+    .no-order-container > .message p {
         font-size: 1rem;
         margin-bottom: 5px;
     }
-    .no-order-container{
-      @include empty-btn
-    }
-  
-}
+    .redirect-link {
+        a {
+            text-decoration: none;
+            color: $base-color;
+            cursor: pointer;
 
+            &:hover {
+                color: darken($base-color, 10%);
+            }
+        }
+    }
+}
