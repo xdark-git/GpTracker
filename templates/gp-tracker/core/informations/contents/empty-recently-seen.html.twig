@@ -1,0 +1,27 @@
+{% extends 'gp-tracker/core/informations/informations.html.twig' %}
+
+{% block  subtitle %} 
+    Vu Récemment
+{% endblock %}
+
+{% block content %}
+<div class="no-vu-container">
+    <div class="no-content-icon no-message-icon">
+        <i class="fa-solid fa-binoculars"></i>
+    </div> 
+    
+    <div class="message">
+        <h2>Aucun salon recemment vu.</h2>
+        {# <p>Restez connecté.</p> #}
+    </div>
+    <div class="button-container">
+        <div class="btn-block">
+            <a class="btn btn-primary" href="#">Voir la liste des salons</a>
+        </div>
+    </div>
+    
+</div>
+
+
+  
+{% endblock %}
