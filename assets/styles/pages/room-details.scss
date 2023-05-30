@@ -1,0 +1,304 @@
+@import "../libs/global/globalVariables.scss";
+@import "../libs/global/globalFunctions.scss";
+@import "../libs/global/globalMixin.scss";
+
+@mixin sectionMixin {
+    padding: 1rem;
+    background-color: $white-color;
+    box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.25);
+    border-radius: 11px;
+
+    & > div > h2 {
+        font-size: 1rem;
+        font-weight: 600;
+    }
+}
+main .gp-room-detail {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 1rem 0 1rem;
+}
+
+main .gp-room-detail .page-root {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.4rem;
+    padding-bottom: 1rem;
+
+    a {
+        text-decoration: none;
+        text-transform: lowercase;
+        color: $base-color;
+        cursor: pointer;
+    }
+    span {
+        color: $gunmetal-color;
+    }
+}
+
+main .gp-room-detail > .content {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+main .gp-room-detail > .content .section-1 {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+    @include sectionMixin;
+}
+
+main .gp-room-detail > .content .section-1 .informations {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    & > div {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+    }
+}
+
+main .gp-room-detail > .content .section-1 .informations > div > div {
+    flex: 1 0 calc(33.33% - 2rem);
+    width: 100%;
+    // max-width: calc(33.33% - 2rem);
+    min-width: 200px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+
+    & > span {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        h3 {
+            font-size: 1rem;
+            color: $medium-gray-color;
+            font-weight: 300;
+        }
+    }
+
+    & > .icons {
+        position: relative;
+        width: 57px;
+        height: 57px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba($color: $light-gray-color, $alpha: 0.3);
+        border-radius: 50%;
+    }
+}
+main .gp-room-detail > .content .safety-advice {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+main .gp-room-detail > .content .safety-advice ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    li {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.8rem;
+        i {
+            font-size: 1rem;
+            color: $base-color;
+        }
+    }
+}
+
+main .gp-room-detail > .content .share {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+main .gp-room-detail > .content .share .links {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    i {
+        font-size: 1.2rem;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    a.facebook {
+        color: #287bf9;
+
+        &:hover {
+            color: darken(#287bf9, 20%);
+        }
+    }
+
+    a.twitter {
+        color: #1da1f2;
+        &:hover {
+            color: darken(#1da1f2, 20%);
+        }
+    }
+
+    a.whatsapp {
+        color: #1dd03f;
+        &:hover {
+            color: darken(#1dd03f, 20%);
+        }
+    }
+
+    a.email {
+        color: #1877f2;
+        &:hover {
+            color: darken(#1877f2, 20%);
+        }
+    }
+
+    button#copyButton {
+        background-color: transparent;
+        color: $black-color;
+        border: none;
+        padding: 0;
+        margin: 0;
+        font: inherit;
+        cursor: pointer;
+
+        i:hover {
+            color: lighten($black-color, 50%);
+        }
+    }
+}
+main .gp-room-detail > .content .report {
+    a {
+        text-decoration: none;
+        font-size: 0.8rem;
+        color: #287bf9;
+    }
+}
+
+main .gp-room-detail > .content .section-2 {
+    flex-grow: 1;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    @include sectionMixin;
+}
+
+main .gp-room-detail > .content .section-2 .user-profile {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+main .gp-room-detail > .content .section-2 .user-profile .profile-details {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    img {
+        width: 80px;
+        height: 82px;
+        border-radius: 50%;
+    }
+
+    .user-details {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+
+        h2 {
+            font-size: 1rem;
+        }
+
+        .rooms-created {
+            font-weight: 500;
+        }
+    }
+}
+main .gp-room-detail > .content .section-2 .user-profile .recommended-profile {
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.4rem 0.6rem;
+    background-color: rgba($color: $light-gray-color, $alpha: 0.3);
+    border-radius: 6px;
+}
+main .gp-room-detail > .content .section-2 .user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    font-size: 1rem;
+    padding-top: 0.4rem;
+    border-top: 4px solid $light-gray-color;
+}
+main .gp-room-detail > .content .section-2 .user-info .timer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: medium;
+}
+main .gp-room-detail > .content .section-2 .user-info .btn-container {
+    width: 100%;
+    button {
+        width: 100%;
+        padding: 0.4rem;
+        font-size: 1rem;
+        outline: none;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    button#add-favorits {
+        background-color: #ff5f00;
+        @include text-color(#ff5f00);
+        &:hover {
+            background-color: lighten(#ff5f00, 20%);
+            @include text-color(lighten(#ff5f00, 10%));
+        }
+    }
+
+    button#start-chat {
+        background-color: $base-color;
+        @include text-color($base-color);
+
+        &:hover {
+            background-color: lighten($base-color, 20%);
+            @include text-color(lighten($base-color, 20%));
+        }
+    }
+}
+
+@mixin room-details-max-width--960px {
+    main .gp-room-detail {
+        height: fit-content;
+        padding-bottom: 1rem;
+        background-color: $white-color;
+    }
+    main .gp-room-detail > .content {
+        flex-direction: column-reverse;
+        height: fit-content;
+    }
+    main .gp-room-detail > .content .section-1,
+    main .gp-room-detail > .content .section-2 {
+        width: 100%;
+        padding: unset;
+        border-radius: unset;
+        box-shadow: unset;
+    }
+}

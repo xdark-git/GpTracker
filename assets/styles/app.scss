@@ -7,6 +7,7 @@
 @import "./pages/home.scss";
 @import "./pages/room.scss";
 @import "./pages/informations/information.scss";
+@import "./pages/room-details.scss";
 @import "./layout/animations.scss";
 
 @media only screen and (max-width: 1280px) {
@@ -18,6 +19,7 @@
     @include main-tag-max-width--960px;
     @include information-max-width--960px;
     @include room-max-width--960px;
+    @include room-details-max-width--960px;
 }
 
 @media only screen and (max-width: 775px) {
