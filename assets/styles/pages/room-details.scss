@@ -291,7 +291,7 @@ main .gp-room-detail > .content .section-2 .user-info .btn-container {
         background-color: $white-color;
     }
     main .gp-room-detail > .content {
-        flex-direction: column;
+        flex-direction: column-reverse;
         height: fit-content;
     }
     main .gp-room-detail > .content .section-1,
