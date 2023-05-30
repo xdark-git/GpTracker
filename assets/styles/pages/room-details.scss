@@ -2,6 +2,17 @@
 @import "../libs/global/globalFunctions.scss";
 @import "../libs/global/globalMixin.scss";
 
+@mixin sectionMixin {
+    padding: 1rem;
+    background-color: $white-color;
+    box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.25);
+    border-radius: 11px;
+
+    & > div > h2 {
+        font-size: 1rem;
+        font-weight: 600;
+    }
+}
 main .gp-room-detail {
     display: flex;
     flex-direction: column;
@@ -37,15 +48,7 @@ main .gp-room-detail > .content .section-1 {
     display: flex;
     flex-direction: column;
     gap: 1.4rem;
-    padding: 1rem;
-    background-color: $white-color;
-    box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.25);
-    border-radius: 11px;
-
-    & > div > h2 {
-        font-size: 1rem;
-        font-weight: 600;
-    }
+    @include sectionMixin;
 }
 
 main .gp-room-detail > .content .section-1 .informations {
@@ -173,16 +176,129 @@ main .gp-room-detail > .content .share .links {
         font: inherit;
         cursor: pointer;
 
-        i:hover{
+        i:hover {
             color: lighten($black-color, 50%);
         }
     }
 }
-main .gp-room-detail > .content .report{
-    a{
+main .gp-room-detail > .content .report {
+    a {
         text-decoration: none;
         font-size: 0.8rem;
-        color: #287BF9;
+        color: #287bf9;
     }
 }
 
+main .gp-room-detail > .content .section-2 {
+    flex-grow: 1;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    @include sectionMixin;
+}
+
+main .gp-room-detail > .content .section-2 .user-profile {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+main .gp-room-detail > .content .section-2 .user-profile .profile-details {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    img {
+        width: 80px;
+        height: 82px;
+        border-radius: 50%;
+    }
+
+    .user-details {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+
+        h2 {
+            font-size: 1rem;
+        }
+
+        .rooms-created {
+            font-weight: 500;
+        }
+    }
+}
+main .gp-room-detail > .content .section-2 .user-profile .recommended-profile {
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.4rem 0.6rem;
+    background-color: rgba($color: $light-gray-color, $alpha: 0.3);
+    border-radius: 6px;
+}
+main .gp-room-detail > .content .section-2 .user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    font-size: 1rem;
+    padding-top: 0.4rem;
+    border-top: 4px solid $light-gray-color;
+}
+main .gp-room-detail > .content .section-2 .user-info .timer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: medium;
+}
+main .gp-room-detail > .content .section-2 .user-info .btn-container {
+    width: 100%;
+    button {
+        width: 100%;
+        padding: 0.4rem;
+        font-size: 1rem;
+        outline: none;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    button#add-favorits {
+        background-color: #ff5f00;
+        @include text-color(#ff5f00);
+        &:hover {
+            background-color: lighten(#ff5f00, 20%);
+            @include text-color(lighten(#ff5f00, 10%));
+        }
+    }
+
+    button#start-chat {
+        background-color: $base-color;
+        @include text-color($base-color);
+
+        &:hover {
+            background-color: lighten($base-color, 20%);
+            @include text-color(lighten($base-color, 20%));
+        }
+    }
+}
+
+@mixin room-details-max-width--960px {
+    main .gp-room-detail {
+        height: fit-content;
+        padding-bottom: 1rem;
+        background-color: $white-color;
+    }
+    main .gp-room-detail > .content {
+        flex-direction: column;
+        height: fit-content;
+    }
+    main .gp-room-detail > .content .section-1,
+    main .gp-room-detail > .content .section-2 {
+        width: 100%;
+        padding: unset;
+        border-radius: unset;
+        box-shadow: unset;
+    }
+}
