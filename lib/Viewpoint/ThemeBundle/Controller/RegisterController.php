@@ -48,27 +48,27 @@ class RegisterController extends AbstractController
     #[Route("/informations/empty-message", name:"app_empty_message")]
     public function emptyMessage (ThemeResolver $themeResolver): Response
     {
-        return $this->render($themeResolver->getThemePathPrefix('/core/informations/contents/emptyMessage.html.twig'));
+        return $this->render($themeResolver->getThemePathPrefix('/core/informations/contents/empty-message.html.twig'));
     }
     #[Route("/informations/empty-package", name:"app_empty_package")]
     public function emptyPackage (ThemeResolver $themeResolver): Response
     {
-        return $this->render($themeResolver->getThemePathPrefix('/core/informations/contents/emptyPackage.html.twig'));
+        return $this->render($themeResolver->getThemePathPrefix('/core/informations/contents/empty-package.html.twig'));
     }
     #[Route("/informations/empty-order", name:"app_empty_order")]
     public function emptyOrder (ThemeResolver $themeResolver): Response
     {
-        return $this->render($themeResolver->getThemePathPrefix('/core/informations/contents/emptyOrder.html.twig'));
+        return $this->render($themeResolver->getThemePathPrefix('/core/informations/contents/empty-order.html.twig'));
     }
     #[Route("/informations/empty-vu", name:"app_empty_vu")]
     public function emptyVu (ThemeResolver $themeResolver): Response
     {
-        return $this->render($themeResolver->getThemePathPrefix('/core/informations/contents/emptyVu.html.twig'));
+        return $this->render($themeResolver->getThemePathPrefix('/core/informations/contents/empty-recently-seen.html.twig'));
     }
     #[Route("/informations/empty-adresse", name:"app_empty_adresse")]
     public function emptyAdresse (ThemeResolver $themeResolver): Response
     {
-        return $this->render($themeResolver->getThemePathPrefix('/core/informations/contents/emptyAdresse.html.twig'));
+        return $this->render($themeResolver->getThemePathPrefix('/core/informations/contents/empty-adresse.html.twig'));
     }
     #[Route("/informations/settings", name:"app_settings")]
     public function settings (ThemeResolver $themeResolver): Response
