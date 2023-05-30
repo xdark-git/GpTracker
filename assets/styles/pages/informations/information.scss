@@ -2,7 +2,7 @@
 @import "./pages/empty-message.scss";
 @import "./pages/empty-package.scss";
 @import "./pages/empty-order.scss";
-@import "./pages/empty-vu.scss";
+@import "./pages/empty-recently-seen.scss";
 @import "./pages/empty-adresse.scss";
 main .gp-informations {
     position: relative;
@@ -111,7 +111,7 @@ main > .gp-informations > .nav-content > .content {
     @include empty-message;
     @include empty-package;
     @include empty-order;
-    @include empty-vu;
+    @include empty-recently-seen;
     @include empty-adresse;
 }
 
