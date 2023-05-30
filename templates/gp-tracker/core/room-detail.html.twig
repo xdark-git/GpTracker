@@ -1,0 +1,192 @@
+{% extends 'gp-tracker/base.html.twig' %}
+
+{% block title %}
+   Room Name
+{% endblock %}
+
+{% block body %}
+<main>
+    <div class="container gp-room-detail">
+       <div class="page-root">
+            <a href="#" class="rooms">Salons</a>
+            <span>></span>
+            <a href="#" class="room-title">Sunu GP</a>
+       </div>
+       <div class="content">
+            <section class="section-1">
+                <div class="informations">
+                    <h2>Détails</h2>
+                    <div>
+                        <div>
+                            <span class="icons">
+                                <i class="fa-solid fa-plane-departure"></i>
+                            </span>
+                            <span>
+                                <h3>Zone de depart</h3>
+                                <p>Colobane</p>
+                            </span>
+                        </div>
+                        <div>
+                            <span class="icons">
+                                <i class="fa-solid fa-plane-arrival"></i>
+                            </span>
+                            <span>
+                                <h3>Zone d’arrivée</h3>
+                                <p>Paris</p>
+                            </span>
+                        </div>
+                        <div>
+                            <span class="icons">
+                                <i class="fa-solid fa-truck-plane"></i>
+                            </span>
+                            <span>
+                                <h3>Type de transports</h3>
+                                <p>Avion</p>
+                            </span>
+                        </div>
+                        <div>
+                            <span class="icons">
+                                <i class="fa-solid fa-calendar-days"></i>
+                            </span>
+                            <span>
+                                <h3>Date de départ</h3>
+                                <p>12/12/2020</p>
+                            </span>
+                        </div>
+                        <div>
+                            <span class="icons">
+                                <i class="fa-solid fa-calendar-days"></i>
+                            </span>
+                            <span>
+                                <h3>Date d'arrivéé</h3>
+                                <p>12/12/2020</p>
+                            </span>
+                        </div>
+                        <div>
+                            <span class="icons">
+                                <i class="fa-solid fa-hand-holding-dollar"></i>
+                            </span>
+                            <span>
+                                <h3>Prix</h3>
+                                <p>$5</p>
+                            </span>
+                        </div>
+                        <div>
+                            <span class="icons">
+                                <i class="fa-solid fa-weight-scale"></i>
+                            </span>
+                            <span>
+                                <h3>Espace disponible</h3>
+                                <p>15 Kg</p>
+                            </span>
+                        </div>
+                        <div>
+                            <span class="icons">
+                                <i class="fa-solid fa-map-pin"></i>
+                            </span>
+                            <span>
+                                <h3>Destination Intermediaire</h3>
+                                <p>Aucune</p>
+                            </span>
+                        </div>
+                        <div>
+                            <span class="icons">
+                                <i class="fa-solid fa-cash-register"></i>
+                            </span>
+                            <span>
+                                <h3>Paiement</h3>
+                                <p>À l’arrivée</p>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="safety-advice">
+                    <h2>Conseils de sécurité</h2>
+                    <ul>
+                        <li>
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span>
+                                Il est plus sûr de contacter le transporteur via la section contacter. 
+                                De cette façon, nous aurons vos cordonnées et pourrons vous contacter 
+                                si nous devrons suivre un comportement frauduleux .
+                            </span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span>
+                                Rencontrez le transporteur dans un lieu public sûr .
+                            </span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span>
+                                Renseignez vous  sur la livraison à l’arrivée avant de donner votre produit.
+                            </span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span>
+                                Mieux vaut laisser le recepteur effectué  le paiement.
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="share">
+                    <h2>Partager</h2>
+                    <div class="links">
+                        <a href="#" class="facebook" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-facebook"></i>
+                        </a>
+                        <a href="#" class="twitter" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-twitter"></i>
+                        </a>
+                        <a href="#" class="whatsapp" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </a>
+                        <a href="#" class="email" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-regular fa-envelope"></i>
+                        </a>
+                        <button id="copyButton">
+                            <i class="fa-solid fa-link"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="report">
+                    <a href="#" target="_blank" rel="noopener noreferrer">Signaler des informations incorrectes liées au transporteur</a>
+                </div>
+            </section>
+            <section class="section-2">
+                <div class="user-profile">
+                    <div class="profile-details">
+                        <img src="{{asset('theme/assets/img/profil/default-user-profile.png')}}" alt="User Profile Image">
+                        <div class="user-details">
+                            <h2>Jerome Boateng</h2>
+                            <div class="rooms-created">320 salons créés</div>
+                        </div>
+                    </div>
+                    <div class="recommended-profile">
+                        <svg width="27" height="23" viewBox="0 0 27 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M26.0642 11.05L23.2508 8.11322L23.6428 4.22564L19.4804 3.35938L17.3011 0L13.3808 1.54236L9.4604 0L7.28115 3.35938L3.11866 4.21507L3.51069 8.10266L0.697266 11.05L3.51069 13.9869L3.11866 17.885L7.28115 18.7513L9.4604 22.1106L13.3808 20.5577L17.3011 22.1001L19.4804 18.7407L23.6428 17.8744L23.2508 13.9869L26.0642 11.05ZM11.0747 16.3321L6.46249 12.1065L8.08828 10.6169L11.0747 13.3425L18.6732 6.38071L20.299 7.88081L11.0747 16.3321Z" fill="#2F98E4"/>
+                        </svg>
+                        <span>Profil recommandé</span>
+                    </div>
+                </div>
+                <div class="user-info">
+                    <div class="timer">
+                        <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7.17871 14.4762C5.83789 14.4762 4.55199 13.9143 3.60389 12.9141C2.65579 11.9139 2.12316 10.5573 2.12316 9.14286C2.12316 7.72837 2.65579 6.37182 3.60389 5.37162C4.55199 4.37143 5.83789 3.80952 7.17871 3.80952C8.51953 3.80952 9.80543 4.37143 10.7535 5.37162C11.7016 6.37182 12.2343 7.72837 12.2343 9.14286C12.2343 10.5573 11.7016 11.9139 10.7535 12.9141C9.80543 13.9143 8.51953 14.4762 7.17871 14.4762ZM12.2559 4.86857L13.2815 3.78667C12.9565 3.3981 12.6315 3.04762 12.2632 2.71238L11.2376 3.80952C10.1182 2.84952 8.70982 2.28571 7.17871 2.28571C5.4548 2.28571 3.8015 3.00816 2.58252 4.29413C1.36353 5.58009 0.678711 7.32423 0.678711 9.14286C0.678711 10.9615 1.36353 12.7056 2.58252 13.9916C3.8015 15.2776 5.4548 16 7.17871 16C10.7898 16 13.6787 12.9295 13.6787 9.14286C13.6787 7.52762 13.1443 6.0419 12.2559 4.86857ZM6.45649 9.90476H7.90093V5.33333H6.45649M9.34538 0H5.01204V1.52381H9.34538V0Z" fill="black"/>
+                        </svg>
+                        <span>Répond généralement dans les 3h</span>
+                    </div>
+                    <form  class="btn-container" action="">
+                        <button id="add-favorits" type="submit">Marquer Favoris</button>
+                    </form>
+                    <form class="btn-container" action="">
+                        <button id="start-chat" type="submit">Contacter</button>
+                    </form>
+                </div>
+            </section>
+       </div>
+    </div>
+</main>
+{% endblock %}
