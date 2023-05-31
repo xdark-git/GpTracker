@@ -81,4 +81,9 @@ class RegisterController extends AbstractController
     {
         return $this->render($themeResolver->getThemePathPrefix('/core/informations/contents/settings.html.twig'));
     }
+    #[Route("/informations/package", name:"app_package")]
+    public function package (ThemeResolver $themeResolver): Response
+    {
+        return $this->render($themeResolver->getThemePathPrefix('/core/informations/contents/package.html.twig'));
+    }
 }

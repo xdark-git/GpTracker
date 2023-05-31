@@ -5,6 +5,7 @@
 @import "./pages/empty-recently-seen.scss";
 @import "./pages/empty-adresse.scss";
 @import "./pages/settings.scss";
+@import "./pages/package.scss";
 main .gp-informations {
     position: relative;
     display: flex;
@@ -115,6 +116,7 @@ main > .gp-informations > .nav-content > .content {
     @include empty-recently-seen;
     @include empty-adresse;
     @include settings-informations;
+    @include package;
 }
 
 @mixin information-max-width--960px {
