@@ -45,7 +45,7 @@ form#roomCreationForm {
 
     h4 {
         font-size: 1rem;
-        & > span:nth-child(-n + 2) {
+        & > span.step {
             display: none;
         }
     }
@@ -184,9 +184,8 @@ form#roomCreationForm .buttons {
             display: flex;
             flex-direction: row;
             gap: 0.3rem;
-            & > span:nth-child(-n + 2) {
+            & > span.step {
                 display: flex;
-                width: fit-content;
             }
         }
     }
