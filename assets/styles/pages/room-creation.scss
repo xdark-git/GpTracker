@@ -38,6 +38,7 @@ main .gp-room-creation > .content > ul.nav {
 }
 
 form#roomCreationForm {
+    position: relative;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -103,8 +104,6 @@ form#roomCreationForm .tab .form-group .input-container {
         &:focus {
             border-bottom: 2px solid $base-color;
         }
-    }
-    input[type="checkbox"] {
     }
     .error {
         color: red !important;
@@ -187,10 +186,6 @@ form#roomCreationForm .buttons {
             border: 2px solid $bg-color;
             @include text-color($bg-color);
         }
-    }
-
-    button#btn-submit {
-        display: none;
     }
 }
 @mixin room-creation-max-width--960px {

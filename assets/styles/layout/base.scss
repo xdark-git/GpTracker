@@ -49,6 +49,13 @@ main {
     display: none !important;
 }
 
+.flex-column {
+    display: flex !important;
+    flex-direction: column !important;
+}
+.gap-1 {
+    gap: 1rem !important;
+}
 .fa-google {
     background: conic-gradient(
             from -45deg,
