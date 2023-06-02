@@ -52,7 +52,7 @@ function showTab(n) {
         $nextBtn.removeClass("hidden");
         $previewBtn.addClass("hidden");
     } else {
-         // Hide the next button and show the preview button on the last tab
+        // Hide the next button and show the preview button on the last tab
         $nextBtn.addClass("hidden");
         $previewBtn.removeClass("hidden");
     }
@@ -65,7 +65,7 @@ function nextPrevious(n) {
     var $tabs = $form.find(".tab");
 
     if (validForm(n, $tabs)) {
-         // Increment the currentTab variable if the form is valid and not on the last tab
+        // Increment the currentTab variable if the form is valid and not on the last tab
         return n < $tabs.length - 1 ? (n = n + 1) : n;
     } else {
         return n;
@@ -76,7 +76,7 @@ function validForm(n, $tabs) {
     var valid = true;
     var $inputs = $tabs.eq(n).find("input");
     $inputs.each(function () {
-        if ($(this).attr("id") !== "secondary-tel" && $(this).val() == "") {
+        if ($(this).prop("required") && $(this).val() == "") {
             $(this).siblings("label").addClass("error");
             valid = false;
         } else {
@@ -92,12 +92,12 @@ function fixStepIndicator(n) {
     var $stepIndicator = $("#roomCreationForm").find("> .form-title .step");
 
     $navList.each(function () {
-        if ($(this).index() == n && !$(this).hasClass("current")) {
+        if ($navList.index(this) == n && !$(this).hasClass("current")) {
             // Add "current" class to the current step in the navigation
             $(this).addClass("current");
             // Update the step indicator with the current step and total steps
             $stepIndicator.html(n + 1 + "/" + $navList.length + " :");
-        } else if ($(this).index() == n && $(this).hasClass("current")) {
+        } else if ($navList.index(this) == n && $(this).hasClass("current")) {
             $stepIndicator.html(n + 1 + "/" + $navList.length + " :");
         } else {
             // Remove "current" class from other steps in the navigation
