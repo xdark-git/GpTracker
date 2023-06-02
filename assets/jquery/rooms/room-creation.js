@@ -1,4 +1,5 @@
 import $ from "jquery";
+import { isValidPhoneNumber, isPossibleNumber } from "libphonenumber-js";
 
 /*--------------------------------------
     FORM MULTI STEPS FUNCTIONALITIES
@@ -76,11 +77,22 @@ function validForm(n, $tabs) {
     var valid = true;
     var $inputs = $tabs.eq(n).find("input");
     $inputs.each(function () {
+        // Check if the input is required and has an empty value
         if ($(this).prop("required") && $(this).val() == "") {
             $(this).siblings("label").addClass("error");
             valid = false;
         } else {
             $(this).siblings("label").removeClass("error");
+        }
+        
+        // Check if the input type is "tel" and it has a non-empty value
+        if ($(this).attr("type") == "tel" && $(this).val() != "") {
+            const phoneNumber = isPossibleNumber($(this).val());
+            if (!phoneNumber) {
+                $(this).siblings("label").addClass("error");
+            } else {
+                $(this).siblings("label").removeClass("error");
+            }
         }
     });
     return valid;
