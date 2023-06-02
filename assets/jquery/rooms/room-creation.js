@@ -1,5 +1,5 @@
 import $ from "jquery";
-import { isValidPhoneNumber, isPossibleNumber } from "libphonenumber-js";
+import { formatNumber, isPossibleNumber } from "libphonenumber-js";
 
 /*--------------------------------------
     FORM MULTI STEPS FUNCTIONALITIES
@@ -72,6 +72,7 @@ function nextPrevious(n) {
         return n;
     }
 }
+
 function validForm(n, $tabs) {
     var valid = true;
     var $inputs = $tabs.eq(n).find("input");
@@ -92,11 +93,11 @@ function validForm(n, $tabs) {
 
         if ($input.attr("type") === "tel" && inputValue !== "") {
             var phoneNumber = isPossibleNumber(inputValue);
-
             if (!phoneNumber) {
                 $label.addClass("error");
                 valid = false;
             } else {
+                $(this).val(formatNumber(inputValue, "INTERNATIONAL"));
                 $label.removeClass("error");
             }
         }
@@ -127,7 +128,7 @@ function validForm(n, $tabs) {
     var firstTelValue = $telInputs.eq(0).val();
     var secondTelValue = $telInputs.eq(1).val();
 
-    if (firstTelValue === secondTelValue) {
+    if (firstTelValue !== "" && secondTelValue !== "" && firstTelValue === secondTelValue) {
         $telInputs.eq(1).siblings("label").addClass("error");
         valid = false;
     }
