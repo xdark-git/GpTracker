@@ -96,6 +96,9 @@ form#roomCreationForm .tab .form-group .input-container {
             border-bottom: 2px solid $base-color;
         }
     }
+    .error {
+        color: red  !important;
+    }
 }
 
 form#roomCreationForm .buttons {
