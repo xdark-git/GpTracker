@@ -109,6 +109,11 @@ function validForm(n, $tabs) {
         if ($input.attr("id") === "arrival-date") {
             arrivalDateInput = $input;
         }
+
+        if ($input.attr("id") === "room-name" && !($input.val().length >= 5 && $input.val().length <= 12) ) {
+            $label.addClass("error");
+            valid = false;
+        }
     });
 
     if (departureDateInput && arrivalDateInput) {
@@ -128,7 +133,13 @@ function validForm(n, $tabs) {
     var firstTelValue = $telInputs.eq(0).val();
     var secondTelValue = $telInputs.eq(1).val();
 
-    if (firstTelValue !== "" && secondTelValue !== "" && firstTelValue === secondTelValue) {
+    if (
+        typeof firstTelValue !== "undefined" &&
+        typeof secondTelValue !== "undefined" &&
+        firstTelValue !== "" &&
+        secondTelValue !== "" &&
+        firstTelValue === secondTelValue
+    ) {
         $telInputs.eq(1).siblings("label").addClass("error");
         valid = false;
     }
