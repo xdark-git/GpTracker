@@ -76,10 +76,18 @@ form#roomCreationForm .tab .form-group .input-container {
         margin-bottom: 0.4rem;
         border-bottom: 1px solid $black-color;
     }
+    label.checkbox {
+        border-bottom: unset;
+        color: $black-color;
+        font-size: 0.8rem;
+    }
     p {
         font-size: 0.8rem;
     }
-    input {
+    input[type="text"],
+    input[type="number"],
+    input[type="tel"],
+    input[type="date"] {
         outline: none;
         -webkit-appearance: none;
         appearance: none;
@@ -96,8 +104,24 @@ form#roomCreationForm .tab .form-group .input-container {
             border-bottom: 2px solid $base-color;
         }
     }
+    input[type="checkbox"] {
+    }
     .error {
-        color: red  !important;
+        color: red !important;
+    }
+}
+form#roomCreationForm .tab .form-group .type-checkbox {
+    flex: 1 0 calc(50% - 4rem);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    label {
+        padding: initial;
+        margin: initial;
+        border-bottom: unset;
+        color: $black-color;
+        font-size: 0.8rem;
     }
 }
 
