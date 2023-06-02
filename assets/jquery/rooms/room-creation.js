@@ -72,10 +72,12 @@ function nextPrevious(n) {
         return n;
     }
 }
-
 function validForm(n, $tabs) {
     var valid = true;
     var $inputs = $tabs.eq(n).find("input");
+    var departureDateInput;
+    var arrivalDateInput;
+
     $inputs.each(function () {
         var $input = $(this);
         var inputValue = $input.val();
@@ -98,7 +100,28 @@ function validForm(n, $tabs) {
                 $label.removeClass("error");
             }
         }
+
+        if ($input.attr("id") === "departure-date") {
+            departureDateInput = $input;
+        }
+
+        if ($input.attr("id") === "arrival-date") {
+            arrivalDateInput = $input;
+        }
     });
+
+    if (departureDateInput && arrivalDateInput) {
+        var departureDateValue = departureDateInput.val();
+        var arrivalDateValue = arrivalDateInput.val();
+        var departureDate = new Date(departureDateValue);
+        var arrivalDate = new Date(arrivalDateValue);
+
+        if (departureDate > arrivalDate) {
+            departureDateInput.siblings("label").addClass("error");
+            arrivalDateInput.siblings("label").addClass("error");
+            valid = false;
+        }
+    }
 
     var $telInputs = $inputs.filter("[type='tel']");
     var firstTelValue = $telInputs.eq(0).val();
