@@ -77,24 +77,38 @@ function validForm(n, $tabs) {
     var valid = true;
     var $inputs = $tabs.eq(n).find("input");
     $inputs.each(function () {
-        // Check if the input is required and has an empty value
-        if ($(this).prop("required") && $(this).val() == "") {
-            $(this).siblings("label").addClass("error");
+        var $input = $(this);
+        var inputValue = $input.val();
+        var $label = $input.siblings("label");
+
+        if ($input.prop("required") && inputValue === "") {
+            $label.addClass("error");
             valid = false;
         } else {
-            $(this).siblings("label").removeClass("error");
+            $label.removeClass("error");
         }
-        
-        // Check if the input type is "tel" and it has a non-empty value
-        if ($(this).attr("type") == "tel" && $(this).val() != "") {
-            const phoneNumber = isPossibleNumber($(this).val());
+
+        if ($input.attr("type") === "tel" && inputValue !== "") {
+            var phoneNumber = isPossibleNumber(inputValue);
+
             if (!phoneNumber) {
-                $(this).siblings("label").addClass("error");
+                $label.addClass("error");
+                valid = false;
             } else {
-                $(this).siblings("label").removeClass("error");
+                $label.removeClass("error");
             }
         }
     });
+
+    var $telInputs = $inputs.filter("[type='tel']");
+    var firstTelValue = $telInputs.eq(0).val();
+    var secondTelValue = $telInputs.eq(1).val();
+
+    if (firstTelValue === secondTelValue) {
+        $telInputs.eq(1).siblings("label").addClass("error");
+        valid = false;
+    }
+
     return valid;
 }
 
