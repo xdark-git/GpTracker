@@ -1,6 +1,6 @@
 import $ from "jquery";
 import { formatNumber, isPossibleNumber } from "libphonenumber-js";
-
+import currencyCode from "currency-codes";
 /*--------------------------------------
     FORM MULTI STEPS FUNCTIONALITIES
  --------------------------------------*/
@@ -56,6 +56,7 @@ function showTab(n) {
         // Hide the next button and show the preview button on the last tab
         $nextBtn.addClass("hidden");
         $previewBtn.removeClass("hidden");
+        $submitBtn.removeClass("hidden");
     }
 
     fixStepIndicator(n);
@@ -110,9 +111,19 @@ function validForm(n, $tabs) {
             arrivalDateInput = $input;
         }
 
-        if ($input.attr("id") === "room-name" && !($input.val().length >= 5 && $input.val().length <= 12) ) {
+        if (
+            $input.attr("id") === "room-name" &&
+            !($input.val().length >= 5 && $input.val().length <= 12)
+        ) {
             $label.addClass("error");
             valid = false;
+        }
+
+        if ($input.attr("id") === "currency" && !currencyCode.code(inputValue)) {
+            $label.addClass("error");
+            valid = false;
+        } else if ($input.attr("id") === "currency" && currencyCode.code(inputValue)) {
+            $input.val(currencyCode.code(inputValue).code);
         }
     });
 
@@ -158,8 +169,10 @@ function fixStepIndicator(n) {
             $(this).addClass("current");
             // Update the step indicator with the current step and total steps
             $stepIndicator.html(n + 1 + "/" + $navList.length + " :");
+            $stepIndicator.next().html($(this).text());
         } else if ($navList.index(this) == n && $(this).hasClass("current")) {
             $stepIndicator.html(n + 1 + "/" + $navList.length + " :");
+            $stepIndicator.next().html($(this).text());
         } else {
             // Remove "current" class from other steps in the navigation
             $(this).removeClass("current");
