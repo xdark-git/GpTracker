@@ -28,6 +28,13 @@ $(function () {
     $submitBtn.on("click", function () {
         if (validForm(null, $form)) {
             $form.trigger("submit");
+        } else {
+            // display the first element where the error was found
+            var $element = $form.find("*:has(label.error):first");
+            var $elementTab = $element.closest(".tab");
+            var $tabs = $form.find(".tab");
+    
+            showTab($tabs.index($elementTab));
         }
     });
 });
