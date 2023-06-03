@@ -33,8 +33,8 @@ $(function () {
             var $element = $form.find("*:has(label.error):first");
             var $elementTab = $element.closest(".tab");
             var $tabs = $form.find(".tab");
-    
-            showTab($tabs.index($elementTab));
+            currentTab = $tabs.index($elementTab);
+            showTab(currentTab);
         }
     });
 });
