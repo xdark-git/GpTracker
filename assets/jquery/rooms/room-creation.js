@@ -52,6 +52,7 @@ function showTab(n) {
         // Show the next button and hide the preview button on tabs before the last one
         $nextBtn.removeClass("hidden");
         $previewBtn.addClass("hidden");
+        $submitBtn.addClass("hidden");
     } else {
         // Hide the next button and show the preview button on the last tab
         $nextBtn.addClass("hidden");
