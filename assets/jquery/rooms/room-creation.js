@@ -11,6 +11,7 @@ $(function () {
     var $form = $("#roomCreationForm");
     var $nextBtn = $form.find("#btn-next");
     var $previousBtn = $form.find("#btn-previous");
+    var $submitBtn = $form.find("#btn-submit");
 
     $nextBtn.on("click", function () {
         // move to the next tab
@@ -22,6 +23,11 @@ $(function () {
         if (currentTab > 0) {
             currentTab--;
             showTab(currentTab);
+        }
+    });
+    $submitBtn.on("click", function () {
+        if (validForm(null, $form)) {
+            $form.trigger("submit");
         }
     });
 });
@@ -52,7 +58,7 @@ function showTab(n) {
         // Show the next button and hide the preview button on tabs before the last one
         $nextBtn.removeClass("hidden");
         $previewBtn.addClass("hidden");
-        $submitBtn.addClass("hidden");
+        // $submitBtn.addClass("hidden");
     } else {
         // Hide the next button and show the preview button on the last tab
         $nextBtn.addClass("hidden");
@@ -75,9 +81,9 @@ function nextPrevious(n) {
     }
 }
 
-function validForm(n, $tabs) {
+function validForm(n = null, $tabs) {
     var valid = true;
-    var $inputs = $tabs.eq(n).find("input");
+    var $inputs = n !== null ? $tabs.eq(n).find("input") : $tabs.find("input");
     var departureDateInput;
     var arrivalDateInput;
 
@@ -102,6 +108,11 @@ function validForm(n, $tabs) {
                 $(this).val(formatNumber(inputValue, "INTERNATIONAL"));
                 $label.removeClass("error");
             }
+        }
+
+        if ($input.attr("type") === "checkbox" && !$input.is(":checked")) {
+            $label.addClass("error");
+            valid = false;
         }
 
         if ($input.attr("id") === "departure-date") {
