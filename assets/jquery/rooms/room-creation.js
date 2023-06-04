@@ -12,6 +12,7 @@ $(function () {
     var $nextBtn = $form.find("#btn-next");
     var $previousBtn = $form.find("#btn-previous");
     var $submitBtn = $form.find("#btn-submit");
+    var $previewBtn = $form.find("#btn-preview");
 
     $nextBtn.on("click", function () {
         // move to the next tab
@@ -25,6 +26,20 @@ $(function () {
             showTab(currentTab);
         }
     });
+
+    $previewBtn.on("click", function () {
+        if (validForm(null, $form)) {
+            displayPreviewDialog();
+        } else {
+            // display the first element where the error was found
+            var $element = $form.find("*:has(label.error):first");
+            var $elementTab = $element.closest(".tab");
+            var $tabs = $form.find(".tab");
+            currentTab = $tabs.index($elementTab);
+            showTab(currentTab);
+        }
+    });
+
     $submitBtn.on("click", function () {
         if (validForm(null, $form)) {
             $form.trigger("submit");
@@ -196,5 +211,36 @@ function fixStepIndicator(n) {
             // Remove "current" class from other steps in the navigation
             $(this).removeClass("current");
         }
+    });
+}
+
+function displayPreviewDialog() {
+    var $previewDialog = $("#previewDialog");
+    var $form = $("#roomCreationForm");
+    var $inputPlaceholders = $previewDialog.find("[id^='for-']");
+
+    $inputPlaceholders.each(function () {
+        var placeholderId = $(this).attr("id");
+        var inputId = placeholderId.substring(4); // Remove "for-" prefix
+        var $input = $("#" + inputId);
+        var inputValue = $input.val();
+
+        if (inputId === "unit-price") {
+            let currency = $form.find("#currency").val();
+            inputValue = inputValue + " " + currency;
+        }
+        if (inputId === "bag-size") {
+            inputValue = inputValue + " Kg";
+        }
+
+        // Use the inputValue as needed
+        $(this).text(inputValue);
+    });
+
+    $previewDialog.removeClass("hidden");
+
+    var $closeDialog = $previewDialog.find("> div > .header i.fa-xmark");
+    $closeDialog.on("click", function () {
+        $previewDialog.addClass("hidden");
     });
 }
