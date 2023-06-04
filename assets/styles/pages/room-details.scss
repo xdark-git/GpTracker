@@ -19,24 +19,6 @@ main .gp-room-detail {
     padding: 2rem 1rem 0 1rem;
 }
 
-main .gp-room-detail .page-root {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 0.4rem;
-    padding-bottom: 1rem;
-
-    a {
-        text-decoration: none;
-        text-transform: lowercase;
-        color: $base-color;
-        cursor: pointer;
-    }
-    span {
-        color: $gunmetal-color;
-    }
-}
-
 main .gp-room-detail > .content {
     width: 100%;
     display: flex;

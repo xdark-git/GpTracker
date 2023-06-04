@@ -46,9 +46,16 @@ main {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
+.flex-column {
+    display: flex !important;
+    flex-direction: column !important;
+}
+.gap-1 {
+    gap: 1rem !important;
+}
 .fa-google {
     background: conic-gradient(
             from -45deg,
@@ -62,4 +69,22 @@ main {
     background-clip: text;
     color: transparent;
     -webkit-text-fill-color: transparent;
+}
+
+main .container .page-root {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.4rem;
+    padding-bottom: 1rem;
+
+    a {
+        text-decoration: none;
+        text-transform: lowercase;
+        color: $base-color;
+        cursor: pointer;
+    }
+    span {
+        color: $gunmetal-color;
+    }
 }
