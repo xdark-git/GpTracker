@@ -33,8 +33,7 @@ main > .gp-informations > .nav-content {
         overflow: hidden;
     }
     .content {
-        display: flex;
-        flex-direction: column;
+        position: relative;
         width: 100%;
         height: 100%;
         border-radius: 8px;
