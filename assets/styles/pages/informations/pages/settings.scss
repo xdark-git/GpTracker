@@ -41,7 +41,7 @@
         align-items: center;
         font-size: inherit;
     }
- 
+
     #settings-informations .information .body {
         position: relative;
         display: flex;
@@ -61,7 +61,6 @@
         align-self: center;
     }
 
-    
     #settings-informations .form-group {
         position: relative;
         width: 100%;
@@ -90,7 +89,6 @@
         outline: none;
     }
 
-    
     #settings-informations .input-container > div {
         position: relative;
         width: 100%;
@@ -105,7 +103,7 @@
         font-size: 0.8rem;
         color: $medium-gray-color;
     }
-   
+
     #settings-informations > .submit {
         align-self: end;
         width: fit-content;
@@ -120,36 +118,31 @@
             color: $white-color;
         }
     }
-    .btn-delete {
-        position: relative;
-    
-        .delete-account {
-          position: absolute;
-          align-self: flex-start;
-          width: fit-content;
-          font-size: 1rem;
-          padding: 0.5em 1em;
-          border: none;
-          background-color: transparent;
-          color: red;
-          text-decoration: underline;
-          cursor: pointer;
-          top:10em
-        }
+}
+#delete-account {
+    position: absolute;
+    bottom: 0;
+
+    button {
+        width: fit-content;
+        font-size: 1rem;
+        padding: 0.5em 1em;
+        border: none;
+        background-color: transparent;
+        color: red;
+        text-decoration: underline;
+        cursor: pointer;
     }
 }
 
-@mixin settings-informations-max-width--960px{
-    #settings-informations .input-container{
+@mixin settings-informations-max-width--960px {
+    #settings-informations .input-container {
         width: 100%;
-        font-size: .9em;
+        font-size: 0.9em;
     }
-    .btn-delete{
-        .delete-account{
+    #delete-account {
+        button {
             top: 2em;
         }
     }
 }
-
-
-  

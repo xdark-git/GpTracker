@@ -32,6 +32,7 @@ main > .gp-informations > .nav-content {
         overflow: hidden;
     }
     .content {
+        position: relative;
         width: 100%;
         height: 100%;
         border-radius: 8px;
@@ -141,8 +142,5 @@ main > .gp-informations > .nav-content > .content {
 @mixin information-max-width--775px {
     main > .gp-informations > .nav-content > .content {
         @include account-information-max-width--775px;
-        
     }
 }
-
-
