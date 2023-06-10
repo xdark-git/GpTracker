@@ -44,7 +44,7 @@
             flex-grow: 0;
         }
         & > input {
-            width:  30%;
+            width: 30%;
             height: 20px;
             font-family: "Inter";
             font-style: normal;
@@ -68,43 +68,52 @@
     & > .my-rooms > .package-bloc {
         display: flex;
         flex-direction: column;
+        gap: 0.6rem;
         position: relative;
         width: 100%;
         height: 25%;
         margin-top: 16px;
         padding: 6px 12px;
         box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.06), 0px 0px 0px 1px rgba(104, 113, 130, 0.16);
+        border-radius: 10px;
+
+        &:hover {
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1), 0px 2px 4px rgba(0, 0, 0, 0.08);
+        }
     }
-    
-    & > .my-rooms > .package-bloc > .title{
+
+    & > .my-rooms > .package-bloc > .title {
         position: relative;
         display: flex;
         flex-direction: row;
-        justify-content: space-between; 
+        justify-content: space-between;
         font-size: inherit;
         color: #14438b;
-        
+        h2 {
+            font-size: 1rem;
+        }
     }
-    & > .my-rooms > .package-bloc > .title .room-detail{
-        text-decoration: none;
-        font-weight: bold;
+    & > .my-rooms > .package-bloc > .title .room-detail {
+        // text-decoration: none;
+        // font-weight: bold;
+        text-transform: lowercase;
         color: #14438b;
-        
+
+        &:hover {
+            color: red;
+        }
     }
     & > .my-rooms > .package-bloc > .room-name {
-        margin-top: 8px; 
+        margin-top: 8px;
         color: rgba(20, 67, 139, 0.7);
-
     }
     & > .my-rooms > .package-bloc > .room-close-date {
         align-self: flex-start;
         margin-top: auto;
         color: #14438b;
-        
     }
-    & > .my-rooms > .package-bloc > .room-close-date .date-text{
+    & > .my-rooms > .package-bloc > .room-close-date .date-text {
         font-weight: bold;
         color: #14438b;
     }
-
 }
