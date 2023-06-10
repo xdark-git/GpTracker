@@ -12,7 +12,7 @@ $(function () {
 
     function displayOnlyContent() {
         $nav.hide();
-        $content.css("display", "flex");
+        $content.show();
     }
 
     function hideElement() {
@@ -45,14 +45,13 @@ $(function () {
 
             if (!matchedAnUrl) {
                 $nav.show();
-                $content.css("display", "none");
+                $content.hide();
             }
         } else {
             $nav.show();
-            $content.css("display", "flex");
+            $content.show();
         }
     }
     hideElement();
     $(window).resize(hideElement);
-    
 });
