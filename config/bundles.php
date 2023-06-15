@@ -1,7 +1,5 @@
 <?php
 
-use Viewpoint\ThemeBundle\ViewpointThemeBundle;
-
 return [
     Symfony\Bundle\FrameworkBundle\FrameworkBundle::class => ['all' => true],
     Doctrine\Bundle\DoctrineBundle\DoctrineBundle::class => ['all' => true],
@@ -17,4 +15,5 @@ return [
     Symfony\WebpackEncoreBundle\WebpackEncoreBundle::class => ['all' => true],
     Viewpoint\AdminBundle\ViewpointAdminBundle::class => ['all' => true],
     Viewpoint\ThemeBundle\ViewpointThemeBundle::class => ['all' => true],
+    Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle::class => ['dev' => true, 'test' => true],
 ];
