@@ -17,7 +17,7 @@ class Role
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 60)]
+    #[ORM\Column(length: 60, nullable:false, unique:true)]
     private ?string $name = null;
 
     #[OneToMany(targetEntity: User::class, mappedBy: 'role')]
