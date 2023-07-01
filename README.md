@@ -70,7 +70,7 @@ You need to create the database and the tables
 Then create the Fixtures.
 
 ```bash
-    php bin/console doctrine:fixtures:load --append --group=app
+    php bin/console doctrine:fixtures:load --append --group=dev
 ```
 
 ### 5. Run Servers
