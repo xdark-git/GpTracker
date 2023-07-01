@@ -17,6 +17,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
+    #[ORM\Column(type: 'string', length: 50, nullable: true)]
+    private ?string $firstName = null;
+
+    #[ORM\Column(type: 'string', length: 50, nullable: true)]
+    private ?string $lastName = null;
+
+    #[ORM\Column(type: 'string', length: 1, nullable: true)]
+    private ?string $sexe = null;
+
+    #[ORM\Column(type: 'date', nullable: true)]
+    private ?\DateTime $birth = null;
+
+    #[ORM\Column(type: 'string', length:'255', nullable: true)]
+    private ?\DateTime $profile = null;
+
+    #[ORM\Column(type: 'string', length:'50', nullable: true)]
+    private string $username;
+
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
 
@@ -33,6 +51,72 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getFirstName(): ?string
+    {
+        return $this->firstName;
+    }
+
+    public function setFirstName(?string $firstName): self
+    {
+        $this->firstName = $firstName;
+        return $this;
+    }
+
+    public function getLastName(): ?string
+    {
+        return $this->lastName;
+    }
+
+    public function setLastName(?string $lastName): self
+    {
+        $this->lastName = $lastName;
+        return $this;
+    }
+
+    public function getSexe(): ?string
+    {
+        return $this->sexe;
+    }
+
+    public function setSexe(?string $sexe): self
+    {
+        $this->sexe = $sexe;
+        return $this;
+    }
+
+    public function getBirth(): ?\DateTime
+    {
+        return $this->birth;
+    }
+
+    public function setBirth(?\DateTime $birth): self
+    {
+        $this->birth = $birth;
+        return $this;
+    }
+
+    public function getProfile(): ?string
+    {
+        return $this->profile;
+    }
+
+    public function setProfile(?string $profile): self
+    {
+        $this->profile = $profile;
+        return $this;
+    }
+
+    public function getUsername(): ?string
+    {
+        return $this->username;
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
+        return $this;
     }
 
     public function getEmail(): ?string
