@@ -35,7 +35,7 @@ class AppFixtures extends Fixture implements FixtureGroupInterface
 
         $faker = Factory::create();
         
-        $user1 = $this->createUser(email: $faker->email, password: "test", role: $roleAdmin);
+        $user1 = $this->createUser(email: $faker->email, username: $faker->userName, password: "test", role: $roleAdmin);
         $manager->persist($user1);
         $manager->flush();
     }

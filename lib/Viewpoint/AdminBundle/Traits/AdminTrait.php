@@ -14,10 +14,12 @@ trait AdminTrait{
         return $role;
     }
     
-    public function createUser(string $email, string $password, Role $role): User
+    public function createUser(string $email, string $username, string $password, Role $role): User
     {
         $user = new User();
-        $user->setEmail($email)->setRole($role);
+        $user->setEmail($email)
+            ->setRole($role)
+            ->setUsername($username);
 
         $hashedPassword = $this->passwordHasher->hashPassword(
             $user,

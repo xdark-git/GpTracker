@@ -32,7 +32,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length:'255', nullable: true)]
     private ?\DateTime $profile = null;
 
-    #[ORM\Column(type: 'string', length:'50', nullable: true)]
+    #[ORM\Column(type: 'string', length:'50', unique: true)]
     private string $username;
 
     #[ORM\Column(length: 180, unique: true)]
