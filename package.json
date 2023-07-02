@@ -25,7 +25,7 @@
         "dev-server": "encore dev-server",
         "dev": "encore dev",
         "prettier-watch": "onchange \"**/*\" -- prettier --write --ignore-unknown {{changed}}",
-        "watch": "yarn prettier-watch & encore dev --watch",
+        "watch": "encore dev --watch",
         "build": "encore production --progress"
     },
     "dependencies": {
