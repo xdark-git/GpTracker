@@ -14,34 +14,34 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     use TimestampableEntity;
-    
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: 'string', length: 50, nullable: true)]
+    #[ORM\Column(type: "string", length: 50, nullable: true)]
     private ?string $firstName = null;
 
-    #[ORM\Column(type: 'string', length: 50, nullable: true)]
+    #[ORM\Column(type: "string", length: 50, nullable: true)]
     private ?string $lastName = null;
 
-    #[ORM\Column(type: 'string', length: 1, nullable: true)]
+    #[ORM\Column(type: "string", length: 1, nullable: true)]
     private ?string $sexe = null;
 
-    #[ORM\Column(type: 'date', nullable: true)]
+    #[ORM\Column(type: "date", nullable: true)]
     private ?\DateTime $birth = null;
 
-    #[ORM\Column(type: 'string', length:'255', nullable: true)]
+    #[ORM\Column(type: "string", length: "255", nullable: true)]
     private ?string $profile = null;
 
-    #[ORM\Column(type: 'string', length:'50', unique: true)]
+    #[ORM\Column(type: "string", length: "50", unique: true)]
     private string $username;
 
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
 
-    #[ManyToOne(targetEntity: Role::class, inversedBy: 'users')]
+    #[ManyToOne(targetEntity: Role::class, inversedBy: "users")]
     #[JoinColumn(nullable: false)]
     private Role $role;
 
@@ -133,7 +133,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-   
+
     /**
      * A visual identifier that represents this user.
      *
@@ -151,7 +151,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $roles = [];
         // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
+        $roles[] = "ROLE_USER";
 
         if ($this->role instanceof Role) {
             $roles[] = $this->role->getName();
