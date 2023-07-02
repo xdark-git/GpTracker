@@ -19,14 +19,8 @@ trait AdminTrait{
         $user = new User();
         $user->setEmail($email)
             ->setRole($role)
-            ->setUsername($username);
-
-        $hashedPassword = $this->passwordHasher->hashPassword(
-            $user,
-            $password
-        );
-
-        $user->setPassword($hashedPassword);
+            ->setUsername($username)
+            ->setPassword($this->passwordHasher->hashPassword($user, $password));
 
         return $user;
         
