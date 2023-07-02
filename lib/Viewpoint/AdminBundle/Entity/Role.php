@@ -21,7 +21,13 @@ class Role
     private ?int $id = null;
 
     #[ORM\Column(length: 60, nullable: false, unique: true)]
-    #[Assert\Sequentially([new Assert\NotNull(), new Assert\Type("string"), new Assert\Length(max: 60)])]
+    #[
+        Assert\Sequentially([
+            new Assert\NotNull(),
+            new Assert\Type("string"),
+            new Assert\Length(max: 60),
+        ])
+    ]
     private ?string $name = null;
 
     #[OneToMany(targetEntity: User::class, mappedBy: "role")]
