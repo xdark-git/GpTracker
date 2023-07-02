@@ -4,11 +4,11 @@
 
 In order to run the application on your computer, you must first install the following dependencies:
 
--   [PHP](https://www.php.net/book.ctype): Version 8.1.x
--   [Composer](https://getcomposer.org/download/): Version 2.x
--   [Node.js](https://nodejs.org/en/): Version 16.x
--   [Symfony CLI](https://symfony.com/download): Version 5.4.x
--   [Yarn](https://yarnpkg.com/): Version >=1.22.18
+- [PHP](https://www.php.net/book.ctype): Version 8.1.x
+- [Composer](https://getcomposer.org/download/): Version 2.x
+- [Node.js](https://nodejs.org/en/): Version 16.x
+- [Symfony CLI](https://symfony.com/download): Version 5.4.x
+- [Yarn](https://yarnpkg.com/): Version >=1.22.18
 
 ## Installation
 
@@ -88,16 +88,16 @@ We can start the two servers
 
 ## Development
 
--   Create your own branch by copying the JIRA generated code. e.g: git checkout -b GP-00-my-new-branch
--   Get in the habit of occasionally merging **dev branch** into your branch, first git checkout your_branch and then git merge development in order to avoid conflicts as much as possible.
--   Comment out commits in English
+- Create your own branch by copying the JIRA generated code. e.g: git checkout -b GP-00-my-new-branch
+- Get in the habit of occasionally merging **dev branch** into your branch, first git checkout your_branch and then git merge development in order to avoid conflicts as much as possible.
+- Comment out commits in English
 
 ## Merge request
 
--   Download the last changes of development branch by placing inside development with git checkout development and then do git pull
--   Complete **the whole**.
--   Write in the task **what you need** to do to test the task, specifying whether you need to launch composer or install other libraries.
--   Merge **dev branch** into your branch by first git checkout your_branch and then git merge development (git merge dev)
--   Resolve any conflicts (via IDE, it's easier)
--   Do git commit -m "your message" and then git push
--   Make a merge request of **your** branch to **dev branch** via web on the github repository (**Don't approve**)
+- Download the last changes of development branch by placing inside development with git checkout development and then do git pull
+- Complete **the whole**.
+- Write in the task **what you need** to do to test the task, specifying whether you need to launch composer or install other libraries.
+- Merge **dev branch** into your branch by first git checkout your_branch and then git merge development (git merge dev)
+- Resolve any conflicts (via IDE, it's easier)
+- Do git commit -m "your message" and then git push
+- Make a merge request of **your** branch to **dev branch** via web on the github repository (**Don't approve**)
