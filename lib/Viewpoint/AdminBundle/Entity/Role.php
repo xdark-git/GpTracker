@@ -2,7 +2,7 @@
 
 namespace Viewpoint\AdminBundle\Entity;
 
-use Viewpoint\AdminBundle\Repository\Repository\RoleRepository;
+use Viewpoint\AdminBundle\Repository\RoleRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 use Doctrine\Common\Collections\Collection;
