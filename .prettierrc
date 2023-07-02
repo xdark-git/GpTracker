@@ -1,0 +1,12 @@
+{
+    "semi": true,
+    "tabWidth": 4,
+    "overrides": [
+        {
+            "files": ".php",
+            "options": {
+                "printWidth": 120
+            }
+        }
+    ]
+}
