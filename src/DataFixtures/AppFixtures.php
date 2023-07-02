@@ -24,9 +24,6 @@ class AppFixtures extends Fixture implements FixtureGroupInterface
     }
     public function load(ObjectManager $manager): void
     {
-        // $product = new Product();
-        // $manager->persist($product);
-
         $roleAdmin = $this->createRole("ROLE_ADMIN");
         $roleUser = $this->createRole("ROLE_USER");
         $manager->persist($roleAdmin);
@@ -35,7 +32,12 @@ class AppFixtures extends Fixture implements FixtureGroupInterface
 
         $faker = Factory::create();
         
-        $user1 = $this->createUser(email: $faker->email, username: $faker->userName, password: "test", role: $roleAdmin);
+        $user1 = $this->createUser(
+            email: $faker->email,
+            username: $faker->userName,
+            password: "test",
+            role: $roleAdmin
+        );
         $manager->persist($user1);
         $manager->flush();
     }
