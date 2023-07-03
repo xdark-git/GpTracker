@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping\ManyToOne;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -21,24 +22,62 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(type: "string", length: 50, nullable: true)]
+    #[
+        Assert\Sequentially([
+            new Assert\NotBlank(allowNull: true),
+            new Assert\Type("string"),
+            new Assert\Length(min: 3, max: 50),
+            new Assert\Regex(pattern: "/^\D+$/", message: "Your Fistname cannot contain a number"),
+        ])
+    ]
     private ?string $firstName = null;
 
     #[ORM\Column(type: "string", length: 50, nullable: true)]
+    #[
+        Assert\Sequentially([
+            new Assert\NotBlank(allowNull: true),
+            new Assert\Type("string"),
+            new Assert\Length(min: 3, max: 50),
+            new Assert\Regex(pattern: "/^\D+$/", message: "Your Lastname cannot contain a number"),
+        ])
+    ]
     private ?string $lastName = null;
 
     #[ORM\Column(type: "string", length: 1, nullable: true)]
+    #[
+        Assert\Sequentially([
+            new Assert\NotBlank(allowNull: true),
+            new Assert\Type("string"),
+            new Assert\Length(max: 1),
+            new Assert\Choice(callback: "getSexes", message: "Choose a valid sexe type."),
+        ])
+    ]
     private ?string $sexe = null;
 
     #[ORM\Column(type: "date", nullable: true)]
+    #[Assert\Sequentially([new Assert\NotBlank(allowNull: true), new Assert\DateTime()])]
     private ?\DateTime $birth = null;
 
     #[ORM\Column(type: "string", length: "255", nullable: true)]
+    #[Assert\Sequentially([new Assert\NotBlank(allowNull: true), new Assert\Type("string")])]
     private ?string $profile = null;
 
-    #[ORM\Column(type: "string", length: "50", unique: true)]
+    #[ORM\Column(type: "string", length: "16", unique: true)]
+    #[
+        Assert\Sequentially([
+            new Assert\NotBlank(),
+            new Assert\Type("string"),
+            new Assert\Length(min: 5, max: 16),
+            new Assert\Regex(
+                pattern: '^(?![0-9]+$)[a-zA-Z0-9_-]{5,16}$',
+                message: "Invalid username format."
+            ),
+        ])
+    ]
     private string $username;
 
     #[ORM\Column(length: 180, unique: true)]
+    #[Assert\Sequentially([new Assert\NotBlank(), new Assert\Email()])]
     private ?string $email = null;
 
     #[ManyToOne(targetEntity: Role::class, inversedBy: "users")]
@@ -189,5 +228,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public static function getSexes(): array
+    {
+        return ["M", "F"];
     }
 }
