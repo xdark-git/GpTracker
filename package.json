@@ -24,7 +24,7 @@
     "scripts": {
         "dev-server": "encore dev-server",
         "dev": "encore dev",
-        "prettier-watch": "onchange \"**/*\" -- prettier --write --ignore-unknown {{changed}}",
+        "prettier": "onchange \"**/*\" -- prettier --write --ignore-unknown {{changed}}",
         "watch": "encore dev --watch",
         "build": "encore production --progress"
     },
