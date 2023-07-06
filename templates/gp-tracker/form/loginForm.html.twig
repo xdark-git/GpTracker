@@ -21,7 +21,11 @@
             </ul>
         {% else %}
             {% for error in errors %}
-                <p class="error">{{ error.message }}</p>
+                <ul style="list-style-type: circle;">
+                {% for error in errors %}
+                    <li class="error">{{ error.message }}</li>
+                {% endfor %}
+                </ul>
             {% endfor %}
             {# ... display the errors for a single field #}
         {% endif %}
