@@ -13,14 +13,15 @@ class AppFixtures extends Fixture implements FixtureGroupInterface
 {
     use AdminTrait;
 
-    public function __construct(private UserPasswordHasherInterface $passwordHasher)
+    private UserPasswordHasherInterface $passwordHasher;
+    public function __construct(UserPasswordHasherInterface $passwordHasher)
     {
-        
+        $this->passwordHasher = $passwordHasher;
     }
 
     public static function getGroups(): array
     {
-        return ['dev'];
+        return ["dev"];
     }
     public function load(ObjectManager $manager): void
     {
@@ -31,9 +32,9 @@ class AppFixtures extends Fixture implements FixtureGroupInterface
         $manager->flush();
 
         $faker = Factory::create();
-        
+
         $user1 = $this->createUser(
-            email: $faker->email,
+            email: "test@gmail.com",
             username: $faker->userName,
             password: "test",
             role: $roleAdmin
