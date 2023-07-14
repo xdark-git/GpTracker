@@ -10,6 +10,7 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Validator\Constraints as Assert;
+use Viewpoint\AdminBundle\Validator as AdminAssert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -69,26 +70,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             new Assert\Type("string"),
             new Assert\Length(min: 5, max: 16),
             new Assert\Regex(
-                pattern: '^(?![0-9]+$)[a-zA-Z0-9_-]{5,16}$',
+                pattern: '/^(?![0-9]+$)[a-zA-Z0-9_-]{5,16}$/',
                 message: "Invalid username format."
             ),
         ])
     ]
     private string $username;
 
-    #[ORM\Column(length: 180, unique: true)]
+    #[ORM\Column(length: 180)]
     #[Assert\Sequentially([new Assert\NotBlank(), new Assert\Email()])]
+    #[AdminAssert\UniqueEmail(mode: 'loose')]
     private ?string $email = null;
-
-    #[ManyToOne(targetEntity: Role::class, inversedBy: "users")]
-    #[JoinColumn(nullable: false)]
-    private Role $role;
 
     /**
      * @var string The hashed password
      */
     #[ORM\Column]
     private ?string $password = null;
+    
+    #[ORM\Column(type: 'boolean')]
+    private ?bool $isActive = false;
+    
+    #[ORM\Column(type: 'boolean')]
+    private ?bool $isDeleted = false;
+
+    #[ManyToOne(targetEntity: Role::class, inversedBy: "users")]
+    #[JoinColumn(nullable: false)]
+    private Role $role;
 
     public function getId(): ?int
     {
@@ -217,6 +225,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPassword(string $password): self
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    public function getIsActive(): bool
+    {
+        return $this->isActive;
+    }
+
+    public function setIsActive(bool $isActive): self
+    {
+        $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    public function getIsDeleted(): bool
+    {
+        return $this->isDeleted;
+    }
+
+    public function setIsDeleted(bool $isDeleted): self
+    {
+        $this->isDeleted = $isDeleted;
 
         return $this;
     }
