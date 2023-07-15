@@ -11,7 +11,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class AuthController extends AbstractController
 {
     private ThemeResolver $themeResolver;
-    public function __construct(ThemeResolver $themeResolver,)
+    public function __construct(ThemeResolver $themeResolver)
     {
         $this->themeResolver = $themeResolver;
     }
