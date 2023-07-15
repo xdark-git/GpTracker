@@ -28,6 +28,21 @@
                 <button type="submit">Se connecter</button>
                 <p class="phone-option">Enregistez vous avec votre numéro de téléphone</p> 
             </form>
+            {# {% form_theme loginForm 'gp-tracker/form/loginForm.html.twig' %}
+            
+            {{ form_start(loginForm)}}
+                {{ form_row(loginForm.email, {
+                    id: 'input-email',
+                    value: last_username,
+                    attr: { placeholder: 'Enter your Email' }
+                }) }}
+                {{ form_row(loginForm.password, {
+                    id: 'input-password',
+                    attr: { placeholder: 'Enter your Password'}
+                }) }}
+                {{ form_row(loginForm._token) }}
+                <button type="submit">Continuer</button>
+            {{ form_end(loginForm) }} #}
             <div class="btn-options">
                 <button class="btn-google">
                     <i class="fa-brands fa-google"></i>
