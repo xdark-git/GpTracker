@@ -29,6 +29,7 @@ header {
         flex-wrap: wrap;
         align-content: center;
         justify-content: center;
+        padding: 1.5rem 0;
         $left-right-positioning: 1rem;
         .logo {
             position: absolute;
@@ -166,6 +167,95 @@ header .section-1 .content .buttons button {
         @include menuItemOnHover;
     }
 }
+header .section-1 .content .buttons .user {
+    position: relative;
+    display: flex;
+    #user {
+        display: flex;
+        flex-direction: row;
+        gap: 0.6rem;
+        padding: 0.5rem 0.5rem;
+        border-radius: 5px;
+        cursor: pointer;
+
+        &:hover {
+            @include menuItemOnHover;
+        }
+    }
+}
+
+header .section-1 .content .buttons .user #user {
+    display: flex;
+    flex-direction: row;
+    gap: 0.6rem;
+    padding: 0.5rem 0.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+        @include menuItemOnHover;
+    }
+}
+
+header .section-1 .content .buttons .user #user-nav-dialog {
+    // display: none;
+    position: absolute;
+    top: 2rem;
+    z-index: 10;
+    width: 100%;
+    min-width: fit-content;
+    color: $txt-color-2;
+    background-color: $header-background-color;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+    overflow: hidden;
+    ul {
+        list-style-type: none;
+    }
+
+    li {
+        width: 100%;
+        padding: 0.5rem;
+        color: inherit;
+
+        a {
+            display: flex;
+            flex-direction: row;
+            gap: 0.5rem;
+            color: inherit;
+            text-decoration: none;
+        }
+        i {
+            color: $base-color;
+        }
+        &:hover {
+            background-color: lighten($color: #000000, $amount: 90%);
+        }
+    }
+    .active {
+        background-color: #e6e6e6;
+    }
+    form {
+        width: 100%;
+        border-top: 1px solid #b4b4b4;
+    }
+    button {
+        width: 100%;
+        border: none;
+        outline: none;
+        background-color: transparent;
+        padding: 0.5em 1em;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        color: $base-color;
+        cursor: pointer;
+        &:hover {
+            background-color: lighten($color: #000000, $amount: 90%);
+        }
+    }
+
+}
+
 header .section-2 ul {
     li {
         position: relative;
@@ -303,7 +393,7 @@ header .section-2 ul .language-switcher {
         display: flex;
         align-content: space-between;
         gap: 0.5rem;
-        padding: 0 1rem;
+        padding: 1.5rem 1rem;
         & > div {
             position: relative !important;
             right: unset !important;
@@ -315,5 +405,14 @@ header .section-2 ul .language-switcher {
         span {
             display: none;
         }
+    }
+
+    header .section-1 .content .buttons .user > #user :not(:first-child) {
+        display: none;
+    }
+    header .section-1 .content .buttons .user #user-nav-dialog {
+        right: 0.6rem;
+        width: 45vw;
+        min-width: fit-content;
     }
 }

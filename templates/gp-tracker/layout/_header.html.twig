@@ -20,22 +20,66 @@
                 {# <img src="{{asset('theme/assets/img/logo/gp-tracker-logo-4.png')}}" alt="logo"> #}
             </a>
         </div>
-        <div class="content">
-            <div class="language-switcher">
-            <a href="#">Fr</a>
-            <span class="separator">|</span>
-            <a href="#">En</a>
-            </div>
-            <div class="buttons">
-            <button class="login">
-                <i class="fa fa-user"></i>
-                <span>Se connecter</span>
-            </button>
-            {# <button class="register">
-                <i class="fa-solid fa-user-plus"></i>
-                <span>S'inscrire</span>
-            </button> #}
-            </div>
+        <div class="content">          
+                {% if app.user %}
+                    <div class="buttons">
+                        <div class="user">
+                            <div id="user">
+                                <i class="fa-solid fa-user-check"></i>
+                                <span class="username">Bonjour, {{ app.user.username }}!</span>
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </div>
+                            <div id="user-nav-dialog">
+                                <ul>
+                                    <li class="active">
+                                        <a href="/informations/account">
+                                            <i class="fa-solid fa-user"></i>
+                                            <span>Votre compte GP-Tracker</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/informations/empty-message">
+                                            <i class="fa-solid fa-envelope"></i>
+                                            <span>Boîte de reception</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/informations/empty-package">
+                                            <i class="fa-solid fa-box"></i>
+                                            <span>Mes colis</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <form action="">
+                                    <button>Deconnexion</button>
+                                </form>
+                            </div>
+                        </div>  
+                    </div>
+                    <div class="language-switcher">
+                        <a href="#">Fr</a>
+                        <span class="separator">|</span>
+                        <a href="#">En</a>
+                    </div>
+                {% else %}
+                    <div class="language-switcher">
+                        <a href="#">Fr</a>
+                        <span class="separator">|</span>
+                        <a href="#">En</a>
+                    </div>
+                    <div class="buttons">
+                        <button class="login">
+                            <i class="fa fa-user"></i>
+                            <span>Se connecter</span>
+                        </button>
+                    </div>
+                {% endif %}
+                
+                {# <button class="register">
+                    <i class="fa-solid fa-user-plus"></i>
+                    <span>S'inscrire</span>
+                </button> #}
+            
         </div>
     </section>
     <section class="section-2">
