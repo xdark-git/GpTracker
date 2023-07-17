@@ -17,12 +17,12 @@
                 <div class="error">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                 {% endif %}
                 <div>
-                    <input type="email" name="email" value="{{ last_username }}" id="input-email" placeholder="Email" autocomplete="email" required autofocus>
+                    <input type="email" name="email" value="{{ last_username }}" id="input-email" placeholder="Entrez votre Email" autocomplete="email" required autofocus>
                 </div>
                 <div>
-                    <input id="password" type="password" name="password" placeholder="Enter your password" autocomplete="current-password" required>
+                    <input id="password" type="password" name="password" placeholder="Entrez votre mot de passe" autocomplete="current-password" required>
                 </div>
-                <div>
+                <div style="display:none;">
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" >
                 </div>
                 <button type="submit">Se connecter</button>

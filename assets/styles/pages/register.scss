@@ -67,7 +67,7 @@
 .gp-register-container .body form {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 1rem;
     & input {
         @include auth-input($borderColor: $base-color);
     }
