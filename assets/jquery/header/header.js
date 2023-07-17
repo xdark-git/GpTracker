@@ -60,29 +60,30 @@ $(function () {
     UPDATE MAIN ELEMENT PADDING TOP
  -----------------------------------*/
 $(function () {
+    var $header = $("header");
     function resizeMainPaddingTop() {
         // Get the height of the header element
-        var headerHeight = $("header").outerHeight();
+        var headerHeight = $header.outerHeight();
 
         // Update the padding-top of the main element to match the header height
         $("main").css("padding-top", headerHeight);
     }
 
-    // Initial call to set the padding-top
-    resizeMainPaddingTop();
-
     var resizeObserver = new ResizeObserver(function (entries) {
         // Iterate through the entries
         entries.forEach(function (entry) {
             // Check if the observed target is the header element
-            if (entry.target === $("header")[0]) {
+            if (entry.target === $header[0]) {
                 resizeMainPaddingTop();
             }
         });
     });
 
     // Start observing the header element
-    resizeObserver.observe($("header")[0]);
+    if ($header.length > 0) {
+        resizeMainPaddingTop();
+        resizeObserver.observe($header[0]);
+    }
 });
 
 /*----------------------------------
