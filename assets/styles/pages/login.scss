@@ -73,6 +73,7 @@
     & button {
         @include auth-buttons($btn-color-1);
     }
+    @include login-register-redirect;
 }
 
 .gp-login-container .body .btn-options {

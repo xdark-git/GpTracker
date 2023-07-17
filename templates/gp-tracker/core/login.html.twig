@@ -26,7 +26,11 @@
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" >
                 </div>
                 <button type="submit">Se connecter</button>
-                <p class="phone-option">Enregistez vous avec votre numéro de téléphone</p> 
+                <p class="login-register-redirect">
+                    <span>Nouveau sur GP-Tracker ? </span>
+                    <a href="/register">Créer un compte</a>
+                </p>
+                {# <p class="phone-option">Enregistez vous avec votre numéro de téléphone</p>  #}
             </form>
             {# {% form_theme loginForm 'gp-tracker/form/loginForm.html.twig' %}
             

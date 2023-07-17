@@ -76,3 +76,17 @@
         border: 2px solid rgba($borderColor, 0.6);
     }
 }
+@mixin login-register-redirect {
+    .login-register-redirect {
+        padding: 1rem;
+        text-align: center;
+        a{
+            text-decoration: none;
+            color: $base-color;
+            white-space: nowrap;
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+    }
+}
