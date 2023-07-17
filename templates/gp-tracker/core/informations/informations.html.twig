@@ -48,8 +48,8 @@
                         <a href="/informations/settings">Paramatère du compte</a>
                     </li>
                 </ul>
-                <form>
-                    <button>Deconnexion</button>
+                <form action="{{ logout_path('main') }}" method="POST">
+                    <button type="submit">Deconnexion</button>
                 </form>
             </div>
             <div class="content">
