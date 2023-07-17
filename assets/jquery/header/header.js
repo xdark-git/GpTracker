@@ -100,3 +100,16 @@ $(function () {
         $banner.remove();
     });
 });
+
+/*----------------------------------
+            HIDE USER DIALOG
+ -----------------------------------*/
+
+$(function () {
+    $("#user").on("click", function () {
+        $("#user-nav-dialog").toggle();
+        if ($(window).width() > 560) {
+            $(".fa-chevron-down, .fa-chevron-up", this).toggle();
+        }
+    });
+});
