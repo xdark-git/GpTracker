@@ -191,6 +191,9 @@ header .section-1 .content .buttons .user #user {
     padding: 0.5rem 0.5rem;
     border-radius: 5px;
     cursor: pointer;
+    i.fa-chevron-up{
+        display: none;
+    }
 
     &:hover {
         @include menuItemOnHover;
@@ -198,7 +201,7 @@ header .section-1 .content .buttons .user #user {
 }
 
 header .section-1 .content .buttons .user #user-nav-dialog {
-    // display: none;
+    display: none;
     position: absolute;
     top: 2rem;
     z-index: 10;
@@ -412,7 +415,7 @@ header .section-2 ul .language-switcher {
     }
     header .section-1 .content .buttons .user #user-nav-dialog {
         right: 0.6rem;
-        width: 45vw;
+        width: 55vw;
         min-width: fit-content;
     }
 }
