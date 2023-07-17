@@ -14,12 +14,15 @@
         <div class="body">
             <form action="#" method="post">
                 <div>
-                    <input type="email" name="email" id="gp-register-email" placeholder="Email" >
+                    <input type="email" name="email" id="gp-register-email" placeholder="Entrez un Email valide" >
                     {# <a href="#">modifier</a> #}
                 </div>
-                <input type="password" name="password" id="gp-register-pwd" placeholder="Mot de passe">
+                <div>
+                    <input type="text" name="username" id="gp-register-username" placeholder="Entrez votre nom d'utilisateur">
+                </div>
+                <input type="password" name="password" id="gp-register-pwd" placeholder="Entrez votre Mot de passe">
                 <input type="password" name="password-confirm" id="gp-register-pwd-confirm" placeholder="Confirmez le mot de passe">
-                <button type="submit">Continuer</button>
+                <button type="submit">S'inscrire</button>
                 <p class="login-register-redirect">
                     <span>Déjà inscrit ?</span>
                     <a href="/login">Connectez-vous !</a>
