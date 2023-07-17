@@ -134,7 +134,7 @@ header .section-1 .content {
         display: flex;
         flex-direction: row;
         gap: 1rem;
-        button {
+        .login {
             position: relative;
             appearance: none;
             background-color: transparent;
@@ -162,7 +162,7 @@ header .section-1 .content {
         }
     }
 }
-header .section-1 .content .buttons button {
+header .section-1 .content .buttons > .login {
     &:hover {
         @include menuItemOnHover;
     }
@@ -403,7 +403,7 @@ header .section-2 ul .language-switcher {
             left: unset !important;
         }
     }
-    header .section-1 .content .buttons button {
+    header .section-1 .content .buttons > .login {
         min-width: auto;
         span {
             display: none;
