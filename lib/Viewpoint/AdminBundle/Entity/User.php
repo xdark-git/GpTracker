@@ -89,7 +89,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
     
     #[ORM\Column(type: 'boolean')]
-    private ?bool $isActive = false;
+    private ?bool $isVerified = false;
     
     #[ORM\Column(type: 'boolean')]
     private ?bool $isDeleted = false;
@@ -229,14 +229,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getIsActive(): bool
+    public function getIsVerified(): bool
     {
-        return $this->isActive;
+        return $this->isVerified;
     }
 
-    public function setIsActive(bool $isActive): self
+    public function setIsVerified(bool $isVerified): self
     {
-        $this->isActive = $isActive;
+        $this->isVerified = $isVerified;
 
         return $this;
     }

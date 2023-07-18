@@ -14,13 +14,14 @@ trait AdminTrait{
         return $role;
     }
     
-    public function createUser(string $email, string $username, string $password, Role $role): User
+    public function createUser(string $email, string $username, string $password, Role $role, bool $isVerified = false): User
     {
         $user = new User();
         $user->setEmail($email)
             ->setRole($role)
             ->setUsername($username)
-            ->setPassword($this->passwordHasher->hashPassword($user, $password));
+            ->setPassword($this->passwordHasher->hashPassword($user, $password))
+            ->setIsVerified($isVerified);
 
         return $user;
         

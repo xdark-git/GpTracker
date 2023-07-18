@@ -37,7 +37,8 @@ class AppFixtures extends Fixture implements FixtureGroupInterface
             email: "test@gmail.com",
             username: $faker->userName,
             password: "test",
-            role: $roleAdmin
+            role: $roleAdmin,
+            isVerified: true
         );
         $manager->persist($user1);
         $manager->flush();
