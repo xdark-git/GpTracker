@@ -1,0 +1,109 @@
+@import "../libs/global/globalVariables.scss";
+@import "../libs/global/globalFunctions.scss";
+@import "../libs/mixins/AuthMixins.scss";
+@import "../libs/global/globalMixin.scss";
+
+.gp-activation-container {
+    position: relative;
+    width: 60%;
+    align-self: center;
+    background-color: $white-color;
+    box-shadow: 0px 0px 3px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 0.25rem;
+    overflow: hidden;
+}
+
+.gp-activation-container > .header {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    border-bottom: 1px solid #000;
+    background-color: $page-background-color;
+}
+
+.gp-activation-container > .body {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+    padding: 1rem 1.5rem;
+}
+
+.gp-activation-container > .body .alert-box {
+    width: 95%;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    background: #fdd5d9;
+
+    h1 {
+        font-size: 1rem;
+        color: darken($txt-color-3, 30);
+    }
+    p {
+        font-size: 0.9rem;
+        color: darken($color: $txt-color-3, $amount: 10);
+    }
+}
+
+.gp-activation-container > .body .alert-description {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+
+    p {
+        font-size: 0.9rem;
+    }
+}
+
+.gp-activation-container > .body .buttons{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+    // padding-bottom: 2rem;
+    
+    button{
+        min-width: fit-content;
+        padding: 0.6rem 1rem;
+        border: none;
+        font-size: inherit;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+    button.resend{
+        background-color: $btn-color-1;
+        @include text-color($btn-color-1);
+    
+        &:hover {
+            background-color: lighten($color: $btn-color-1, $amount: 20%);
+        }
+    }
+    button.logout{
+        background-color: $red-color;
+        @include text-color($red-color);
+    
+        &:hover {
+            background-color: lighten($color: $red-color, $amount: 20%);
+        }
+    }
+}
+
+@mixin email-verification-max-width--775px{
+    .gp-activation-container{
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        box-shadow: unset;
+        // background-color: unset;
+        border-radius: unset;
+        overflow: unset;
+    }
+}

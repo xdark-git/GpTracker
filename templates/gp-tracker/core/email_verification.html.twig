@@ -1,0 +1,38 @@
+{% extends 'gp-tracker/base.html.twig' %}
+
+{% block title %}
+    Activation
+{% endblock %}
+
+{% block body %}
+<main>
+    <div class="container gp-activation-container">
+        <div class="header">Vérification de l'email</div>
+        <div class="body">
+            <div class="alert-box">
+                <h1>Votre adresse e-mail n'est pas encore vérifiée !</h1>
+                <p>Veuillez vérifier votre adresse e-mail.</p>
+            </div>
+            <div class="alert-description">
+                <p>
+                    Nous avons envoyé le mail de vérification à xxxxxx@gmail.com.
+                    <br />
+                    Si vous ne trouvez pas le mail de vérification dans le dossier de réception,
+                    veuillez vérifier le dossier des mails indésirables/spam.
+                </p>
+                <p>
+                    Si vous n'avez pas reçu le mail de vérification, veuillez cliquer sur le bouton "Renvoyer".
+                </p>
+            </div>
+            <div class="buttons">
+                <form action="#" id="resend-verification-email">
+                    <button class="resend" type="submit">Renvoyer</button>
+                </form>
+                <form action="" id="logout-form">
+                    <button class="logout" type="submit">Se déconnecter</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

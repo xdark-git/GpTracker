@@ -173,4 +173,11 @@ class RegisterController extends AbstractController
             $themeResolver->getThemePathPrefix("/core/informations/contents/package.html.twig")
         );
     }
+    #[Route("/activation", name: "app_account_activation")]
+    public function accountActivation(ThemeResolver $themeResolver): Response
+    {
+        return $this->render(
+            $themeResolver->getThemePathPrefix("/core/email_verification.html.twig")
+        );
+    }
 }

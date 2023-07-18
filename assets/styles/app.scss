@@ -9,6 +9,7 @@
 @import "./pages/informations/information.scss";
 @import "./pages/room-details.scss";
 @import "./pages/room-creation.scss";
+@import "./pages/email_verification.scss";
 @import "./layout/animations.scss";
 
 @media only screen and (max-width: 1280px) {
@@ -26,6 +27,7 @@
 
 @media only screen and (max-width: 775px) {
     @include information-max-width--775px;
+    @include email-verification-max-width--775px;
 }
 
 @media only screen and (max-width: 608px) {
