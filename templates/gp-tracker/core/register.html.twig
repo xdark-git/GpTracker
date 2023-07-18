@@ -12,10 +12,10 @@
             <p>Pour assurer la securité de votre compte, nous vous suggérons d’ajouter un mot de passe fort</p>
         </div>
         <div class="body">
-            <form action="#" method="post">
+            {# <form action="#" method="post">
                 <div>
                     <input type="email" name="email" id="gp-register-email" placeholder="Entrez un Email valide" >
-                    {# <a href="#">modifier</a> #}
+                    <a href="#">modifier</a>
                 </div>
                 <div>
                     <input type="text" name="username" id="gp-register-username" placeholder="Entrez votre nom d'utilisateur">
@@ -27,8 +27,33 @@
                     <span>Déjà inscrit ?</span>
                     <a href="/login">Connectez-vous !</a>
                 </p>
-            </form>
-        </div>
-
+            </form> #}
+            {% form_theme registrationForm 'gp-tracker/form/loginForm.html.twig' %}
+            
+            {{ form_start(registrationForm)}}
+                {{ form_row(registrationForm.email, {
+                    id: 'gp-register-email',
+                    attr: { placeholder: "Entrez un Email valide" }
+                }) }}
+                {{ form_row(registrationForm.username, {
+                    id: 'gp-register-username',
+                    attr: { placeholder: "Entrez votre nom d'utilisateur" }
+                }) }}
+                {{ form_row(registrationForm.password, {
+                    id: 'gp-register-pwd',
+                    attr: { placeholder: 'Enter your Password'}
+                }) }}
+                <div>
+                    {{ form_row(registrationForm.agreeTerms) }}
+                    <span><a href="#" target="_blank">Conditions générales d'utilisation</a></span>
+                </div>
+                {{ form_row(registrationForm._token) }}
+                <button type="submit">S'inscrire</button>
+                <p class="login-register-redirect">
+                    <span>Déjà inscrit ?</span>
+                    <a href="/login">Connectez-vous !</a>
+                </p>
+            {{ form_end(registrationForm) }}
+      
     </div>
 {% endblock %}
