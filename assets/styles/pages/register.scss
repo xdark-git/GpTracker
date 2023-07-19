@@ -75,6 +75,25 @@
     & button {
         @include auth-buttons($btn-color-1);
     }
-
     @include login-register-redirect;
+}
+
+.gp-register-container .body form .agree-terms{
+    div{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+    }
+    input[type="checkbox"]{
+        width: 1.2rem;
+    }
+    a{
+        text-decoration: none;
+        color: $txt-color-4;
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+
 }
