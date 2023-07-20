@@ -155,4 +155,12 @@ class AuthController extends AbstractController
 
         return $this->redirectToRoute('app_home');
     }
+
+    #[Route('/non-verified-user', name: 'non_verified_user_page')]
+    public function nonVerifiedUser(): Response
+    {
+        return $this->render(
+            $this->themeResolver->getThemePathPrefix("/core/email_verification.html.twig")
+        );
+    }
 }
