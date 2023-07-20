@@ -21,15 +21,18 @@ use Viewpoint\AdminBundle\Entity\User;
 use Viewpoint\AdminBundle\Repository\UserRepository;
 use App\Form\RegistrationFormType;
 use Viewpoint\AdminBundle\Entity\Role;
+use Symfony\Bundle\SecurityBundle\Security;
 
 class AuthController extends AbstractController
 {
     private ThemeResolver $themeResolver;
     private EmailVerifier $emailVerifier;
-    public function __construct(ThemeResolver $themeResolver, EmailVerifier $emailVerifier)
+    private Security $security;
+    public function __construct(ThemeResolver $themeResolver, EmailVerifier $emailVerifier, Security $security)
     {
         $this->themeResolver = $themeResolver;
         $this->emailVerifier = $emailVerifier;
+        $this->security = $security;
     }
 
     #[Route("/login", name: "app_login")]
@@ -98,7 +101,7 @@ class AuthController extends AbstractController
     }
 
     #[Route('/verify/email', name: 'app_verify_email')]
-    public function verifyUserEmail(Request $request, TranslatorInterface $translator, UserRepository $userRepository): Response
+    public function verifyUserEmail(Request $request, TranslatorInterface $translator, UserRepository $userRepository, UserAuthenticatorInterface $userAuthenticator, LoginFormAuthenticator $authenticator)    : Response
     {
         $id = $request->query->get('id');
 
@@ -124,6 +127,32 @@ class AuthController extends AbstractController
         // @TODO Change the redirect on success and handle or remove the flash message in your templates
         $this->addFlash('success', 'Your email address has been verified.');
 
-        return $this->redirectToRoute('app_register');
+        $currentUser = $this->security->getUser();
+        
+        if(!$currentUser){
+            return $userAuthenticator->authenticateUser(
+                $user,
+                $authenticator,
+                $request
+            );
+        }
+
+        if($currentUser === $user){
+            return $this->redirectToRoute('app_home');
+        }
+
+        if($currentUser !== $user){
+            //logout the current user and login verified user
+            $this->security->logout(false);
+
+            return $userAuthenticator->authenticateUser(
+                $user,
+                $authenticator,
+                $request
+            );
+        }
+
+
+        return $this->redirectToRoute('app_home');
     }
 }
