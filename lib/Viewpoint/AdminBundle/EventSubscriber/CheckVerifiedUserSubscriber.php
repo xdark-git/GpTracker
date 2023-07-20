@@ -13,11 +13,16 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 class CheckVerifiedUserSubscriber implements EventSubscriberInterface{
     private Security $security;
     private UrlGeneratorInterface $urlGenerator;
+    private array $excludedRoutes;
 
     public function __construct(Security $security, UrlGeneratorInterface $urlGenerator)
     {
         $this->security = $security;
         $this->urlGenerator = $urlGenerator;
+        $this-> excludedRoutes = [
+            'non_verified_user_page',
+            'app_verify_email'
+        ];
         
     }
     public static function getSubscribedEvents(){
@@ -40,15 +45,18 @@ class CheckVerifiedUserSubscriber implements EventSubscriberInterface{
         //     dd($user);
         // }
     }
+    
     public function onKernelRequest(RequestEvent $event)
     {
-        $request = $event->getRequest();
-        // Check if the current route requires user authentication
+        $currentRoute = $event->getRequest()->attributes->get('_route');
+
+        if (in_array($currentRoute, $this->excludedRoutes)) {
+            return;
+        }
+
         if ($this->security->isGranted('IS_AUTHENTICATED_FULLY') && !$this->security->getUser()->isVerified()) {
-            if ($request->attributes->get('_route') !== 'non_verified_user_page') {
                 $response = new RedirectResponse($this->urlGenerator->generate('non_verified_user_page'));
                 $event->setResponse($response);
-            }
         }
     }
 }
