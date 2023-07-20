@@ -3,7 +3,6 @@ namespace Viewpoint\AdminBundle\EventSubscriber;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Security\Http\Event\CheckPassportEvent;
-use Viewpoint\AdminBundle\Entity\User;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
@@ -45,7 +44,7 @@ class CheckVerifiedUserSubscriber implements EventSubscriberInterface{
         //     dd($user);
         // }
     }
-    
+
     public function onKernelRequest(RequestEvent $event)
     {
         $currentRoute = $event->getRequest()->attributes->get('_route');
