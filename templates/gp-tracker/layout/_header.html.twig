@@ -116,8 +116,10 @@
             </li>
         </ul>
     </section>
-    <section class="notification">
-        <span class="text">Vos modifications ont été très bien enregistrés</span>
-        <i class="fa-solid fa-xmark"></i>
-    </section>
+    {% for flash in app.flashes('success') %}
+        <section class="notification">
+            <span class="text">{{ flash }}</span>
+            <i class="fa-solid fa-xmark"></i>
+        </section>
+    {% endfor %}
 </header>
