@@ -32,49 +32,8 @@ class RegisterController extends AbstractController
         $this->validator = $validator;
     }
 
-    public function login(ThemeResolver $themeResolver): Response
-    {
-        // $roleUser = $this->manager->getRepository(Role::class)->findOneBy(['name'=> 'ROLE_USER']);
-        $role = new Role();
-        $role->setName("test");
-        dd($role);
-        dd();
+    
 
-        $errors = $this->validator->validate($role);
-
-        if (count($errors) > 0) {
-            /*
-             * Uses a __toString method on the $errors variable which is a
-             * ConstraintViolationList object. This gives us a nice string
-             * for debugging.
-             */
-            $errorsString = (string) $errors;
-
-            return new Response($errorsString);
-        }
-        // $role->setName(true);
-        dd($role);
-        // $faker = Factory::create();
-
-        // // $user1 = $this->createUser(email: $faker->email, username: $faker->userName, password: "test", role: $roleAdmin);
-        // $user1 = $this->createUser(
-        //     email: $faker->email,
-        //     username: $faker->userName,
-        //     password: "test",
-        //     role: $roleUser
-        // );
-        // $this->manager->persist($user1);
-
-        // $this->manager->flush();
-
-        return $this->render($themeResolver->getThemePathPrefix("/core/login.html.twig"));
-    }
-
-    // #[Route("/register", name: "app_register")]
-    // public function register(ThemeResolver $themeResolver): Response
-    // {
-    //     return $this->render($themeResolver->getThemePathPrefix("/core/register.html.twig"));
-    // }
 
     #[Route("/", name: "app_home")]
     public function home(ThemeResolver $themeResolver): Response
