@@ -11,8 +11,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Viewpoint\AdminBundle\Validator as AdminAssert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[UniqueEntity('username', message:'Le nom d\'utilisateur {{ value }} existe déjà')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     use TimestampableEntity;
@@ -28,7 +30,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             new Assert\NotBlank(allowNull: true),
             new Assert\Type("string"),
             new Assert\Length(min: 3, max: 50),
-            new Assert\Regex(pattern: "/^\D+$/", message: "Your Fistname cannot contain a number"),
+            new Assert\Regex(pattern: "/^\D+$/", message: "Votre prénom ne peut pas contenir de chiffre."),
         ])
     ]
     private ?string $firstName = null;
@@ -39,7 +41,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             new Assert\NotBlank(allowNull: true),
             new Assert\Type("string"),
             new Assert\Length(min: 3, max: 50),
-            new Assert\Regex(pattern: "/^\D+$/", message: "Your Lastname cannot contain a number"),
+            new Assert\Regex(pattern: "/^\D+$/", message: "Votre nom ne peut pas contenir de chiffre."),
         ])
     ]
     private ?string $lastName = null;
@@ -50,7 +52,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             new Assert\NotBlank(allowNull: true),
             new Assert\Type("string"),
             new Assert\Length(max: 1),
-            new Assert\Choice(callback: "getSexes", message: "Choose a valid sexe type."),
+            new Assert\Choice(callback: "getSexes", message: "Veuillez choisir un type de sexe valide."),
         ])
     ]
     private ?string $sexe = null;
