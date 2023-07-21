@@ -100,6 +100,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[JoinColumn(nullable: false)]
     private Role $role;
 
+    #[ORM\OneToOne(targetEntity: EmailVerificationAttemp::class, mappedBy: 'user')]
+    private ?EmailVerificationAttemp $emailVerificationAttempt = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -252,6 +255,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->isDeleted = $isDeleted;
 
+        return $this;
+    }
+
+
+    public function getEmailVerificationAttempt(): EmailVerificationAttemp
+    {
+        return $this->emailVerificationAttempt;
+    }
+
+    public function setEmailVerificationAttempt(EmailVerificationAttemp $emailVerificationAttempt): self
+    {
+        $this->emailVerificationAttempt = $emailVerificationAttempt;
+        
         return $this;
     }
 
