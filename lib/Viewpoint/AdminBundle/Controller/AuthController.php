@@ -115,17 +115,20 @@ class AuthController extends AbstractController
             return $this->redirectToRoute('app_register');
         }
 
-        // validate email confirmation link, sets User::isVerified=true and persists
-        try {
-            $this->emailVerifier->handleEmailConfirmation($request, $user);
-        } catch (VerifyEmailExceptionInterface $exception) {
-            $this->addFlash('verify_email_error', $translator->trans($exception->getReason(), [], 'VerifyEmailBundle'));
+        if(!$user->isVerified()){
+            // validate email confirmation link, sets User::isVerified=true and persists
+            try {
+                $this->emailVerifier->handleEmailConfirmation($request, $user);
+            } catch (VerifyEmailExceptionInterface $exception) {
+                $this->addFlash('verify_email_error', $translator->trans($exception->getReason(), [], 'VerifyEmailBundle'));
 
-            return $this->redirectToRoute('app_register');
+                return $this->redirectToRoute('app_register');
+            }
         }
+        
 
         // @TODO Change the redirect on success and handle or remove the flash message in your templates
-        $this->addFlash('success', 'Your email address has been verified.');
+        $this->addFlash('success', 'Votre adresse e-mail a été vérifiée.');
 
         $currentUser = $this->security->getUser();
         
