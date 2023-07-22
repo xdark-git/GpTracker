@@ -157,7 +157,7 @@ class AuthController extends AbstractController
 
 
     #[Route('/resend/email', name: 'app_resend_verify_email')]
-    public function resendEmail(EntityManagerInterface $entityManager): Response
+    public function resendEmail(Request $request, EntityManagerInterface $entityManager): Response
     {
         
         $user = $this->security->getUser();
@@ -165,6 +165,13 @@ class AuthController extends AbstractController
         if(!$this->security->isGranted('IS_AUTHENTICATED_FULLY') || $user->isVerified()){
 
             return $this->redirectToRoute('app_home');
+        }
+
+        $submittedToken = $request->request->get('token');
+
+        if (!$this->isCsrfTokenValid('resend-verification-email', $submittedToken)) {
+            $this->addFlash('error', 'La demande envoyée est invalide' );
+            return $this->redirectToRoute('non_verified_user_page');
         }
         
         
