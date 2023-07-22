@@ -7,6 +7,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class CheckVerifiedUserSubscriber implements EventSubscriberInterface{
@@ -25,7 +26,8 @@ class CheckVerifiedUserSubscriber implements EventSubscriberInterface{
         ];
         
     }
-    public static function getSubscribedEvents(){
+    public static function getSubscribedEvents(): array
+    {
         return [
             // CheckPassportEvent::class => 'onCheckPassport',
             KernelEvents::REQUEST => 'onKernelRequest',
