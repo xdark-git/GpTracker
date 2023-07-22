@@ -22,6 +22,8 @@ use Viewpoint\AdminBundle\Repository\UserRepository;
 use App\Form\RegistrationFormType;
 use Viewpoint\AdminBundle\Entity\Role;
 use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Viewpoint\AdminBundle\Entity\EmailVerificationAttempt;
 
 class AuthController extends AbstractController
 {
@@ -79,13 +81,7 @@ class AuthController extends AbstractController
             $entityManager->flush();
 
             // generate a signed url and email it to the user
-            $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
-                (new TemplatedEmail())
-                    ->from(new Address('noreply@your-domain.com', 'GP-Tracker'))
-                    ->to($user->getEmail())
-                    ->subject('Please Confirm your Email')
-                    ->htmlTemplate('registration/confirmation_email.html.twig')
-                );
+            $this->sendEmailConfirmationHelper($user);
             // do anything else you need here, like send an email
 
             return $userAuthenticator->authenticateUser(
@@ -159,6 +155,60 @@ class AuthController extends AbstractController
         return $this->redirectToRoute('app_home');
     }
 
+
+    #[Route('/resend/email', name: 'app_resend_verify_email')]
+    public function resendEmail(EntityManagerInterface $entityManager): Response
+    {
+        
+        $user = $this->security->getUser();
+        // dd($user);
+        if(!$this->security->isGranted('IS_AUTHENTICATED_FULLY') || $user->isVerified()){
+
+            return $this->redirectToRoute('app_home');
+        }
+        
+        
+        $userEmailVerificationAttempt = $user->getEmailVerificationAttempt() ;
+        // $timezone = $_ENV['APP_TIMEZONE'];
+
+        if(!$userEmailVerificationAttempt){
+
+            $this->sendEmailConfirmationHelper($user);
+
+            $currentTime = new \DateTime();
+            $emailVerificationAttempt = new EmailVerificationAttempt();
+            $emailVerificationAttempt->setLastResendTime($currentTime)->setUser($user);
+
+            $entityManager->persist($emailVerificationAttempt);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('non_verified_user_page');
+        }
+        
+        $lastAttempt = $userEmailVerificationAttempt->getLastResendTime();
+        $currentTime = new \DateTime();
+
+        $currentTimeInSeconds = $currentTime->getTimestamp();
+        $lastAttemptInSeconds = $lastAttempt->getTimestamp();
+
+        $timeDifferenceInSeconds = $currentTimeInSeconds - $lastAttemptInSeconds;
+
+        if ($timeDifferenceInSeconds >= 60) {
+            // Send the new verification email since at least one minute has passed
+
+            $this->sendEmailConfirmationHelper($user);
+            
+            // Update the lastResendTime to the current time
+            $userEmailVerificationAttempt->setLastResendTime($currentTime);
+            $entityManager->persist($userEmailVerificationAttempt);
+            $entityManager->flush();
+        
+        } 
+ 
+        
+        return $this->redirectToRoute('non_verified_user_page');
+    }
+
     #[Route('/non-verified-user', name: 'non_verified_user_page')]
     public function nonVerifiedUser(): Response
     {
@@ -173,6 +223,17 @@ class AuthController extends AbstractController
 
         return $this->render(
             $this->themeResolver->getThemePathPrefix("/core/email_verification.html.twig")
+        );
+    }
+
+    protected function sendEmailConfirmationHelper(UserInterface $user): void
+    {
+        $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
+                (new TemplatedEmail())
+                    ->from(new Address('noreply@your-domain.com', 'GP-Tracker'))
+                    ->to($user->getEmail())
+                    ->subject('Please Confirm your Email')
+                    ->htmlTemplate('registration/confirmation_email.html.twig')
         );
     }
 }
