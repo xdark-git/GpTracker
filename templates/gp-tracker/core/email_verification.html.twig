@@ -37,10 +37,10 @@
                 </p>
             </div>
             <div class="buttons">
-                <form action="{{ path('app_resend_verify_email') }}" id="resend-verification-email">
+                <form action="{{ path('app_resend_verify_email') }}" method="post" id="resend-verification-email">
                     <button class="resend" type="submit">Renvoyer</button>
                 </form>
-                <form action="" id="logout-form">
+                <form action="{{ logout_path('main') }}" method="post" id="logout-form">
                     <button class="logout" type="submit">Se déconnecter</button>
                 </form>
             </div>
