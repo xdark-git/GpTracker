@@ -9,6 +9,18 @@
     <div class="container gp-activation-container">
         <div class="header">Vérification de l'email</div>
         <div class="body">
+            {% for flash in app.flashes('success') %}
+                <section class="notification" style="color:green;">
+                    <span class="text">{{ flash }}</span>
+                    {# <i class="fa-solid fa-xmark"></i> #}
+                </section>
+            {% endfor %}
+            {% for flash in app.flashes('error') %}
+                <section class="notification" style="color:red;">
+                    <span class="text">{{ flash }}</span>
+                    {# <i class="fa-solid fa-xmark"></i> #}
+                </section>
+            {% endfor %}
             <div class="alert-box">
                 <h1>Votre adresse e-mail n'est pas encore vérifiée !</h1>
                 <p>Veuillez vérifier votre adresse e-mail.</p>

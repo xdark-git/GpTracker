@@ -182,6 +182,8 @@ class AuthController extends AbstractController
             $entityManager->persist($emailVerificationAttempt);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Un nouvel email de vérification a été envoyé à '. $user->getEmail());
+
             return $this->redirectToRoute('non_verified_user_page');
         }
         
@@ -197,13 +199,18 @@ class AuthController extends AbstractController
             // Send the new verification email since at least one minute has passed
 
             $this->sendEmailConfirmationHelper($user);
+
+            $this->addFlash('success', 'Un nouvel email de vérification a été envoyé à '. $user->getEmail());
             
             // Update the lastResendTime to the current time
             $userEmailVerificationAttempt->setLastResendTime($currentTime);
             $entityManager->persist($userEmailVerificationAttempt);
             $entityManager->flush();
         
-        } 
+        }else{
+            $remainingTimeInSeconds = 60 - $timeDifferenceInSeconds;
+            $this->addFlash('error', 'Veuillez patienter quelques instants avant de réessayer. ('. $remainingTimeInSeconds .' secondes)' );
+        }
  
         
         return $this->redirectToRoute('non_verified_user_page');
