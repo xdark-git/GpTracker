@@ -23,7 +23,7 @@ class EmailVerificationAttempt
     #[Assert\Sequentially([new Assert\NotBlank(), new Assert\DateTime()])]
     private ?DateTime $lastResendTime = null;
 
-    #[OneToOne(targetEntity: User::class, mappedBy: 'emailVerificationAttempt')]
+    #[OneToOne(targetEntity: User::class, inversedBy: 'emailVerificationAttempt')]
     #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id')]
     #[Assert\Sequentially([new Assert\NotBlank()])]
     private ?User $user = null;
