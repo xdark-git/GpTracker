@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping\OneToOne;
 use Doctrine\DBAL\Types\Types;
 
 #[ORM\Entity(EmailVerificationAttempRepository::class)]
-class EmailVerificationAttemp
+class EmailVerificationAttempt
 {
     use TimestampableEntity;
     #[ORM\Id]
