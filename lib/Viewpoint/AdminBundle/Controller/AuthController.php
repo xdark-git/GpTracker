@@ -179,9 +179,9 @@ class AuthController extends AbstractController
         // $timezone = $_ENV['APP_TIMEZONE'];
 
         if(!$userEmailVerificationAttempt){
-
+            
             $this->sendEmailConfirmationHelper($user);
-
+            // dd(true);
             $currentTime = new \DateTime();
             $emailVerificationAttempt = new EmailVerificationAttempt();
             $emailVerificationAttempt->setLastResendTime($currentTime)->setUser($user);
@@ -242,9 +242,12 @@ class AuthController extends AbstractController
 
     protected function sendEmailConfirmationHelper(UserInterface $user): void
     {
+
+        $noReplyEmail = $this->getParameter('viewpoint_admin.email_config.no_reply');        
+
         $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
                 (new TemplatedEmail())
-                    ->from(new Address('noreply@your-domain.com', 'GP-Tracker'))
+                    ->from(new Address($noReplyEmail, 'GP-Tracker'))
                     ->to($user->getEmail())
                     ->subject('Please Confirm your Email')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
