@@ -1,0 +1,7 @@
+parameters:
+  email_domain: '%env(EMAIL_DOMAIN)%'
+
+viewpoint_admin:
+  email_config:
+    no_reply: 'noreply@%email_domain%'
+    contact: 'contact@%email_domain%'
