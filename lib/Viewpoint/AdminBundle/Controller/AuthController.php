@@ -249,7 +249,7 @@ class AuthController extends AbstractController
                 (new TemplatedEmail())
                     ->from(new Address($noReplyEmail, 'no-reply'))
                     ->to($user->getEmail())
-                    ->subject('Bienvenue sur GP-Tracker - Veuillez Confirmer Votre Inscription')
+                    ->subject('Bienvenue sur '.$_ENV['APP_NAME'].' - Veuillez Confirmer Votre Inscription')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
         );
     }
