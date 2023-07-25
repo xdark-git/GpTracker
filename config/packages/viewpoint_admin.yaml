@@ -3,5 +3,5 @@ parameters:
 
 viewpoint_admin:
   email_config:
-    no_reply: 'noreply@%email_domain%'
+    no_reply: 'no-reply@%email_domain%'
     contact: 'contact@%email_domain%'
