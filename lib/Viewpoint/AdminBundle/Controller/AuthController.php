@@ -247,9 +247,9 @@ class AuthController extends AbstractController
 
         $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
                 (new TemplatedEmail())
-                    ->from(new Address($noReplyEmail, 'GP-Tracker'))
+                    ->from(new Address($noReplyEmail, 'noreply'))
                     ->to($user->getEmail())
-                    ->subject('Please Confirm your Email')
+                    ->subject('Bienvenue sur GP-Tracker - Veuillez Confirmer Votre Inscription')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
         );
     }
