@@ -157,7 +157,7 @@ class AuthController extends AbstractController
 
 
     #[Route('/resend/email', name: 'app_resend_verify_email')]
-    public function resendEmail(EntityManagerInterface $entityManager): Response
+    public function resendEmail(Request $request, EntityManagerInterface $entityManager): Response
     {
         
         $user = $this->security->getUser();
@@ -166,15 +166,22 @@ class AuthController extends AbstractController
 
             return $this->redirectToRoute('app_home');
         }
+
+        $submittedToken = $request->request->get('token');
+
+        if (!$this->isCsrfTokenValid('resend-verification-email', $submittedToken)) {
+            $this->addFlash('error', 'La demande envoyée est invalide' );
+            return $this->redirectToRoute('non_verified_user_page');
+        }
         
         
         $userEmailVerificationAttempt = $user->getEmailVerificationAttempt() ;
         // $timezone = $_ENV['APP_TIMEZONE'];
 
         if(!$userEmailVerificationAttempt){
-
+            
             $this->sendEmailConfirmationHelper($user);
-
+            // dd(true);
             $currentTime = new \DateTime();
             $emailVerificationAttempt = new EmailVerificationAttempt();
             $emailVerificationAttempt->setLastResendTime($currentTime)->setUser($user);
@@ -235,11 +242,14 @@ class AuthController extends AbstractController
 
     protected function sendEmailConfirmationHelper(UserInterface $user): void
     {
+
+        $noReplyEmail = $this->getParameter('viewpoint_admin.email_config.no_reply');        
+
         $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
                 (new TemplatedEmail())
-                    ->from(new Address('noreply@your-domain.com', 'GP-Tracker'))
+                    ->from(new Address($noReplyEmail, 'no-reply'))
                     ->to($user->getEmail())
-                    ->subject('Please Confirm your Email')
+                    ->subject('Bienvenue sur '.$_ENV['APP_NAME'].' - Veuillez Confirmer Votre Inscription')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
         );
     }

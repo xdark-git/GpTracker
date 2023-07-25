@@ -38,6 +38,7 @@
             </div>
             <div class="buttons">
                 <form action="{{ path('app_resend_verify_email') }}" method="post" id="resend-verification-email">
+                    <input type="hidden" name="token" value="{{ csrf_token('resend-verification-email') }}"/>
                     <button class="resend" type="submit">Renvoyer</button>
                 </form>
                 <form action="{{ logout_path('main') }}" method="post" id="logout-form">

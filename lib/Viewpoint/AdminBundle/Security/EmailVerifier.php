@@ -32,6 +32,7 @@ class EmailVerifier
         $context['signedUrl'] = $signatureComponents->getSignedUrl();
         $context['expiresAtMessageKey'] = $signatureComponents->getExpirationMessageKey();
         $context['expiresAtMessageData'] = $signatureComponents->getExpirationMessageData();
+        $context['appName'] = $_ENV['APP_NAME'];
 
         $email->context($context);
 
