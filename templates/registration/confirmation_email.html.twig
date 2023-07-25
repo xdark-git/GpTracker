@@ -1,11 +1,112 @@
-<h1>Hi! Please confirm your email!</h1>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Confirmation Email</title>
+<style type="text/css">
+	body {
+		margin: 0;
+		background-color: #F3F2F1;
+	}
+	table {
+		border-spacing: 0;
+	}
+	td {
+		padding: 0;
+	}
+	img {
+		border: 0;
+	}
+    .wrapper{
+        width: 100%;
+        table-layout: fixed;
+        background-color: inherit;
+        padding-bottom: 40px;
+    }
+    .main{
+        background-color: #ffffff;
+        margin: 0 auto;
+        width: 100%;
+        max-width: 600px;
+        border-spacing: 0;
+        font-family: sans-serif;
+        color: #4a4a4a;
+    }
+    .main .logo{
+        outline: none;
+        text-decoration: none;
+        -ms-interpolation-mode: bicubic;
+        clear: both;
+        display: inline-block !important;
+        border: none;
+        height: auto;
+        float: none;
+        width: 15%;
+        max-width: 179.2px;
+    }
 
-<p>
-    Please confirm your email address by clicking the following link: <br><br>
-    <a href="{{ signedUrl|raw }}">Confirm my Email</a>.
-    This link will expire in {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
-</p>
+	@media screen and (max-width: 600px) { 
 
-<p>
-    Cheers!
-</p>
+	}
+</style>
+</head>
+<body>
+
+    <center class="wrapper">
+        
+        <table class="main" width="100%">
+            <!-- LOGO SECTION -->
+            <tr>
+                <td>
+                    <table width="100%">
+                        <tr>
+                            <td style="padding:10px;" align="center">
+                                <a href="#"><img src="{{asset('theme/assets/img/logo/gp-tracker-logo-1.png')}}" alt="logo" title="logo" class="logo" width="179.2" ></a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <!-- FIRST SECTION -->
+            <tr>
+                <td style="background-color:#003399;">
+                    <table width="100%">
+                        <tr>
+                            <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:'Cabin',sans-serif;">
+                                <div style="color: #e5eaf5; line-height: 140%; text-align: center; word-wrap: break-word;">
+                                    <p style="font-size: 14px; line-height: 140%;">MERCI DE VOUS ÊTRE INSCRIT !</p>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <table width="100%">
+                        <tr>
+                            <td style="overflow-wrap:break-word;word-break:break-word;padding:0px 10px 31px;font-family:'Cabin',sans-serif;">
+                                <div style="color: #e5eaf5; line-height: 140%; text-align: center; word-wrap: break-word;">
+                                    <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 28px; line-height: 39.2px;">
+                                        <strong><span style="line-height: 39.2px; font-size: 28px;">Verify Your E-mail Address </span></strong></span>
+                                    </p>
+                                </div>    
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <!-- BLUE BACKGROUND QUOTE -->
+
+
+            <!-- FOOTER SECTION -->
+        </table>
+
+    </center>
+
+</body>
+</html>
+
+<div style="position:absolute;bottom: 0;width: 100%;text-align: center;line-height: 40px;font-size: 25px;">
+	<a href="https://responsivehtmlemail.com" target="_blank" style="color: #404577;text-decoration: none;">www.ResponsiveHTMLEmail.com</a>
+</div>
