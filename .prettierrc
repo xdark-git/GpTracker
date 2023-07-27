@@ -7,6 +7,12 @@
             "options": {
                 "printWidth": 100
             }
+        },
+        {
+            "files": "*.html",
+            "options": {
+                "printWidth": 180
+            }
         }
     ]
 }
