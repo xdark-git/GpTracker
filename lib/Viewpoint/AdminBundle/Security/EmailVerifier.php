@@ -9,13 +9,15 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 use SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface;
+use Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface;   
 
 class EmailVerifier
 {
     public function __construct(
         private VerifyEmailHelperInterface $verifyEmailHelper,
         private MailerInterface $mailer,
-        private EntityManagerInterface $entityManager
+        private EntityManagerInterface $entityManager,
+        private ContainerBagInterface $params,
     ) {
     }
 
@@ -27,12 +29,14 @@ class EmailVerifier
             $user->getEmail(),
             ['id' => $user->getId()]
         );
+        $contactEmail = $this->params->get('viewpoint_admin.email_config.contact');
 
         $context = $email->getContext();
         $context['signedUrl'] = $signatureComponents->getSignedUrl();
         $context['expiresAtMessageKey'] = $signatureComponents->getExpirationMessageKey();
         $context['expiresAtMessageData'] = $signatureComponents->getExpirationMessageData();
         $context['appName'] = $_ENV['APP_NAME'];
+        $context['contactEmail'] = $contactEmail;
 
         $email->context($context);
 
