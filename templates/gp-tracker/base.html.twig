@@ -18,13 +18,14 @@
         {% endblock %}
     </head>
     <body >
-        {% if path(app.request.attributes.get('_route')) not in ['/login', '/register', '/non-verified-user'] %}
+    
+        {% if app.request.attributes.get('_route') not in ['app_login', 'app_register', 'non_verified_user_page'] %}
             {% include 'gp-tracker/layout/_header.html.twig' %}
         {% endif %}
 
         {% block body %}{% endblock %}
 
-        {% if path(app.request.attributes.get('_route')) not in ['/login', '/register', '/non-verified-user'] %}
+        {% if app.request.attributes.get('_route') not in ['app_login', 'app_register', 'non_verified_user_page'] %}
             {% include 'gp-tracker/layout/_footer.html.twig' %}
         {% endif %}
 
