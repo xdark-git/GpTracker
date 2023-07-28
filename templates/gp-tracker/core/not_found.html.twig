@@ -1,0 +1,17 @@
+{% extends 'gp-tracker/base.html.twig' %}
+
+{% block title %}
+   404 Not Found
+{% endblock %}
+
+{% block body %}
+<main>
+    <div class="container gp-not-found">
+        <img src="{{asset('theme/assets/img/pages/not_found.png')}}" alt="Not Found">
+        <div class="description">
+            <h1>Cette page n’existe pas !</h1>
+            <a href="{{url('app_home')}}">Retour à l'Acceuil</a>
+        </div>
+    </div>
+</main>
+{% endblock %}
