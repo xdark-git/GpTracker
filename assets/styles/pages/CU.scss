@@ -10,7 +10,7 @@
     padding-left: 100px;
     padding-right: 100px;
 }
-
+  
 .cu-container > .cu-main > .row {
     clear: both;
     position: relative;
@@ -44,6 +44,7 @@
 .gp-menu-list > li > a{
     text-decoration: none;
     color: black;
+    
     &:hover {
         color: $btn-color-1;
     }
@@ -67,3 +68,31 @@ p {
     font-weight: 400;
     padding: 0 22px;
 }
+
+
+@mixin cu-max-width-800px {
+    .cu-container > .cu-main {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  
+    .cu-container > .cu-main > .row > .head-title {
+      font-size: 28px;
+    }
+  
+    .gp-menu {
+      padding: 10px 20px;
+    }
+  
+    .gp-menu > ul {
+      font-size: 16px;
+    }
+  
+    .subtitle {
+      font-size: 16px;
+    }
+  
+    p {
+      font-size: 14px;
+    }
+  }

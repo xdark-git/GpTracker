@@ -42,6 +42,10 @@
     @include header-max-width--560px;
 }
 
+@media only screen and (max-width: 800px){
+    @include  cu-max-width-800px;
+}
+
 
 @media only screen and (max-width: calc($page-min-width - 1px)) {
     body {
