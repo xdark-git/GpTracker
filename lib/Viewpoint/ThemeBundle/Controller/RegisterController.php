@@ -139,7 +139,7 @@ class RegisterController extends AbstractController
             $themeResolver->getThemePathPrefix("/core/email_verification.html.twig")
         );
     }
-    #[Route("/conditions-generales", name: "app_conditions_generales")]
+    #[Route("/conditions-generales", name: "app_terms_conditions")]
     public function ConditionsGenerales(ThemeResolver $themeResolver): Response
     {
         return $this->render(
