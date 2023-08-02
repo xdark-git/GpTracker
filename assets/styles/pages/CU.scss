@@ -25,7 +25,7 @@
     height: 2px;
 }
 
-.gp-menu{
+.cu-container > .cu-main .gp-menu{
     margin-top: 40px;
     font-size: 18px;
     padding: 20px 40px;
@@ -33,7 +33,7 @@
     border-radius: 2px;
     background: #efefef
 }
-.gp-menu > ul {
+.cu-container > .cu-main .gp-menu > ul {
     list-style-type: decimal;
     
 }
@@ -76,11 +76,11 @@ p {
       font-size: 28px;
     }
   
-    .gp-menu {
+    .cu-container > .cu-main .gp-menu {
       padding: 10px 20px;
     }
   
-    .gp-menu > ul {
+    .cu-container > .cu-main .gp-menu > ul {
       font-size: 16px;
     }
   
