@@ -5,7 +5,9 @@ namespace Viewpoint\ThemeBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Validator\Constraints as Assert;
+use Viewpoint\ThemeBundle\Repository\RoomMetaKeywordRepository;
 
+#[ORM\Entity(repositoryClass: RoomMetaKeywordRepository::class)]
 class RoomMetaKeyword
 {
     use TimestampableEntity;
