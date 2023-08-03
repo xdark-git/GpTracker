@@ -2,12 +2,12 @@
 
 namespace Viewpoint\ThemeBundle\Entity;
 
-use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Viewpoint\ThemeBundle\Repository\RoomRepository;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\DBAL\Types\Types;
+use Viewpoint\AdminBundle\Entity\User;
 
 #[ORM\Entity(repositoryClass: RoomRepository::class)]
 class Room
@@ -19,7 +19,7 @@ class Room
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 15)]
+    #[ORM\Column(type: Types::STRING, length: 15)]
     #[
         Assert\Sequentially([
             new Assert\NotNull(),
@@ -80,6 +80,14 @@ class Room
 
     #[ORM\Column(type: "boolean")]
     private ?bool $isDeleted = false;
+
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'rooms')]
+    #[ORM\JoinColumn(nullable: false)]
+    private User $user;
+
+    #[ORM\ManyToOne(targetEntity: Conveyance::class, inversedBy: 'rooms')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Conveyance $conveyance; 
 
     public function getId(): ?int
     {
@@ -186,6 +194,28 @@ class Room
     {
         $this->isDeleted = $isDeleted;
 
+        return $this;
+    }
+
+    public function getUser(): User
+    {
+        return $this->user;
+    }
+
+    public function setUser(User $user): self
+    {
+        $this->user = $user;
+        return $this;
+    }
+
+    public function getConveyance(): Conveyance
+    {
+        return $this->conveyance;
+    }
+
+    public function setConveyance(Conveyance $conveyance): self
+    {
+        $this->conveyance = $conveyance;
         return $this;
     }
 }

@@ -12,9 +12,12 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Viewpoint\AdminBundle\Validator as AdminAssert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Viewpoint\ThemeBundle\Entity\Room;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[UniqueEntity('username', message:'Le nom d\'utilisateur {{ value }} existe déjà')]
+#[UniqueEntity("username", message: 'Le nom d\'utilisateur {{ value }} existe déjà')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     use TimestampableEntity;
@@ -30,7 +33,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             new Assert\NotBlank(allowNull: true),
             new Assert\Type("string"),
             new Assert\Length(min: 3, max: 50),
-            new Assert\Regex(pattern: "/^\D+$/", message: "Votre prénom ne peut pas contenir de chiffre."),
+            new Assert\Regex(
+                pattern: "/^\D+$/",
+                message: "Votre prénom ne peut pas contenir de chiffre."
+            ),
         ])
     ]
     private ?string $firstName = null;
@@ -41,7 +47,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             new Assert\NotBlank(allowNull: true),
             new Assert\Type("string"),
             new Assert\Length(min: 3, max: 50),
-            new Assert\Regex(pattern: "/^\D+$/", message: "Votre nom ne peut pas contenir de chiffre."),
+            new Assert\Regex(
+                pattern: "/^\D+$/",
+                message: "Votre nom ne peut pas contenir de chiffre."
+            ),
         ])
     ]
     private ?string $lastName = null;
@@ -52,7 +61,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             new Assert\NotBlank(allowNull: true),
             new Assert\Type("string"),
             new Assert\Length(max: 1),
-            new Assert\Choice(callback: "getSexes", message: "Veuillez choisir un type de sexe valide."),
+            new Assert\Choice(
+                callback: "getSexes",
+                message: "Veuillez choisir un type de sexe valide."
+            ),
         ])
     ]
     private ?string $sexe = null;
@@ -81,7 +93,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 180)]
     #[Assert\Sequentially([new Assert\NotBlank(), new Assert\Email()])]
-    #[AdminAssert\UniqueEmail(mode: 'loose')]
+    #[AdminAssert\UniqueEmail(mode: "loose")]
     private ?string $email = null;
 
     /**
@@ -89,19 +101,27 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     private ?string $password = null;
-    
-    #[ORM\Column(type: 'boolean')]
+
+    #[ORM\Column(type: "boolean")]
     private ?bool $isVerified = false;
-    
-    #[ORM\Column(type: 'boolean')]
+
+    #[ORM\Column(type: "boolean")]
     private ?bool $isDeleted = false;
 
     #[ManyToOne(targetEntity: Role::class, inversedBy: "users")]
     #[JoinColumn(nullable: false)]
     private Role $role;
 
-    #[ORM\OneToOne(targetEntity: EmailVerificationAttempt::class, mappedBy: 'user')]
+    #[ORM\OneToOne(targetEntity: EmailVerificationAttempt::class, mappedBy: "user")]
     private ?EmailVerificationAttempt $emailVerificationAttempt = null;
+
+    #[ORM\OneToMany(targetEntity: Room::class, mappedBy: 'user')]
+    private Collection $rooms;
+
+    public function __construct()
+    {
+        $this->rooms = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -258,16 +278,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-
     public function getEmailVerificationAttempt(): ?EmailVerificationAttempt
     {
         return $this->emailVerificationAttempt;
     }
 
-    public function setEmailVerificationAttempt(EmailVerificationAttempt $emailVerificationAttempt): self
-    {
+    public function setEmailVerificationAttempt(
+        EmailVerificationAttempt $emailVerificationAttempt
+    ): self {
         $this->emailVerificationAttempt = $emailVerificationAttempt;
-        
+
         return $this;
     }
 
@@ -288,5 +308,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function isVerified(): bool
     {
         return $this->isVerified;
+    }
+
+    public function getRooms(): Collection
+    {
+        return $this->rooms;
     }
 }
