@@ -81,13 +81,16 @@ class Room
     #[ORM\Column(type: "boolean")]
     private ?bool $isDeleted = false;
 
-    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'rooms')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: "rooms")]
     #[ORM\JoinColumn(nullable: false)]
     private User $user;
 
-    #[ORM\ManyToOne(targetEntity: Conveyance::class, inversedBy: 'rooms')]
+    #[ORM\ManyToOne(targetEntity: Conveyance::class, inversedBy: "rooms")]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Conveyance $conveyance; 
+    private Conveyance $conveyance;
+
+    #[ORM\OneToOne(targetEntity: RoomCellular::class, mappedBy: "room")]
+    private ?RoomCellular $cellular = null;
 
     public function getId(): ?int
     {
@@ -217,5 +220,10 @@ class Room
     {
         $this->conveyance = $conveyance;
         return $this;
+    }
+
+    public function getCellular(): ?RoomCellular
+    {
+        return $this->cellular;
     }
 }

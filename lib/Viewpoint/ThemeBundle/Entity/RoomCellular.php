@@ -47,6 +47,10 @@ class RoomCellular
     ]
     private ?string $secondary = null;
 
+    #[ORM\OneToOne(targetEntity: Room::class, inversedBy: "cellular")]
+    #[ORM\JoinColumn(nullable: false)]
+    private Room $room;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -74,4 +78,14 @@ class RoomCellular
         return $this;
     }
 
+    public function getRoom(): Room
+    {
+        return $this->room;
+    }
+
+    public function setRoom(Room $room): self
+    {
+        $this->room = $room;
+        return $this;
+    }
 }
