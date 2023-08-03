@@ -2,6 +2,7 @@
 
 namespace Viewpoint\ThemeBundle\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Viewpoint\ThemeBundle\Repository\RoomRepository;
@@ -48,6 +49,37 @@ class Room
     #[ORM\Column(type: Types::DECIMAL)]
     #[Assert\Sequentially([new Assert\NotBlank(), new Assert\Type("float")])]
     private ?float $weight = null;
+
+    #[ORM\Column(type: Types::STRING, length: 255)]
+    #[
+        Assert\Sequentially([
+            new Assert\NotBlank(),
+            new Assert\Type("string"),
+            new Assert\Length(max: 250),
+        ])
+    ]
+    private ?string $departureLocation = null;
+
+    #[ORM\Column(type: Types::STRING, length: 255)]
+    #[
+        Assert\Sequentially([
+            new Assert\NotBlank(),
+            new Assert\Type("string"),
+            new Assert\Length(max: 250),
+        ])
+    ]
+    private ?string $arrivalLocation = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Assert\Sequentially([new Assert\NotBlank(), new Assert\DateTime()])]
+    private ?\DateTime $departureDate = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Assert\Sequentially([new Assert\NotBlank(), new Assert\DateTime()])]
+    private ?\DateTime $arrivalDate = null;
+
+    #[ORM\Column(type: "boolean")]
+    private ?bool $isDeleted = false;
 
     public function getId(): ?int
     {
@@ -98,6 +130,62 @@ class Room
     public function setWeight(float $weight): self
     {
         $this->weight = $weight;
+        return $this;
+    }
+
+    public function getDepartureLocation(): ?string
+    {
+        return $this->departureLocation;
+    }
+
+    public function setDepartureLocation(?string $departureLocation): self
+    {
+        $this->departureLocation = $departureLocation;
+        return $this;
+    }
+
+    public function getArrivalLocation(): ?string
+    {
+        return $this->arrivalLocation;
+    }
+
+    public function setArrivalLocation(?string $arrivalLocation): self
+    {
+        $this->arrivalLocation = $arrivalLocation;
+        return $this;
+    }
+
+    public function getDepartureDate(): ?\DateTime
+    {
+        return $this->departureDate;
+    }
+
+    public function setDepartureDate(\DateTime $departureDate): self
+    {
+        $this->departureDate = $departureDate;
+        return $this;
+    }
+
+    public function getArrivalDate(): ?\DateTime
+    {
+        return $this->arrivalDate;
+    }
+
+    public function setArrivalDate(\DateTime $arrivalDate): self
+    {
+        $this->arrivalDate = $arrivalDate;
+        return $this;
+    }
+
+    public function getIsDeleted(): bool
+    {
+        return $this->isDeleted;
+    }
+
+    public function setIsDeleted(bool $isDeleted): self
+    {
+        $this->isDeleted = $isDeleted;
+
         return $this;
     }
 }
