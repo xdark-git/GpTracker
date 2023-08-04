@@ -92,6 +92,9 @@ class Room
     #[ORM\OneToOne(targetEntity: RoomCellular::class, mappedBy: "room")]
     private ?RoomCellular $cellular = null;
 
+    #[ORM\ManyToOne(targetEntity: RoomMetaKeyword::class, inversedBy: "rooms")]
+    private ?RoomMetaKeyword $roomMetaKeyword;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -225,5 +228,16 @@ class Room
     public function getCellular(): ?RoomCellular
     {
         return $this->cellular;
+    }
+
+    public function getRoomMetaKeyword(): ?RoomMetaKeyword
+    {
+        return $this->roomMetaKeyword;
+    }
+
+    public function setRoomMetaKeyword(?RoomMetaKeyword $roomMetaKeyword): self
+    {
+        $this->roomMetaKeyword = $roomMetaKeyword;
+        return $this;
     }
 }
