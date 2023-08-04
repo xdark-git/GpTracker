@@ -1,0 +1,40 @@
+{% form_theme roomCreationForm _self %}
+{% block form_row %}
+    {%- set widget_attr = {} -%}
+    {%- if help is not empty -%}
+        {%- set widget_attr = {attr: {'aria-describedby': id ~"_help"}} -%}
+    {%- endif -%}
+  
+    {{- form_label(form) -}}
+    {{- form_help(form) -}}
+    {{- form_errors(form) -}}
+    {{- form_widget(form, widget_attr) -}}
+{% endblock %}
+
+{% block form_help %}
+    {% if help %}
+        <p class="input-help">{{ help }}</p>
+    {% endif %}
+{% endblock form_help %}
+
+{% block form_errors %}
+    {% if errors|length > 0 %}
+        {% if compound %}
+            {# ... display the global form errors #}
+            <ul style="list-style-type: circle;">
+                {% for error in errors %}
+                    <li class="error">{{ error.message }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            {% for error in errors %}
+                <ul style="list-style-type: circle;">
+                {% for error in errors %}
+                    <li class="error">{{ error.message }}</li>
+                {% endfor %}
+                </ul>
+            {% endfor %}
+            {# ... display the errors for a single field #}
+        {% endif %}
+    {% endif %}
+{% endblock form_errors %}
