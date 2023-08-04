@@ -67,6 +67,9 @@ You need to create the database and the tables
     php bin/console doctrine:schema:update --force --complete
 ```
 
+```bash
+php bin/console doctrine:database:drop --force --if-exists && php bin/console doctrine:database:create --if-not-exists && php bin/console doctrine:schema:update --force --complete
+```
 Then create the Fixtures.
 
 ```bash
