@@ -2,6 +2,8 @@
 
 namespace Viewpoint\ThemeBundle\Entity;
 
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -36,6 +38,14 @@ class RoomMetaKeyword
         ])
     ]
     private ?string $keywords = null;
+
+    #[ORM\OneToMany(targetEntity: Room::class, mappedBy: 'roomMetaKeyword')]
+    private ?Collection $rooms = null;
+
+    public function __construct()
+    {
+        $this->rooms = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
