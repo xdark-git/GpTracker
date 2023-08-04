@@ -100,7 +100,7 @@ class Room
     private ?RoomCellular $cellular = null;
 
     #[ORM\ManyToOne(targetEntity: RoomMetaKeyword::class, inversedBy: "rooms")]
-    private ?RoomMetaKeyword $roomMetaKeyword;
+    private ?RoomMetaKeyword $roomMetaKeyword = null;
 
     public function getId(): ?int
     {
