@@ -42,6 +42,13 @@ class Room
     ]
     private ?string $slug = null;
 
+    #[ORM\Column(type: Types::STRING, length: 3)]
+    #[Assert\Sequentially([
+        new Assert\NotBlank(),
+        new Assert\Currency(message: "{{value}} n'est une device valide")
+    ])]
+    private ?string $currency = null;
+
     #[ORM\Column(type: Types::DECIMAL)]
     #[Assert\Sequentially([new Assert\NotBlank(), new Assert\Type("float")])]
     private ?float $unitPrice = null;
@@ -121,6 +128,17 @@ class Room
     {
         $this->slug = $slug;
 
+        return $this;
+    }
+
+    public function getCurrency(): ?string
+    {
+        return $this->currency;
+    }
+
+    public function setCurrency(string $currency): self
+    {
+        $this->currency = $currency;
         return $this;
     }
 
