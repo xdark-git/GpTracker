@@ -14,7 +14,7 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Viewpoint\ThemeBundle\Entity\Room;
 
-class RoomCreationType extends AbstractType
+class RoomFormType extends AbstractType
 {
     public function __construct(private Security $security)
     {
@@ -34,10 +34,13 @@ class RoomCreationType extends AbstractType
             ->add("departureDate", DateType::class, [
                 "label" => "Date de depart ",
                 "help" => "Preciser votre date départ",
+                "widget" => "single_text",
             ])
             ->add("arrivalDate", DateType::class, [
                 "label" => "Date d'arrivée",
                 "help" => "Preciser votre date d'arrivée",
+                "widget" => "single_text",
+
             ])
             ->add("cellular", RoomCellularFormType::class)
             ->add("name", TextType::class, [
@@ -86,7 +89,7 @@ class RoomCreationType extends AbstractType
                 $entity->setRoomMetaKeyword(null);
             }
 
-            $form->setData($entity);
+            $event->setData($entity);
         });
     }
 
