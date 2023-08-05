@@ -20,7 +20,7 @@ class RoomCellularFormType extends AbstractType
             ->add("secondary", TextType::class, [
                 "label" => "Numéro de téléphone secondaire",
                 "help" => "Veuillez entrer un format valide, par exemple : +1 XXX XXX XXXX",
-                "require" => false,
+                "required" => false,
             ]);
     }
 
