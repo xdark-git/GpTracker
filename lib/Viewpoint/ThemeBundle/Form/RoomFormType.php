@@ -13,6 +13,8 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Viewpoint\ThemeBundle\Entity\Room;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Validator\Constraints\IsTrue;
 
 class RoomFormType extends AbstractType
 {
@@ -40,7 +42,6 @@ class RoomFormType extends AbstractType
                 "label" => "Date d'arrivée",
                 "help" => "Preciser votre date d'arrivée",
                 "widget" => "single_text",
-
             ])
             ->add("cellular", RoomCellularFormType::class)
             ->add("name", TextType::class, [
@@ -65,6 +66,22 @@ class RoomFormType extends AbstractType
             ->add("weight", TextType::class, [
                 "label" => "Espace",
                 "help" => "Saisir la taille de votre sac",
+            ])
+            ->add("codeConducts", CheckboxType::class, [
+                "mapped" => false,
+                "constraints" => [
+                    new IsTrue([
+                        "message" => "Vous devez accepter nos conditions.",
+                    ]),
+                ],
+            ])
+            ->add("securityMeasures", CheckboxType::class, [
+                "mapped" => false,
+                "constraints" => [
+                    new IsTrue([
+                        "message" => "Vous devez accepter nos mesures de sécurité.",
+                    ]),
+                ],
             ]);
 
         $user = $this->security->getUser();
