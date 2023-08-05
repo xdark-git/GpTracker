@@ -248,6 +248,12 @@ class Room
         return $this->cellular;
     }
 
+    public function setCellular(?RoomCellular $cellular): self
+    {
+        $this->cellular = $cellular;
+        return $this;
+    }
+
     public function getRoomMetaKeyword(): ?RoomMetaKeyword
     {
         return $this->roomMetaKeyword;
