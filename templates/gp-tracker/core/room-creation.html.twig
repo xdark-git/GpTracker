@@ -18,7 +18,127 @@
                 <li>Options & Services</li>
                 <li>Confirmation</li>
             </ul>
-            <form action="#" id="roomCreationForm">
+            {% form_theme roomCreationForm 'gp-tracker/form/room_creation_form.html.twig' %}
+
+            {{ form_start(roomCreationForm, {'attr': {'id': 'roomCreationForm'}}) }}
+                <h4 class="form-title">
+                    <span class="step"></span>
+                    <span>Détails du voyage</span>
+                </h4>
+                <div class="tab hidden">
+                    <div class="form-group">
+                        <div class="input-container">
+                            {{ form_row(roomCreationForm.departureLocation, {
+                                'id': 'departure-location'
+                                }) 
+                            }} 
+                        </div>
+                        <div class="input-container">
+                            {{ form_row(roomCreationForm.arrivalLocation, {
+                                'id': 'arrival-location'
+                                }) 
+                            }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-container">
+                            {{ form_row(roomCreationForm.departureDate, {
+                                'id': 'departure-date'
+                                }) 
+                            }}  
+                        </div>
+                        <div class="input-container">
+                            {{ form_row(roomCreationForm.arrivalDate, {
+                                'id': 'arrival-date'
+                                })
+                            }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-container">
+                            {{ form_row(roomCreationForm.cellular.primary, {
+                                'id': 'primary-tel'
+                                })
+                            }}   
+                        </div>                    
+                        <div class="input-container">
+                            {{ form_row(roomCreationForm.cellular.secondary, {
+                                'id': 'secondary-tel'
+                                })
+                            }}
+                        </div>
+                    </div>
+                </div>
+                <div class="tab hidden">
+                    <div class="form-group">
+                        <div class="input-container">
+                            {{ form_row(roomCreationForm.name, {
+                                'id': 'room-name'
+                                })
+                            }} 
+                        </div>
+                    </div>
+                    <div class="form-group">
+                       <div class="input-container">
+                             {{ form_row(roomCreationForm.conveyance, {
+                                'id': 'transportation-method'
+                                }) 
+                            }} 
+                       </div>
+                        <div class="input-container">
+                            {{ form_row(roomCreationForm.currency, {
+                                'id': 'currency'
+                                })
+                            }} 
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-container">
+                            {{ form_row(roomCreationForm.unitPrice, {
+                                'id': 'unit-price'
+                                })
+                            }} 
+                        </div>
+                        <div class="input-container">
+                            {{ form_row(roomCreationForm.weight, {
+                                'id': 'bag-size'
+                                }) 
+                            }} 
+                        </div>
+                    </div>
+                </div>
+                <div class="tab hidden">
+                    <div class="form-group flex-column gap-1">
+                        <div class="input-container type-checkbox">
+                            {{ form_row(roomCreationForm.codeConducts, {
+                                label: false,
+                                'id': 'code-of-conduct'
+                                }) 
+                            }}
+                            <label class="checkbox" for="code-of-conduct">
+                               J’ai lu et je m’engage  à respecter la&nbsp; <a href="#" target="_blank" rel="noopener noreferrer">charte de bonne conduite.</a>.
+                            </label>
+                        </div>
+                        <div class="input-container type-checkbox">
+                            {{ form_row(roomCreationForm.securityMeasures, {
+                                label: false,
+                                'id': 'security-measure'
+                                }) 
+                            }}
+                            <label class="checkbox" for="security-measures">
+                                J’ai pris connaissance des&nbsp; <a href="#" target="_blank" rel="noopener noreferrer">Mesures de securites</a>.
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="buttons">
+                    <button class="hidden" type="button" id="btn-preview">Aperçu</button>
+                    <button class="hidden" type="button" id="btn-previous">&laquo; Retour</button>
+                    <button type="button" id="btn-next">Etape suivante &raquo;</button>
+                    <button class="hidden" type="button" id="btn-submit">Publier</button>
+                </div>
+            {{ form_end(roomCreationForm, {'render_rest': false}) }}
+            {# <form action="#" id="roomCreationForm">
                 <h4 class="form-title">
                     <span class="step"></span>
                     <span>Détails du voyage</span>
@@ -122,7 +242,7 @@
                     <button type="button" id="btn-next">Etape suivante &raquo;</button>
                     <button class="hidden" type="button" id="btn-submit">Publier</button>
                 </div>
-            </form>
+            </form> #}
             <dialog id="previewDialog" class="hidden">
                 <div>
                     <div class="header">
