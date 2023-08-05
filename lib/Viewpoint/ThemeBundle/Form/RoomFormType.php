@@ -92,10 +92,9 @@ class RoomFormType extends AbstractType
             );
         }
 
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) use (
+        $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) use (
             $user
         ): void {
-            $form = $event->getForm();
             $entity = $event->getData();
 
             if ($entity instanceof Room && !$entity->getUser()) {
