@@ -96,7 +96,7 @@ class Room
     #[ORM\JoinColumn(nullable: false)]
     private Conveyance $conveyance;
 
-    #[ORM\OneToOne(targetEntity: RoomCellular::class, mappedBy: "room")]
+    #[ORM\OneToOne(targetEntity: RoomCellular::class, mappedBy: "room", cascade:["persist"])]
     private ?RoomCellular $cellular = null;
 
     #[ORM\ManyToOne(targetEntity: RoomMetaKeyword::class, inversedBy: "rooms")]
