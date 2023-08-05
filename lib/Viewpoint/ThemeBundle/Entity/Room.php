@@ -8,6 +8,7 @@ use Viewpoint\ThemeBundle\Repository\RoomRepository;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\DBAL\Types\Types;
 use Viewpoint\AdminBundle\Entity\User;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 #[ORM\Entity(repositoryClass: RoomRepository::class)]
 class Room
@@ -30,23 +31,26 @@ class Room
     private ?string $name = null;
 
     #[ORM\Column(type: Types::STRING, unique: true, length: 255)]
-    #[
-        Assert\Sequentially([
-            new Assert\NotBlank(),
-            new Assert\Length(max: 250),
-            new Assert\Regex(
-                pattern: "/^[a-z0-9-_]+$/",
-                message: "La valeur {{ value }} n'est pas valide."
-            ),
-        ])
-    ]
+    #[Gedmo\Slug(prefix:'gp-', fields:["departureLocation", "arrivalLocation", "name"])]
+    // #[
+    //     Assert\Sequentially([
+    //         new Assert\NotBlank(),
+    //         new Assert\Length(max: 250),
+    //         new Assert\Regex(
+    //             pattern: "/^[a-z0-9-_]+$/",
+    //             message: "La valeur {{ value }} n'est pas valide."
+    //         ),
+    //     ])
+    // ]
     private ?string $slug = null;
 
     #[ORM\Column(type: Types::STRING, length: 3)]
-    #[Assert\Sequentially([
-        new Assert\NotBlank(),
-        new Assert\Currency(message: "{{value}} n'est une device valide")
-    ])]
+    #[
+        Assert\Sequentially([
+            new Assert\NotBlank(),
+            new Assert\Currency(message: "{{ value }} n'est une device valide"),
+        ])
+    ]
     private ?string $currency = null;
 
     #[ORM\Column(type: Types::DECIMAL)]
@@ -78,11 +82,11 @@ class Room
     private ?string $arrivalLocation = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    #[Assert\Sequentially([new Assert\NotBlank(), new Assert\DateTime()])]
+    #[Assert\Sequentially([new Assert\NotBlank(), new Assert\Type("\DateTimeInterface")])]
     private ?\DateTime $departureDate = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    #[Assert\Sequentially([new Assert\NotBlank(), new Assert\DateTime()])]
+    #[Assert\Sequentially([new Assert\NotBlank(), new Assert\Type("\DateTimeInterface")])]
     private ?\DateTime $arrivalDate = null;
 
     #[ORM\Column(type: "boolean")]
@@ -90,16 +94,20 @@ class Room
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: "rooms")]
     #[ORM\JoinColumn(nullable: false)]
-    private User $user;
+    #[Assert\NotBlank]
+    private ?User $user = null;
 
     #[ORM\ManyToOne(targetEntity: Conveyance::class, inversedBy: "rooms")]
     #[ORM\JoinColumn(nullable: false)]
-    private Conveyance $conveyance;
+    #[Assert\NotBlank]
+    private ?Conveyance $conveyance = null;
 
-    #[ORM\OneToOne(targetEntity: RoomCellular::class, mappedBy: "room", cascade:["persist"])]
+    #[ORM\OneToOne(targetEntity: RoomCellular::class, mappedBy: "room", cascade: ["persist"])]
+    #[Assert\NotBlank(allowNull: true)]
     private ?RoomCellular $cellular = null;
 
     #[ORM\ManyToOne(targetEntity: RoomMetaKeyword::class, inversedBy: "rooms")]
+    #[Assert\NotBlank(allowNull: true)]
     private ?RoomMetaKeyword $roomMetaKeyword = null;
 
     public function getId(): ?int
@@ -221,7 +229,7 @@ class Room
         return $this;
     }
 
-    public function getUser(): User
+    public function getUser(): ?User
     {
         return $this->user;
     }
@@ -232,7 +240,7 @@ class Room
         return $this;
     }
 
-    public function getConveyance(): Conveyance
+    public function getConveyance(): ?Conveyance
     {
         return $this->conveyance;
     }
