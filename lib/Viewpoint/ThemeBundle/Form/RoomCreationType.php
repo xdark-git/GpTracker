@@ -7,14 +7,12 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Viewpoint\AdminBundle\Entity\User;
 use Viewpoint\ThemeBundle\Entity\Conveyance;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Viewpoint\ThemeBundle\Entity\Room;
-use Viewpoint\ThemeBundle\Entity\RoomMetaKeyword;
 
 class RoomCreationType extends AbstractType
 {
@@ -41,15 +39,7 @@ class RoomCreationType extends AbstractType
                 "label" => "Date d'arrivée",
                 "help" => "Preciser votre date d'arrivée",
             ])
-            ->add("primaryTel", TextType::class, [
-                "label" => "Numéro de téléphone WhatsApp",
-                "help" => "Veuillez entrer un format valide, par exemple : +1 XXX XXX XXXX",
-            ])
-            ->add("secondaryTel", TextType::class, [
-                "label" => "Numéro de téléphone secondaire",
-                "help" => "Veuillez entrer un format valide, par exemple : +1 XXX XXX XXXX",
-                "require" => false,
-            ])
+            ->add("cellular", RoomCellularFormType::class)
             ->add("name", TextType::class, [
                 "label" => "Nom du salon",
                 "help" =>
@@ -91,9 +81,8 @@ class RoomCreationType extends AbstractType
             if ($entity instanceof Room && !$entity->getUser()) {
                 $entity->setUser($user);
             }
-            
-            if($entity instanceof Room && !$entity->getRoomMetaKeyword())
-            {
+
+            if ($entity instanceof Room && !$entity->getRoomMetaKeyword()) {
                 $entity->setRoomMetaKeyword(null);
             }
 
