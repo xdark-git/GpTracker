@@ -17,7 +17,7 @@ class RoomCellular
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 15, unique: true)]
+    #[ORM\Column(name:"primary_number", length: 15)]
     #[
         Assert\Sequentially([
             new Assert\NotNull(),
@@ -32,7 +32,7 @@ class RoomCellular
     ]
     private ?string $primary = null;
 
-    #[ORM\Column(length: 15, unique: true)]
+    #[ORM\Column(name:"secondary_number", length: 15)]
     #[
         Assert\Sequentially([
             new Assert\NotBlank(allowNull: true),
@@ -63,7 +63,7 @@ class RoomCellular
 
     public function setPrimary(string $primary): self
     {
-        $this->primary = $primary;
+        $this->primary = str_replace(' ', '', $primary);
         return $this;
     }
 
@@ -74,7 +74,7 @@ class RoomCellular
 
     public function setSecondary(string $secondary): self
     {
-        $this->secondary = $secondary;
+        $this->secondary = str_replace(' ', '', $secondary);
         return $this;
     }
 
