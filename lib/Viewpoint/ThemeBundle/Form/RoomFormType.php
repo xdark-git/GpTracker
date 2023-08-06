@@ -37,11 +37,17 @@ class RoomFormType extends AbstractType
                 "label" => "Date de depart ",
                 "help" => "Preciser votre date départ",
                 "widget" => "single_text",
+                "attr" => [
+                    "class" => "gp-room-datepicker"
+                ]
             ])
             ->add("arrivalDate", DateType::class, [
                 "label" => "Date d'arrivée",
                 "help" => "Preciser votre date d'arrivée",
                 "widget" => "single_text",
+                "attr" => [
+                    "class" => "gp-room-datepicker"
+                ]
             ])
             ->add("cellular", RoomCellularFormType::class)
             ->add("name", TextType::class, [
