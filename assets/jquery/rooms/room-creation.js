@@ -1,6 +1,25 @@
 import $ from "jquery";
 import { formatNumber, isPossibleNumber } from "libphonenumber-js";
 import currencyCode from "currency-codes";
+/*--------------------------------------------
+    FORM INPUTS TYPE DATE START DATE && ENDS
+ --------------------------------------------*/
+$(function(){
+    const $dateInput = $('.gp-room-datepicker');
+
+    // Get today's date and add one month
+    const today = new Date();
+    const oneMonthFromToday = new Date(today);
+    oneMonthFromToday.setMonth(oneMonthFromToday.getMonth() + 1);
+
+    // Format dates to 'YYYY-MM-DD' (required for the input's 'min' and 'max' attributes)
+    const todayFormatted = today.toISOString().split('T')[0];
+    const oneMonthFromTodayFormatted = oneMonthFromToday.toISOString().split('T')[0];
+
+    $dateInput.attr('min', todayFormatted);
+    $dateInput.attr('max', oneMonthFromTodayFormatted);
+})
+
 /*--------------------------------------
     FORM MULTI STEPS FUNCTIONALITIES
  --------------------------------------*/
