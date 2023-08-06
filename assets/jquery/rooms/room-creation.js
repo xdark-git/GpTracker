@@ -4,8 +4,8 @@ import currencyCode from "currency-codes";
 /*--------------------------------------------
     FORM INPUTS TYPE DATE START DATE && ENDS
  --------------------------------------------*/
-$(function(){
-    const $dateInput = $('.gp-room-datepicker');
+$(function () {
+    const $dateInput = $(".gp-room-datepicker");
 
     // Get today's date and add one month
     const today = new Date();
@@ -13,12 +13,14 @@ $(function(){
     oneMonthFromToday.setMonth(oneMonthFromToday.getMonth() + 1);
 
     // Format dates to 'YYYY-MM-DD' (required for the input's 'min' and 'max' attributes)
-    const todayFormatted = today.toISOString().split('T')[0];
-    const oneMonthFromTodayFormatted = oneMonthFromToday.toISOString().split('T')[0];
+    const todayFormatted = today.toISOString().split("T")[0];
+    const oneMonthFromTodayFormatted = oneMonthFromToday
+        .toISOString()
+        .split("T")[0];
 
-    $dateInput.attr('min', todayFormatted);
-    $dateInput.attr('max', oneMonthFromTodayFormatted);
-})
+    $dateInput.attr("min", todayFormatted);
+    $dateInput.attr("max", oneMonthFromTodayFormatted);
+});
 
 /*--------------------------------------
     FORM MULTI STEPS FUNCTIONALITIES
@@ -172,10 +174,16 @@ function validForm(n = null, $tabs) {
             valid = false;
         }
 
-        if ($input.attr("id") === "currency" && !currencyCode.code(inputValue)) {
+        if (
+            $input.attr("id") === "currency" &&
+            !currencyCode.code(inputValue)
+        ) {
             $label.addClass("error");
             valid = false;
-        } else if ($input.attr("id") === "currency" && currencyCode.code(inputValue)) {
+        } else if (
+            $input.attr("id") === "currency" &&
+            currencyCode.code(inputValue)
+        ) {
             $input.val(currencyCode.code(inputValue).code);
         }
     });
@@ -242,7 +250,18 @@ function displayPreviewDialog() {
         var placeholderId = $(this).attr("id");
         var inputId = placeholderId.substring(4); // Remove "for-" prefix
         var $input = $("#" + inputId);
-        var inputValue = $input.val();
+
+        var inputValue;
+
+        if ($input.is("select")) {
+            inputValue = $input.find("option:selected").text();
+        } else if ($input.is("input[type='date']")) {
+            var dateValue = $input.val();
+            var date = new Date(dateValue);
+            inputValue = date.toLocaleDateString();
+        } else {
+            inputValue = $input.val();
+        }
 
         if (inputId === "unit-price") {
             let currency = $form.find("#currency").val();
