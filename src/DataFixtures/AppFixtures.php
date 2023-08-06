@@ -8,10 +8,12 @@ use Doctrine\Persistence\ObjectManager;
 use Viewpoint\AdminBundle\Traits\AdminTrait;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
+use Viewpoint\ThemeBundle\Traits\ThemeTrait;
 
 class AppFixtures extends Fixture implements FixtureGroupInterface
 {
     use AdminTrait;
+    use ThemeTrait;
 
     private UserPasswordHasherInterface $passwordHasher;
     public function __construct(UserPasswordHasherInterface $passwordHasher)
@@ -42,5 +44,16 @@ class AppFixtures extends Fixture implements FixtureGroupInterface
         );
         $manager->persist($user1);
         $manager->flush();
+
+        /* CONVEYANCE CREATION */
+        $conveyance1 = $this->createConveyance("Avion");
+        $conveyance2 = $this->createConveyance("Bateau");
+        $conveyance3 = $this->createConveyance("Voiture");
+
+        $manager->persist($conveyance1);
+        $manager->persist($conveyance2);
+        $manager->persist($conveyance3);
+        $manager->flush();
+        
     }
 }
