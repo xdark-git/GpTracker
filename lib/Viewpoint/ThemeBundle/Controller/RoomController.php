@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Viewpoint\ThemeBundle\Form\RoomFormType;
 use Viewpoint\ThemeBundle\Service\ThemeResolver;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Response;
 
 class RoomController extends AbstractController
 {
@@ -18,8 +19,14 @@ class RoomController extends AbstractController
         $this->themeResolver = $themeResolver;
     }
 
+    #[Route("/rooms", name: "app_rooms")]
+    public function index(): Response
+    {
+        return $this->render($this->themeResolver->getThemePathPrefix("/core/rooms.html.twig"));
+    }
+
     #[Route("/rooms/create", name: "app_room_creation")]
-    public function create(Request $request, EntityManagerInterface $entityManager)
+    public function create(Request $request, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(RoomFormType::class);
         $form->handleRequest($request);
