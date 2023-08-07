@@ -32,7 +32,7 @@ class RoomCellular
     ]
     private ?string $primary = null;
 
-    #[ORM\Column(name:"secondary_number", length: 15)]
+    #[ORM\Column(name:"secondary_number", length: 15, nullable: true)]
     #[
         Assert\Sequentially([
             new Assert\NotBlank(allowNull: true),
@@ -74,7 +74,7 @@ class RoomCellular
 
     public function setSecondary(string $secondary): self
     {
-        $this->secondary = str_replace(' ', '', $secondary);
+        $this->secondary = preg_replace('/[^0-9+]/', '', $secondary);
         return $this;
     }
 
