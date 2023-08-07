@@ -42,11 +42,11 @@ class RegisterController extends AbstractController
     }
 
 
-    #[Route("/room/detail", name: "app_room_detail")]
-    public function roomDetail(ThemeResolver $themeResolver): Response
-    {
-        return $this->render($themeResolver->getThemePathPrefix("/core/room-detail.html.twig"));
-    }
+    // #[Route("/room/detail", name: "app_room_detail")]
+    // public function roomDetail(ThemeResolver $themeResolver): Response
+    // {
+        
+    // }
 
     // #[Route("/rooms/create", name: "app_room_creation")]
     // public function roomCreation(ThemeResolver $themeResolver): Response

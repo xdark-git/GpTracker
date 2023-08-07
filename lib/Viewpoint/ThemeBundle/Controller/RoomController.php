@@ -9,6 +9,7 @@ use Viewpoint\ThemeBundle\Form\RoomFormType;
 use Viewpoint\ThemeBundle\Service\ThemeResolver;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
+use Viewpoint\ThemeBundle\Entity\Room;
 
 class RoomController extends AbstractController
 {
@@ -19,13 +20,13 @@ class RoomController extends AbstractController
         $this->themeResolver = $themeResolver;
     }
 
-    #[Route("/rooms", name: "app_rooms")]
+    #[Route("/rooms", name: "app_rooms", methods: ["GET"])]
     public function index(): Response
     {
         return $this->render($this->themeResolver->getThemePathPrefix("/core/rooms.html.twig"));
     }
 
-    #[Route("/rooms/create", name: "app_room_creation")]
+    #[Route("/rooms/new", name: "app_room_creation", methods: ["GET", "POST", "PUT"])]
     public function create(Request $request, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(RoomFormType::class);
@@ -33,12 +34,18 @@ class RoomController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $room = $form->getData();
+
             $roomCellular = $room->getCellular();
             $roomCellular->setRoom($room);
-            // dd($roomCellular);
+            
             $entityManager->persist($room);
             $entityManager->flush();
-            dd("new room added");
+
+            $slug = $room->getSlug();
+
+            $this->addFlash('success', 'Votre annonce a été très bien publié');
+
+            return $this->redirectToRoute('app_room_detail', ['slug' => $slug]);
         }
 
         return $this->render(
@@ -46,6 +53,21 @@ class RoomController extends AbstractController
             [
                 "roomCreationForm" => $form->createView(),
             ]
+        );
+    }
+
+    #[Route("/rooms/s/{slug}", name: "app_room_detail", methods: ["GET"])]
+    public function show(string $slug, EntityManagerInterface $entityManager)
+    {
+        $room = $entityManager->getRepository(Room::class)->findOneBy(["slug" => $slug]);
+
+        if (!$room) {
+            throw $this->createNotFoundException("Page Introuvable");
+        }
+
+        return $this->render(
+            $this->themeResolver->getThemePathPrefix("/core/room-detail.html.twig"),
+            ["room" => $room]
         );
     }
 }

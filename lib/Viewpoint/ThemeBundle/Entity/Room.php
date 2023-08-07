@@ -30,8 +30,6 @@ class Room
     ]
     private ?string $name = null;
 
-    #[ORM\Column(type: Types::STRING, unique: true, length: 255)]
-    #[Gedmo\Slug(prefix:'gp-', fields:["departureLocation", "arrivalLocation", "name"])]
     // #[
     //     Assert\Sequentially([
     //         new Assert\NotBlank(),
@@ -42,6 +40,8 @@ class Room
     //         ),
     //     ])
     // ]
+    #[ORM\Column(type: Types::STRING, unique: true, length: 255)]
+    #[Gedmo\Slug(prefix: "gp-", fields: ["departureLocation", "arrivalLocation", "name"])]
     private ?string $slug = null;
 
     #[ORM\Column(type: Types::STRING, length: 3)]
@@ -92,17 +92,24 @@ class Room
     #[ORM\Column(type: "boolean")]
     private ?bool $isDeleted = false;
 
-    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: "rooms")]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: "rooms", fetch: "EAGER")]
     #[ORM\JoinColumn(nullable: false)]
     #[Assert\NotBlank]
     private ?User $user = null;
 
-    #[ORM\ManyToOne(targetEntity: Conveyance::class, inversedBy: "rooms")]
+    #[ORM\ManyToOne(targetEntity: Conveyance::class, inversedBy: "rooms", fetch: "EAGER")]
     #[ORM\JoinColumn(nullable: false)]
     #[Assert\NotBlank]
     private ?Conveyance $conveyance = null;
 
-    #[ORM\OneToOne(targetEntity: RoomCellular::class, mappedBy: "room", cascade: ["persist"])]
+    #[
+        ORM\OneToOne(
+            targetEntity: RoomCellular::class,
+            mappedBy: "room",
+            cascade: ["persist"],
+            fetch: "EAGER"
+        )
+    ]
     #[Assert\NotBlank(allowNull: true)]
     private ?RoomCellular $cellular = null;
 
