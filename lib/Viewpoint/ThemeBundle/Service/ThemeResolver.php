@@ -14,7 +14,7 @@ class ThemeResolver
         
         $theme = array_key_exists('THEME_PATH_PREFIX',$_ENV) ? "/". $_ENV['THEME_PATH_PREFIX'] : null;
        
-        if($theme){
+        if($theme && $theme != "/"){
             $fileSystem = new Filesystem();
 
             $themePath = $parameterBag->get('twig.default_path') .$theme;
