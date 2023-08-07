@@ -47,7 +47,7 @@
                                     <li>
                                         <a href="/informations/empty-package">
                                             <i class="fa-solid fa-box"></i>
-                                            <span>Mes colis</span>
+                                            <span>Mes annonces GP</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -57,17 +57,17 @@
                             </div>
                         </div>  
                     </div>
-                    <div class="language-switcher">
+                    {# <div class="language-switcher">
                         <a href="#">Fr</a>
                         <span class="separator">|</span>
                         <a href="#">En</a>
-                    </div>
+                    </div> #}
                 {% else %}
-                    <div class="language-switcher">
+                    {# <div class="language-switcher">
                         <a href="#">Fr</a>
                         <span class="separator">|</span>
                         <a href="#">En</a>
-                    </div>
+                    </div> #}
                     <div class="buttons">
                         <a href="/login" class="login">
                             <i class="fa fa-user"></i>
@@ -86,7 +86,7 @@
     <section class="section-2">
         <ul id="gp-header-nav">
             <i class="fa-regular fa-xmark"></i>
-            <li class="language-switcher">
+            {# <li class="language-switcher">
                 <div class="current" id="current-language">
                     <img src="{{asset('/theme/assets/img/flag/fr_img.png')}}" alt="fr">
                     <span>Français</span>
@@ -101,12 +101,12 @@
                         <span>Français</span>
                     </a>
                 </div>
-            </li>
+            </li> #}
             <li>
                 <a href="/" class="active">Acceuil</a>
             </li>
             <li>
-                <a href="/rooms">Salon</a>
+                <a href="/rooms">GP</a>
             </li>
             <li>
                 <a href="/informations">Informations</a>

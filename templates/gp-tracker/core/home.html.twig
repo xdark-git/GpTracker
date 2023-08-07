@@ -13,12 +13,12 @@
             <ul class="nav">
                 <li class="search">
                     <i class="fa-solid fa-plane"></i>
-                    <span>Rechercher un salon</span>
+                    <span>Trouvez un GP</span>
                 </li>
                 <li class="create">
                     <a href="{{ path('app_room_creation') }}">
                         <i class="fa-solid fa-plus"></i>
-                        <span>Créer un salon</span>
+                        <span>Nouvelle annonce GP</span>
                     </a>
                 </li>
             </ul>
@@ -87,8 +87,8 @@
             <h2>Annonces</h2>
             <div class="content">
                 <ul class="nav">
-                    <li class="active">Salon</li>
-                    <li>Top transporteurs</li>
+                    <li class="active">GP</li>
+                    {# <li>Top transporteurs</li> #}
                 </ul>
                 <div class="rooms" id="room-list-container">
                     <div class="room">
@@ -172,7 +172,7 @@
                   
                 </div>
             </div>
-            <a class="see-more" href="#">Plus de resultats</a>
+            <a class="see-more" href="{{ path('app_rooms') }}">Plus de resultats</a>
         </div>
         {# END ROOMS AND CARRIER SECTION  #}
     </div>
