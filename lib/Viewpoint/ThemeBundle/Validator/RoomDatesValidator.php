@@ -30,9 +30,7 @@ class RoomDatesValidator extends ConstraintValidator
         }
 
         // Validate the arrival date is higher than one month from today
-        $oneMonthFromNow = new \DateTime('today + 1 month');
-        $twoMonthFromNow = new \DateTime('today + 2 month');
-        
+        $oneMonthFromNow = new \DateTime('today + 1 month');        
 
         if ($receipt->getArrivalDate()> $oneMonthFromNow) {
             $this->context->buildViolation($constraint->messageArrivalInOneMonth)
