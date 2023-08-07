@@ -34,12 +34,18 @@ class RoomController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $room = $form->getData();
+
             $roomCellular = $room->getCellular();
             $roomCellular->setRoom($room);
-            // dd($roomCellular);
+            
             $entityManager->persist($room);
             $entityManager->flush();
-            dd("new room added");
+
+            $slug = $room->getSlug();
+
+            $this->addFlash('success', 'Votre annonce a été très bien publié');
+
+            return $this->redirectToRoute('app_room_detail', ['slug' => $slug]);
         }
 
         return $this->render(
