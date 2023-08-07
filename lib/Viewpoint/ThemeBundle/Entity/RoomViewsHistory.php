@@ -23,7 +23,7 @@ class RoomViewsHistory
     #[ORM\JoinColumn(nullable: false)]
     private User $user;
 
-    #[ORM\ManyToOne(targetEntity: Room::class)]
+    #[ORM\ManyToOne(targetEntity: Room::class )]
     #[ORM\JoinColumn(nullable: false)]
     private Room $room;
 
