@@ -138,7 +138,7 @@ class RegisterController extends AbstractController
     public function ConditionsGenerales(ThemeResolver $themeResolver): Response
     {
         return $this->render(
-            $themeResolver->getThemePathPrefix("/core/CU.html.twig")
+            $themeResolver->getThemePathPrefix("/core/TermsAndConditions.html.twig")
         );
     }
 }
