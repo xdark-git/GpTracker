@@ -9,8 +9,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\DBAL\Types\Types;
 use Viewpoint\AdminBundle\Entity\User;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Viewpoint\ThemeBundle\Validator as ThemeAssert;
 
 #[ORM\Entity(repositoryClass: RoomRepository::class)]
+#[ThemeAssert\RoomDates]
 class Room
 {
     use TimestampableEntity;
