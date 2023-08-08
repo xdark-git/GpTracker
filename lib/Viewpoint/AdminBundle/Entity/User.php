@@ -325,4 +325,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->roomVisited;
     }
+
+    public function isAccountCompleted(): bool
+    {
+       return !empty($this->firstName) && !empty($this->lastName) && !empty($this->sexe) && !empty($this->birth);
+    }
 }

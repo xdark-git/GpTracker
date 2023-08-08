@@ -29,6 +29,13 @@ class RoomController extends AbstractController
     #[Route("/rooms/new", name: "app_room_creation", methods: ["GET", "POST", "PUT"])]
     public function create(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $user = $this->getUser();
+        if(!$user->isAccountCompleted())
+        {
+            $this->addFlash('error', 'Veillez d\'abord compléter votre profile!');
+            return $this->redirectToRoute('app_informations_user');
+        }
+
         $form = $this->createForm(RoomFormType::class);
         $form->handleRequest($request);
 
