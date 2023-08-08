@@ -5,3 +5,4 @@ import "./informations/informations";
 import "./rooms/room-creation";
 import "./TermsAndConditions/TermsAndConditions";
 import "./CodeOfConduct/codeofconduct";
+import "./Measures/securityMeasures";
