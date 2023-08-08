@@ -12,7 +12,8 @@
 @import "./pages/email_verification.scss";
 @import "./pages/not_found.scss";
 @import "./layout/animations.scss";
-@import "./pages/CU.scss";
+@import "./pages/TermsAndConditions.scss";
+@import "./pages/CodeOfConduct.scss";
 
 @media only screen and (max-width: 1280px) {
     @include home-max-width--1280px;
@@ -44,6 +45,7 @@
 
 @media only screen and (max-width: 800px){
     @include  cu-max-width-800px;
+    @include codeofconduct-max-width-800px;
 }
 
 
