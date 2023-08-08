@@ -19,11 +19,11 @@ class RoomViewsHistory
     #[ORM\Column(type: "datetime")]
     private \DateTime $lastTimeVisited;
 
-    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'roomVisited')]
     #[ORM\JoinColumn(nullable: false)]
     private User $user;
 
-    #[ORM\ManyToOne(targetEntity: Room::class)]
+    #[ORM\ManyToOne(targetEntity: Room::class, inversedBy: 'viewsHistory')]
     #[ORM\JoinColumn(nullable: false)]
     private Room $room;
 

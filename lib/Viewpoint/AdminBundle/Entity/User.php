@@ -15,6 +15,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Viewpoint\ThemeBundle\Entity\Room;
+use Viewpoint\ThemeBundle\Entity\RoomViewsHistory;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity("username", message: 'Le nom d\'utilisateur {{ value }} existe déjà')]
@@ -118,9 +119,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Room::class, mappedBy: 'user')]
     private Collection $rooms;
 
+    #[ORM\OneToMany(targetEntity: RoomViewsHistory::class, mappedBy: 'user')]
+    private Collection $roomVisited;
+
     public function __construct()
     {
         $this->rooms = new ArrayCollection();
+        $this->roomVisited = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -313,5 +318,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getRooms(): Collection
     {
         return $this->rooms;
+    }
+
+    
+    public function getRoomVisited(): Collection
+    {
+        return $this->roomVisited;
     }
 }

@@ -9,10 +9,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\DBAL\Types\Types;
 use Viewpoint\AdminBundle\Entity\User;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Viewpoint\ThemeBundle\Validator as ThemeAssert;
-
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 #[ORM\Entity(repositoryClass: RoomRepository::class)]
-#[ThemeAssert\RoomDates]
 class Room
 {
     use TimestampableEntity;
@@ -118,6 +117,15 @@ class Room
     #[ORM\ManyToOne(targetEntity: RoomMetaKeyword::class, inversedBy: "rooms")]
     #[Assert\NotBlank(allowNull: true)]
     private ?RoomMetaKeyword $roomMetaKeyword = null;
+
+    #[ORM\OneToMany(targetEntity: RoomViewsHistory::class, mappedBy: "room")]
+    #[Assert\NotBlank(allowNull: true)]
+    private ?Collection $viewsHistory = null;
+
+    public function __construct()
+    {
+        $this->viewsHistory = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -281,4 +289,10 @@ class Room
         $this->roomMetaKeyword = $roomMetaKeyword;
         return $this;
     }
+
+    public function getViewsHistor(): ?Collection
+    {
+        return $this->viewsHistory;
+    }
+
 }
