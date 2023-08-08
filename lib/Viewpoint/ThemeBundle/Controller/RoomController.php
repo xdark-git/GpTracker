@@ -77,4 +77,11 @@ class RoomController extends AbstractController
             $themeResolver->getThemePathPrefix("/core/CodeOfConduct.html.twig")
         );
     }
+    #[Route("/securityMeasures", name: "app_Security_measures")]
+    public function securityMeasures(ThemeResolver $themeResolver): Response
+    {
+        return $this->render(
+            $themeResolver->getThemePathPrefix("/core/securityMeasures.html.twig")
+        );
+    }
 }
