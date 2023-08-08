@@ -1,0 +1,78 @@
+{% extends 'gp-tracker/base.html.twig' %}
+
+{% block title %}
+   Les chartes de Bonne Conduite
+{% endblock %}
+
+{% block body %}
+
+<main class="codeofconduct-container">
+   <div class="codeofconduct-main">
+    <div class="row">
+        <p class="head-title">Les Chartes de Bonne Conduite
+        </p>
+        <div class="line"></div>
+    </div>
+    <div class="gp-codeofconduct">
+        Contenu <br/><br/>
+        <ul id="gp-codeofconduct-menu-list" class = "gp-menu-list">
+            <li><a href="#section-information" class="menu-title "> Donner des informations exactes</a></li>
+            <li><a href="#section-fiabilite" class="menu-title"> Être fiable</a></li>
+            <li><a href="#section-protection" class="menu-title"> Protéger les biens transportés</a></li>
+            <li><a href="#section-attitude" class="menu-title"> Être prévenant et bienveillant</a></li>
+            <li><a href="#section-avis" class="menu-title"> Laisser des avis objectifs et sincères</a></li>
+            <li><a href="#section-comportement" class="menu-title"> Dénoncer les comportements suspects</a></li>
+            <li><a href="#section-securite" class="menu-title"> Règles de sécurité</a></li>
+            <li><a href="#section-respect" class="menu-title"> Respect des autres </a></li>
+        </ul>
+    </div>
+
+    <h2 id="section-information" class="subtitle codeofconduct-section">1. Donner des informations exactes</h2>
+    <p class="gp-codeofconduct-texte">
+        J'enrichis mon profil en utilisant mon véritable prénom, une authentique photo et un numéro de téléphone valide.
+        Je soumets uniquement des requêtes d'expédition pour des objets qui m'appartiennent et qui ne sont pas répertoriés parmi les articles interdits.
+        Je partage exclusivement des itinéraires que j'ai l'intention de parcourir.
+        <br/>
+    </p><br/>
+
+    <h2  id="section-fiabilite" class="subtitle codeofconduct-section">2. Être fiable</h2>
+    <p class="gp-codeofconduct-texte">
+        Je m'engage à respecter les horaires convenus pour les rencontres.
+        Je communique mes besoins de manière explicite et honore les accords conclus avec les autres utilisateurs de la plateforme.
+        J'opte pour la transparence en ce qui concerne les articles à livrer.
+    </p><br/>
+
+    <h2 id="section-protection" class="subtitle codeofconduct-section">3. Protéger les biens transportés</h2>
+    <p class="gp-codeofconduct-texte">
+        L'expéditeur s'engage à effectuer un emballage adéquat de son colis. En cas de dommage causé par un emballage inapproprié pour l'article transporté, l'assurance pourrait refuser de couvrir les frais.
+        Le transporteur ou le co-transporteur s'engage à prendre soin de l'article pendant le transport.
+    <br/>
+
+    <h2  id= "section-attitude" class="subtitle codeofconduct-section">4. Être prévenant et bienveillant</h2>
+    <p class="gp-codeofconduct-texte">
+    Je m'engage à promouvoir les valeurs de la gratuité partielle : amabilité, tolérance, partage et respect.
+    Je m'engage à répondre à la totalité des messages que je reçois, même si c'est pour décliner ou reporter une proposition.
+    </p><br/>
+
+    <h2 id="section-avis" class="subtitle codeofconduct-section">5. Laisser des avis objectifs et sincères</h2>
+    <p class="gp-codeofconduct-texte">
+        Je m'engage à attribuer des notes de manière juste et honnête à la contribution des autres utilisateurs de la plateforme.
+    </p><br/>
+
+    <h2 id="section-comportement"  class="subtitle codeofconduct-section">6. Dénoncer les comportements suspects</h2>
+    <p class="gp-codeofconduct-texte">
+        En cas d'observation de comportement suspect (tels que propos injurieux ou demande de paiement à la livraison), je prends contact avec <b>GP-Tracker</b> pour que les mesures appropriées puissent être prises.
+    </p><br/>
+
+    <h2 id="section-securite" class="subtitle codeofconduct-section">7. Règles de sécurité</h2>
+    <p class="gp-codeofconduct-texte">
+        Je m'engage à suivre les règlementations des pays destinataires, notamment en ce qui concerne la liste des produits interdits et prohibés à l'importation sur leur territoire (par exemple, l'interdiction des produits éclaircissants ou de viande de brousse en France).
+    </p><br/>
+
+    <h2  id="section-respect" class="subtitle codeofconduct-section">8. Respect des autres</h2>
+    <p class="gp-codeofconduct-texte">
+       Je m'engage à maintenir un comportement respectueux envers les autres membres, l'équipe d'animation et les tiers. Je m'engage à éviter toute attitude agressive, grossière, violente ou moqueuse envers les autres, et en général, tout comportement qui pourrait perturber le déroulement harmonieux d'une transaction.
+    </p><br/>
+</main>
+    
+{% endblock %}
