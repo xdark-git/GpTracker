@@ -5,7 +5,9 @@ import $ from "jquery";
  ------------------------------------------*/
 $(function () {
     var $header = $("header");
-    var $menu = $("#gp-cu-menu-list, #gp-codeofconduct-menu-list");
+    var $menu = $(
+        "#gp-cu-menu-list, #gp-codeofconduct-menu-list, #measure-menu-list"
+    );
     var $list = $menu.find("> li");
 
     var headerHeight = $header.outerHeight();
