@@ -1,0 +1,68 @@
+{% extends 'gp-tracker/base.html.twig' %}
+
+{% block title %}
+   Les Mesures de Securite
+{% endblock %}
+
+{% block body %}
+
+<main class="measure-container">
+   <div class="measure-main">
+    <div class="row">
+        <p class="head-title">Les Mesures de Securite de GP-Tracker
+        </p>
+        <div class="line"></div>
+    </div>
+    <div class="gp-measures">
+        Contenu <br/><br/>
+        <ul id="measure-menu-list" class = "gp-menu-list">
+            <li><a href="#section-choice" class="menu-title "> Choix ou acceptation d'un membre pour le transport ou l'expédition</a></li>
+            <li><a href="#section-content" class="menu-title"> Contenu du colis</a></li>
+            <li><a href="#section-property" class="menu-title"> Protéger les biens transportés</a></li>
+            <li><a href="#section-vigilance" class="menu-title"> Vigilance</a></li>
+            <li><a href="#section-security" class="menu-title"> Sécurité</a></li>
+            <li><a href="#section-best-pratice" class="menu-title"> Une autre bonne pratique GP-Tracker</a></li>
+        </ul>
+    </div>
+
+    <h2 id="section-choice" class="subtitle measure-section">1. Choix ou acceptation d'un membre pour le transport ou l'expédition</h2>
+    <p class="gp-security-texte">
+        Favorisez les membres avec des profils vérifiés pour vos transactions.
+        Prenez en compte les avis des autres membres de la communauté en consultant le profil de la personne concernée.
+        Si vous avez des incertitudes, essayez de chercher un autre interlocuteur.
+        <br/>
+    </p><br/>
+
+    <h2  id="section-content" class="subtitle measure-section">2. Contenu du colis</h2>
+    <p class="gp-security-texte">
+        Contrôler et enregistrer le contenu du colis en présence des deux parties lors du dépôt et de la livraison de celui-ci.
+    </p><br/>
+
+    <h2 id="section-property" class="subtitle measure-section">3. Paiement du service de transport</h2>
+    <p class="gp-security-texte">
+        Effectuer le paiement lors de la livraison ou de l'expédition.
+    <br/>
+
+    <h2  id= "section-vigilance" class="subtitle measure-section">4. Vigilance</h2>
+    <p class="gp-security-texte">
+    Votre vigilance est la première assurance d'une livraison en toute sécurité.
+    Bien que nous nous efforcions constamment de vous offrir un service sécurisé et fiable, rien ne peut remplacer votre vigilance, et malheureusement,<b>GP-Tracker</b> ne peut pas s'y substituer !
+    </p><br/>
+
+    <h2  id= "section-security" class="subtitle measure-section">5. Securite</h2>
+    <p class="gp-security-texte">
+    Parce que la sécurité est synonyme de tranquillité d'esprit, nous plaçons chaque jour la sécurité sur Cocolis au sommet de nos priorités.
+    C'est pourquoi nous restons à l'écoute et sommes disponibles pour réagir le plus rapidement possible si vous nous signalez un comportement anormal sur la plateforme.
+    </p><br/>
+
+    <h2 id="section-best-pratice" class="subtitle measure-section">6. Une autre bonne pratique GP-Tracker</h2>
+    <p class="gp-security-texte">
+        N'oubliez pas que lorsque vous contactez un transporteur par le biais  de <b>GP-Tracker</b> , vous en assumez l'entière responsabilité. C'est pourquoi nous vous encourageons vivement à rester attentifs et à vérifier le contenu de l'envoi au moment de la prise en charge. De plus, nous vous conseillons de refuser tout colis qui ne correspondrait pas à la description initiale et de nous signaler toute activité ou annonce suspecte.
+
+        En cas de litige éventuel avec un autre utilisateur, <b>GP-Tracker</b> peut agir en tant qu'intermédiaire en fournissant des informations prouvant que vous n'avez pas eu de contact avant la mise en relation sur le site. Ces informations comprennent votre nom, prénom, âge, numéro de téléphone, adresse e-mail, date de naissance, lieu de résidence, date d'inscription sur le site, dates des échanges et éventuellement, date de réservation.
+
+        Si vous avez des questions ou des remarques, n'hésitez pas à nous contacter à l'adresse <b>contact@gp-tracker.io</b>
+    </p><br/>
+</main>
+    
+{% endblock %}
