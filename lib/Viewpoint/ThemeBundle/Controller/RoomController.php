@@ -71,7 +71,7 @@ class RoomController extends AbstractController
         );
     }
     #[Route("/CodeOfConduct", name: "app_Code_of_Conduct")]
-    public function ConditionsGenerales(ThemeResolver $themeResolver): Response
+    public function CodeOfConduct(ThemeResolver $themeResolver): Response
     {
         return $this->render(
             $themeResolver->getThemePathPrefix("/core/CodeOfConduct.html.twig")
