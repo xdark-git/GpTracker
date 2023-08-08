@@ -122,4 +122,10 @@
             <i class="fa-solid fa-xmark"></i>
         </section>
     {% endfor %}
+    {% for flash in app.flashes('error') %}
+        <section class="notification" style="background-color:red!important">
+            <span class="text">{{ flash }}</span>
+            <i class="fa-solid fa-xmark"></i>
+        </section>
+    {% endfor %}
 </header>
