@@ -9,7 +9,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\DBAL\Types\Types;
 use Viewpoint\AdminBundle\Entity\User;
 use Gedmo\Mapping\Annotation as Gedmo;
-
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 #[ORM\Entity(repositoryClass: RoomRepository::class)]
 class Room
 {
@@ -116,10 +117,15 @@ class Room
     #[ORM\ManyToOne(targetEntity: RoomMetaKeyword::class, inversedBy: "rooms")]
     #[Assert\NotBlank(allowNull: true)]
     private ?RoomMetaKeyword $roomMetaKeyword = null;
-    
-    #[ORM\ManyToOne(targetEntity: RoomViewsHistory::class, inversedBy: "room")]
+
+    #[ORM\OneToMany(targetEntity: RoomViewsHistory::class, mappedBy: "room")]
     #[Assert\NotBlank(allowNull: true)]
-    private ?RoomViewsHistory $roomViewsHistory = null;
+    private ?Collection $viewsHistory = null;
+
+    public function __construct()
+    {
+        $this->viewsHistory = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -284,15 +290,9 @@ class Room
         return $this;
     }
 
-    public function getRoomViewsHistory(): ?RoomViewsHistory
-{
-    return $this->roomViewsHistory;
-}
-
-    public function setRoomViewsHistory(?RoomViewsHistory $roomViewsHistory): self
+    public function getViewsHistor(): ?Collection
     {
-        $this->roomViewsHistory = $roomViewsHistory;
-
-        return $this;
+        return $this->viewsHistory;
     }
+
 }

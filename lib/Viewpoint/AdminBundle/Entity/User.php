@@ -120,12 +120,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $rooms;
 
     #[ORM\OneToMany(targetEntity: RoomViewsHistory::class, mappedBy: 'user')]
-    private Collection $roomViewsHistory;
+    private Collection $roomVisited;
 
     public function __construct()
     {
         $this->rooms = new ArrayCollection();
-        $this->roomViewsHistory = new ArrayCollection();
+        $this->roomVisited = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -321,8 +321,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     
-    public function getRoomViewsHistory(): Collection
+    public function getRoomVisited(): Collection
     {
-        return $this->roomViewsHistory;
+        return $this->roomVisited;
     }
 }
