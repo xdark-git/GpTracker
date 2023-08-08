@@ -6,3 +6,5 @@ import "./rooms/room-creation";
 import "./TermsAndConditions/TermsAndConditions";
 import "./CodeOfConduct/codeofconduct";
 import "./Measures/securityMeasures";
+import "./terms-codes/terms-codes";
+// import "./CodeOfConduct/codeofconduct";
