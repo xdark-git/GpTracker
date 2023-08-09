@@ -18,4 +18,9 @@ class UniqueEmail extends Constraint
     ) {
         parent::__construct([], $groups, $payload);
     }
+
+    public function getTargets(): string
+    {
+        return self::CLASS_CONSTRAINT;
+    }
 }

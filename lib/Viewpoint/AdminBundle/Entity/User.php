@@ -16,9 +16,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Viewpoint\ThemeBundle\Entity\Room;
 use Viewpoint\ThemeBundle\Entity\RoomViewsHistory;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity("username", message: 'Le nom d\'utilisateur {{ value }} existe déjà')]
+#[AdminAssert\UniqueEmail(mode: "loose")]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     use TimestampableEntity;
@@ -71,7 +73,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $sexe = null;
 
     #[ORM\Column(type: "date", nullable: true)]
-    #[Assert\Sequentially([new Assert\NotBlank(allowNull: true), new Assert\DateTime()])]
+    #[
+        Assert\Sequentially([
+            new Assert\NotBlank(allowNull: true),
+            new Assert\Type("\DateTimeInterface"),
+        ])
+    ]
     private ?\DateTime $birth = null;
 
     #[ORM\Column(type: "string", length: "255", nullable: true)]
@@ -94,7 +101,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 180)]
     #[Assert\Sequentially([new Assert\NotBlank(), new Assert\Email()])]
-    #[AdminAssert\UniqueEmail(mode: "loose")]
     private ?string $email = null;
 
     /**
@@ -116,10 +122,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToOne(targetEntity: EmailVerificationAttempt::class, mappedBy: "user")]
     private ?EmailVerificationAttempt $emailVerificationAttempt = null;
 
-    #[ORM\OneToMany(targetEntity: Room::class, mappedBy: 'user')]
+    #[ORM\OneToMany(targetEntity: Room::class, mappedBy: "user")]
     private Collection $rooms;
 
-    #[ORM\OneToMany(targetEntity: RoomViewsHistory::class, mappedBy: 'user')]
+    #[ORM\OneToMany(targetEntity: RoomViewsHistory::class, mappedBy: "user")]
     private Collection $roomVisited;
 
     public function __construct()
@@ -320,7 +326,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->rooms;
     }
 
-    
     public function getRoomVisited(): Collection
     {
         return $this->roomVisited;
@@ -328,6 +333,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function isAccountCompleted(): bool
     {
-       return !empty($this->firstName) && !empty($this->lastName) && !empty($this->sexe) && !empty($this->birth);
+        return !empty($this->firstName) &&
+            !empty($this->lastName) &&
+            !empty($this->sexe) &&
+            !empty($this->birth);
+    }
+
+    /**
+     * @Assert\Callback
+     */
+    public function validateAge(ExecutionContextInterface $context)
+    {
+        if ($this->birth !== null) {
+            $minAge = 18;
+            $currentDate = new \DateTime();
+            $ageInterval = $this->birth->diff($currentDate)->y;
+
+            if ($ageInterval < $minAge) {
+                $context
+                    ->buildViolation("Vous devez avoir au moins {{ min_age }} ans.")
+                    ->setParameter("{{ min_age }}", $minAge)
+                    ->atPath("birth")
+                    ->addViolation();
+            }
+        }
     }
 }
