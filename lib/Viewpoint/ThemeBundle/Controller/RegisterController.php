@@ -141,4 +141,11 @@ class RegisterController extends AbstractController
             $themeResolver->getThemePathPrefix("/core/TermsAndConditions.html.twig")
         );
     }
+    #[Route("/forgot-password", name: "app_forgot_password")]
+    public function forgotPassword(ThemeResolver $themeResolver): Response
+    {
+        return $this->render(
+            $themeResolver->getThemePathPrefix("/core/forgot-password.html.twig")
+        );
+    }
 }
