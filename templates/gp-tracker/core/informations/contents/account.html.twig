@@ -14,8 +14,13 @@
         </div>
         <div class="body">
             <div>
+            
                 <span class="profile-picture">
-                    <img src="{{asset('theme/assets/img/profil/default-user-profile.png')}}" alt="Profile Image" class="profile-image" id="profile-image-container">
+                    {% if app.user.profile %}
+                        <img src="{{asset('uploads/user_profile/' ~ app.user.profile)}}" alt="Profile Image" class="profile-image" id="profile-image-container">
+                    {% else %}
+                        <img src="{{asset('theme/assets/img/profil/default-user-profile.png')}}" alt="Profile Image" class="profile-image" id="profile-image-container">
+                    {% endif %}
                     <label for="profile-picture">
                         <i class="fa-solid fa-plus"></i>
                     </label>
@@ -33,10 +38,8 @@
                 <span class="description">
                     <div>{{ profileCompletionForm.profile.vars.help }}</div>
                     {% if profileCompletionForm.profile.vars.errors %}
-                    <div>
                         {{ form_errors( profileCompletionForm.profile) }}
-                    </div>
-                {% endif %}
+                    {% endif %}
                 </span>
                 
             </div>

@@ -158,7 +158,11 @@
             <section class="section-2">
                 <div class="user-profile">
                     <div class="profile-details">
-                        <img src="{{asset('theme/assets/img/profil/default-user-profile.png')}}" alt="User Profile Image">
+                        {% if room.user.profile %}
+                            <img src="{{asset('uploads/user_profile/' ~ room.user.profile)}}" alt="User Profile Image">
+                        {% else %}
+                            <img src="{{asset('theme/assets/img/profil/default-user-profile.png')}}" alt="User Profile Image">
+                        {% endif %}
                         <div class="user-details">
                             <h2>{{ room.user.firstName|default('-') ~ ' ' ~ room.user.lastName|default('-') }}</h2>
                             <div class="rooms-created">{{ room.user.rooms|length }} salons créés</div>
