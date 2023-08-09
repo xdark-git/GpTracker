@@ -17,8 +17,15 @@ class ProfileCompletionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add("firstName", TextType::class)
-            ->add("lastName", TextType::class)
+            ->add("firstName", TextType::class, [
+                "label" => "Prenom",
+            ])
+            ->add("lastName", TextType::class, [
+                "label" => "Nom",
+            ])
+            ->add("username", TextType::class, [
+                "label" => "Nom d'utilisateur",
+            ])
             ->add("sexe", ChoiceType::class, [
                 "choices" => [
                     "Homme" => "M",
@@ -28,6 +35,7 @@ class ProfileCompletionType extends AbstractType
                 "multiple" => false,
             ])
             ->add("birth", DateType::class, [
+                "label" => "Date de naissance",
                 "widget" => "single_text",
             ])
             ->add("profile", FileType::class, [
