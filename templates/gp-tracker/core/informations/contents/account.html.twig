@@ -22,6 +22,7 @@
                     {{ form_row(profileCompletionForm.profile, {
                             label: false,
                             help: false,
+                            errors: false,
                             'id': 'profile-picture',
                             'attr': {
                                 'class': 'profile-picture'
@@ -30,8 +31,14 @@
                     }} 
                 </span>
                 <span class="description">
-                    {{ profileCompletionForm.profile.vars.help }}
+                    <div>{{ profileCompletionForm.profile.vars.help }}</div>
+                    {% if profileCompletionForm.profile.vars.errors %}
+                    <div>
+                        {{ form_errors( profileCompletionForm.profile) }}
+                    </div>
+                {% endif %}
                 </span>
+                
             </div>
             <div class="input-container">
                 {{ form_row(profileCompletionForm.username, {
