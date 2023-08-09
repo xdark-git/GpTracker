@@ -2,7 +2,10 @@
 
 namespace Viewpoint\ThemeBundle\Controller;
 
+use Doctrine\ORM\EntityManagerInterface;
+use Gedmo\Sluggable\Util\Urlizer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -11,6 +14,11 @@ use Viewpoint\ThemeBundle\Service\ThemeResolver;
 
 class UserController extends AbstractController
 {
+
+    public function __construct(Private EntityManagerInterface $entityManager)
+    {
+        
+    }
     #[Route("/informations", name: "app_informations")]
     #[Route("/informations/account", name: "app_informations_user")]
     public function completeProfile(Request $request, ThemeResolver $themeResolver): Response
@@ -20,18 +28,31 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            /** @var UploadedFile $profileImageFile */
             $profileImageFile = $form->get("profile")->getData();
             if ($profileImageFile) {
-                // Handle profile image upload and set user's profile image field
+                $destination = $this->getParameter("kernel.project_dir") . "/public/uploads/user_profile";
+                $originalFileName = pathinfo(
+                    $profileImageFile->getClientOriginalName(),
+                    PATHINFO_FILENAME
+                );
+                $newFileName =
+                    "user-" .
+                    uniqid() .
+                    "-" .
+                    Urlizer::urlize($originalFileName) .
+                    ".".
+                    $profileImageFile->guessExtension();
+
+                $profileImageFile->move($destination, $newFileName);
+
+                $user->setProfile($newFileName);
             }
-            dd($form-getData());
 
-            // $entityManager = $this->getDoctrine()->getManager();
-            // $entityManager->persist($user);
-            // $entityManager->flush();
-
-            // $this->addFlash("success", "Profile completed successfully!");
-            // return $this->redirectToRoute("app_home");
+            $this->entityManager->persist($user);
+            $this->entityManager->flush();
+            
+            $this->addFlash("success", "Profil complété avec succès !");
         }
 
         return $this->render(
