@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Viewpoint\AdminBundle\Entity\User;
 
@@ -43,6 +44,14 @@ class ProfileCompletionType extends AbstractType
                     "Avec une photo, vous avez de quoi personnaliser votre profil et rassurer les autres membres!",
                 "required" => false,
                 "mapped" => false,
+                "constraints" => [
+                    new File([
+                        "maxSize" => "2M",
+                        "maxSizeMessage" => 'La taille de l\'image ne doit pas dépasser 2 Mo.',
+                        "mimeTypes" => ["image/jpeg", "image/png"],
+                        "mimeTypesMessage" => "Veuillez télécharger une image JPEG ou PNG valide.",
+                    ]),
+                ],
             ]);
     }
 
