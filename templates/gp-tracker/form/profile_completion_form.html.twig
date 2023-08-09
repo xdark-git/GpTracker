@@ -4,8 +4,15 @@
     {%- if help is not empty -%}
         {%- set widget_attr = {attr: {'aria-describedby': id ~"_help"}} -%}
     {%- endif -%}
+    
+    
+    {% if form.vars.required and form.vars.label %}
+        <div>
+            {{- form_label(form) -}}
+            <div class="required-field">Champ requis</div>
+        </div>
+    {% endif %}
 
-    {{- form_label(form) -}}
     {{- form_help(form) -}}
     {{- form_errors(form) -}}
     {{- form_widget(form, widget_attr) -}}
@@ -23,14 +30,14 @@
             {# ... display the global form errors #}
             <ul style="list-style-type: none;">
                 {% for error in errors %}
-                    <li class="error">{{ error.message }}</li>
+                    <li class="error" style="color:red!important; font-size:0.8rem;">{{ error.message }}</li>
                 {% endfor %}
             </ul>
         {% else %}
             {% for error in errors %}
                 <ul style="list-style-type: none;">
                 {% for error in errors %}
-                    <li class="error">{{ error.message }}</li>
+                    <li class="error" style="color:red!important; font-size:0.8rem;">{{ error.message }}</li>
                 {% endfor %}
                 </ul>
             {% endfor %}
