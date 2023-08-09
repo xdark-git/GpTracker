@@ -32,20 +32,16 @@ class RegisterController extends AbstractController
         $this->validator = $validator;
     }
 
-    
-
-
     #[Route("/", name: "app_home")]
     public function home(ThemeResolver $themeResolver): Response
     {
         return $this->render($themeResolver->getThemePathPrefix("/core/home.html.twig"));
     }
 
-
     // #[Route("/room/detail", name: "app_room_detail")]
     // public function roomDetail(ThemeResolver $themeResolver): Response
     // {
-        
+
     // }
 
     // #[Route("/rooms/create", name: "app_room_creation")]
@@ -144,8 +140,11 @@ class RegisterController extends AbstractController
     #[Route("/forgot-password", name: "app_forgot_password")]
     public function forgotPassword(ThemeResolver $themeResolver): Response
     {
-        return $this->render(
-            $themeResolver->getThemePathPrefix("/core/forgot-password.html.twig")
-        );
+        return $this->render($themeResolver->getThemePathPrefix("/core/forgot-password.html.twig"));
+    }
+    #[Route("/new-password", name: "app_forgot_password")]
+    public function newPassword(ThemeResolver $themeResolver): Response
+    {
+        return $this->render($themeResolver->getThemePathPrefix("/core/new-password.html.twig"));
     }
 }

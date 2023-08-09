@@ -16,6 +16,7 @@
 @import "./pages/CodeOfConduct.scss";
 @import "./pages/securityMeasures";
 @import "./pages/forgot_password";
+@import "./pages/new-password";
 
 @media only screen and (max-width: 1280px) {
     @include home-max-width--1280px;
