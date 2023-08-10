@@ -37,6 +37,7 @@
 @media only screen and (max-width: 775px) {
     @include information-max-width--775px;
     @include email-verification-max-width--775px;
+    @include about-us-max-width--775px;
 }
 
 @media only screen and (max-width: 608px) {
