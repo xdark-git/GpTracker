@@ -142,7 +142,7 @@ class RegisterController extends AbstractController
     {
         return $this->render($themeResolver->getThemePathPrefix("/core/forgot-password.html.twig"));
     }
-    #[Route("/new-password", name: "app_forgot_password")]
+    #[Route("/new-password", name: "app_new_password")]
     public function newPassword(ThemeResolver $themeResolver): Response
     {
         return $this->render($themeResolver->getThemePathPrefix("/core/new-password.html.twig"));
