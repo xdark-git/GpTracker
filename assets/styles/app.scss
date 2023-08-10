@@ -18,6 +18,7 @@
 @import "./pages/securityMeasures";
 @import "./pages/forgot_password";
 @import "./pages/new-password";
+@import "./pages/about-us.scss";
 
 @media only screen and (max-width: 1280px) {
     @include home-max-width--1280px;
@@ -44,7 +45,7 @@
 }
 
 @media only screen and (max-width: 560px) {
-  @include header-max-width--560px;
+    @include header-max-width--560px;
 }
 
 @media only screen and (max-width: 800px) {

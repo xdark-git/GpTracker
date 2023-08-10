@@ -1,0 +1,34 @@
+{% extends 'gp-tracker/base.html.twig' %}
+
+{% block title %}
+   About us
+{% endblock %}
+
+{% block body %}
+
+<main>
+    <div class="container gp-about-us">
+        <div class="first-section">
+            <img  class="presentation" src="{{asset('theme/assets/img/logo/questions.png')}}" alt="who-we-are"/>
+            <div class="content-1">
+                <h2>Presentation</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc in risus lacus. Nulla vehicula facilisis lorem id eleifend. Maecenas dignissim est nec massa malesuada, at pellentesque felis sollicitudin. Ut id massa condimentum, commodo odio at turpis duis.</p>
+            </div>
+        </div>
+        <div class="second-section">
+             <div class="content-2">
+                <h2>Missions</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc in risus lacus. Nulla vehicula facilisis lorem id eleifend. Maecenas dignissim est nec massa malesuada, at pellentesque felis sollicitudin. Ut id massa condimentum, commodo odio at turpis duis.</p>
+            </div>
+            <img src="{{asset('theme/assets/img/logo/Team-goals.png')}}"  class="mission" alt="missions0"/>
+        </div>
+        <div class="third-section">
+            <div class="content-3">
+                <p>ViewPoint  c’est avant tout une équipe de passionnés !  Ceci est un exemple</p>
+            </div>
+            <img src="{{asset('theme/assets/img/logo/duo-teams.png')}}" class="duo-team" alt="team-image"/>
+        </div>
+    </div>
+</main>
+    
+{% endblock %}

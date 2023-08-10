@@ -1,0 +1,59 @@
+/* styles.scss */
+.gp-about-us {
+    .first-section {
+        display: flex;
+        align-items: center;
+        width: 100%;
+
+        .presentation {
+            max-width: 50%;
+        }
+
+        .content-1 {
+            flex: 1;
+            padding: 20px;
+
+            h2 {
+                color: $base-color;
+                font-weight: 600;
+                font-size: 30px;
+            }
+        }
+    }
+    .second-section {
+        display: flex;
+        align-items: center;
+
+        .content-2 {
+            flex: 1;
+            padding: 20px;
+
+            h2 {
+                color: $base-color;
+                font-weight: 600;
+                font-size: 30px;
+            }
+        }
+
+        .mission {
+            max-width: 50%;
+        }
+    }
+    .third-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .content-3 {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .duo-team {
+            max-width: 100%;
+            margin-top: auto;
+        }
+    }
+}
+
+@mixin about-us-max-width--px{}
