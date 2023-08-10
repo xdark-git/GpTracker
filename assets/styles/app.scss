@@ -16,6 +16,8 @@
 @import "./pages/TermsAndConditions.scss";
 @import "./pages/CodeOfConduct.scss";
 @import "./pages/securityMeasures";
+@import "./pages/forgot_password";
+@import "./pages/new-password";
 
 @media only screen and (max-width: 1280px) {
     @include home-max-width--1280px;
@@ -45,12 +47,11 @@
   @include header-max-width--560px;
 }
 
-@media only screen and (max-width: 800px){
-    @include  cu-max-width-800px;
+@media only screen and (max-width: 800px) {
+    @include cu-max-width-800px;
     @include codeofconduct-max-width-800px;
     @include measure-max-width-800px;
 }
-
 
 @media only screen and (max-width: calc($page-min-width - 1px)) {
     body {

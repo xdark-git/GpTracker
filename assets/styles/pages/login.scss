@@ -73,6 +73,18 @@
     & button {
         @include auth-buttons($btn-color-1);
     }
+    .forgot-password {
+        display: block;
+        text-align: right;
+        margin-top: 6px;
+        color: $base-color;
+        font-size: 0.85rem;
+        text-decoration: none;
+        transition: color 0.3s;
+        &:hover {
+            color: darken($base-color, 80%);
+        }
+    }
     @include login-register-redirect;
 }
 
