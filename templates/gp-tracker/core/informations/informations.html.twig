@@ -9,42 +9,42 @@
         <section class="nav-content">
             <div class="nav">
                 <ul class="main-nav">
-                    <li class="active">
+                    <li class="{{ app.request.attributes.get('_route') == 'app_informations_user' ? 'active' : '' }}">
                        <a href="{{ path('app_informations_user') }}">
                              <i class="fa-solid fa-user"></i>
                             <span>Votre compte GP-Tracker</span>
                        </a>
                     </li>
-                    <li>
+                    {# <li>
                         <a href="/informations/empty-message">
                             <i class="fa-solid fa-envelope"></i>
                             <span>Boîte de reception</span>
                         </a>
-                    </li>
-                    <li>
-                       <a href="/informations/empty-package">
+                    </li> #}
+                    <li class="{{ app.request.attributes.get('_route') == 'app_user_package' ? 'active' : '' }}">
+                       <a href="{{ path('app_user_package') }}">
                              <i class="fa-solid fa-box"></i>
                             <span>Mes annonces GP</span>
                        </a>
                     </li>
-                    <li>
+                    {# <li>
                         <a href="/informations/empty-order">
                             <i class="fa-solid fa-truck-fast"></i>
                             <span>Mes commandes</span>
                         </a>
-                    </li>
-                    <li>
-                        <a href="/informations/empty-vu">
+                    </li> #}
+                    <li class="{{ app.request.attributes.get('_route') == 'app_user_room_visited' ? 'active' : '' }}">
+                        <a href="{{ path('app_user_room_visited')}}">
                             <i class="fa-regular fa-clock-rotate-left"></i>
                             <span>Vus Récemment</span>
                         </a>
                     </li>
                 </ul>
                 <ul class="params">
-                    <li>
-                        <a href="{{ path('app_empty_adresse') }}">Adresses</a>
+                    <li class="{{ app.request.attributes.get('_route') == 'app_adresse' ? 'active' : '' }}">
+                        <a href="{{ path('app_adresse') }}">Adresses</a>
                     </li>
-                    <li>
+                    <li class="{{ app.request.attributes.get('_route') == 'app_settings' ? 'active' : '' }}">
                         <a href="{{ path('app_settings') }}">Paramatère du compte</a>
                     </li>
                 </ul>
