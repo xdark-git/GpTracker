@@ -1,0 +1,94 @@
+.codeofconduct-container {
+    max-width: 1170px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.codeofconduct-container > .codeofconduct-main{
+    padding: 1rem 100px 0 100px;
+}
+  
+.codeofconduct-container > .codeofconduct-main > .row {
+    clear: both;
+    position: relative;
+}
+
+.codeofconduct-container > .codeofconduct-main > .row >.head-title {
+    text-align: center;
+    color: $base-color;
+    font-size: 36px;
+    font-weight: 400;
+}
+.codeofconduct-container > .codeofconduct-main > .row >.line{
+    background: #14438b;
+    width: 100%;
+    max-width: 1170px;
+    height: 2px;
+}
+
+.codeofconduct-container > .codeofconduct-main .gp-codeofconduct{
+    margin-top: 40px;
+    font-size: 18px;
+    padding: 20px 40px;
+    border: 1px solid #efefef;
+    border-radius: 2px;
+    background: #efefef
+}
+.codeofconduct-container > .codeofconduct-main .gp-codeofconduct > ul {
+    list-style-type: decimal;
+    
+}
+.gp-codeofconduct-list > li > a{
+    text-decoration: none;
+    color: black;
+    
+    &:hover {
+        color: $btn-color-1;
+    }
+}
+
+
+.codeofconduct-container > .codeofconduct-main > .subtitle {
+    font-size: 18px;
+    color: $txt-color-4;
+    margin: 20px 0;
+}
+
+p {
+    font-size: 14px;
+    text-align: justify;
+}
+.gp-codeofconduct-texte {
+    text-align: left;
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 400;
+    padding: 0 22px;
+}
+
+
+@mixin codeofconduct-max-width-800px {
+    .codeofconduct-container > .codeofconduct-main {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  
+    .codeofconduct-container > .codeofconduct-main > .row > .head-title {
+      font-size: 28px;
+    }
+  
+    .codeofconduct-container > .codeofconduct-main .gp-codeofconduct {
+      padding: 10px 20px;
+    }
+  
+    .codeofconduct-container > .codeofconduct-main .gp-codeofconduct > ul {
+      font-size: 16px;
+    }
+  
+    .subtitle {
+      font-size: 16px;
+    }
+  
+    p {
+      font-size: 14px;
+    }
+  }

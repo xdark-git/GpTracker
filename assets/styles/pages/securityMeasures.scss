@@ -1,0 +1,94 @@
+.measure-container {
+    max-width: 1170px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.measure-container > .measure-main{
+    padding: 1rem 100px 0 100px;
+}
+  
+.measure-container > .measure-main > .row {
+    clear: both;
+    position: relative;
+}
+
+.measure-container > .measure-main > .row >.head-title {
+    text-align: center;
+    color: $base-color;
+    font-size: 36px;
+    font-weight: 400;
+}
+.measure-container > .measure-main > .row >.line{
+    background: #14438b;
+    width: 100%;
+    max-width: 1170px;
+    height: 2px;
+}
+
+.measure-container > .measure-main .gp-measures{
+    margin-top: 40px;
+    font-size: 18px;
+    padding: 20px 40px;
+    border: 1px solid #efefef;
+    border-radius: 2px;
+    background: #efefef
+}
+.measure-container > .measure-main .gp-measures > ul {
+    list-style-type: decimal;
+    
+}
+.gp-measures-list > li > a{
+    text-decoration: none;
+    color: black;
+    
+    &:hover {
+        color: $btn-color-1;
+    }
+}
+
+
+.measure-container > .measure-main > .subtitle {
+    font-size: 18px;
+    color: $txt-color-4;
+    margin: 20px 0;
+}
+
+p {
+    font-size: 14px;
+    text-align: justify;
+}
+.gp-security-texte {
+    text-align: left;
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 400;
+    padding: 0 22px;
+}
+
+
+@mixin measure-max-width-800px {
+    .measure-container > .measure-main {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  
+    .measure-container > .measure-main > .row > .head-title {
+      font-size: 28px;
+    }
+  
+    .measure-container > .measure-main .gp-measures {
+      padding: 10px 20px;
+    }
+  
+    .measure-container > .measure-main .gp-measures > ul {
+      font-size: 16px;
+    }
+  
+    .subtitle {
+      font-size: 16px;
+    }
+  
+    p {
+      font-size: 14px;
+    }
+  }

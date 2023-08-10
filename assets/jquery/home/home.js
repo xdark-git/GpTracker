@@ -1,3 +1,4 @@
+import $ from "jquery";
 /*----------------------------------
     SLIDER FUNCTIONALITY
  -----------------------------------*/
@@ -129,7 +130,8 @@ $(function () {
     });
 
     // Clear input when Xmark icon is clicked
-    $(".fa-xmark").on("click", function () {
+    var $xMarks = $form.find(".fa-xmark");
+    $xMarks.on("click", function () {
         $(this).siblings("input").val("");
         $(this).hide();
     });

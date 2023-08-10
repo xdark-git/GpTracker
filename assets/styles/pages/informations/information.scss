@@ -1,0 +1,148 @@
+@import "./pages/account.information.scss";
+@import "./pages/empty-message.scss";
+@import "./pages/empty-package.scss";
+@import "./pages/empty-order.scss";
+@import "./pages/empty-recently-seen.scss";
+@import "./pages/empty-adresse.scss";
+@import "./pages/settings.scss";
+@import "./pages/package.scss";
+main .gp-informations {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 1rem 0 1rem;
+
+    & > .nav-content {
+        width: 100%;
+        min-height: 576px;
+        height: 80vh;
+        display: flex;
+        flex-direction: row;
+        gap: 1.5rem;
+    }
+}
+
+main > .gp-informations > .nav-content {
+    .nav {
+        position: relative;
+        width: 25%;
+        min-width: 210px;
+        height: 100%;
+        border-radius: 8px;
+        background-color: $white-color;
+        overflow: hidden;
+    }
+    .content {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: 8px;
+        padding: 1rem 0;
+        background-color: $white-color;
+        overflow: auto;
+    }
+}
+
+main > .gp-informations > .nav-content > .nav {
+    > ul {
+        list-style: none;
+        width: 100%;
+        height: auto;
+    }
+    > .main-nav {
+        border-bottom: 1px solid $gray-color;
+    }
+    > form {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0.8rem;
+        border-top: 1px solid $gray-color;
+    }
+}
+
+main > .gp-informations > .nav-content > .nav > ul {
+    li {
+        width: 100%;
+    }
+    a {
+        width: inherit;
+        height: inherit;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 0.7rem 1rem;
+        gap: 1rem;
+        text-decoration: none;
+        color: $black-color;
+        cursor: pointer;
+        &:hover {
+            background-color: lighten($color: #000000, $amount: 90%);
+        }
+    }
+    .active {
+        background-color: lighten($color: #000000, $amount: 90%);
+        &:hover {
+            background-color: lighten($color: #000000, $amount: 92%);
+        }
+    }
+    i {
+        width: 8%;
+        color: $base-color;
+    }
+}
+main > .gp-informations > .nav-content > .nav > form {
+    button {
+        border: none;
+        outline: none;
+        background-color: transparent;
+        padding: 0.5em 1em;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        color: $base-color;
+        cursor: pointer;
+        &:hover {
+            background-color: lighten($color: #000000, $amount: 90%);
+        }
+    }
+}
+main > .gp-informations > .nav-content > .content {
+    @include account-information;
+    @include empty-message;
+    @include empty-package;
+    @include empty-order;
+    @include empty-recently-seen;
+    @include empty-adresse;
+    @include settings-informations;
+    @include package;
+}
+
+@mixin information-max-width--960px {
+    main > .gp-informations {
+        min-height: fit-content;
+        padding: unset;
+    }
+    main > .gp-informations > .nav-content {
+        height: inherit;
+    }
+    main > .gp-informations > .nav-content .nav {
+        display: none;
+        width: 100%;
+        height: inherit;
+    }
+    main > .gp-informations > .nav-content > .content {
+        display: none;
+        height: inherit;
+        overflow: unset;
+        @include settings-informations-max-width--960px;
+    }
+}
+
+@mixin information-max-width--775px {
+    main > .gp-informations > .nav-content > .content {
+        @include account-information-max-width--775px;
+    }
+}

@@ -1,0 +1,349 @@
+{% extends 'gp-tracker/base.html.twig' %}
+
+{% block title %}
+   Room Creation
+{% endblock %}
+
+{% block body %}
+<main>
+    <div class="container gp-room-creation">
+       <div class="page-root">
+            <a href="#" class="rooms">Salons</a>
+            <span>></span>
+            <a href="#" class="room-title">Sunu GP</a>
+       </div>
+       <div class="content">
+            <ul class="nav">
+                <li class="current">Détails du voyage</li>
+                <li>Options & Services</li>
+                <li>Confirmation</li>
+            </ul>
+            {% form_theme roomCreationForm 'gp-tracker/form/room_creation_form.html.twig' %}
+
+            {{ form_start(roomCreationForm, {'attr': {'id': 'roomCreationForm'}}) }}
+                <h4 class="form-title">
+                    <span class="step"></span>
+                    <span>Détails du voyage</span>
+                </h4>
+                <div class="tab hidden">
+                    <div class="form-group">
+                        <div class="input-container">
+                            {{ form_row(roomCreationForm.departureLocation, {
+                                'id': 'departure-location'
+                                }) 
+                            }} 
+                        </div>
+                        <div class="input-container">
+                            {{ form_row(roomCreationForm.arrivalLocation, {
+                                'id': 'arrival-location'
+                                }) 
+                            }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-container">
+                            {{ form_row(roomCreationForm.departureDate, {
+                                'id': 'departure-date'
+                                }) 
+                            }}  
+                        </div>
+                        <div class="input-container">
+                            {{ form_row(roomCreationForm.arrivalDate, {
+                                'id': 'arrival-date'
+                                })
+                            }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-container">
+                            {{ form_row(roomCreationForm.cellular.primary, {
+                                'id': 'primary-tel'
+                                })
+                            }}   
+                        </div>                    
+                        <div class="input-container">
+                            {{ form_row(roomCreationForm.cellular.secondary, {
+                                'id': 'secondary-tel'
+                                })
+                            }}
+                        </div>
+                    </div>
+                </div>
+                <div class="tab hidden">
+                    <div class="form-group">
+                        <div class="input-container">
+                            {{ form_row(roomCreationForm.name, {
+                                'id': 'room-name'
+                                })
+                            }} 
+                        </div>
+                    </div>
+                    <div class="form-group">
+                       <div class="input-container">
+                             {{ form_row(roomCreationForm.conveyance, {
+                                'id': 'transportation-method'
+                                }) 
+                            }} 
+                       </div>
+                        <div class="input-container">
+                            {{ form_row(roomCreationForm.currency, {
+                                'id': 'currency'
+                                })
+                            }} 
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-container">
+                            {{ form_row(roomCreationForm.unitPrice, {
+                                'id': 'unit-price'
+                                })
+                            }} 
+                        </div>
+                        <div class="input-container">
+                            {{ form_row(roomCreationForm.weight, {
+                                'id': 'bag-size'
+                                }) 
+                            }} 
+                        </div>
+                    </div>
+                </div>
+                <div class="tab hidden">
+                    <div class="form-group flex-column gap-1">
+                        <div class="input-container type-checkbox">
+                            {{ form_row(roomCreationForm.codeConducts, {
+                                label: false,
+                                'id': 'code-of-conduct'
+                                }) 
+                            }}
+                            <label class="checkbox" for="code-of-conduct">
+                               J’ai lu et je m’engage  à respecter la&nbsp; <a href="{{path('app_Code_of_Conduct')}}" target="_blank" rel="noopener noreferrer">charte de bonne conduite.</a>.
+                            </label>
+                        </div>
+                        <div class="input-container type-checkbox">
+                            {{ form_row(roomCreationForm.securityMeasures, {
+                                label: false,
+                                'id': 'security-measure'
+                                }) 
+                            }}
+                            <label class="checkbox" for="security-measures">
+                                J’ai pris connaissance des&nbsp; <a href="{{path('app_Security_measures')}}" target="_blank" rel="noopener noreferrer">Mesures de securites</a>.
+                            </label>
+                        </div>
+                    </div>
+                    {{ form_row(roomCreationForm._token) }}
+                </div>
+                <div class="buttons">
+                    <button class="hidden" type="button" id="btn-preview">Aperçu</button>
+                    <button class="hidden" type="button" id="btn-previous">&laquo; Retour</button>
+                    <button type="button" id="btn-next">Etape suivante &raquo;</button>
+                    <button class="hidden" type="button" id="btn-submit">Publier</button>
+                </div>
+            {{ form_end(roomCreationForm, {'render_rest': false}) }}
+            {# <form action="#" id="roomCreationForm">
+                <h4 class="form-title">
+                    <span class="step"></span>
+                    <span>Détails du voyage</span>
+                </h4>
+                <div class="tab hidden">
+                    <div class="form-group">
+                        <div class="input-container">
+                            <label for="departure-location">Lieu de depart (*)</label>
+                            <p>Mettre les informations necessaires</p>
+                            <input type="text" name="departure" id="departure-location" required>
+                        </div>
+                        <div class="input-container">
+                            <label for="arrival-location">Lieu d’arrivée (*)</label>
+                            <p>Mettre les informations necessaires</p>
+                            <input type="text" name="arrival" id="arrival-location" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-container">
+                            <label for="departure-date">Date de depart (*)</label>
+                            <p>Preciser votre date départ</p>
+                            <input type="date" name="departure-date" id="departure-date" required>
+                        </div>
+                        <div class="input-container">
+                            <label for="arrival-date">Date d’arrivée (*)</label>
+                            <p>Preciser votre date d'arrivée</p>
+                            <input type="date" name="arrival-date" id="arrival-date" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-container">
+                            <label for="primary-tel">Numéro de téléphone principal (*)</label>
+                            <p>Veuillez entrer un format valide, par exemple : +1 XXX XXX XXXX</p>
+                            <input type="tel" name="primary-tel" id="primary-tel" required>
+                        </div>
+                        <div class="input-container">
+                            <label for="secondary-tel">Numéro de téléphone secondaire</label>
+                            <p>Veuillez entrer un format valide, par exemple : +1 XXX XXX XXXX</p>
+                            <input type="tel" name="secondary-tel" id="secondary-tel">
+                        </div>
+                    </div>
+                </div>
+                <div class="tab hidden">
+                    <div class="form-group">
+                        <div class="input-container">
+                            <label for="room-name">Lieu de depart (*)</label>
+                            <p>Saisir le nom  que vous souhaitez donner à votre salon ( Min, Max : 5, 12 caractères)</p>
+                            <input value="sunu-gp" type="text" name="room-name" id="room-name" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-container">
+                            <label for="transportation-method">Details du transport (*)</label>
+                            <p>Selectionner votre moyen de tranport</p>
+                            <input type="text" name="transportation-method" id="transportation-method" required disabled>
+                        </div>
+                        <div class="input-container">
+                            <label for="currency">Devise (*)</label>
+                            <p>Entrer le code de la devise utilisée, par exemple : XOF</p>
+                            <input type="text" name="currency" id="currency" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-container">
+                            <label for="unit-price">Prix unitaire (*)</label>
+                            <p>Saisir un prix </p>
+                            <input type="number" name="unit-price" id="unit-price"  min="1" step="1"required>
+                        </div>
+                        <div class="input-container">
+                            <label for="bag-size">Espace (*)</label>
+                            <p>Saisir la taille de votre sac</p>
+                            <input type="number" name="bag-size" id="bag-size"  min="1" step="1" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab hidden">
+                    <div class="form-group flex-column gap-1">
+                        <div class="input-container type-checkbox">
+                            <input type="checkbox" name="accept-conditions" id="accept-conditions" required>
+                            <label class="checkbox" for="accept-conditions">
+                                J’ai lu et J’accepte les&nbsp; <a href="#" target="_blank" rel="noopener noreferrer">conditions generales</a>.
+                            </label>
+                        </div>
+                        <div class="input-container type-checkbox">
+                            <input type="checkbox" name="code-of-conduct" id="code-of-conduct" required>
+                            <label class="checkbox" for="code-of-conduct">
+                               J’ai lu et je m’engage  à respecter la&nbsp; <a href="#" target="_blank" rel="noopener noreferrer">charte de bonne conduite.</a>.
+                            </label>
+                        </div>
+                        <div class="input-container type-checkbox">
+                            <input type="checkbox" name="security-measures" id="security-measures" required>
+                            <label class="checkbox" for="security-measures">
+                                J’ai pris connaissance des&nbsp; <a href="#" target="_blank" rel="noopener noreferrer">Mesures de securites</a>.
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="buttons">
+                    <button class="hidden" type="button" id="btn-preview">Aperçu</button>
+                    <button class="hidden" type="button" id="btn-previous">&laquo; Retour</button>
+                    <button type="button" id="btn-next">Etape suivante &raquo;</button>
+                    <button class="hidden" type="button" id="btn-submit">Publier</button>
+                </div>
+            </form> #}
+            <dialog id="previewDialog" class="hidden">
+                <div>
+                    <div class="header">
+                        <h2>Aperçu du salon</h2>
+                        <i class="fa-solid fa-xmark"></i>            
+                    </div>
+                    <div class="content">
+                        <p>
+                            Ceci est un aperçu du salon vu des visiteurs.
+                        </p>
+                        <div class="informations">
+                            <h2>Détails</h2>
+                            <div>
+                                <div>
+                                    <span class="icons">
+                                        <i class="fa-solid fa-plane-departure"></i>
+                                    </span>
+                                    <span>
+                                        <h3>Zone de depart</h3>
+                                        <p id="for-departure-location">-</p>
+                                    </span>
+                                </div>
+                                <div>
+                                    <span class="icons">
+                                        <i class="fa-solid fa-plane-arrival"></i>
+                                    </span>
+                                    <span>
+                                        <h3>Zone d’arrivée</h3>
+                                        <p id="for-arrival-location">-</p>
+                                    </span>
+                                </div>
+                                <div>
+                                    <span class="icons">
+                                        <i class="fa-solid fa-truck-plane"></i>
+                                    </span>
+                                    <span>
+                                        <h3>Type de transports</h3>
+                                        <p id="for-transportation-method">-</p>
+                                    </span>
+                                </div>
+                                <div>
+                                    <span class="icons">
+                                        <i class="fa-solid fa-calendar-days"></i>
+                                    </span>
+                                    <span>
+                                        <h3>Date de départ</h3>
+                                        <p id="for-departure-date">-</p>
+                                    </span>
+                                </div>
+                                <div>
+                                    <span class="icons">
+                                        <i class="fa-solid fa-calendar-days"></i>
+                                    </span>
+                                    <span>
+                                        <h3>Date d'arrivéé</h3>
+                                        <p id="for-arrival-date">-</p>
+                                    </span>
+                                </div>
+                                <div>
+                                    <span class="icons">
+                                        <i class="fa-solid fa-hand-holding-dollar"></i>
+                                    </span>
+                                    <span>
+                                        <h3>Prix</h3>
+                                        <p id="for-unit-price">-</p>
+                                    </span>
+                                </div>
+                                <div>
+                                    <span class="icons">
+                                        <i class="fa-solid fa-weight-scale"></i>
+                                    </span>
+                                    <span>
+                                        <h3>Espace disponible</h3>
+                                        <p id="for-bag-size">-</p>
+                                    </span>
+                                </div>
+                                <div>
+                                    <span class="icons">
+                                        <i class="fa-solid fa-map-pin"></i>
+                                    </span>
+                                    <span>
+                                        <h3>Destination Intermediaire</h3>
+                                        <p>Aucune</p>
+                                    </span>
+                                </div>
+                                <div>
+                                    <span class="icons">
+                                        <i class="fa-solid fa-cash-register"></i>
+                                    </span>
+                                    <span>
+                                        <h3>Paiement</h3>
+                                        <p>À l’arrivée</p>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </dialog>   
+       </div>
+    </div>
+</main>
+{% endblock %}

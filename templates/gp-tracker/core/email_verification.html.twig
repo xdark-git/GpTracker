@@ -1,0 +1,51 @@
+{% extends 'gp-tracker/base.html.twig' %}
+
+{% block title %}
+    Activation
+{% endblock %}
+
+{% block body %}
+<main>
+    <div class="container gp-activation-container">
+        <div class="header">Vérification de l'email</div>
+        <div class="body">
+            {% for flash in app.flashes('success') %}
+                <section class="notification" style="color:green;">
+                    <span class="text">{{ flash }}</span>
+                    {# <i class="fa-solid fa-xmark"></i> #}
+                </section>
+            {% endfor %}
+            {% for flash in app.flashes('error') %}
+                <section class="notification" style="color:red;">
+                    <span class="text">{{ flash }}</span>
+                    {# <i class="fa-solid fa-xmark"></i> #}
+                </section>
+            {% endfor %}
+            <div class="alert-box">
+                <h1>Votre adresse e-mail n'est pas encore vérifiée !</h1>
+                <p>Veuillez vérifier votre adresse e-mail.</p>
+            </div>
+            <div class="alert-description">
+                <p>
+                    Nous avons envoyé le mail de vérification à {{ app.user.email|default('') }}.
+                    <br />
+                    Si vous ne trouvez pas le mail de vérification dans le dossier de réception,
+                    veuillez vérifier le dossier des mails indésirables/spam.
+                </p>
+                <p>
+                    Si vous n'avez pas reçu le mail de vérification, veuillez cliquer sur le bouton "Renvoyer".
+                </p>
+            </div>
+            <div class="buttons">
+                <form action="{{ path('app_resend_verify_email') }}" method="post" id="resend-verification-email">
+                    <input type="hidden" name="token" value="{{ csrf_token('resend-verification-email') }}"/>
+                    <button class="resend" type="submit">Renvoyer</button>
+                </form>
+                <form action="{{ logout_path('main') }}" method="post" id="logout-form">
+                    <button class="logout" type="submit">Se déconnecter</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

@@ -55,3 +55,62 @@ $(function () {
         }
     });
 });
+
+/*----------------------------------
+    UPDATE MAIN ELEMENT PADDING TOP
+ -----------------------------------*/
+$(function () {
+    var $header = $("header");
+    function resizeMainPaddingTop() {
+        // Get the height of the header element
+        var headerHeight = $header.outerHeight();
+
+        // Update the padding-top of the main element to match the header height
+        $("main").css("padding-top", headerHeight);
+    }
+
+    var resizeObserver = new ResizeObserver(function (entries) {
+        // Iterate through the entries
+        entries.forEach(function (entry) {
+            // Check if the observed target is the header element
+            if (entry.target === $header[0]) {
+                resizeMainPaddingTop();
+            }
+        });
+    });
+
+    // Start observing the header element
+    if ($header.length > 0) {
+        resizeMainPaddingTop();
+        resizeObserver.observe($header[0]);
+    }
+});
+
+/*----------------------------------
+            HIDE BANNER
+ -----------------------------------*/
+$(function () {
+    const $banner = $("header").find("section.notification");
+    const $xMark = $banner.find("i.fa-xmark");
+
+    setTimeout(function () {
+        $banner.remove();
+    }, 7000);
+
+    $xMark.click(function () {
+        $banner.remove();
+    });
+});
+
+/*----------------------------------
+            HIDE USER DIALOG
+ -----------------------------------*/
+
+$(function () {
+    $("#user").on("click", function () {
+        $("#user-nav-dialog").toggle();
+        if ($(window).width() > 560) {
+            $(".fa-chevron-down, .fa-chevron-up", this).toggle();
+        }
+    });
+});
