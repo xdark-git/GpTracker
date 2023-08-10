@@ -1,0 +1,49 @@
+{% extends 'gp-tracker/base.html.twig' %}
+
+{% block title %}
+   Contact
+{% endblock %}
+
+{% block body %}
+   
+   <main>
+            <form  class="contact-form">
+                <div class="form-title">
+                    <h4>Une question ? Un conseil ?</h4>
+                    <h2>Ecrivez-nous !</h2>
+                </div>
+                <div class="form-group">
+                    <label for="firstname">Prenom*</label>
+                    <input 
+                        type="text" 
+                        name="Prenom" 
+                        id="Prenom" 
+                        required 
+                        class="form-element"
+                        placeholder="GP" />
+                </div>
+                <div class="form-group">
+                    <label for="lastname">Nom*</label>
+                    <input type="text" name="Nom*" id="Nom*" required class="form-element" placeholder="Track" required//>
+                </div>
+                <div class="form-group">
+                    <label for="company">Sujet*</label>
+                    <input type="text" name="Sujet" id="Sujet" class="form-element" placeholder="Entrer votre sujet"  required/>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" name="email" id="email" required class="form-element" placeholder="contact@gp-tracker.io" required//>
+                </div>
+                <div class="form-group full">
+                    <label for="message">Ecrivez votre message</label>
+                    <textarea name="message" id="message" class="form-element" placeholder="Entre votre message..." required/></textarea>
+                </div>
+                <div class="submit-group">
+                    <input type="submit" value="Envoyer" />
+                </div>
+            </form>
+
+</main>
+
+    
+{% endblock %}

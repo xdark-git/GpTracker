@@ -1,3 +1,13 @@
+{% set informtionRoutes = [
+    'app_informations',
+    'app_settings',
+    'app_informations_user',
+    'app_adresse',
+    'app_user_room_visited',
+    'app_user_package'
+    ]
+%}
+
 <header class="gp-header">
     <section class="section-1">
         <div class="logo">
@@ -103,21 +113,27 @@
                 </div>
             </li> #}
             <li>
-                <a href="/" class="active">Acceuil</a>
+                <a href="{{ path('app_home') }}" class="{{ app.request.attributes.get('_route') == 'app_home' ? 'active' : '' }}">Acceuil</a>
             </li>
             <li>
-                <a href="/rooms">GP</a>
+                <a href="{{ path('app_rooms') }}" class="{{ app.request.attributes.get('_route') == 'app_rooms' ? 'active' : '' }}">GP</a>
             </li>
             <li>
-                <a href="/informations">Informations</a>
+                <a href="{{ path('app_informations') }}" class="{{ app.request.attributes.get('_route') in informtionRoutes ? 'active' : '' }}">Informations</a>
             </li>
             <li>
-                <a href="#">Contact</a>
+                <a href="{{ path('app_contact') }}" class="{{ app.request.attributes.get('_route') == 'app_contact' ? 'active' : '' }}">Contact</a>
             </li>
         </ul>
     </section>
     {% for flash in app.flashes('success') %}
         <section class="notification">
+            <span class="text">{{ flash }}</span>
+            <i class="fa-solid fa-xmark"></i>
+        </section>
+    {% endfor %}
+    {% for flash in app.flashes('error') %}
+        <section class="notification" style="background-color:red!important">
             <span class="text">{{ flash }}</span>
             <i class="fa-solid fa-xmark"></i>
         </section>

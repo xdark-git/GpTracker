@@ -18,31 +18,28 @@ class UniqueEmailValidator extends ConstraintValidator
         $this->manager = $manager;
     }
 
-    public function validate($value, Constraint $constraint): void
+    public function validate($receipt, Constraint $constraint): void
     {
        
+        if (!$receipt instanceof User) {
+            throw new UnexpectedValueException($receipt, User::class);
+        }
+
         if (!$constraint instanceof UniqueEmail) {
             throw new UnexpectedTypeException($constraint, UniqueEmail::class);
         }
-        if (null === $value || "" === $value) {
-            return;
-        }
 
-        if (!is_string($value)) {
-            // throw this exception if your validator cannot handle the passed type so that it can be marked as invalid
-            throw new UnexpectedValueException($value, "string");
-
-            // separate multiple types using pipes
-            // throw new UnexpectedValueException($value, 'string|int');
-        }
-
-        $conditions = ["email" => $value, "isDeleted" => false];
-        $user = $this->manager->getRepository(User::class)->findBy($conditions);
+        $email = $receipt->getEmail();
         
-        if ($user) {
+        $conditions = ["email" => $email, "isDeleted" => false];
+        $user = $this->manager->getRepository(User::class)->findOneBy($conditions);
+        
+        if ($user && $user !== $receipt) {
+            
             $this->context
                 ->buildViolation($constraint->message)
-                ->setParameter("{{ string }}", $value)
+                ->setParameter("{{ string }}", $email)
+                ->atPath('email')
                 ->addViolation();
         }
     }
