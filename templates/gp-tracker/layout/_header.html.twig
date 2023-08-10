@@ -103,16 +103,16 @@
                 </div>
             </li> #}
             <li>
-                <a href="/" class="active">Acceuil</a>
+                <a href="{{ path('app_home') }}" class="active">Acceuil</a>
             </li>
             <li>
-                <a href="/rooms">GP</a>
+                <a href="{{ path('app_rooms') }}">GP</a>
             </li>
             <li>
-                <a href="/informations">Informations</a>
+                <a href="{{ path('app_informations') }}">Informations</a>
             </li>
             <li>
-                <a href="#">Contact</a>
+                <a href="{{ path('app_contact') }}">Contact</a>
             </li>
         </ul>
     </section>
