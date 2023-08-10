@@ -95,7 +95,7 @@ class RegisterController extends AbstractController
             $themeResolver->getThemePathPrefix("/core/informations/contents/empty-order.html.twig")
         );
     }
-    #[Route("/informations/empty-vu", name: "app_empty_vu")]
+    #[Route("/informations/rooms/visited", name: "app_user_room_visited")]
     public function emptyVu(ThemeResolver $themeResolver): Response
     {
         return $this->render(
@@ -104,7 +104,7 @@ class RegisterController extends AbstractController
             )
         );
     }
-    #[Route("/informations/empty-adresse", name: "app_empty_adresse")]
+    #[Route("/informations/empty-adresse", name: "app_adresse")]
     public function emptyAdresse(ThemeResolver $themeResolver): Response
     {
         return $this->render(
@@ -120,7 +120,7 @@ class RegisterController extends AbstractController
             $themeResolver->getThemePathPrefix("/core/informations/contents/settings.html.twig")
         );
     }
-    #[Route("/informations/package", name: "app_package")]
+    #[Route("/informations/package", name: "app_user_package")]
     public function package(ThemeResolver $themeResolver): Response
     {
         return $this->render(
