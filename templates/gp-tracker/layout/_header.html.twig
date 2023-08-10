@@ -1,3 +1,13 @@
+{% set informtionRoutes = [
+    'app_informations',
+    'app_settings',
+    'app_informations_user',
+    'app_adresse',
+    'app_user_room_visited',
+    'app_user_package'
+    ]
+%}
+
 <header class="gp-header">
     <section class="section-1">
         <div class="logo">
@@ -109,7 +119,7 @@
                 <a href="{{ path('app_rooms') }}" class="{{ app.request.attributes.get('_route') == 'app_rooms' ? 'active' : '' }}">GP</a>
             </li>
             <li>
-                <a href="{{ path('app_informations') }}" class="{{ app.request.attributes.get('_route') == 'app_informations' ? 'active' : '' }}">Informations</a>
+                <a href="{{ path('app_informations') }}" class="{{ app.request.attributes.get('_route') in informtionRoutes ? 'active' : '' }}">Informations</a>
             </li>
             <li>
                 <a href="{{ path('app_contact') }}" class="{{ app.request.attributes.get('_route') == 'app_contact' ? 'active' : '' }}">Contact</a>
