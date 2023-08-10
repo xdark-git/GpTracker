@@ -123,7 +123,7 @@ class RegisterController extends AbstractController
             $themeResolver->getThemePathPrefix("/core/informations/contents/package.html.twig")
         );
     }
-    
+
     #[Route("/TermsAndConditions", name: "app_terms_conditions")]
     public function ConditionsGenerales(ThemeResolver $themeResolver): Response
     {
@@ -132,10 +132,10 @@ class RegisterController extends AbstractController
         );
     }
 
-    #[Route('/contact', name: 'app_contact')]
-    public function contact (ThemeResolver $themeResolver): Response
-    {   
-        return $this->render($themeResolver->getThemePathPrefix('/core/contact.html.twig'));
+    #[Route("/contact", name: "app_contact")]
+    public function contact(ThemeResolver $themeResolver): Response
+    {
+        return $this->render($themeResolver->getThemePathPrefix("/core/contact.html.twig"));
     }
     #[Route("/forgot-password", name: "app_forgot_password")]
     public function forgotPassword(ThemeResolver $themeResolver): Response
@@ -146,5 +146,10 @@ class RegisterController extends AbstractController
     public function newPassword(ThemeResolver $themeResolver): Response
     {
         return $this->render($themeResolver->getThemePathPrefix("/core/new-password.html.twig"));
+    }
+    #[Route("/about-us", name: "app_about_us")]
+    public function aboutUs(ThemeResolver $themeResolver): Response
+    {
+        return $this->render($themeResolver->getThemePathPrefix("/core/about-us.html.twig"));
     }
 }
