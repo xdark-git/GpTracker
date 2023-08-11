@@ -24,6 +24,7 @@ class UserController extends AbstractController
     #[Route("/informations/account", name: "app_informations_user")]
     public function completeProfile(Request $request, ThemeResolver $themeResolver): Response
     {
+        /** @var User $user */
         $user = $this->getUser();
         $form = $this->createForm(ProfileCompletionType::class, $user);
         $form->handleRequest($request);
