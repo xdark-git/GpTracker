@@ -11,6 +11,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Regex;
 use Viewpoint\AdminBundle\Entity\User;
 
 class RegistrationFormType extends AbstractType
@@ -29,36 +30,28 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('password', RepeatedType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
                 'type' => PasswordType::class,
                 'invalid_message' => 'Les champs de mot de passe doivent correspondre.',
-                // 'options' => ['attr' => ['class' => 'password-field']],
-                'required' => true,
                 'first_options'  => ['label' => 'Password', 'attr' => [
                     'placeholder' => 'Entrez votre Mot de passe'
                 ]],
                 'second_options' => ['label' => 'Repeat Password', 'attr' => [
                     'placeholder' => 'Confirmez le mot de passe'
                 ]],
+                "constraints" => [
+                    new NotBlank(),
+                    new Length([
+                        'min' => 8,
+                        'minMessage' => "Le mot de passe doit contenir au moins {{ limit }} caractères.",
+                    ]),
+                    new Regex([
+                        "pattern" =>
+                            '/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).*$/',
+                        "message" =>
+                            "Le mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre et un caractère spécial.",
+                    ]),
+                ],
             ])
-            // ->add('plainPassword', PasswordType::class, [
-            //     // instead of being set onto the object directly,
-            //     // this is read and encoded in the controller
-            //     'mapped' => false,
-            //     'attr' => ['autocomplete' => 'new-password'],
-            //     'constraints' => [
-            //         new NotBlank([
-            //             'message' => 'Please enter a password',
-            //         ]),
-            //         new Length([
-            //             'min' => 6,
-            //             'minMessage' => 'Your password should be at least {{ limit }} characters',
-            //             // max length allowed by Symfony for security reasons
-            //             'max' => 4096,
-            //         ]),
-            //     ],
-            // ])
         ;
     }
 
