@@ -55,7 +55,7 @@ class UserController extends AbstractController
             $this->entityManager->persist($user);
             $this->entityManager->flush();
 
-            $this->addFlash("success", "Profil complété avec succès !");
+            $this->addFlash("success", "Mise à jour réussie avec succès!");
         }
 
         return $this->render(
