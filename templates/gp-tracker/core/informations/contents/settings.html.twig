@@ -5,7 +5,8 @@
 {% endblock %}
 
 {% block content %}
-<form action="#" class="form-info" id="settings-informations">
+{% form_theme changePasswordForm 'gp-tracker/form/profile_completion_form.html.twig' %} 
+{{ form_start(changePasswordForm, {'attr': {'id': 'settings-informations', 'class': 'form-info'}}) }}
     <div class="profile">
         <div class="profile-header">
             <h2 class="title">Mot de passe</h2>
@@ -15,34 +16,42 @@
         <div class="body">
             <div class="form-group">
                 <div class="input-container">
-                    <div>
-                        <label for="old-pwd">Ancien mot de passe</label>
-                        <span class="required-field">Champ requis</span>
-                    </div>
-                    <input type="password" class="old-pwd" id="old-pwd" placeholder="Entrer votre mot de passe actuel" required>
+                   {{ form_row(changePasswordForm.currentPassword, {
+                        help: false,
+                        'id': 'old-pwd',
+                        'attr': {
+                            'class': 'old-pwd',
+                            'placeholder': 'Entrez votre mot de passe actuel'
+                        }
+                    }) }}
                 </div>
                 <div class="input-container">
-                    <div>
-                        <label for="new-pwd">Nouveau mot de passe</label>
-                        <span class="required-field">Champ requis</span>
-                    </div>
-                    <input type="password" class="new-pwd" id="new-pwd" placeholder="Entrer le nouveau mot de passe" required>
+                    {{ form_row(changePasswordForm.newPassword.first, {
+                        help: false,
+                        'id': 'new-pwd',
+                        'attr': {
+                            'class': 'new-pwd'
+                        }
+                    }) }}
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-container">
-                    <div>
-                        <label for="confirm-pwd">Confirmer mot de passe</label>
-                        <span class="required-field">Champ requis</span>
-                    </div>
-                    <input type="password" class="confirm-pwd" id="confirm-pwd" placeholder="Confirmer le nouveau mot de passe" required>
+                    {{ form_row(changePasswordForm.newPassword.second, {
+                        help: false,
+                        'id': 'confirm-pwd',
+                        'attr': {
+                            'class': 'confirm-pwd'
+                        }
+                    }) }}
                 </div>
             </div>
         </div>
     </div>
+    {{ form_row(changePasswordForm._token) }}
     <button class="submit">Enregistrer la modification</button>
-</form>   
-<form id="delete-account">
+{{ form_end(changePasswordForm, {'render_rest': false}) }}
+{# <form id="delete-account">
     <button >Supprimer mon compte</button>
-</form>
+</form> #}
 {% endblock %}

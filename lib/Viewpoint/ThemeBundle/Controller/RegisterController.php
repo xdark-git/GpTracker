@@ -109,13 +109,7 @@ class RegisterController extends AbstractController
             )
         );
     }
-    #[Route("/informations/settings", name: "app_settings")]
-    public function settings(ThemeResolver $themeResolver): Response
-    {
-        return $this->render(
-            $themeResolver->getThemePathPrefix("/core/informations/contents/settings.html.twig")
-        );
-    }
+
     #[Route("/informations/package", name: "app_user_package")]
     public function package(ThemeResolver $themeResolver): Response
     {

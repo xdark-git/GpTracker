@@ -159,7 +159,7 @@ class AuthController extends AbstractController
     #[Route('/resend/email', name: 'app_resend_verify_email')]
     public function resendEmail(Request $request, EntityManagerInterface $entityManager): Response
     {
-        
+        /** @var User $user */
         $user = $this->security->getUser();
         // dd($user);
         if(!$this->security->isGranted('IS_AUTHENTICATED_FULLY') || $user->isVerified()){
@@ -226,7 +226,9 @@ class AuthController extends AbstractController
     #[Route('/non-verified-user', name: 'non_verified_user_page')]
     public function nonVerifiedUser(): Response
     {
-        if(!$this->security->isGranted('IS_AUTHENTICATED_FULLY') || $this->security->getUser()->isVerified()){
+        /** @var User $user */
+        $user  = $this->security->getUser();
+        if(!$this->security->isGranted('IS_AUTHENTICATED_FULLY') || $user->isVerified()){
             /*
                 THIS SHOULD RETURN TO A NOT FOUND PAGE
 
@@ -240,7 +242,7 @@ class AuthController extends AbstractController
         );
     }
 
-    protected function sendEmailConfirmationHelper(UserInterface $user): void
+    protected function sendEmailConfirmationHelper(User $user): void
     {
 
         $noReplyEmail = $this->getParameter('viewpoint_admin.email_config.no_reply');        
