@@ -136,5 +136,10 @@ class RegisterController extends AbstractController
     {   
         return $this->render($themeResolver->getThemePathPrefix('/core/error500.html.twig'));
     }
+    #[Route('/denied-access', name: 'app_denied_access')]
+    public function DeniedAccess (ThemeResolver $themeResolver): Response
+    {   
+        return $this->render($themeResolver->getThemePathPrefix('/core/error503.html.twig'));
+    }
     
 }
