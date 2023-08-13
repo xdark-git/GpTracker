@@ -1,0 +1,40 @@
+{% extends 'gp-tracker/base.html.twig' %}
+
+{% block title %}
+    Forgot Password
+{% endblock %}
+
+{% block body %}
+    <div class="gp-fg-password-container">
+        <div class="header">
+            <img src="{{asset('theme/assets/img/logo/gp-tracker-logo-1.png')}}" alt="Logo Gp-tracker" class="logo">
+            <p>Entrez votre adresse e-mail et nous vous enverrons un lien pour réinitialiser votre mot de passe.</p>
+        </div>
+        <div class="body">
+            {% form_theme requestForm 'gp-tracker/form/loginForm.html.twig' %}
+            {{ form_start(requestForm)}}
+                {% for flash in app.flashes('success') %}
+                    <div class="notification">
+                        <span class="text">{{ flash }}</span>
+                    </div>
+                {% endfor %}
+                {% for flash in app.flashes('error') %}
+                    <div class="notification" style="color:red!important">
+                        <span class="text">{{ flash }}</span>
+                    </div>
+                {% endfor %}
+                <div>
+                    {{ form_row(requestForm.email, {
+                        id: 'input-email',
+                        attr: { 
+                            placeholder: "Entrez votre Email", 
+                            autofocus:''
+                        }
+                    }) }}
+                </div>
+                {{ form_row(requestForm._token) }}
+                <button type="submit">Envoyer une demande</button>
+            {{ form_end(requestForm) }}
+        </div>
+    </div>
+{% endblock %}
