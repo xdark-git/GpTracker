@@ -118,7 +118,7 @@ class RegisterController extends AbstractController
         );
     }
     
-    #[Route("/TermsAndConditions", name: "app_terms_conditions")]
+    #[Route("/terms-and-conditons", name: "app_terms_conditions")]
     public function ConditionsGenerales(ThemeResolver $themeResolver): Response
     {
         return $this->render(
