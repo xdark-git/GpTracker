@@ -13,11 +13,6 @@
         <div class="body">
             {% form_theme requestForm 'gp-tracker/form/loginForm.html.twig' %}
             {{ form_start(requestForm)}}
-                {% for flash in app.flashes('success') %}
-                    <div class="notification">
-                        <span class="text">{{ flash }}</span>
-                    </div>
-                {% endfor %}
                 {% for flash in app.flashes('error') %}
                     <div class="notification" style="color:red!important">
                         <span class="text">{{ flash }}</span>
