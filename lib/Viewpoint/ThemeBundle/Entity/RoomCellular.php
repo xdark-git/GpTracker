@@ -17,7 +17,7 @@ class RoomCellular
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(name:"primary_number", length: 15)]
+    #[ORM\Column(name:"primary_number", length: 25)]
     #[
         Assert\Sequentially([
             new Assert\NotNull(),
@@ -32,7 +32,7 @@ class RoomCellular
     ]
     private ?string $primary = null;
 
-    #[ORM\Column(name:"secondary_number", length: 15, nullable: true)]
+    #[ORM\Column(name:"secondary_number", length: 25, nullable: true)]
     #[
         Assert\Sequentially([
             new Assert\NotBlank(allowNull: true),
