@@ -1,0 +1,19 @@
+{% extends 'gp-tracker/base.html.twig' %}
+
+{% block title %}
+   Page d'erreur 500
+{% endblock %}
+
+{% block body %}
+<main>
+    <div class="container gp-not-found">
+        <img src="{{ asset('theme/assets/img/pages/500.png') }}" alt="Erreur 500">
+        <div class="description">
+            <h2 class="text-center">Oups, quelque chose s'est mal passé.</h2>
+            <h3 class="text-center">Nous vous suggérons de revenir en arrière ou de revenir ici ultérieurement!</h3>
+            <a href="{{ path('app_home') }}" class="btn btn-primary text-center">Retour à l'Accueil</a>
+        
+        </div>
+    </div>
+</main>
+{% endblock %}
