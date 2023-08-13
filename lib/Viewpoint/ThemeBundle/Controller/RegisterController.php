@@ -131,5 +131,10 @@ class RegisterController extends AbstractController
     {   
         return $this->render($themeResolver->getThemePathPrefix('/core/contact.html.twig'));
     }
+    #[Route('/error', name: 'app_error')]
+    public function error (ThemeResolver $themeResolver): Response
+    {   
+        return $this->render($themeResolver->getThemePathPrefix('/core/error500.html.twig'));
+    }
     
 }
