@@ -21,7 +21,7 @@
                 </div>
                 <div>
                     <input id="password" type="password" name="password" placeholder="Entrez votre mot de passe" autocomplete="current-password" required>
-                    <a href="{{ path('app_forgot_password') }}" class="forgot-password">Mot de passe oublié ?</a>
+                    <a href="{{ path('app_forgot_password_request') }}" class="forgot-password">Mot de passe oublié ?</a>
                 </div>
                 <div style="display:none;">
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" >
