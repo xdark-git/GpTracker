@@ -71,6 +71,10 @@ main {
     -webkit-text-fill-color: transparent;
 }
 
+.error {
+    color: red !important;
+    font-size: 0.8rem;
+}
 main .container .page-root {
     display: flex;
     flex-direction: row;

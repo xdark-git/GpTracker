@@ -29,6 +29,7 @@ class RoomController extends AbstractController
     #[Route("/rooms/new", name: "app_room_creation", methods: ["GET", "POST", "PUT"])]
     public function create(Request $request, EntityManagerInterface $entityManager): Response
     {
+        /** @var User */
         $user = $this->getUser();
         if(!$user->isAccountCompleted())
         {

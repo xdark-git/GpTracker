@@ -102,18 +102,6 @@ class UserController extends AbstractController
         );
     }
 
-    #[Route("/forgot-password", name: "app_forgot_password")]
-    public function forgotPassword(ThemeResolver $themeResolver): Response
-    {
-        return $this->render($themeResolver->getThemePathPrefix("/core/forgot-password.html.twig"));
-    }
-
-    #[Route("/new-password", name: "app_new_password")]
-    public function newPassword(ThemeResolver $themeResolver): Response
-    {
-        return $this->render($themeResolver->getThemePathPrefix("/core/new-password.html.twig"));
-    }
-
     #[Route("/activation", name: "app_account_activation")]
     public function accountActivation(ThemeResolver $themeResolver): Response
     {
