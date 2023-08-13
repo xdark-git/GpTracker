@@ -15,7 +15,7 @@
             {{ form_start(requestForm)}}
                 {% for flash in app.flashes('reset_password_error') %}
                     <div class="notification" style="color:red!important">
-                        <span class="text">{{ flash_error }}</span>
+                        <span class="text">{{ flash }}</span>
                     </div>
                 {% endfor %}
                 <div>
