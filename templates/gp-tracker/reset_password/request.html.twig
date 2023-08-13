@@ -14,7 +14,7 @@
             {% form_theme requestForm 'gp-tracker/form/loginForm.html.twig' %}
             {{ form_start(requestForm)}}
                 {% for flash in app.flashes('reset_password_error') %}
-                    <div class="notification" style="color:red!important">
+                    <div class="notification error" style="color:red!important">
                         <span class="text">{{ flash }}</span>
                     </div>
                 {% endfor %}
