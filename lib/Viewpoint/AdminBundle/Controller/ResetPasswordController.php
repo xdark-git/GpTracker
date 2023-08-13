@@ -189,20 +189,23 @@ class ResetPasswordController extends AbstractController
             // the lines below and change the redirect to 'app_forgot_password_request'.
             // Caution: This may reveal if a user is registered or not.
             //
-            // $this->addFlash('reset_password_error', sprintf(
-            //     '%s - %s',
-            //     $translator->trans(ResetPasswordExceptionInterface::MESSAGE_PROBLEM_HANDLE, [], 'ResetPasswordBundle'),
-            //     $translator->trans($e->getReason(), [], 'ResetPasswordBundle')
-            // ));
+            $this->addFlash('reset_password_error', sprintf(
+                '%s - %s',
+                $translator->trans(ResetPasswordExceptionInterface::MESSAGE_PROBLEM_HANDLE, [], 'ResetPasswordBundle'),
+                $translator->trans($e->getReason(), [], 'ResetPasswordBundle'),
+                // $translator->trans('Please wait before trying again.', [], 'ResetPasswordBundle')
+            ));
 
-            return $this->redirectToRoute("app_check_email");
+            // return $this->redirectToRoute("app_check_email");
+            return $this->redirectToRoute("app_forgot_password_request");
         }
-
+        $noReplyEmail = $this->getParameter('viewpoint_admin.email_config.no_reply');
+        
         $email = (new TemplatedEmail())
-            ->from(new Address("no-reply@gptracker.com", "Security"))
+            ->from(new Address($noReplyEmail, "no-reply"))
             ->to($user->getEmail())
-            ->subject("Your password reset request")
-            ->htmlTemplate("reset_password/email.html.twig")
+            ->subject("Votre demande de réinitialisation de mot de passe - ".$_ENV['APP_NAME'] )
+            ->htmlTemplate($this->themeResolver->getThemePathPrefix("/reset_password/email.html.twig"))
             ->context([
                 "resetToken" => $resetToken,
             ]);
