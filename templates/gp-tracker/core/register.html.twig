@@ -7,6 +7,11 @@
 {% block body %}
     <div class="gp-register-container">
         <div class="header">
+            <div class="auth-return-home">
+                <a href="{{ path('app_home') }}">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                </a>
+            </div>
             <img src="{{asset('theme/assets/img/logo/gp-tracker-logo-1.png')}}" alt="Logo Gp-tracker" class="logo">
             <h1>Creer votre compte</h1>
             <p>Pour assurer la securité de votre compte, nous vous suggérons d’ajouter un mot de passe fort</p>

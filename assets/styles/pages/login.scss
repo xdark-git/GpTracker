@@ -13,6 +13,7 @@
 .gp-login-container .header {
     @include auth-container-el;
     gap: 12px;
+    position: relative;
 
     img {
         width: 100px;

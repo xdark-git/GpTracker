@@ -7,6 +7,11 @@
 {% block body %}
     <div class="gp-fg-password-container">
         <div class="header">
+            <div class="auth-return-home">
+                <a href="{{ path('app_home') }}">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                </a>
+            </div>
             <img src="{{asset('theme/assets/img/logo/gp-tracker-logo-1.png')}}" alt="Logo Gp-tracker" class="logo">
             <p>Entrez votre adresse e-mail et nous vous enverrons un lien pour réinitialiser votre mot de passe.</p>
         </div>
