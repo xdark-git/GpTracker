@@ -92,3 +92,55 @@ main .container .page-root {
         color: $gunmetal-color;
     }
 }
+
+.pagination {
+    display: flex;
+    justify-content: center;
+
+    .page-item {
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+    }
+
+    .page-item.disabled .page-link {
+        color: #6c757d;
+        background-color: #fff;
+        border-color: #dee2e6;
+    }
+
+    .page-item.active .page-link {
+        z-index: 3;
+        color: #fff;
+        background-color: $base-color;
+        border-color: $base-color;
+    }
+
+    .page-link {
+        position: relative;
+        display: block;
+        padding: 0.5rem 0.75rem;
+        margin-left: -1px;
+        line-height: 1.25;
+        color: $base-color;
+        text-decoration: none;
+        background-color: #fff;
+        border: 1px solid #dee2e6;
+    }
+
+    .page-link:hover {
+        color: $base-color;
+        background-color: #e9ecef;
+        border-color: #dee2e6;
+    }
+}
+
+@media (max-width: 576px) {
+    .pagination {
+        flex-wrap: wrap;
+    }
+
+    .page-item {
+        margin-bottom: 0.5rem;
+    }
+}
