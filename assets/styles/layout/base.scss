@@ -107,7 +107,7 @@ main .container .page-root {
 .pagination {
     display: flex;
     justify-content: center;
-
+    flex-wrap: wrap;
     .page-item {
         display: inline-block;
         margin: 0;
@@ -143,15 +143,5 @@ main .container .page-root {
         color: $base-color;
         background-color: #e9ecef;
         border-color: #dee2e6;
-    }
-}
-
-@media (max-width: 576px) {
-    .pagination {
-        flex-wrap: wrap;
-    }
-
-    .page-item {
-        margin-bottom: 0.5rem;
     }
 }
