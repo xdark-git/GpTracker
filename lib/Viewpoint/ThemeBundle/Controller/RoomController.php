@@ -29,7 +29,7 @@ class RoomController extends AbstractController
         RoomRepository $repository
     ): Response {
         $availableRoomsQuery = $repository->findAvailableRoomsQuery();
-        $rooms = $paginator->paginate($availableRoomsQuery, $request->query->getInt("page", 1), 15);
+        $rooms = $paginator->paginate($availableRoomsQuery, $request->query->getInt("page", 1), 12);
         
         return $this->render($this->themeResolver->getThemePathPrefix("/core/rooms.html.twig"), [
             "rooms" => $rooms,
