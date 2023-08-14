@@ -5,6 +5,7 @@ namespace Viewpoint\ThemeBundle\Repository;
 use Viewpoint\ThemeBundle\Entity\Room;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -38,5 +39,21 @@ class RoomRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function findAvailableRoomsQuery():Query
+    {
+        $currentDateTime = new \DateTime();
+
+        return $this->createQueryBuilder("r")
+            ->andWhere("r.arrivalDate > :currentDateTime")
+            ->andWhere("r.isDeleted = :isDeleted")
+            ->innerJoin("r.user", "u") // Join with the user entity
+            ->andWhere("u.isDeleted = :isUserDeleted")
+            ->setParameter("currentDateTime", $currentDateTime)
+            ->setParameter("isDeleted", false)
+            ->setParameter("isUserDeleted", false)
+            ->orderBy('r.createdAt', 'DESC') 
+            ->getQuery();
     }
 }
