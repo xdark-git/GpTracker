@@ -7,6 +7,11 @@
 {% block body %}
     <div class="gp-login-container">
         <div class="header">
+            <div class="auth-return-home">
+                <a href="{{ path('app_home') }}">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                </a>
+            </div>
             <img src="{{asset('theme/assets/img/logo/gp-tracker-logo-1.png')}}" alt="Logo Gp-tracker" class="logo">
             {# <h1>Quel est votre adresse Email ?</h1>
             <p>Entrez votre email pour vous connecter ou créer un compte GP-Tracker</p> #}
