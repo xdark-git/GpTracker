@@ -12,7 +12,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Viewpoint\ThemeBundle\Validator as ThemeAssert;
-
+use Viewpoint\ThemeBundle\Entity\City;
 #[ORM\Entity(repositoryClass: RoomRepository::class)]
 #[ThemeAssert\RoomDates()]
 #[ThemeAssert\RoomLocations()]
@@ -57,11 +57,11 @@ class Room
     #[Assert\Sequentially([new Assert\NotBlank(), new Assert\Type("float")])]
     private ?float $weight = null;
 
-    #[ORM\ManyToOne(targetEntity: City::class)]
+    #[ORM\ManyToOne(targetEntity: City::class, fetch: "EAGER")]
     #[ORM\JoinColumn(nullable: false)]
     private City $departureLocation;
 
-    #[ORM\ManyToOne(targetEntity: City::class)]
+    #[ORM\ManyToOne(targetEntity: City::class, fetch: "EAGER")]
     #[ORM\JoinColumn(nullable: false)]
     private City $arrivalLocation;
 
