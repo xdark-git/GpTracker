@@ -8,6 +8,7 @@ use Doctrine\Persistence\ObjectManager;
 use Viewpoint\AdminBundle\Traits\AdminTrait;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
+use Viewpoint\ThemeBundle\Entity\City;
 use Viewpoint\ThemeBundle\Entity\Room;
 use Viewpoint\ThemeBundle\Entity\RoomCellular;
 use Viewpoint\ThemeBundle\Traits\ThemeTrait;
@@ -39,21 +40,21 @@ class AppFixtures extends Fixture implements FixtureGroupInterface
 
         $user1 = $this->createUser(
             email: "test@gmail.com",
-            username: 'gpadmin1',
+            username: "gpadmin1",
             password: "test",
             role: $roleAdmin,
             isVerified: true
         );
         $user2 = $this->createUser(
             email: $faker->email,
-            username: 'gpadmin2',
+            username: "gpadmin2",
             password: "test",
             role: $roleAdmin,
             isVerified: true
         );
         $user3 = $this->createUser(
             email: $faker->email,
-            username: 'gpadmin3',
+            username: "gpadmin3",
             password: "test",
             role: $roleAdmin,
             isVerified: true
@@ -73,6 +74,16 @@ class AppFixtures extends Fixture implements FixtureGroupInterface
         $manager->persist($conveyance3);
         $manager->flush();
 
+        /* CITIES CREATION */
+        $city1 = new City();
+        $city2 = new City();
+
+        $city1->setName("Dakar")->setCountry("Senegal");
+        $city2->setName("Paris")->setCountry("France");
+        $manager->persist($city1);
+        $manager->persist($city2);
+        $manager->flush();
+
         /* ROOM CREATION */
         $users = [$user1, $user2, $user3];
         $conveyances = [$conveyance1, $conveyance2, $conveyance3];
@@ -80,7 +91,7 @@ class AppFixtures extends Fixture implements FixtureGroupInterface
         for ($i = 0; $i < 200; $i++) {
             $randomUser = array_rand($users);
             $randomConveyance = array_rand($conveyances);
-            
+
             $room = new Room();
 
             $room
@@ -88,8 +99,8 @@ class AppFixtures extends Fixture implements FixtureGroupInterface
                 ->setCurrency("XOF")
                 ->setUnitPrice($faker->numberBetween(1000, 5000))
                 ->setWeight($faker->numberBetween(10, 100))
-                ->setDepartureLocation($faker->city)
-                ->setArrivalLocation($faker->city)
+                ->setDepartureLocation($city1)
+                ->setArrivalLocation($city2)
                 ->setDepartureDate($faker->dateTimeBetween("now", "+1 week"))
                 ->setArrivalDate($faker->dateTimeBetween("+1 week", "+1 month"))
                 ->setUser($users[$randomUser])
