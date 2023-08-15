@@ -12,6 +12,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 #[ORM\Entity(repositoryClass: RoomRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Room
 {
     use TimestampableEntity;
@@ -31,18 +32,8 @@ class Room
     ]
     private ?string $name = null;
 
-    // #[
-    //     Assert\Sequentially([
-    //         new Assert\NotBlank(),
-    //         new Assert\Length(max: 250),
-    //         new Assert\Regex(
-    //             pattern: "/^[a-z0-9-_]+$/",
-    //             message: "La valeur {{ value }} n'est pas valide."
-    //         ),
-    //     ])
-    // ]
+    #[Gedmo\Slug(fields: ["name"], prefix: "gp-")]
     #[ORM\Column(type: Types::STRING, unique: true, length: 255)]
-    #[Gedmo\Slug(prefix: "gp-", fields: ["departureLocation", "arrivalLocation", "name"])]
     private ?string $slug = null;
 
     #[ORM\Column(type: Types::STRING, length: 3)]
@@ -62,25 +53,13 @@ class Room
     #[Assert\Sequentially([new Assert\NotBlank(), new Assert\Type("float")])]
     private ?float $weight = null;
 
-    #[ORM\Column(type: Types::STRING, length: 255)]
-    #[
-        Assert\Sequentially([
-            new Assert\NotBlank(),
-            new Assert\Type("string"),
-            new Assert\Length(max: 250),
-        ])
-    ]
-    private ?string $departureLocation = null;
+    #[ORM\ManyToOne(targetEntity: City::class)]
+    #[ORM\JoinColumn(nullable: false)]
+    private City $departureLocation;
 
-    #[ORM\Column(type: Types::STRING, length: 255)]
-    #[
-        Assert\Sequentially([
-            new Assert\NotBlank(),
-            new Assert\Type("string"),
-            new Assert\Length(max: 250),
-        ])
-    ]
-    private ?string $arrivalLocation = null;
+    #[ORM\ManyToOne(targetEntity: City::class)]
+    #[ORM\JoinColumn(nullable: false)]
+    private City $arrivalLocation;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     #[Assert\Sequentially([new Assert\NotBlank(), new Assert\Type("\DateTimeInterface")])]
@@ -190,23 +169,23 @@ class Room
         return $this;
     }
 
-    public function getDepartureLocation(): ?string
+    public function getDepartureLocation(): City
     {
         return $this->departureLocation;
     }
 
-    public function setDepartureLocation(?string $departureLocation): self
+    public function setDepartureLocation(City $departureLocation): self
     {
         $this->departureLocation = $departureLocation;
         return $this;
     }
 
-    public function getArrivalLocation(): ?string
+    public function getArrivalLocation(): City
     {
         return $this->arrivalLocation;
     }
 
-    public function setArrivalLocation(?string $arrivalLocation): self
+    public function setArrivalLocation(City $arrivalLocation): self
     {
         $this->arrivalLocation = $arrivalLocation;
         return $this;
@@ -295,4 +274,17 @@ class Room
         return $this->viewsHistory;
     }
 
+    #[ORM\PrePersist]
+    #[ORM\PreUpdate]
+    public function generateSlug(): void
+    {
+        $newSlug = sprintf(
+            "%s-%s-%s",
+            $this->departureLocation->getName(),
+            $this->arrivalLocation->getName(),
+            $this->name
+        );
+        // Gedmo\Slug will take care of the urlization
+        $this->setSlug($newSlug);
+    }
 }
