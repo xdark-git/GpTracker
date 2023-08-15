@@ -28,10 +28,12 @@ class RoomFormType extends AbstractType
             ->add("departureLocation", TextType::class, [
                 "label" => "Lieu de depart",
                 "help" => "Mettre les informations necessaires",
+                "mapped" => false
             ])
             ->add("arrivalLocation", TextType::class, [
                 "label" => "Lieu d’arrivée",
                 "help" => "Mettre les informations necessaires",
+                "mapped" => false
             ])
             ->add("departureDate", DateType::class, [
                 "label" => "Date de depart ",
