@@ -23,7 +23,7 @@
                             </span>
                             <span>
                                 <h3>Zone de depart</h3>
-                                <p>{{ room.departureLocation|default('-') }}</p>
+                                <p>{{ room.departureLocation.name|default('-') }}</p>
                             </span>
                         </div>
                         <div>
@@ -32,7 +32,7 @@
                             </span>
                             <span>
                                 <h3>Zone d’arrivée</h3>
-                                <p>{{ room.arrivalLocation|default('-') }}</p>
+                                <p>{{ room.arrivalLocation.name|default('-') }}</p>
                             </span>
                         </div>
                         <div>
