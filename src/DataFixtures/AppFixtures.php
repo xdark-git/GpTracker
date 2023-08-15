@@ -75,13 +75,16 @@ class AppFixtures extends Fixture implements FixtureGroupInterface
         $manager->flush();
 
         /* CITIES CREATION */
-        $city1 = new City();
-        $city2 = new City();
+        $cities = [];
 
-        $city1->setName("Dakar")->setCountry("Senegal");
-        $city2->setName("Paris")->setCountry("France");
-        $manager->persist($city1);
-        $manager->persist($city2);
+        for ($i = 0; $i < 20; $i++) {
+            $city = new City();
+            $city->setName($faker->city);
+            $city->setCountry($faker->country);
+
+            $manager->persist($city);
+            $cities[] = $city;
+        }
         $manager->flush();
 
         /* ROOM CREATION */
@@ -89,9 +92,9 @@ class AppFixtures extends Fixture implements FixtureGroupInterface
         $conveyances = [$conveyance1, $conveyance2, $conveyance3];
 
         for ($i = 0; $i < 200; $i++) {
-            $randomUser = array_rand($users);
-            $randomConveyance = array_rand($conveyances);
-
+            $randomUserIndex = array_rand($users);
+            $randomConveyanceIndex = array_rand($conveyances);
+            $randomCityIndex = array_rand($cities);
             $room = new Room();
 
             $room
@@ -99,12 +102,12 @@ class AppFixtures extends Fixture implements FixtureGroupInterface
                 ->setCurrency("XOF")
                 ->setUnitPrice($faker->numberBetween(1000, 5000))
                 ->setWeight($faker->numberBetween(10, 100))
-                ->setDepartureLocation($city1)
-                ->setArrivalLocation($city2)
+                ->setDepartureLocation($cities[$randomCityIndex])
+                ->setArrivalLocation($cities[$randomCityIndex + 1] ?? $cities[0])
                 ->setDepartureDate($faker->dateTimeBetween("now", "+1 week"))
                 ->setArrivalDate($faker->dateTimeBetween("+1 week", "+1 month"))
-                ->setUser($users[$randomUser])
-                ->setConveyance($conveyances[$randomConveyance]);
+                ->setUser($users[$randomUserIndex])
+                ->setConveyance($conveyances[$randomConveyanceIndex]);
             
             $cellular = new RoomCellular();
             $cellular
