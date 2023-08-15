@@ -10,6 +10,7 @@ use Viewpoint\ThemeBundle\Service\ThemeResolver;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Response;
+use Viewpoint\ThemeBundle\Entity\City;
 use Viewpoint\ThemeBundle\Entity\Room;
 use Viewpoint\ThemeBundle\Repository\RoomRepository;
 
@@ -29,14 +30,14 @@ class RoomController extends AbstractController
         RoomRepository $repository
     ): Response {
         $availableRoomsQuery = $repository->findAvailableRoomsQuery();
+
         $rooms = $paginator->paginate($availableRoomsQuery, $request->query->getInt("page", 1), 12);
-        
         return $this->render($this->themeResolver->getThemePathPrefix("/core/rooms.html.twig"), [
             "rooms" => $rooms,
         ]);
     }
 
-    #[Route("/rooms/new", name: "app_room_creation", methods: ["GET", "POST", "PUT"])]
+    #[Route("/new", name: "app_room_creation", methods: ["GET", "POST", "PUT"])]
     public function create(Request $request, EntityManagerInterface $entityManager): Response
     {
         /** @var User */
@@ -45,6 +46,8 @@ class RoomController extends AbstractController
             $this->addFlash("error", 'Veillez d\'abord compléter votre profile!');
             return $this->redirectToRoute("app_informations_user");
         }
+
+        $cities = $entityManager->getRepository(City::class)->findAll();
 
         $form = $this->createForm(RoomFormType::class);
         $form->handleRequest($request);
@@ -69,6 +72,7 @@ class RoomController extends AbstractController
             $this->themeResolver->getThemePathPrefix("/core/room-creation.html.twig"),
             [
                 "roomCreationForm" => $form->createView(),
+                "cities" => $cities
             ]
         );
     }
