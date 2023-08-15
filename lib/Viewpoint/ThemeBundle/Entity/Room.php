@@ -59,11 +59,11 @@ class Room
 
     #[ORM\ManyToOne(targetEntity: City::class, fetch: "EAGER")]
     #[ORM\JoinColumn(nullable: false)]
-    private City $departureLocation;
+    private ?City $departureLocation = null;
 
     #[ORM\ManyToOne(targetEntity: City::class, fetch: "EAGER")]
     #[ORM\JoinColumn(nullable: false)]
-    private City $arrivalLocation;
+    private ?City $arrivalLocation = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     #[Assert\Sequentially([new Assert\NotBlank(), new Assert\Type("\DateTimeInterface")])]
@@ -173,7 +173,7 @@ class Room
         return $this;
     }
 
-    public function getDepartureLocation(): City
+    public function getDepartureLocation(): ?City
     {
         return $this->departureLocation;
     }
@@ -184,7 +184,7 @@ class Room
         return $this;
     }
 
-    public function getArrivalLocation(): City
+    public function getArrivalLocation(): ?City
     {
         return $this->arrivalLocation;
     }
