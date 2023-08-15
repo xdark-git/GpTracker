@@ -54,7 +54,7 @@ class RoomController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             /*
-               all the form not mapped fields are directly set in formtype 
+               all the form not mapped fields are directly handle in formtype 
              */
             $room = $form->getData();
 
