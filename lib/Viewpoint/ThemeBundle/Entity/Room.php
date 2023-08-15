@@ -11,7 +11,11 @@ use Viewpoint\AdminBundle\Entity\User;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Viewpoint\ThemeBundle\Validator as ThemeAssert;
+
 #[ORM\Entity(repositoryClass: RoomRepository::class)]
+#[ThemeAssert\RoomDates()]
+#[ThemeAssert\RoomLocations()]
 #[ORM\HasLifecycleCallbacks]
 class Room
 {
