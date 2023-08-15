@@ -53,6 +53,9 @@ class RoomController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            /*
+               all the form not mapped fields are directly set in formtype 
+             */
             $room = $form->getData();
 
             $roomCellular = $room->getCellular();
