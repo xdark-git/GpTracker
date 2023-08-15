@@ -2,6 +2,7 @@
 
 namespace Viewpoint\ThemeBundle\Form;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -15,11 +16,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Viewpoint\ThemeBundle\Entity\Room;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Validator\Constraints\IsTrue;
+use Viewpoint\ThemeBundle\Entity\City;
 
 class RoomFormType extends AbstractType
 {
-    public function __construct(private Security $security)
-    {
+    public function __construct(
+        private Security $security,
+        private EntityManagerInterface $entityManager
+    ) {
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -28,28 +32,28 @@ class RoomFormType extends AbstractType
             ->add("departureLocation", TextType::class, [
                 "label" => "Lieu de depart",
                 "help" => "Mettre les informations necessaires",
-                "mapped" => false
+                "mapped" => false,
             ])
             ->add("arrivalLocation", TextType::class, [
                 "label" => "Lieu d’arrivée",
                 "help" => "Mettre les informations necessaires",
-                "mapped" => false
+                "mapped" => false,
             ])
             ->add("departureDate", DateType::class, [
                 "label" => "Date de depart ",
                 "help" => "Preciser votre date départ",
                 "widget" => "single_text",
                 "attr" => [
-                    "class" => "gp-room-datepicker"
-                ]
+                    "class" => "gp-room-datepicker",
+                ],
             ])
             ->add("arrivalDate", DateType::class, [
                 "label" => "Date d'arrivée",
                 "help" => "Preciser votre date d'arrivée",
                 "widget" => "single_text",
                 "attr" => [
-                    "class" => "gp-room-datepicker"
-                ]
+                    "class" => "gp-room-datepicker",
+                ],
             ])
             ->add("cellular", RoomCellularFormType::class)
             ->add("name", TextType::class, [
@@ -103,6 +107,7 @@ class RoomFormType extends AbstractType
         $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) use (
             $user
         ): void {
+            /** @var Room */
             $entity = $event->getData();
 
             if ($entity instanceof Room && !$entity->getUser()) {
@@ -111,6 +116,31 @@ class RoomFormType extends AbstractType
 
             if ($entity instanceof Room && !$entity->getRoomMetaKeyword()) {
                 $entity->setRoomMetaKeyword(null);
+            }
+            // setting the departure and arrival location data since not mapped
+            $form = $event->getForm();
+
+            $departureLocationFormData = $form->get("departureLocation")->getData();
+            $arrivalLocationFormData = $form->get("arrivalLocation")->getData();
+
+            if ($departureLocationFormData) {
+                $departureCity = $this->entityManager
+                    ->getRepository(City::class)
+                    ->findOneBy(["name" => $departureLocationFormData]);
+
+                if ($departureCity && $departureCity != $entity->getDepartureLocation()) {
+                    $entity->setDepartureLocation($departureCity);
+                }
+            }
+
+            if ($arrivalLocationFormData) {
+                $arrivalCity = $this->entityManager
+                    ->getRepository(City::class)
+                    ->findOneBy(["name" => $arrivalLocationFormData]);
+
+                if ($arrivalCity && $arrivalCity != $entity->getArrivalLocation()) {
+                    $entity->setArrivalLocation($arrivalCity);
+                }
             }
 
             $event->setData($entity);
