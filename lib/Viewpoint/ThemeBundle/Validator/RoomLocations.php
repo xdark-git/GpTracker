@@ -7,7 +7,8 @@ use Symfony\Component\Validator\Constraint;
 #[\Attribute]
 class RoomLocations extends Constraint
 {
-    public string $message = "room_locations.same_location";
+    public string $messageSameLocation = "La ville de départ et d'arrivée ne peuvent pas être les mêmes.";
+    public string $messageCityNotFound = "Ville introuvable. Veuillez choisir une ville valide.";
 
     public function getTargets(): string
     {
