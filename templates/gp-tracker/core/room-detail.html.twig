@@ -16,6 +16,25 @@
             <section class="section-1">
                 <div class="informations">
                     <h2>Détails</h2>
+                    <div class="dropdown">
+                        <button id="dropdown-btn" class="dropdown-btn">
+                            <i class="fa-solid fa-ellipsis-v"></i>
+                        </button>
+                        <div class="dropdown-content">
+                            <button class="edit-btn">Modifier </button>
+                            <button class="del-btn">Supprimer</button>
+                        </div>
+                    </div>
+                     <div class="confirmation-modal" id="confirmationModal">
+                        <div class="modal-content">
+                            <h2>Confirmer la suppression</h2>
+                            <p>Voulez-vous vraiment supprimer votre salon ?</p>
+                            <form class="modal-buttons">
+                                <button id="confirmDelete">Oui</button>
+                                <button id="cancelDelete">Non</button>
+                            </form>
+                        </div>
+                    </div>
                     <div>
                         <div>
                             <span class="icons">
