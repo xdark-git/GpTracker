@@ -1,9 +1,9 @@
-{% set currencySymbols = {
+{# {% set currencySymbols = {
     'EUR': '€',
     'AED': 'Dhs',
     'XOF': 'F',
     'USD': '$',
-} %}
+} %} #}
 {% for room in rooms %}
     <div class="room">
         <h4>{{ room.name|default('gp tracker') }}</h4>
@@ -23,9 +23,9 @@
             <div class="price-details">
                 
                 <div class="price">
-                    {% if currencySymbols[room.currency] is defined %}
-                        {{ currencySymbols[room.currency] ~ ' ' ~ room.unitPrice|number_format(0, '.', ',') }} /kg
-                    {% endif %}
+                    {# {% if currencySymbols[room.currency] is defined %} #}
+                        {{room.currency.symbol ~ ' ' ~ room.unitPrice|number_format(0, '.', ',') }} /kg
+                    {# {% endif %} #}
                 </div>
                 <a href="{{ path('app_room_detail', {'slug': room.slug}) }}" class="see-details">Voir détails</a>
             </div>

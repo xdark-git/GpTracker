@@ -89,7 +89,7 @@
                             </span>
                             <span>
                                 <h3>Prix</h3>
-                                <p>{{ room.unitPrice|default('-') ~ ' ' ~ room.currency|default('-') }}</p>
+                                <p>{{ room.unitPrice|default('-') ~ ' ' ~ room.currency.symbol|default('') }}</p>
                             </span>
                         </div>
                         <div>
