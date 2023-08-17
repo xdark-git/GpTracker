@@ -264,8 +264,11 @@ function displayPreviewDialog() {
         }
 
         if (inputId === "unit-price") {
-            let currency = $form.find("#currency").val();
-            inputValue = inputValue + " " + currency;
+            let currency = $form
+                .find("#currency")
+                .find("option:selected")
+                .text();
+            inputValue = inputValue + " " + currency.split("-")[0];
         }
         if (inputId === "bag-size") {
             inputValue = inputValue + " Kg";
