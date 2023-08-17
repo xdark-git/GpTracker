@@ -174,18 +174,18 @@ function validForm(n = null, $tabs) {
             valid = false;
         }
 
-        if (
-            $input.attr("id") === "currency" &&
-            !currencyCode.code(inputValue)
-        ) {
-            $label.addClass("error");
-            valid = false;
-        } else if (
-            $input.attr("id") === "currency" &&
-            currencyCode.code(inputValue)
-        ) {
-            $input.val(currencyCode.code(inputValue).code);
-        }
+        // if (
+        //     $input.attr("id") === "currency" &&
+        //     !currencyCode.code(inputValue)
+        // ) {
+        //     $label.addClass("error");
+        //     valid = false;
+        // } else if (
+        //     $input.attr("id") === "currency" &&
+        //     currencyCode.code(inputValue)
+        // ) {
+        //     $input.val(currencyCode.code(inputValue).code);
+        // }
     });
 
     if (departureDateInput && arrivalDateInput) {
