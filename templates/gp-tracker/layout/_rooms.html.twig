@@ -1,22 +1,21 @@
-{# {% set currencySymbols = {
-    'EUR': '€',
-    'AED': 'Dhs',
-    'XOF': 'F',
-    'USD': '$',
-} %} #}
+{% set sliceMax = 8  %}
 {% for room in rooms %}
     <div class="room">
         <h4>{{ room.name|default('gp tracker') }}</h4>
         <div class="trip">
             <div class="trip-list">
                 <div class="departure-arrival">
-                    <span class="departure">{{ room.departureLocation.name|default('') }}</span>
+                    <span class="location">
+                        {{ room.departureLocation.name|default('')|slice(0, sliceMax) ~ (room.departureLocation.name|length > sliceMax ? '...' : '') }}
+                    </span>
                     <span class="scheme" >
                         <span class="dot dot-1"></span>
                         <span class="dot dot-2"></span>
                         <i class="fa-solid fa-plane"></i>
                     </span>
-                    <span class="arrival">{{ room.arrivalLocation.name|default('-') }}</span>
+                    <span class="location">
+                        {{ room.arrivalLocation.name|default('')|slice(0, sliceMax) ~ (room.arrivalLocation.name|length > sliceMax ? '...' : '') }}
+                    </span>
                 </div>
                 <div class="date">{{ room.departureDate|date("d-m-Y")|default('-') }}</div> 
             </div>
@@ -24,7 +23,7 @@
                 
                 <div class="price">
                     {# {% if currencySymbols[room.currency] is defined %} #}
-                        {{room.currency.symbol ~ ' ' ~ room.unitPrice|number_format(0, '.', ',') }} /kg
+                        {{room.unitPrice|number_format(0, '.', ',') ~ ' ' ~ room.currency.symbol }} /kg
                     {# {% endif %} #}
                 </div>
                 <a href="{{ path('app_room_detail', {'slug': room.slug}) }}" class="see-details">Voir détails</a>
