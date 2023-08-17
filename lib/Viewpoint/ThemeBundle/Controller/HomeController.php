@@ -8,6 +8,7 @@ use Viewpoint\ThemeBundle\Service\ThemeResolver;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Viewpoint\ThemeBundle\Entity\Room;
+use Viewpoint\ThemeBundle\Repository\RoomRepository;
 
 class HomeController extends AbstractController
 {
@@ -19,8 +20,9 @@ class HomeController extends AbstractController
     #[Route("/", name: "app_home")]
     public function index(): Response
     {
-        /** @var Room */
-        $rooms = $this->entitymanager->getRepository(Room::class)->findAvailableRoomForHomePage();
+        /** @var RoomRepository */ 
+        $roomRepository = $this->entitymanager->getRepository(Room::class);
+        $rooms = $roomRepository->findAvailableRoomForHomePage();
         
         return $this->render($this->themeResolver->getThemePathPrefix("/core/home.html.twig"), [
             "rooms" => $rooms,
