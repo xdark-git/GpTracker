@@ -17,6 +17,7 @@ use Viewpoint\ThemeBundle\Entity\Room;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Viewpoint\ThemeBundle\Entity\City;
+use Viewpoint\ThemeBundle\Entity\Currency;
 
 class RoomFormType extends AbstractType
 {
@@ -67,7 +68,11 @@ class RoomFormType extends AbstractType
                 "label" => "Moyen de Transport",
                 "help" => "Selectionner votre moyen de tranport",
             ])
-            ->add("currency", TextType::class, [
+            ->add("currency", EntityType::class, [
+                "class" => Currency::class,
+                "choice_label" => function ($currency) {
+                    return $currency->getSymbol() . " - " . $currency->getName();
+                },
                 "label" => "Devise",
                 "help" => "Entrer le code de la devise utilisée, par exemple : XOF",
             ])
