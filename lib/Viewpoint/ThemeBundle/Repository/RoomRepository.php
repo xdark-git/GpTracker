@@ -46,14 +46,14 @@ class RoomRepository extends ServiceEntityRepository
         $currentDateTime = new \DateTime();
 
         return $this->createQueryBuilder("r")
-            ->andWhere("r.arrivalDate > :currentDateTime")
+            ->andWhere("r.departureDate > :currentDateTime")
             ->andWhere("r.isDeleted = :isDeleted")
             ->innerJoin("r.user", "u") // Join with the user entity
             ->andWhere("u.isDeleted = :isUserDeleted")
             ->setParameter("currentDateTime", $currentDateTime)
             ->setParameter("isDeleted", false)
             ->setParameter("isUserDeleted", false)
-            ->orderBy('r.createdAt', 'DESC') 
+            ->orderBy('r.departureDate', 'ASC') 
             ->getQuery();
     }
 }
