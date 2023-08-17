@@ -56,4 +56,21 @@ class RoomRepository extends ServiceEntityRepository
             ->orderBy('r.departureDate', 'ASC') 
             ->getQuery();
     }
+
+    public function findAvailableRoomForHomePage(int $limit = 3){
+        $currentDateTime = new \DateTime();
+
+        return $this->createQueryBuilder("r")
+            ->andWhere("r.departureDate > :currentDateTime")
+            ->andWhere("r.isDeleted = :isDeleted")
+            ->innerJoin("r.user", "u") // Join with the user entity
+            ->andWhere("u.isDeleted = :isUserDeleted")
+            ->setParameter("currentDateTime", $currentDateTime)
+            ->setParameter("isDeleted", false)
+            ->setParameter("isUserDeleted", false)
+            ->orderBy('r.departureDate', 'ASC') 
+            ->setMaxResults($limit) 
+            ->getQuery()
+            ->getResult();
+    }
 }
