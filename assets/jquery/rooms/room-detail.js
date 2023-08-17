@@ -4,18 +4,18 @@ import $ from "jquery";
    DROPDOWN MENU
  --------------------------------------------*/
 
-$(document).ready(function () {
+$(function () {
     const dropdownBtn = $("#dropdown-btn");
     const dropdownContent = $(".dropdown-content");
 
     dropdownBtn.on("click", function () {
-        dropdownContent.toggleClass("show");
+        dropdownContent.toggleClass("hidden");
     });
 
     $(window).on("click", function (event) {
         if (!$(event.target).hasClass("dropdown-btn")) {
-            if (dropdownContent.hasClass("show")) {
-                dropdownContent.removeClass("show");
+            if (dropdownContent.hasClass("hidden")) {
+                dropdownContent.toggleClass("hidden");
             }
         }
     });
@@ -25,27 +25,25 @@ $(document).ready(function () {
     MODAL
  --------------------------------------------*/
 
-$(document).ready(function() {
-    const deleteButton = $(".del-btn");
+$(function() {
+    const deleteButton = $("#btn-delete");
     const confirmationModal = $("#confirmationModal");
     const confirmDeleteButton = $("#confirmDelete");
     const cancelDeleteButton = $("#cancelDelete");
-
+    console.log(deleteButton.length);
     deleteButton.on("click", function() {
-        confirmationModal.css("display", "block");
+        confirmationModal.removeClass('hidden');
+        
     });
 
     confirmDeleteButton.on("click", function() {
         
-        confirmationModal.css("display", "none");
+        confirmationModal.addClass('hidden');
     });
 
     cancelDeleteButton.on("click", function() {
-        confirmationModal.css("display", "none");
-    });
-
-    
-    
+        confirmationModal.addClass('hidden');
+    });    
 });
 
 
