@@ -32,40 +32,6 @@ class RegisterController extends AbstractController
         $this->validator = $validator;
     }
 
-    #[Route("/", name: "app_home")]
-    public function home(ThemeResolver $themeResolver): Response
-    {
-        return $this->render($themeResolver->getThemePathPrefix("/core/home.html.twig"));
-    }
-
-    // #[Route("/room/detail", name: "app_room_detail")]
-    // public function roomDetail(ThemeResolver $themeResolver): Response
-    // {
-
-    // }
-
-    // #[Route("/rooms/create", name: "app_room_creation")]
-    // public function roomCreation(ThemeResolver $themeResolver): Response
-    // {
-    //     return $this->render($themeResolver->getThemePathPrefix("/core/room-creation.html.twig"));
-    // }
-
-    // #[Route("/informations", name: "app_informations")]
-    // public function informations(ThemeResolver $themeResolver): Response
-    // {
-    //     return $this->render(
-    //         $themeResolver->getThemePathPrefix("/core/informations/contents/account.html.twig")
-    //     );
-    // }
-
-    // #[Route("/informations/account", name: "app_informations_user")]
-    // public function informationUser(ThemeResolver $themeResolver): Response
-    // {
-    //     return $this->render(
-    //         $themeResolver->getThemePathPrefix("/core/informations/contents/account.html.twig")
-    //     );
-    // }
-
     #[Route("/informations/empty-message", name: "app_empty_message")]
     public function emptyMessage(ThemeResolver $themeResolver): Response
     {
