@@ -21,18 +21,20 @@
                             <i class="fa-solid fa-ellipsis-v"></i>
                         </button>
                         <div class="dropdown-content">
-                            <button class="edit-btn">Modifier </button>
-                            <button class="del-btn">Supprimer</button>
+                            <button class="edit-btn" id="btn-edit">Modifier </button>
+                            <button class="del-btn" id="btn-delete">Supprimer</button>
                         </div>
                     </div>
-                     <div class="confirmation-modal" id="confirmationModal">
+                     <div class="confirmation-modal hidden" id="confirmationModal">
                         <div class="modal-content">
                             <h2>Confirmer la suppression</h2>
                             <p>Voulez-vous vraiment supprimer votre salon ?</p>
-                            <form class="modal-buttons">
-                                <button id="confirmDelete">Oui</button>
-                                <button id="cancelDelete">Non</button>
-                            </form>
+                            <div class="modal-buttons">
+                                <form action="#">
+                                    <button id="confirmDelete" class="confirm-deletion">Oui</button>
+                                </form>
+                                <button id="cancelDelete" class="cancel-deletion">Non</button>
+                            </div>
                         </div>
                     </div>
                     <div>
