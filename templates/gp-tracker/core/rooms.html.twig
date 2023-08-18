@@ -83,7 +83,7 @@
             <div class="rooms" id="room-list-container">
                 <div class="actions">
                     {% form_theme sortForm 'gp-tracker/form/room_creation_form.html.twig' %}
-                    {{ form_start(sortForm, {'attr': {'class': 'select-filter'} }) }}
+                    {{ form_start(sortForm, {'attr': {'id' : 'sort-form','class': 'select-filter'} }) }}
                         {{ form_row(sortForm.sort, {
                             'id': 'filter-select'
                         }) }}
