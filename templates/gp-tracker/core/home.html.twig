@@ -22,12 +22,22 @@
                     </a>
                 </li>
             </ul>
-            <form class="content" action="">
+            {{ form_start(searchForm, {'attr': {'class': 'content'} }) }}
                 <div class="departure">
                     <label for="departure">Départ de (*)</label>
                     <div>
                         <i class="fa-solid fa-plane-departure"></i>
-                        <input type="text" name="departure" id="departure" required>
+                        {{ form_row(searchForm.departureLocation, {
+                            'id': 'departure',
+                            'attr': {
+                                    'list': 'departure-location-list'
+                                }
+                        }) }}
+                        <datalist id="departure-location-list">
+                            {% for city in cities %}
+                                <option value="{{ city.name }}"></option>
+                            {% endfor %}
+                        </datalist>
                         <i class="fa-solid fa-xmark"></i>
                     </div>
                 </div>
@@ -35,20 +45,22 @@
                     <label for="arrival">Arrivée à (*)</label>
                     <div>
                         <i class="fa-solid fa-plane-arrival"></i>
-                        <input type="text" name="arrival" id="arrival" required>
+                        {{ form_row(searchForm.arrivalLocation, {
+                            'id': 'arrival',
+                            'attr': {
+                                    'list': 'arrival-location-list'
+                                }
+                        }) }}
+                        <datalist id="arrival-location-list">
+                            {% for city in cities %}
+                                <option value="{{ city.name }}"></option>
+                            {% endfor %}
+                        </datalist>
                         <i class="fa-solid fa-xmark"></i>
                     </div>
                 </div>
-                {# <div class="price">
-                    <label for="price">Prix/Kg</label>
-                    <div>
-                        <i class="fa-solid fa-dollar-sign"></i>
-                        <input type="text" name="price" id="price">
-                        <i class="fa-solid fa-xmark"></i>
-                    </div>
-                </div> #}
-                <button>Rechercher</button>
-            </form>
+                <button type="submit">Rechercher</button>
+            {{ form_end(searchForm, {'render_rest': false}) }}
         </div>
         {# END SEARCH ROOM SECTION  #}
 
