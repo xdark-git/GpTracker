@@ -36,4 +36,18 @@ class HomeController extends AbstractController
             "cities" => $cities
         ]);
     }
+
+    #[Route("/code-of-conduct", name: "app_Code_of_Conduct")]
+    public function CodeOfConduct(): Response
+    {
+        return $this->render($this->themeResolver->getThemePathPrefix("/core/CodeOfConduct.html.twig"));
+    }
+
+    #[Route("/security-measures", name: "app_Security_measures")]
+    public function securityMeasures(): Response
+    {
+        return $this->render(
+            $this->themeResolver->getThemePathPrefix("/core/securityMeasures.html.twig")
+        );
+    }
 }

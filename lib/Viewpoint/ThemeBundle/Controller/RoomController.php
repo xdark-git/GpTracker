@@ -109,16 +109,5 @@ class RoomController extends AbstractController
             ["room" => $room]
         );
     }
-    #[Route("/code-of-conduct", name: "app_Code_of_Conduct")]
-    public function CodeOfConduct(ThemeResolver $themeResolver): Response
-    {
-        return $this->render($themeResolver->getThemePathPrefix("/core/CodeOfConduct.html.twig"));
-    }
-    #[Route("/securityMeasures", name: "app_Security_measures")]
-    public function securityMeasures(ThemeResolver $themeResolver): Response
-    {
-        return $this->render(
-            $themeResolver->getThemePathPrefix("/core/securityMeasures.html.twig")
-        );
-    }
+    
 }
