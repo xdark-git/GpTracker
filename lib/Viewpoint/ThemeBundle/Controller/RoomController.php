@@ -95,7 +95,7 @@ class RoomController extends AbstractController
         );
     }
 
-    #[Route("/rooms/s/{slug}", name: "app_room_detail", methods: ["GET"])]
+    #[Route("/s/{slug}", name: "app_room_detail", methods: ["GET"])]
     public function show(string $slug, EntityManagerInterface $entityManager)
     {
         $room = $entityManager->getRepository(Room::class)->findOneBy(["slug" => $slug]);
@@ -109,7 +109,7 @@ class RoomController extends AbstractController
             ["room" => $room]
         );
     }
-    #[Route("/CodeOfConduct", name: "app_Code_of_Conduct")]
+    #[Route("/code-of-conduct", name: "app_Code_of_Conduct")]
     public function CodeOfConduct(ThemeResolver $themeResolver): Response
     {
         return $this->render($themeResolver->getThemePathPrefix("/core/CodeOfConduct.html.twig"));
