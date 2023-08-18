@@ -7,23 +7,39 @@
 {% block body %}
 <main>
     <div class="container gp-rooms">
-        <form class="search">
+        {% form_theme searchForm 'gp-tracker/form/room_creation_form.html.twig' %}
+
+        {{ form_start(searchForm, {'attr': {'class': 'search'} }) }}
             <div class="form-container">
-                {# <div class="header">
-                    <h2>Rechercher</h2>
-                    <span class="cancel">Annuler</span>
-                </div> #}
                 <div class="form-group">
                     <div class="input-container">
                         <i class="fa-solid fa-plane-departure"></i>
-                        <input type="text" value="dsqdjfmqjdfmq" name="departure" id="departure" required>
+                        {{ form_row(searchForm.departureLocation, {
+                            'attr': {
+                                    'list': 'departure-location-list'
+                                }
+                        }) }}
+                        <datalist id="departure-location-list">
+                            {% for city in cities %}
+                                <option value="{{ city.name }}"></option>
+                            {% endfor %}
+                        </datalist>
                     </div>
                     <div class="switcher">
                         <i class="fa-solid fa-arrow-right-arrow-left"></i>
                     </div>
                     <div class="input-container">
                         <i class="fa-solid fa-plane-arrival"></i>
-                        <input type="text" name="arrival" id="arrival" required>
+                        {{ form_row(searchForm.arrivalLocation, {
+                            'attr': {
+                                    'list': 'arrival-location-list'
+                                }
+                        }) }}
+                        <datalist id="arrival-location-list">
+                            {% for city in cities %}
+                                <option value="{{ city.name }}"></option>
+                            {% endfor %}
+                        </datalist>
                     </div>
                 </div>
                 <div class="form-group input-type-date">
@@ -36,7 +52,9 @@
                                 <i class="fa-solid fa-chevron-right"></i>
                             </button>
                         </div>
-                        <input type="month" name="start-date" id="start-date">
+                        {{ form_row(searchForm.minDate, {
+                            'id': 'start-date'
+                        }) }}
                     </div>
                     <div class="divider"></div>
                     <div class="input-container">
@@ -48,7 +66,9 @@
                                 <i class="fa-solid fa-chevron-right"></i>
                             </button>
                         </div>
-                        <input type="month" name="end-date" id="end-date">
+                        {{ form_row(searchForm.maxDate, {
+                            'id': 'end-date'
+                        }) }}
                     </div>
                 </div>
                 <button type="submit">
@@ -56,21 +76,18 @@
                     <i class="fa-solid fa-magnifying-glass"></i>    
                 </button>
             </div>
-        </form>
+        {{ form_end(searchForm, {'render_rest': false}) }}
+
         <section class="content">
             <div class=""></div>
             <div class="rooms" id="room-list-container">
                 <div class="actions">
-                    <div class="select-filter">
-                        {# <i class="fa-solid fa-arrow-down-wide-short"></i>
-                        <span>Trier par : </span> #}
-                        <select id="filter-select">
-                            <option value="">Tier par : </option>
-                            <option value="cheaper">Moins cher</option>
-                            <option value="weight">Poids disponible</option>
-                            <option value="price">Prix</option>
-                        </select>
-                    </div>
+                    {% form_theme sortForm 'gp-tracker/form/room_creation_form.html.twig' %}
+                    {{ form_start(sortForm, {'attr': {'class': 'select-filter'} }) }}
+                        {{ form_row(sortForm.sort, {
+                            'id': 'filter-select'
+                        }) }}
+                    {{ form_end(sortForm, {'render_rest': false}) }}
                     <a href="{{ path('app_room_creation') }}" class="create-room">
                         <i class="fa-solid fa-house"></i>
                         <span>Créer Salon</span>
