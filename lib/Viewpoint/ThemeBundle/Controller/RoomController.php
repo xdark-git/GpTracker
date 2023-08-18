@@ -34,22 +34,21 @@ class RoomController extends AbstractController
         $searchForm = $this->createForm(SearchFormType::class);
         $searchForm->handleRequest($request);
         $searchFormData = $searchForm->getData();
-        
+
         $sortForm = $this->createForm(RoomSortType::class);
         $sortForm->handleRequest($request);
-        $sortFormData = $sortForm->getData();
+        $sortFormData = $sortForm->get("sort")->getData();
 
-        
         $availableRoomsQuery = $repository->findAvailableRoomsQuery($searchFormData, $sortFormData);
-        
+
         $rooms = $paginator->paginate($availableRoomsQuery, $request->query->getInt("page", 1), 12);
-        
+
         $cities = $this->entityManager->getRepository(City::class)->findAll();
         return $this->render($this->themeResolver->getThemePathPrefix("/core/rooms.html.twig"), [
             "rooms" => $rooms,
             "cities" => $cities,
             "searchForm" => $searchForm,
-            "sortForm" => $sortForm
+            "sortForm" => $sortForm,
         ]);
     }
 
