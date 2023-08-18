@@ -17,7 +17,7 @@ class RoomSortType extends AbstractType
             "placeholder" => "Trier par :",
             "choices" => [
                 "Moins cher" => "cheaper",
-                "weight" => "Poids",
+                "Poids" => "weight",
             ],
         ]);
     }
