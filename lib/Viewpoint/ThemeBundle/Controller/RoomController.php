@@ -12,6 +12,8 @@ use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Viewpoint\ThemeBundle\Entity\City;
 use Viewpoint\ThemeBundle\Entity\Room;
+use Viewpoint\ThemeBundle\Form\RoomSortType;
+use Viewpoint\ThemeBundle\Form\SearchFormType;
 use Viewpoint\ThemeBundle\Repository\RoomRepository;
 
 #[Route("/rooms")]
@@ -29,11 +31,25 @@ class RoomController extends AbstractController
         PaginatorInterface $paginator,
         RoomRepository $repository
     ): Response {
-        $availableRoomsQuery = $repository->findAvailableRoomsQuery();
+        $searchForm = $this->createForm(SearchFormType::class);
+        $searchForm->handleRequest($request);
+        $searchFormData = $searchForm->getData();
+        
+        $sortForm = $this->createForm(RoomSortType::class);
+        $sortForm->handleRequest($request);
+        $sortFormData = $sortForm->getData();
 
+        
+        $availableRoomsQuery = $repository->findAvailableRoomsQuery($searchFormData, $sortFormData);
+        
         $rooms = $paginator->paginate($availableRoomsQuery, $request->query->getInt("page", 1), 12);
+        
+        $cities = $this->entityManager->getRepository(City::class)->findAll();
         return $this->render($this->themeResolver->getThemePathPrefix("/core/rooms.html.twig"), [
             "rooms" => $rooms,
+            "cities" => $cities,
+            "searchForm" => $searchForm,
+            "sortForm" => $sortForm
         ]);
     }
 
@@ -75,7 +91,7 @@ class RoomController extends AbstractController
             $this->themeResolver->getThemePathPrefix("/core/room-creation.html.twig"),
             [
                 "roomCreationForm" => $form->createView(),
-                "cities" => $cities
+                "cities" => $cities,
             ]
         );
     }
