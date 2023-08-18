@@ -44,8 +44,139 @@ main .gp-room-detail > .content .section-1 .informations {
         flex-wrap: wrap;
         gap: 2rem;
     }
+    .dropdown {
+        position: relative;
+        display: flex;
+        margin-right: auto; /* Pushes the dropdown to the right */
+        align-items: flex-end;
+        top: -37px;
+    }
+
+    .dropdown-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: $base-color;
+        margin-left: auto;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #fff;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        z-index: 1;
+        top: 100%;
+        right: 0;
+        max-width: 30px;
+        flex-direction: column;
+
+        .edit-btn,
+        .del-btn {
+            border: none;
+            padding: 8px 16px;
+            margin: 0;
+            background: none;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+        }
+        .edit-btn {
+            &:hover {
+                color: $base-color;
+            }
+        }
+        .del-btn {
+            color: red;
+            &:hover {
+                color: lighten($color: $red-color, $amount: 20%);
+            }
+        }
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
 }
 
+main .gp-room-detail > .content .section-1 .informations .confirmation-modal {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+
+    .modal-content {
+        display: flex;
+        flex-direction: column;
+        width: 400px;
+        height: fit-content;
+        max-width: 90%;
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 1rem;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+
+        h2 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            width: 100%;
+            text-align: center;
+        }
+    }
+}
+main
+    .gp-room-detail
+    > .content
+    .section-1
+    .informations
+    .confirmation-modal
+    .modal-content
+    .modal-buttons {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    button {
+        padding: 0.5rem 1rem;
+        margin-left: 1rem;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: #f5f5f5;
+        }
+    }
+    .confirm-deletion {
+        background-color: #e53935;
+        color: #fff;
+        &:hover {
+            background-color: darken(#e53935, 10%);
+        }
+    }
+
+    .cancel-deletion {
+        background-color: #ccc;
+        color: #333;
+        &:hover {
+            background-color: darken(#ccc, 10%);
+        }
+    }
+}
 main .gp-room-detail > .content .section-1 .informations > div > div {
     flex: 1 0 calc(33.33% - 2rem);
     width: 100%;

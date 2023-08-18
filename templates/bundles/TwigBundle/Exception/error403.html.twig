@@ -1,0 +1,17 @@
+{% extends 'gp-tracker/base.html.twig' %}
+
+{% block title %}
+   Page d'erreur 503
+{% endblock %}
+
+{% block body %}
+<main>
+    <div class="container gp-not-found">
+        <img src="{{ asset('theme/assets/img/pages/denied-access.jpg') }}" alt="Erreur 500">
+        <div class="description">
+           <h1>Désolé, vous n'avez pas la permission de consulter cette page.</h1> 
+            <a href="{{ path('app_home') }}" class="btn btn-primary text-center">Retour à l'Accueil</a>
+        </div>
+    </div>
+</main>
+{% endblock %}

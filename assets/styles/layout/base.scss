@@ -12,9 +12,14 @@
     font-size: 18px;
 }
 body {
-    min-height: 100vh;
     margin: 0 auto;
     background-color: $page-background-color;
+
+    & > .wrapper{
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 h1,
@@ -32,12 +37,12 @@ main {
     flex-direction: column;
     flex-wrap: wrap;
     align-content: center;
-    padding: calc($header-section-height * 2) 0 1rem 0;
+    padding-top: calc($header-section-height * 2);
 }
 
 @mixin main-tag-max-width--960px {
     main {
-        padding: $header-section-height 0 1rem 0;
+        padding-top: $header-section-height;
     }
 }
 .container {
@@ -71,6 +76,10 @@ main {
     -webkit-text-fill-color: transparent;
 }
 
+.error {
+    color: red !important;
+    font-size: 0.8rem;
+}
 main .container .page-root {
     display: flex;
     flex-direction: row;
@@ -86,5 +95,58 @@ main .container .page-root {
     }
     span {
         color: $gunmetal-color;
+    }
+}
+
+.header .auth-return-home {
+    position: relative;
+    width: 100%;
+    padding: 0 12px;
+    top: 0;
+    left: 0;
+    a {
+        cursor: pointer;
+        text-decoration: none;
+    }
+}
+.pagination {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    .page-item {
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+    }
+
+    .page-item.disabled .page-link {
+        color: #6c757d;
+        background-color: #fff;
+        border-color: #dee2e6;
+    }
+
+    .page-item.active .page-link {
+        z-index: 3;
+        color: #fff;
+        background-color: $base-color;
+        border-color: $base-color;
+    }
+
+    .page-link {
+        position: relative;
+        display: block;
+        padding: 0.5rem 0.75rem;
+        margin-left: -1px;
+        line-height: 1.25;
+        color: $base-color;
+        text-decoration: none;
+        background-color: #fff;
+        border: 1px solid #dee2e6;
+    }
+
+    .page-link:hover {
+        color: $base-color;
+        background-color: #e9ecef;
+        border-color: #dee2e6;
     }
 }

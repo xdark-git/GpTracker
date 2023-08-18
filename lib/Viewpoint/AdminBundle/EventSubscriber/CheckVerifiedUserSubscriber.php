@@ -9,6 +9,7 @@ use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Viewpoint\AdminBundle\Entity\User;
 
 class CheckVerifiedUserSubscriber implements EventSubscriberInterface{
     private Security $security;
@@ -56,7 +57,10 @@ class CheckVerifiedUserSubscriber implements EventSubscriberInterface{
             return;
         }
 
-        if ($this->security->isGranted('IS_AUTHENTICATED_FULLY') && !$this->security->getUser()->isVerified()) {
+        /** @var User */
+        $user = $this->security->getUser();
+        
+        if ($this->security->isGranted('IS_AUTHENTICATED_FULLY') && !$user->isVerified()) {
                 $response = new RedirectResponse($this->urlGenerator->generate('non_verified_user_page'));
                 $event->setResponse($response);
         }

@@ -16,6 +16,27 @@
             <section class="section-1">
                 <div class="informations">
                     <h2>Détails</h2>
+                    <div class="dropdown">
+                        <button id="dropdown-btn" class="dropdown-btn">
+                            <i class="fa-solid fa-ellipsis-v"></i>
+                        </button>
+                        <div class="dropdown-content">
+                            <button class="edit-btn" id="btn-edit">Modifier </button>
+                            <button class="del-btn" id="btn-delete">Supprimer</button>
+                        </div>
+                    </div>
+                     <div class="confirmation-modal hidden" id="confirmationModal">
+                        <div class="modal-content">
+                            <h2>Confirmer la suppression</h2>
+                            <p>Voulez-vous vraiment supprimer votre salon ?</p>
+                            <div class="modal-buttons">
+                                <form action="#">
+                                    <button id="confirmDelete" class="confirm-deletion">Oui</button>
+                                </form>
+                                <button id="cancelDelete" class="cancel-deletion">Non</button>
+                            </div>
+                        </div>
+                    </div>
                     <div>
                         <div>
                             <span class="icons">
@@ -23,7 +44,7 @@
                             </span>
                             <span>
                                 <h3>Zone de depart</h3>
-                                <p>{{ room.departureLocation|default('-') }}</p>
+                                <p>{{ room.departureLocation.name|default('-') }}</p>
                             </span>
                         </div>
                         <div>
@@ -32,7 +53,7 @@
                             </span>
                             <span>
                                 <h3>Zone d’arrivée</h3>
-                                <p>{{ room.arrivalLocation|default('-') }}</p>
+                                <p>{{ room.arrivalLocation.name|default('-') }}</p>
                             </span>
                         </div>
                         <div>

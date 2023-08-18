@@ -189,12 +189,23 @@
 }
 
 @mixin room-design-max-width--608px {
+   .rooms .room  .trip{
+        display: flex;
+        flex-direction: column !important;
+        gap: 0.8rem;
+    }
     .rooms .room .trip .price-details {
         height: 50%;
+        width: 100%!important;
+        margin: unset!important;
 
         .see-details {
             display: none;
         }
+    }
+
+    .rooms .room .weight{
+        justify-content: center!important;
     }
 }
 

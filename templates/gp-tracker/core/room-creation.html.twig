@@ -29,15 +29,31 @@
                     <div class="form-group">
                         <div class="input-container">
                             {{ form_row(roomCreationForm.departureLocation, {
-                                'id': 'departure-location'
+                                'id': 'departure-location',
+                                'attr': {
+                                    'list': 'departure-location-list'
+                                }
                                 }) 
                             }} 
+                            <datalist id="departure-location-list">
+                                {% for city in cities %}
+                                    <option value="{{ city.name }}"></option>
+                                {% endfor %}
+                            </datalist>
                         </div>
                         <div class="input-container">
                             {{ form_row(roomCreationForm.arrivalLocation, {
-                                'id': 'arrival-location'
+                                'id': 'arrival-location',
+                                'attr': {
+                                    'list': 'arrival-location-list'
+                                }
                                 }) 
                             }}
+                            <datalist id="arrival-location-list">
+                                {% for city in cities %}
+                                    <option value="{{ city.name }}"></option>
+                                {% endfor %}
+                            </datalist>
                         </div>
                     </div>
                     <div class="form-group">
