@@ -62,17 +62,17 @@ class RoomRepository extends ServiceEntityRepository
         if ($search) {
             if ($search->departureLocation) {
                 $qb->andWhere(
-                    "r.departureLocation IN (SELECT c.id FROM " .
+                    "r.departureLocation IN (SELECT departure.id FROM " .
                         City::class .
-                        " c WHERE c.name LIKE :departureLocation)"
+                        " departure WHERE departure.name LIKE :departureLocation)"
                 )->setParameter("departureLocation", "%" . $search->departureLocation . "%");
             }
-
+            
             if ($search->arrivalLocation) {
                 $qb->andWhere(
-                    "r.arrivalLocation IN (SELECT c.id FROM " .
+                    "r.arrivalLocation IN (SELECT arrival.id FROM " .
                         City::class .
-                        " c WHERE c.name LIKE :arrivalLocation)"
+                        " arrival WHERE arrival.name LIKE :arrivalLocation)"
                 )->setParameter("arrivalLocation", "%" . $search->arrivalLocation . "%");
             }
 
