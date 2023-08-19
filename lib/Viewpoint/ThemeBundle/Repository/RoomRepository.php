@@ -7,6 +7,7 @@ use Viewpoint\ThemeBundle\Entity\Room;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
+use Viewpoint\AdminBundle\Entity\User;
 use Viewpoint\ThemeBundle\Data\SearchData;
 use Viewpoint\ThemeBundle\Entity\City;
 
@@ -67,7 +68,7 @@ class RoomRepository extends ServiceEntityRepository
                         " departure WHERE departure.name LIKE :departureLocation)"
                 )->setParameter("departureLocation", "%" . $search->departureLocation . "%");
             }
-            
+
             if ($search->arrivalLocation) {
                 $qb->andWhere(
                     "r.arrivalLocation IN (SELECT arrival.id FROM " .
@@ -114,5 +115,15 @@ class RoomRepository extends ServiceEntityRepository
             ->setMaxResults($limit)
             ->getQuery()
             ->getResult();
+    }
+
+    public function findCurrentUserRoomQuery(User $user): Query
+    {
+        return $this->createQueryBuilder("r")
+            ->andWhere("r.user = :user")
+            ->andWhere("r.isDeleted = :isDeleted")
+            ->setParameter("user", $user)
+            ->setParameter("isDeleted", false)
+            ->getQuery();
     }
 }
