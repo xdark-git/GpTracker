@@ -24,21 +24,23 @@
         <div class="form-group">
             {{ form_row(contactForm.lastname, {
                 'attr':{
-                    'class': 'form-element'
+                    'class': 'form-element',
+                    'value': app.user ? app.user.lastname :''
                 }
             }) }}
         </div>
         <div class="form-group">
             {{ form_row(contactForm.email, {
                 'attr':{
-                    'class': 'form-element'
+                    'class': 'form-element',
+                    'value': app.user ? app.user.email :''
                 }
             }) }}
         </div>
         <div class="form-group">
             {{ form_row(contactForm.object, {
                 'attr':{
-                    'class': 'form-element'
+                    'class': 'form-element',
                 }
             }) }}
         </div>
