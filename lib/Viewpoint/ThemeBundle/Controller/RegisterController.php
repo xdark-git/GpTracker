@@ -75,10 +75,4 @@ class RegisterController extends AbstractController
             $themeResolver->getThemePathPrefix("/core/terms_and_conditions.html.twig")
         );
     }
-
-    #[Route('/contact', name: 'app_contact')]
-    public function contact (ThemeResolver $themeResolver): Response
-    {   
-        return $this->render($themeResolver->getThemePathPrefix('/core/contact.html.twig'));
-    }    
 }
