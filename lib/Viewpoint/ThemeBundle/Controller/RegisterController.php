@@ -67,14 +67,6 @@ class RegisterController extends AbstractController
             )
         );
     }
-
-    #[Route("/informations/package", name: "app_user_package")]
-    public function package(ThemeResolver $themeResolver): Response
-    {
-        return $this->render(
-            $themeResolver->getThemePathPrefix("/core/informations/contents/package.html.twig")
-        );
-    }
     
     #[Route("/terms-and-conditons", name: "app_terms_conditions")]
     public function ConditionsGenerales(ThemeResolver $themeResolver): Response
