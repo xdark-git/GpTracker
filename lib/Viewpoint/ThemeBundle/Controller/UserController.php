@@ -101,6 +101,16 @@ class UserController extends AbstractController
         );
     }
 
+    #[Route("/informations/empty-package", name: "app_empty_package")]
+    public function emptyPackage(): Response
+    {
+        return $this->render(
+            $this->themeResolver->getThemePathPrefix(
+                "/core/informations/contents/empty-package.html.twig"
+            )
+        );
+    }
+
     #[Route("/activation", name: "app_account_activation")]
     public function accountActivation(): Response
     {

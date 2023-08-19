@@ -41,15 +41,7 @@ class RegisterController extends AbstractController
             )
         );
     }
-    #[Route("/informations/empty-package", name: "app_empty_package")]
-    public function emptyPackage(ThemeResolver $themeResolver): Response
-    {
-        return $this->render(
-            $themeResolver->getThemePathPrefix(
-                "/core/informations/contents/empty-package.html.twig"
-            )
-        );
-    }
+   
     #[Route("/informations/empty-order", name: "app_empty_order")]
     public function emptyOrder(ThemeResolver $themeResolver): Response
     {
