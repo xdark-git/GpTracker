@@ -186,7 +186,7 @@
                         {% endif %}
                         <div class="user-details">
                             <h2>{{ room.user.firstName|default('-') ~ ' ' ~ room.user.lastName|default('-') }}</h2>
-                            <div class="rooms-created">{{ room.user.rooms|length }} salons créés</div>
+                            <div class="rooms-created">{{ viewCount == 0 or viewCount == 1 ? viewCount ~ " vu": viewCount ~ " vus" }} </div>
                         </div>
                     </div>
                     {# <div class="recommended-profile">
