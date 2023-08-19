@@ -12,6 +12,7 @@ use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Viewpoint\ThemeBundle\Entity\City;
 use Viewpoint\ThemeBundle\Entity\Room;
+use Viewpoint\ThemeBundle\Entity\RoomViewsHistory;
 use Viewpoint\ThemeBundle\Form\RoomSortType;
 use Viewpoint\ThemeBundle\Form\SearchFormType;
 use Viewpoint\ThemeBundle\Repository\RoomRepository;
@@ -98,15 +99,48 @@ class RoomController extends AbstractController
     #[Route("/s/{slug}", name: "app_room_detail", methods: ["GET"])]
     public function show(string $slug, EntityManagerInterface $entityManager)
     {
+        /** @var Room  */
         $room = $entityManager->getRepository(Room::class)->findOneBy(["slug" => $slug]);
 
         if (!$room) {
             throw $this->createNotFoundException("Page Introuvable");
         }
+        
+        if($room->getUser() != $this->getUser()) 
+        {
+            $currentDateTime = new \DateTime();
 
+            /** @var RoomViewsHistory */
+            $userLastTimeVisited= $entityManager
+                ->getRepository(RoomViewsHistory::class)
+                ->findOneBy([
+                    "room" => $room,
+                    "user"=> $this->getUser()
+                ]);
+                
+            if(!$userLastTimeVisited)
+            {
+                $newViewer = (new RoomViewsHistory)
+                    ->setUser($this->getUser())
+                    ->setRoom($room)
+                    ->setLastTimeVisited($currentDateTime);
+
+                $entityManager->persist($newViewer);
+                $entityManager->flush();
+            }else{
+                $userLastTimeVisited->setLastTimeVisited($currentDateTime);
+                $entityManager->flush();
+            }
+        }
+        $viewHistory = $entityManager->getRepository(RoomViewsHistory::class)->findBy(["room" => $room]);
+        $viewCount = count($viewHistory);
+    
         return $this->render(
             $this->themeResolver->getThemePathPrefix("/core/room-detail.html.twig"),
-            ["room" => $room]
+            [
+                "room" => $room,
+                "viewCount" => $viewCount,
+            ]
         );
     }
     
