@@ -4,6 +4,7 @@ namespace Viewpoint\ThemeBundle\Controller;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Gedmo\Sluggable\Util\Urlizer;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,11 +15,15 @@ use Viewpoint\AdminBundle\Form\ProfileCompletionType;
 use Viewpoint\ThemeBundle\Service\ThemeResolver;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Viewpoint\AdminBundle\Entity\User;
+use Viewpoint\ThemeBundle\Entity\Room;
+use Viewpoint\ThemeBundle\Repository\RoomRepository;
 
 class UserController extends AbstractController
 {
-    public function __construct(private EntityManagerInterface $entityManager, private ThemeResolver $themeResolver)
-    {
+    public function __construct(
+        private EntityManagerInterface $entityManager,
+        private ThemeResolver $themeResolver
+    ) {
     }
     #[Route("/informations", name: "app_informations")]
     #[Route("/informations/account", name: "app_informations_user")]
@@ -59,7 +64,9 @@ class UserController extends AbstractController
         }
 
         return $this->render(
-            $this->themeResolver->getThemePathPrefix("/core/informations/contents/account.html.twig"),
+            $this->themeResolver->getThemePathPrefix(
+                "/core/informations/contents/account.html.twig"
+            ),
             [
                 "profileCompletionForm" => $form->createView(),
             ]
@@ -94,20 +101,39 @@ class UserController extends AbstractController
         }
 
         return $this->render(
-            $this->themeResolver->getThemePathPrefix("/core/informations/contents/settings.html.twig"),
+            $this->themeResolver->getThemePathPrefix(
+                "/core/informations/contents/settings.html.twig"
+            ),
             [
                 "changePasswordForm" => $form->createView(),
             ]
         );
     }
 
-    #[Route("/informations/empty-package", name: "app_empty_package")]
-    public function emptyPackage(): Response
+    #[Route("/informations/package", name: "app_user_package")]
+    public function emptyPackage(Request $request, PaginatorInterface $paginator): Response
     {
+        /** @var RoomRepository */
+        $roomRepository = $this->entityManager->getRepository(Room::class);
+
+        $userRoomsQuery = $roomRepository->findCurrentUserRoomQuery($this->getUser());
+        $rooms = $paginator->paginate($userRoomsQuery, $request->query->getInt("page", 1), 4);
+        
+        if ($rooms->getTotalItemCount() == 0) {
+            return $this->render(
+                $this->themeResolver->getThemePathPrefix(
+                    "/core/informations/contents/empty-package.html.twig"
+                )
+            );
+        }
+
         return $this->render(
             $this->themeResolver->getThemePathPrefix(
-                "/core/informations/contents/empty-package.html.twig"
-            )
+                "/core/informations/contents/package.html.twig"
+            ),
+            [
+                "rooms" => $rooms,
+            ]
         );
     }
 
