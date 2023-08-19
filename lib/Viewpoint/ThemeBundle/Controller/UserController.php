@@ -17,12 +17,12 @@ use Viewpoint\AdminBundle\Entity\User;
 
 class UserController extends AbstractController
 {
-    public function __construct(private EntityManagerInterface $entityManager)
+    public function __construct(private EntityManagerInterface $entityManager, private ThemeResolver $themeResolver)
     {
     }
     #[Route("/informations", name: "app_informations")]
     #[Route("/informations/account", name: "app_informations_user")]
-    public function completeProfile(Request $request, ThemeResolver $themeResolver): Response
+    public function completeProfile(Request $request): Response
     {
         /** @var User $user */
         $user = $this->getUser();
@@ -59,7 +59,7 @@ class UserController extends AbstractController
         }
 
         return $this->render(
-            $themeResolver->getThemePathPrefix("/core/informations/contents/account.html.twig"),
+            $this->themeResolver->getThemePathPrefix("/core/informations/contents/account.html.twig"),
             [
                 "profileCompletionForm" => $form->createView(),
             ]
@@ -69,8 +69,7 @@ class UserController extends AbstractController
     #[Route("/informations/settings", name: "app_settings")]
     public function changePassword(
         Request $request,
-        UserPasswordHasherInterface $userPasswordHasher,
-        ThemeResolver $themeResolver
+        UserPasswordHasherInterface $userPasswordHasher
     ): Response {
         $form = $this->createForm(ChangePasswordFormType::class);
         $form->handleRequest($request);
@@ -95,7 +94,7 @@ class UserController extends AbstractController
         }
 
         return $this->render(
-            $themeResolver->getThemePathPrefix("/core/informations/contents/settings.html.twig"),
+            $this->themeResolver->getThemePathPrefix("/core/informations/contents/settings.html.twig"),
             [
                 "changePasswordForm" => $form->createView(),
             ]
@@ -103,10 +102,10 @@ class UserController extends AbstractController
     }
 
     #[Route("/activation", name: "app_account_activation")]
-    public function accountActivation(ThemeResolver $themeResolver): Response
+    public function accountActivation(): Response
     {
         return $this->render(
-            $themeResolver->getThemePathPrefix("/core/email_verification.html.twig")
+            $this->themeResolver->getThemePathPrefix("/core/email_verification.html.twig")
         );
     }
 }
