@@ -40,13 +40,6 @@ class Room
     #[ORM\Column(type: Types::STRING, unique: true, length: 255)]
     private ?string $slug = null;
 
-    // #[ORM\Column(type: Types::STRING, length: 3)]
-    // #[
-    //     Assert\Sequentially([
-    //         new Assert\NotBlank(),
-    //         new Assert\Currency(message: "{{ value }} n'est une device valide"),
-    //     ])
-    // ]
     #[ORM\ManyToOne(targetEntity: Currency::class, fetch: "EAGER")]
     #[ORM\JoinColumn(nullable: false)]
     private ?Currency $currency = null;
