@@ -24,7 +24,7 @@
             </ul>
             {{ form_start(searchForm, {'attr': {'class': 'content'} }) }}
                 <div class="departure">
-                    <label for="departure">Départ de (*)</label>
+                    <label for="departure">Départ</label>
                     <div>
                         <i class="fa-solid fa-plane-departure"></i>
                         {{ form_row(searchForm.departureLocation, {
@@ -42,7 +42,7 @@
                     </div>
                 </div>
                 <div class="arrival">
-                    <label for="arrival">Arrivée à (*)</label>
+                    <label for="arrival">Arrivée</label>
                     <div>
                         <i class="fa-solid fa-plane-arrival"></i>
                         {{ form_row(searchForm.arrivalLocation, {
