@@ -134,12 +134,14 @@ class RoomController extends AbstractController
         }
         $viewHistory = $entityManager->getRepository(RoomViewsHistory::class)->findBy(["room" => $room]);
         $viewCount = count($viewHistory);
+        $roomName = $room->getName();
     
         return $this->render(
             $this->themeResolver->getThemePathPrefix("/core/room-detail.html.twig"),
             [
                 "room" => $room,
                 "viewCount" => $viewCount,
+                "roomName" => $roomName
             ]
         );
     }
