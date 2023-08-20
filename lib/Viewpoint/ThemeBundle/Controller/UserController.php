@@ -110,7 +110,7 @@ class UserController extends AbstractController
         );
     }
 
-    #[Route("/informations/package", name: "app_user_package")]
+    #[Route("/informations/mes-annonces", name: "app_user_package")]
     public function emptyPackage(Request $request, PaginatorInterface $paginator): Response
     {
         /** @var RoomRepository */
@@ -122,14 +122,14 @@ class UserController extends AbstractController
         if ($rooms->getTotalItemCount() == 0) {
             return $this->render(
                 $this->themeResolver->getThemePathPrefix(
-                    "/core/informations/contents/empty-package.html.twig"
+                    "/core/informations/contents/empty_user_rooms.html.twig"
                 )
             );
         }
 
         return $this->render(
             $this->themeResolver->getThemePathPrefix(
-                "/core/informations/contents/package.html.twig"
+                "/core/informations/contents/user_rooms.html.twig"
             ),
             [
                 "rooms" => $rooms,
