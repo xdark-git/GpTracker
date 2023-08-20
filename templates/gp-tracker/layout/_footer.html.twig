@@ -29,25 +29,19 @@
                 <h3>À propos</h3>
                 <ul class="gp-footer-nav-2">
                     <li>
-                        <a href="#">Qui sommes-nous ?</a>
+                        <a href="{{ path('app_about_us') }}">Qui sommes-nous ?</a>
                     </li>
                     <li>
-                        <a href="#">Notification sur la confidentialité</a>
+                        <a href="{{ path('app_contact') }}">Nous contacter</a>
                     </li>
                     <li>
-                        <a href="#">Notification sur la confidentialité</a>
-                    </li>
-                    <li>
-                        <a href="#">Notification sur les cookies de GP-Tracker</a>
-                    </li>
-                    <li>
-                        <a href="#">Politique de protection des droits de propriété intellectuelle</a>
+                        <a href="{{ path('app_terms_conditions') }}">Conditions générales d'utilisations</a>
                     </li>
                 </ul>
             </div>
         </div>
     </section>
     <section class="section-2">
-        <p>&copy; 2023 - All Rights Reserved By GP Tracker</p>
+        <p>&copy; {{ "now"|date("Y") }} - All Rights Reserved By GP Tracker</p>
     </section>
 </footer>
