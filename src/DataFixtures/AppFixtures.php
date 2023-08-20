@@ -128,7 +128,7 @@ class AppFixtures extends Fixture implements FixtureGroupInterface
                 ->setWeight($faker->numberBetween(10, 100))
                 ->setDepartureLocation($cities[$randomCityIndex])
                 ->setArrivalLocation($cities[$randomCityIndex + 1] ?? $cities[0])
-                ->setDepartureDate($faker->dateTimeBetween("now", "+1 week"))
+                ->setDepartureDate($faker->dateTimeBetween("-1 week", "+1 week"))
                 ->setArrivalDate($faker->dateTimeBetween("+1 week", "+1 month"))
                 ->setUser($users[$randomUserIndex])
                 ->setConveyance($conveyances[$randomConveyanceIndex]);
