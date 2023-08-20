@@ -80,7 +80,15 @@ class HomeController extends AbstractController
         return $this->render($this->themeResolver->getThemePathPrefix('/core/contact.html.twig'), [
             "contactForm" => $contactForm
         ]);
-    }    
+    }   
+    
+    #[Route("/activation", name: "app_account_activation")]
+    public function accountActivation(): Response
+    {
+        return $this->render(
+            $this->themeResolver->getThemePathPrefix("/core/email_verification.html.twig")
+        );
+    }
 
     #[Route("/code-of-conduct", name: "app_Code_of_Conduct")]
     public function CodeOfConduct(): Response

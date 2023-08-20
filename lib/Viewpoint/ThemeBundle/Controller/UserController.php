@@ -147,11 +147,4 @@ class UserController extends AbstractController
         );
     }
 
-    #[Route("/activation", name: "app_account_activation")]
-    public function accountActivation(): Response
-    {
-        return $this->render(
-            $this->themeResolver->getThemePathPrefix("/core/email_verification.html.twig")
-        );
-    }
 }
