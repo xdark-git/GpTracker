@@ -7,35 +7,56 @@
 {% block body %}
    
 <main>
-    <form  class="contact-form">
+    {% form_theme contactForm 'gp-tracker/form/contact_form.html.twig' %}
+    {{ form_start(contactForm, {'attr': {'class': 'contact-form'} }) }}
         <div class="form-title">
             <h4>Une question ? Un conseil ?</h4>
             <h2>Ecrivez-nous !</h2>
         </div>
         <div class="form-group">
-            <label for="firstname">Prenom*</label>
-            <input  type="text" name="Prenom" class="form-element" id="Prenom"  placeholder="Entrer votre Prenom" required  /> 
+            {{ form_row(contactForm.firstname, {
+                'attr':{
+                    'class': 'form-element',
+                    'value': app.user ? app.user.firstname :''
+                }
+            }) }}
         </div>
         <div class="form-group">
-            <label for="lastname">Nom*</label>
-            <input type="text" name="Nom*" id="Nom*" required class="form-element" placeholder="Entrer votre Nom" required//>
+            {{ form_row(contactForm.lastname, {
+                'attr':{
+                    'class': 'form-element',
+                    'value': app.user ? app.user.lastname :''
+                }
+            }) }}
         </div>
         <div class="form-group">
-            <label for="company">Sujet*</label>
-            <input type="text" name="Sujet" id="Sujet" class="form-element" placeholder="Entrer votre sujet"  required/>
+            {{ form_row(contactForm.email, {
+                'attr':{
+                    'class': 'form-element',
+                    'value': app.user ? app.user.email :''
+                }
+            }) }}
         </div>
         <div class="form-group">
-            <label for="email">Email *</label>
-            <input type="email" name="email" id="email" required class="form-element" placeholder="Entrer votre email" required//>
+            {{ form_row(contactForm.object, {
+                'attr':{
+                    'class': 'form-element',
+                }
+            }) }}
         </div>
         <div class="form-group full">
-            <label for="message">Ecrivez votre message</label>
-            <textarea name="message" id="message" class="form-element" placeholder="Entre votre message..." required/></textarea>
+            {{ form_row(contactForm.message, {
+                'attr':{
+                    'class': 'form-element'
+                }
+            }) }}
         </div>
         <div class="submit-group">
+            {{ form_row(contactForm._token) }}
             <input type="submit" value="Envoyer" />
         </div>
-    </form>
+        
+    {{ form_end(contactForm, {'render_rest': false}) }}
 </main>
 
     

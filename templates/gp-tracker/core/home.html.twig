@@ -22,33 +22,45 @@
                     </a>
                 </li>
             </ul>
-            <form class="content" action="">
+            {{ form_start(searchForm, {'attr': {'class': 'content'} }) }}
                 <div class="departure">
-                    <label for="departure">Départ de (*)</label>
+                    <label for="departure">Départ</label>
                     <div>
                         <i class="fa-solid fa-plane-departure"></i>
-                        <input type="text" name="departure" id="departure" required>
+                        {{ form_row(searchForm.departureLocation, {
+                            'id': 'departure',
+                            'attr': {
+                                    'list': 'departure-location-list'
+                                }
+                        }) }}
+                        <datalist id="departure-location-list">
+                            {% for city in cities %}
+                                <option value="{{ city.name }}"></option>
+                            {% endfor %}
+                        </datalist>
                         <i class="fa-solid fa-xmark"></i>
                     </div>
                 </div>
                 <div class="arrival">
-                    <label for="arrival">Arrivée à (*)</label>
+                    <label for="arrival">Arrivée</label>
                     <div>
                         <i class="fa-solid fa-plane-arrival"></i>
-                        <input type="text" name="arrival" id="arrival" required>
+                        {{ form_row(searchForm.arrivalLocation, {
+                            'id': 'arrival',
+                            'attr': {
+                                    'list': 'arrival-location-list'
+                                }
+                        }) }}
+                        <datalist id="arrival-location-list">
+                            {% for city in cities %}
+                                <option value="{{ city.name }}"></option>
+                            {% endfor %}
+                        </datalist>
                         <i class="fa-solid fa-xmark"></i>
                     </div>
                 </div>
-                <div class="price">
-                    <label for="price">Prix/Kg</label>
-                    <div>
-                        <i class="fa-solid fa-dollar-sign"></i>
-                        <input type="text" name="price" id="price">
-                        <i class="fa-solid fa-xmark"></i>
-                    </div>
-                </div>
-                <button>Rechercher</button>
-            </form>
+                <button type="submit">Rechercher</button>
+            {{ form_end(searchForm, {'render_rest': false}) }}
         </div>
         {# END SEARCH ROOM SECTION  #}
 
@@ -91,85 +103,7 @@
                     {# <li>Top transporteurs</li> #}
                 </ul>
                 <div class="rooms" id="room-list-container">
-                    <div class="room">
-                        <h4>SUNU GP</h4>
-                        <div class="trip">
-                            <div class="trip-list">
-                                <div class="departure-arrival">
-                                    <span class="departure">Paris</span>
-                                    <span class="scheme" >
-                                        <span class="dot dot-1"></span>
-                                        <span class="dot dot-2"></span>
-                                        <i class="fa-solid fa-plane"></i>
-                                    </span>
-                                    <span class="arrival">Dakar</span>
-                                </div>
-                                <div class="date">10-12-2023</div> 
-                            </div>
-                            <div class="price-details">
-                                <div class="price">5€/kg</div>
-                                <a href="/room/detail" class="see-details">Voir détails</a>
-                            </div>
-                        </div>
-                        <div class="weight">
-                            <span class="description">Poids disponible</span>
-                            <span class="divider"></span>
-                            <span class="price">32 kg</span>
-                        </div>
-                    </div>
-                    <div class="room">
-                        <h4>SUNU GP</h4>
-                        <div class="trip">
-                            <div class="trip-list">
-                                <div class="departure-arrival">
-                                    <span class="departure">Paris</span>
-                                    <span class="scheme" >
-                                        <span class="dot dot-1"></span>
-                                        <span class="dot dot-2"></span>
-                                        <i class="fa-solid fa-plane"></i>
-                                    </span>
-                                    <span class="arrival">Dakar</span>
-                                </div>
-                                <div class="date">10-12-2023</div> 
-                            </div>
-                            <div class="price-details">
-                                <div class="price">5€/kg</div>
-                                <a href="/room/detail" class="see-details">Voir détails</a>
-                            </div>
-                        </div>
-                        <div class="weight">
-                            <span class="description">Poids disponible</span>
-                            <span class="divider"></span>
-                            <span class="price">32 kg</span>
-                        </div>
-                    </div>
-                    <div class="room">
-                        <h4>SUNU GP</h4>
-                        <div class="trip">
-                            <div class="trip-list">
-                                <div class="departure-arrival">
-                                    <span class="departure">Paris</span>
-                                    <span class="scheme" >
-                                        <span class="dot dot-1"></span>
-                                        <span class="dot dot-2"></span>
-                                        <i class="fa-solid fa-plane"></i>
-                                    </span>
-                                    <span class="arrival">Dakar</span>
-                                </div>
-                                <div class="date">10-12-2023</div> 
-                            </div>
-                            <div class="price-details">
-                                <div class="price">5€/kg</div>
-                                <a href="/room/detail" class="see-details">Voir détails</a>
-                            </div>
-                        </div>
-                        <div class="weight">
-                            <span class="description">Poids disponible</span>
-                            <span class="divider"></span>
-                            <span class="price">32 kg</span>
-                        </div>
-                    </div>
-                  
+                    {% include 'gp-tracker/layout/_rooms.html.twig' %}
                 </div>
             </div>
             <a class="see-more" href="{{ path('app_rooms') }}">Plus de resultats</a>

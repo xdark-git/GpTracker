@@ -32,40 +32,6 @@ class RegisterController extends AbstractController
         $this->validator = $validator;
     }
 
-    #[Route("/", name: "app_home")]
-    public function home(ThemeResolver $themeResolver): Response
-    {
-        return $this->render($themeResolver->getThemePathPrefix("/core/home.html.twig"));
-    }
-
-    // #[Route("/room/detail", name: "app_room_detail")]
-    // public function roomDetail(ThemeResolver $themeResolver): Response
-    // {
-
-    // }
-
-    // #[Route("/rooms/create", name: "app_room_creation")]
-    // public function roomCreation(ThemeResolver $themeResolver): Response
-    // {
-    //     return $this->render($themeResolver->getThemePathPrefix("/core/room-creation.html.twig"));
-    // }
-
-    // #[Route("/informations", name: "app_informations")]
-    // public function informations(ThemeResolver $themeResolver): Response
-    // {
-    //     return $this->render(
-    //         $themeResolver->getThemePathPrefix("/core/informations/contents/account.html.twig")
-    //     );
-    // }
-
-    // #[Route("/informations/account", name: "app_informations_user")]
-    // public function informationUser(ThemeResolver $themeResolver): Response
-    // {
-    //     return $this->render(
-    //         $themeResolver->getThemePathPrefix("/core/informations/contents/account.html.twig")
-    //     );
-    // }
-
     #[Route("/informations/empty-message", name: "app_empty_message")]
     public function emptyMessage(ThemeResolver $themeResolver): Response
     {
@@ -75,15 +41,7 @@ class RegisterController extends AbstractController
             )
         );
     }
-    #[Route("/informations/empty-package", name: "app_empty_package")]
-    public function emptyPackage(ThemeResolver $themeResolver): Response
-    {
-        return $this->render(
-            $themeResolver->getThemePathPrefix(
-                "/core/informations/contents/empty-package.html.twig"
-            )
-        );
-    }
+   
     #[Route("/informations/empty-order", name: "app_empty_order")]
     public function emptyOrder(ThemeResolver $themeResolver): Response
     {
@@ -91,15 +49,7 @@ class RegisterController extends AbstractController
             $themeResolver->getThemePathPrefix("/core/informations/contents/empty-order.html.twig")
         );
     }
-    #[Route("/informations/rooms/visited", name: "app_user_room_visited")]
-    public function emptyVu(ThemeResolver $themeResolver): Response
-    {
-        return $this->render(
-            $themeResolver->getThemePathPrefix(
-                "/core/informations/contents/empty-recently-seen.html.twig"
-            )
-        );
-    }
+    
     #[Route("/informations/empty-adresse", name: "app_adresse")]
     public function emptyAdresse(ThemeResolver $themeResolver): Response
     {
@@ -107,14 +57,6 @@ class RegisterController extends AbstractController
             $themeResolver->getThemePathPrefix(
                 "/core/informations/contents/empty-adresse.html.twig"
             )
-        );
-    }
-
-    #[Route("/informations/package", name: "app_user_package")]
-    public function package(ThemeResolver $themeResolver): Response
-    {
-        return $this->render(
-            $themeResolver->getThemePathPrefix("/core/informations/contents/package.html.twig")
         );
     }
     
@@ -125,12 +67,6 @@ class RegisterController extends AbstractController
             $themeResolver->getThemePathPrefix("/core/terms_and_conditions.html.twig")
         );
     }
-
-    #[Route('/contact', name: 'app_contact')]
-    public function contact (ThemeResolver $themeResolver): Response
-    {   
-        return $this->render($themeResolver->getThemePathPrefix('/core/contact.html.twig'));
-    }    
     #[Route("/about-us", name: "app_about_us")]
     public function aboutUs(ThemeResolver $themeResolver): Response
     {

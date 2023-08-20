@@ -174,18 +174,18 @@ function validForm(n = null, $tabs) {
             valid = false;
         }
 
-        if (
-            $input.attr("id") === "currency" &&
-            !currencyCode.code(inputValue)
-        ) {
-            $label.addClass("error");
-            valid = false;
-        } else if (
-            $input.attr("id") === "currency" &&
-            currencyCode.code(inputValue)
-        ) {
-            $input.val(currencyCode.code(inputValue).code);
-        }
+        // if (
+        //     $input.attr("id") === "currency" &&
+        //     !currencyCode.code(inputValue)
+        // ) {
+        //     $label.addClass("error");
+        //     valid = false;
+        // } else if (
+        //     $input.attr("id") === "currency" &&
+        //     currencyCode.code(inputValue)
+        // ) {
+        //     $input.val(currencyCode.code(inputValue).code);
+        // }
     });
 
     if (departureDateInput && arrivalDateInput) {
@@ -264,8 +264,11 @@ function displayPreviewDialog() {
         }
 
         if (inputId === "unit-price") {
-            let currency = $form.find("#currency").val();
-            inputValue = inputValue + " " + currency;
+            let currency = $form
+                .find("#currency")
+                .find("option:selected")
+                .text();
+            inputValue = inputValue + " " + currency.split("-")[0];
         }
         if (inputId === "bag-size") {
             inputValue = inputValue + " Kg";

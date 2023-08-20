@@ -5,6 +5,7 @@ namespace Viewpoint\ThemeBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Viewpoint\AdminBundle\Entity\User;
+use Viewpoint\ThemeBundle\Repository\RoomViewsHistoryRepository;
 
 #[ORM\Entity(repositoryClass: RoomViewsHistoryRepository::class)]
 class RoomViewsHistory

@@ -4,6 +4,7 @@ namespace Viewpoint\ThemeBundle\Controller;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Gedmo\Sluggable\Util\Urlizer;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,15 +15,22 @@ use Viewpoint\AdminBundle\Form\ProfileCompletionType;
 use Viewpoint\ThemeBundle\Service\ThemeResolver;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Viewpoint\AdminBundle\Entity\User;
+use Viewpoint\ThemeBundle\Entity\Room;
+use Viewpoint\ThemeBundle\Entity\RoomViewsHistory;
+use Viewpoint\ThemeBundle\Repository\RoomRepository;
+use Viewpoint\ThemeBundle\Repository\RoomViewsHistoryRepository;
 
+#[Route("/informations")]
 class UserController extends AbstractController
 {
-    public function __construct(private EntityManagerInterface $entityManager)
-    {
+    public function __construct(
+        private EntityManagerInterface $entityManager,
+        private ThemeResolver $themeResolver
+    ) {
     }
-    #[Route("/informations", name: "app_informations")]
-    #[Route("/informations/account", name: "app_informations_user")]
-    public function completeProfile(Request $request, ThemeResolver $themeResolver): Response
+    #[Route("/", name: "app_informations")]
+    #[Route("/mon-compte", name: "app_informations_user")]
+    public function completeProfile(Request $request): Response
     {
         /** @var User $user */
         $user = $this->getUser();
@@ -59,18 +67,19 @@ class UserController extends AbstractController
         }
 
         return $this->render(
-            $themeResolver->getThemePathPrefix("/core/informations/contents/account.html.twig"),
+            $this->themeResolver->getThemePathPrefix(
+                "/core/informations/contents/account.html.twig"
+            ),
             [
                 "profileCompletionForm" => $form->createView(),
             ]
         );
     }
 
-    #[Route("/informations/settings", name: "app_settings")]
+    #[Route("/parametre", name: "app_settings")]
     public function changePassword(
         Request $request,
-        UserPasswordHasherInterface $userPasswordHasher,
-        ThemeResolver $themeResolver
+        UserPasswordHasherInterface $userPasswordHasher
     ): Response {
         $form = $this->createForm(ChangePasswordFormType::class);
         $form->handleRequest($request);
@@ -95,18 +104,66 @@ class UserController extends AbstractController
         }
 
         return $this->render(
-            $themeResolver->getThemePathPrefix("/core/informations/contents/settings.html.twig"),
+            $this->themeResolver->getThemePathPrefix(
+                "/core/informations/contents/settings.html.twig"
+            ),
             [
                 "changePasswordForm" => $form->createView(),
             ]
         );
     }
 
-    #[Route("/activation", name: "app_account_activation")]
-    public function accountActivation(ThemeResolver $themeResolver): Response
+    #[Route("/mes-annonces", name: "app_user_package")]
+    public function emptyPackage(Request $request, PaginatorInterface $paginator): Response
     {
+        /** @var RoomRepository */
+        $roomRepository = $this->entityManager->getRepository(Room::class);
+
+        $userRoomsQuery = $roomRepository->findCurrentUserRoomQuery($this->getUser());
+        $rooms = $paginator->paginate($userRoomsQuery, $request->query->getInt("page", 1), 4);
+        
+        if ($rooms->getTotalItemCount() == 0) {
+            return $this->render(
+                $this->themeResolver->getThemePathPrefix(
+                    "/core/informations/contents/empty_user_rooms.html.twig"
+                )
+            );
+        }
+
         return $this->render(
-            $themeResolver->getThemePathPrefix("/core/email_verification.html.twig")
+            $this->themeResolver->getThemePathPrefix(
+                "/core/informations/contents/user_rooms.html.twig"
+            ),
+            [
+                "rooms" => $rooms,
+            ]
         );
     }
+
+    #[Route("/annonces/historique", name: "app_user_room_visited")]
+    public function roomViewsHistory(Request $request, PaginatorInterface $paginator): Response
+    {
+        /** @var RoomViewsHistoryRepository */
+        $roomViewHistoryRepository = $this->entityManager->getRepository(RoomViewsHistory::class);
+
+        $userVisitedRoomsQuery = $roomViewHistoryRepository->findVisitedRoomsByCurrentUser($this->getUser());
+        $roomsVisited = $paginator->paginate($userVisitedRoomsQuery, $request->query->getInt("page", 1), 4);
+        
+        if ($roomsVisited->getTotalItemCount() == 0) {
+            return $this->render(
+                $this->themeResolver->getThemePathPrefix(
+                    "/core/informations/contents/empty_recently_visited.html.twig"
+                )
+            );
+        }
+        return $this->render(
+            $this->themeResolver->getThemePathPrefix(
+                "/core/informations/contents/recently_visited.html.twig"
+            ),
+            [
+                "roomsVisited" => $roomsVisited
+            ]
+        );
+    }
+
 }

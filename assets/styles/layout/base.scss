@@ -38,11 +38,13 @@ main {
     flex-wrap: wrap;
     align-content: center;
     padding-top: calc($header-section-height * 2);
+    padding-bottom: 1rem;
 }
 
 @mixin main-tag-max-width--960px {
     main {
         padding-top: $header-section-height;
+        padding-bottom: unset;
     }
 }
 .container {
@@ -109,7 +111,9 @@ main .container .page-root {
         text-decoration: none;
     }
 }
+
 .pagination {
+    margin-top: 1.2rem;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;

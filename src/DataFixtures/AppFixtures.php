@@ -9,6 +9,7 @@ use Viewpoint\AdminBundle\Traits\AdminTrait;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Viewpoint\ThemeBundle\Entity\City;
+use Viewpoint\ThemeBundle\Entity\Currency;
 use Viewpoint\ThemeBundle\Entity\Room;
 use Viewpoint\ThemeBundle\Entity\RoomCellular;
 use Viewpoint\ThemeBundle\Traits\ThemeTrait;
@@ -87,6 +88,27 @@ class AppFixtures extends Fixture implements FixtureGroupInterface
         }
         $manager->flush();
 
+        /* CURRENCIES CREATION */
+        $currenciesList = [
+            ['name' => 'US Dollar', 'code' => 'USD', 'symbol' => '$'],
+            ['name' => 'Euro', 'code' => 'EUR', 'symbol' => '€'],
+            ['name' => 'British Pound', 'code' => 'GBP', 'symbol' => '£'],
+            ['name' => 'Japanese Yen', 'code' => 'JPY', 'symbol' => '¥'],
+            ['name' => 'Canadian Dollar', 'code' => 'CAD', 'symbol' => 'CA$'],
+        ];
+
+        $currencies = [];
+        foreach ($currenciesList as $currencyData) {
+            $currency = new Currency();
+            $currency->setName($currencyData['name']);
+            $currency->setCode($currencyData['code']);
+            $currency->setSymbol($currencyData['symbol']);
+            
+            $manager->persist($currency);
+            $currencies[] = $currency;
+        }
+        $manager->flush();
+
         /* ROOM CREATION */
         $users = [$user1, $user2, $user3];
         $conveyances = [$conveyance1, $conveyance2, $conveyance3];
@@ -95,20 +117,22 @@ class AppFixtures extends Fixture implements FixtureGroupInterface
             $randomUserIndex = array_rand($users);
             $randomConveyanceIndex = array_rand($conveyances);
             $randomCityIndex = array_rand($cities);
+            $randomCurrencyIndex = array_rand($currencies);
+
             $room = new Room();
 
             $room
                 ->setName($faker->word)
-                ->setCurrency("XOF")
+                ->setCurrency($currencies[$randomCurrencyIndex])
                 ->setUnitPrice($faker->numberBetween(1000, 5000))
                 ->setWeight($faker->numberBetween(10, 100))
                 ->setDepartureLocation($cities[$randomCityIndex])
                 ->setArrivalLocation($cities[$randomCityIndex + 1] ?? $cities[0])
-                ->setDepartureDate($faker->dateTimeBetween("now", "+1 week"))
+                ->setDepartureDate($faker->dateTimeBetween("-1 week", "+1 week"))
                 ->setArrivalDate($faker->dateTimeBetween("+1 week", "+1 month"))
                 ->setUser($users[$randomUserIndex])
                 ->setConveyance($conveyances[$randomConveyanceIndex]);
-            
+
             $cellular = new RoomCellular();
             $cellular
                 ->setPrimary($faker->phoneNumber)

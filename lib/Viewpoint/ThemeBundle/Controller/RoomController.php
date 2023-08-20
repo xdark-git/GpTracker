@@ -12,6 +12,9 @@ use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Viewpoint\ThemeBundle\Entity\City;
 use Viewpoint\ThemeBundle\Entity\Room;
+use Viewpoint\ThemeBundle\Entity\RoomViewsHistory;
+use Viewpoint\ThemeBundle\Form\RoomSortType;
+use Viewpoint\ThemeBundle\Form\SearchFormType;
 use Viewpoint\ThemeBundle\Repository\RoomRepository;
 
 #[Route("/rooms")]
@@ -29,11 +32,24 @@ class RoomController extends AbstractController
         PaginatorInterface $paginator,
         RoomRepository $repository
     ): Response {
-        $availableRoomsQuery = $repository->findAvailableRoomsQuery();
+        $searchForm = $this->createForm(SearchFormType::class);
+        $searchForm->handleRequest($request);
+        $searchFormData = $searchForm->getData();
+
+        $sortForm = $this->createForm(RoomSortType::class);
+        $sortForm->handleRequest($request);
+        $sortFormData = $sortForm->get("sort")->getData();
+
+        $availableRoomsQuery = $repository->findAvailableRoomsQuery($searchFormData, $sortFormData);
 
         $rooms = $paginator->paginate($availableRoomsQuery, $request->query->getInt("page", 1), 12);
+
+        $cities = $this->entityManager->getRepository(City::class)->findAll();
         return $this->render($this->themeResolver->getThemePathPrefix("/core/rooms.html.twig"), [
             "rooms" => $rooms,
+            "cities" => $cities,
+            "searchForm" => $searchForm,
+            "sortForm" => $sortForm,
         ]);
     }
 
@@ -75,35 +91,59 @@ class RoomController extends AbstractController
             $this->themeResolver->getThemePathPrefix("/core/room-creation.html.twig"),
             [
                 "roomCreationForm" => $form->createView(),
-                "cities" => $cities
+                "cities" => $cities,
             ]
         );
     }
 
-    #[Route("/rooms/s/{slug}", name: "app_room_detail", methods: ["GET"])]
+    #[Route("/s/{slug}", name: "app_room_detail", methods: ["GET"])]
     public function show(string $slug, EntityManagerInterface $entityManager)
     {
+        /** @var Room  */
         $room = $entityManager->getRepository(Room::class)->findOneBy(["slug" => $slug]);
 
         if (!$room) {
             throw $this->createNotFoundException("Page Introuvable");
         }
+        
+        if($room->getUser() != $this->getUser()) 
+        {
+            $currentDateTime = new \DateTime();
 
+            /** @var RoomViewsHistory */
+            $userLastTimeVisited= $entityManager
+                ->getRepository(RoomViewsHistory::class)
+                ->findOneBy([
+                    "room" => $room,
+                    "user"=> $this->getUser()
+                ]);
+                
+            if(!$userLastTimeVisited)
+            {
+                $newViewer = (new RoomViewsHistory)
+                    ->setUser($this->getUser())
+                    ->setRoom($room)
+                    ->setLastTimeVisited($currentDateTime);
+
+                $entityManager->persist($newViewer);
+                $entityManager->flush();
+            }else{
+                $userLastTimeVisited->setLastTimeVisited($currentDateTime);
+                $entityManager->flush();
+            }
+        }
+        $viewHistory = $entityManager->getRepository(RoomViewsHistory::class)->findBy(["room" => $room]);
+        $viewCount = count($viewHistory);
+        $roomName = $room->getName();
+    
         return $this->render(
             $this->themeResolver->getThemePathPrefix("/core/room-detail.html.twig"),
-            ["room" => $room]
+            [
+                "room" => $room,
+                "viewCount" => $viewCount,
+                "roomName" => $roomName
+            ]
         );
     }
-    #[Route("/CodeOfConduct", name: "app_Code_of_Conduct")]
-    public function CodeOfConduct(ThemeResolver $themeResolver): Response
-    {
-        return $this->render($themeResolver->getThemePathPrefix("/core/CodeOfConduct.html.twig"));
-    }
-    #[Route("/securityMeasures", name: "app_Security_measures")]
-    public function securityMeasures(ThemeResolver $themeResolver): Response
-    {
-        return $this->render(
-            $themeResolver->getThemePathPrefix("/core/securityMeasures.html.twig")
-        );
-    }
+    
 }

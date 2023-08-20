@@ -30,7 +30,7 @@ $(function() {
     const confirmationModal = $("#confirmationModal");
     const confirmDeleteButton = $("#confirmDelete");
     const cancelDeleteButton = $("#cancelDelete");
-    console.log(deleteButton.length);
+    
     deleteButton.on("click", function() {
         confirmationModal.removeClass('hidden');
         

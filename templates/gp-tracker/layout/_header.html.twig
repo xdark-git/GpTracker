@@ -43,19 +43,19 @@
                             <div id="user-nav-dialog">
                                 <ul>
                                     <li class="active">
-                                        <a href="/informations/account">
+                                        <a href="{{ path('app_informations_user') }}">
                                             <i class="fa-solid fa-user"></i>
                                             <span>Votre compte GP-Tracker</span>
                                         </a>
                                     </li>
-                                    <li>
+                                    {# <li>
                                         <a href="/informations/empty-message">
                                             <i class="fa-solid fa-envelope"></i>
                                             <span>Boîte de reception</span>
                                         </a>
-                                    </li>
+                                    </li> #}
                                     <li>
-                                        <a href="/informations/empty-package">
+                                        <a href="{{ path('app_user_package') }}">
                                             <i class="fa-solid fa-box"></i>
                                             <span>Mes annonces GP</span>
                                         </a>
