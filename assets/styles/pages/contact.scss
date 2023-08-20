@@ -29,9 +29,10 @@ main > .contact-form {
         label {
             display: block;
             color: #888;
+            text-transform: capitalize;
             font-size: 14px;
         }
-
+        
         .form-element {
             appearance: none;
             outline: none;
