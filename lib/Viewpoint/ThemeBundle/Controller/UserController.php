@@ -17,7 +17,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Viewpoint\AdminBundle\Entity\User;
 use Viewpoint\ThemeBundle\Entity\Room;
 use Viewpoint\ThemeBundle\Repository\RoomRepository;
-
+#[Route("/informations")]
 class UserController extends AbstractController
 {
     public function __construct(
@@ -25,8 +25,8 @@ class UserController extends AbstractController
         private ThemeResolver $themeResolver
     ) {
     }
-    #[Route("/informations", name: "app_informations")]
-    #[Route("/informations/account", name: "app_informations_user")]
+    #[Route("/", name: "app_informations")]
+    #[Route("/mon-compte", name: "app_informations_user")]
     public function completeProfile(Request $request): Response
     {
         /** @var User $user */
@@ -73,7 +73,7 @@ class UserController extends AbstractController
         );
     }
 
-    #[Route("/informations/settings", name: "app_settings")]
+    #[Route("/parametre", name: "app_settings")]
     public function changePassword(
         Request $request,
         UserPasswordHasherInterface $userPasswordHasher
@@ -110,7 +110,7 @@ class UserController extends AbstractController
         );
     }
 
-    #[Route("/informations/mes-annonces", name: "app_user_package")]
+    #[Route("/mes-annonces", name: "app_user_package")]
     public function emptyPackage(Request $request, PaginatorInterface $paginator): Response
     {
         /** @var RoomRepository */
@@ -137,7 +137,7 @@ class UserController extends AbstractController
         );
     }
 
-    #[Route("/informations/rooms/visited", name: "app_user_room_visited")]
+    #[Route("/annonces/historique", name: "app_user_room_visited")]
     public function emptyVu(ThemeResolver $themeResolver): Response
     {
         return $this->render(
