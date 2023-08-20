@@ -27,10 +27,13 @@
         display: flex;
         flex-direction: column-reverse;
         align-items: center;
-        .content{
+        .content {
             display: flex;
             flex-direction: row;
             align-items: center;
+        }
+        p {
+            text-align: center;
         }
     }
 }
@@ -82,8 +85,7 @@
     }
 
     .introduction,
-    .goal,
-    .team {
-        flex-direction: column;
+    .goal .team {
+        flex-direction: column !important;
     }
 }
