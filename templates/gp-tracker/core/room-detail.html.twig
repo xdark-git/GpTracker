@@ -16,27 +16,29 @@
             <section class="section-1">
                 <div class="informations">
                     <h2>Détails</h2>
-                    <div class="dropdown">
-                        <button id="dropdown-btn" class="dropdown-btn">
-                            <i class="fa-solid fa-ellipsis-v"></i>
-                        </button>
-                        <div class="dropdown-content">
-                            <button class="edit-btn" id="btn-edit">Modifier </button>
-                            <button class="del-btn" id="btn-delete">Supprimer</button>
-                        </div>
-                    </div>
-                     <div class="confirmation-modal hidden" id="confirmationModal">
-                        <div class="modal-content">
-                            <h2>Confirmer la suppression</h2>
-                            <p>Voulez-vous vraiment supprimer votre salon ?</p>
-                            <div class="modal-buttons">
-                                <form action="#">
-                                    <button id="confirmDelete" class="confirm-deletion">Oui</button>
-                                </form>
-                                <button id="cancelDelete" class="cancel-deletion">Non</button>
+                    {% if app.user == room.user %}
+                        <div class="dropdown">
+                            <button id="dropdown-btn" class="dropdown-btn">
+                                <i class="fa-solid fa-ellipsis-v"></i>
+                            </button>
+                            <div class="dropdown-content">
+                                <button class="edit-btn" id="btn-edit">Modifier </button>
+                                <button class="del-btn" id="btn-delete">Supprimer</button>
                             </div>
                         </div>
-                    </div>
+                        <div class="confirmation-modal hidden" id="confirmationModal">
+                            <div class="modal-content">
+                                <h2>Confirmer la suppression</h2>
+                                <p>Voulez-vous vraiment supprimer votre salon ?</p>
+                                <div class="modal-buttons">
+                                    <form action="#">
+                                        <button id="confirmDelete" class="confirm-deletion">Oui</button>
+                                    </form>
+                                    <button id="cancelDelete" class="cancel-deletion">Non</button>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
                     <div>
                         <div>
                             <span class="icons">
@@ -186,7 +188,9 @@
                         {% endif %}
                         <div class="user-details">
                             <h2>{{ room.user.firstName|default('-') ~ ' ' ~ room.user.lastName|default('-') }}</h2>
-                            <div class="rooms-created">{{ viewCount == 0 or viewCount == 1 ? viewCount ~ " vu": viewCount ~ " vus" }} </div>
+                            {% if app.user == room.user %}
+                                <div class="rooms-created">{{ viewCount == 0 or viewCount == 1 ? viewCount ~ " vu": viewCount ~ " vus" }} </div>
+                            {% endif %}
                         </div>
                     </div>
                     {# <div class="recommended-profile">
