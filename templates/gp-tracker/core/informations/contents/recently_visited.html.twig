@@ -20,6 +20,54 @@
         </div> 
     </div>
 </form>   
-{% include 'gp-tracker/layout/_rooms_for_current_user.html.twig' %}
+<div class="my-rooms">
+    {% for visited in roomsVisited %}
+        <div class="package-bloc">
+            <div class="title">
+                <h2 class="room-title">{{ visited.room.name|default('') }}</h2>
+                <a href="{{ path('app_room_detail', {'slug': visited.room.slug}) }}" class="room-detail">voir details</a>
+            </div>
+            <div class="room-name">
+                <p class="">{{ visited.room.departureLocation.name ~ ' - ' ~ visited.room.arrivalLocation.name}}</p>
+            </div>
+            {% if visited.room.departureDate < "now"|date %}
+                <div class="room-close-date">
+                    <span class="date">fermé</span>
+                    <span class="date-text"></span>
+                </div>
+            {% else %}
+                {% set now = "now"|date('U') %}
+                {% set departureTimestamp = visited.room.departureDate|date('U') %}
+                {% set remainingTime = departureTimestamp - now %}
+                {% set daysUntilClose = remainingTime / (60 * 60 * 24) %}
+                {% set hoursUntilClose = (remainingTime % (60 * 60 * 24)) / (60 * 60) %}
+
+                {% if  daysUntilClose > 0 %}
+                    <div class="room-close-date">
+                        <span class="date">Fermeture dans</span>
+                        <span class="date-text">
+                            {{ daysUntilClose|round(0, 'ceil') }} jour{% if daysUntilClose > 1 %}s{% endif %}
+                        </span>
+                    </div>    
+                {% elseif hoursUntilClose > 0 %}
+                    <div class="room-close-date">
+                        <span class="date">Fermeture dans</span>
+                        <span class="date-text">
+                            {{ hoursUntilClose|round(0, 'ceil') }} heure{% if hoursUntilClose > 1 %}s{% endif %}
+                        </span>
+                    </div>
+                {% else %}
+                    <div class="room-close-date">
+                        <span class="date">Fermeture dans</span>
+                        <span class="date-text">-1h</span>
+                    </div>
+                {% endif %}
+            {% endif %}
+        </div>
+    {% endfor %}    
+    <div class="navigation">
+        {{knp_pagination_render(roomsVisited)}}
+    </div>
+</div>
 
 {% endblock %}

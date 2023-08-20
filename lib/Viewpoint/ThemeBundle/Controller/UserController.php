@@ -16,7 +16,10 @@ use Viewpoint\ThemeBundle\Service\ThemeResolver;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Viewpoint\AdminBundle\Entity\User;
 use Viewpoint\ThemeBundle\Entity\Room;
+use Viewpoint\ThemeBundle\Entity\RoomViewsHistory;
 use Viewpoint\ThemeBundle\Repository\RoomRepository;
+use Viewpoint\ThemeBundle\Repository\RoomViewsHistoryRepository;
+
 #[Route("/informations")]
 class UserController extends AbstractController
 {
@@ -138,12 +141,28 @@ class UserController extends AbstractController
     }
 
     #[Route("/annonces/historique", name: "app_user_room_visited")]
-    public function emptyVu(ThemeResolver $themeResolver): Response
+    public function roomViewsHistory(Request $request, PaginatorInterface $paginator): Response
     {
+        /** @var RoomViewsHistoryRepository */
+        $roomViewHistoryRepository = $this->entityManager->getRepository(RoomViewsHistory::class);
+
+        $userVisitedRoomsQuery = $roomViewHistoryRepository->findVisitedRoomsByCurrentUser($this->getUser());
+        $roomsVisited = $paginator->paginate($userVisitedRoomsQuery, $request->query->getInt("page", 1), 4);
+        
+        if ($roomsVisited->getTotalItemCount() == 0) {
+            return $this->render(
+                $this->themeResolver->getThemePathPrefix(
+                    "/core/informations/contents/empty_recently_visited.html.twig"
+                )
+            );
+        }
         return $this->render(
-            $themeResolver->getThemePathPrefix(
-                "/core/informations/contents/empty-recently-seen.html.twig"
-            )
+            $this->themeResolver->getThemePathPrefix(
+                "/core/informations/contents/recently_visited.html.twig"
+            ),
+            [
+                "roomsVisited" => $roomsVisited
+            ]
         );
     }
 
