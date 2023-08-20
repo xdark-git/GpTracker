@@ -5,4 +5,5 @@ import "./informations/informations";
 import "./rooms/room";
 import "./rooms/room-creation";
 import "./rooms/room-detail";
+import "./contact/contact";
 import "./terms-codes/terms-codes";
