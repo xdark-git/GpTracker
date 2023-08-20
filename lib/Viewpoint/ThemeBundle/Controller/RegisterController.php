@@ -67,9 +67,4 @@ class RegisterController extends AbstractController
             $themeResolver->getThemePathPrefix("/core/terms_and_conditions.html.twig")
         );
     }
-    #[Route("/about-us", name: "app_about_us")]
-    public function aboutUs(ThemeResolver $themeResolver): Response
-    {
-        return $this->render($themeResolver->getThemePathPrefix("/core/about-us.html.twig"));
-    }
 }

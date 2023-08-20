@@ -89,6 +89,12 @@ class AppController extends AbstractController
         );
     }
 
+    #[Route("/a-propos-de-nous", name: "app_about_us")]
+    public function aboutUs(): Response
+    {
+        return $this->render($this->themeResolver->getThemePathPrefix("/core/about-us.html.twig"));
+    }
+
     #[Route("/code-of-conduct", name: "app_Code_of_Conduct")]
     public function CodeOfConduct(): Response
     {
