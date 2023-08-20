@@ -1,0 +1,41 @@
+{% extends 'gp-tracker/base.html.twig' %}
+
+{% block title %}
+   About us
+{% endblock %}
+
+{% block body %}
+
+<main>
+    <div class="container gp-about-us">
+        <div class="section introduction">
+            <img src="{{asset('theme/assets/img/logo/questions.png')}}" alt="who-we-are"/>
+            <div class="content">
+                <h2>Presentation</h2>
+                <p>
+                    Nous sommes une équipe passionnée dédiée à la création de solutions innovantes pour faciliter et soutenir le réseau mondial.
+                    Avec une vision claire et un engagement profond, nous avons conçu GP-Tracker, une plateforme unique en son genre.
+                </p>
+            </div>
+        </div>
+        <div class="section goal">
+            <img src="{{asset('theme/assets/img/logo/Team-goals.png')}}" alt="missions0"/>
+            <div class="content">
+                <h2>Missions</h2>
+                <p>
+                    Notre mission est claire : faciliter et étendre le réseau de Gratuite Partielle à une échelle mondiale. GP-Tracker est né de 
+                    notre désir de simplifier les échanges et la collaboration au sein de cette communauté, en offrant une plateforme conviviale 
+                    qui relie les individus et les opportunités.
+                </p>
+            </div>
+        </div>
+        <div class="section team">
+            <img src="{{asset('theme/assets/img/logo/duo-teams.png')}}" alt="team-image"/>
+            <div class="content">
+                <p>GP-Tracker  c’est avant tout une équipe de passionnés !</p>
+            </div>
+        </div>
+    </div>
+</main>
+    
+{% endblock %}

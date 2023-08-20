@@ -1,0 +1,91 @@
+/* styles.scss */
+.gp-about-us {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+
+    & > .section {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        & > img,
+        & > div {
+            width: 50%;
+        }
+    }
+    & > .introduction {
+        padding-top: 1rem;
+    }
+    & > .goal {
+        display: flex;
+        flex-direction: row-reverse;
+    }
+
+    & > .team {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        .content {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        p {
+            text-align: center;
+        }
+    }
+}
+
+.gp-about-us > .section > .content {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.8rem;
+
+    h2 {
+        color: $base-color;
+        font-weight: 600;
+        font-size: 1.5rem;
+    }
+    p {
+        font-size: 1rem;
+        padding-left: 0.6rem;
+    }
+}
+
+@mixin about-us-max-width--775px {
+    .gp-about-us {
+        background-color: white;
+    }
+    .section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .section > img,
+    .section > div {
+        width: 100%;
+    }
+
+    .gp-about-us > .section > .content {
+        width: 100%;
+        text-align: center;
+
+        h2 {
+            font-size: 1.2rem;
+        }
+
+        p {
+            padding-left: 0;
+            margin-top: 1rem;
+        }
+    }
+
+    .introduction,
+    .goal, .team {
+        flex-direction: column !important;
+    }
+}
