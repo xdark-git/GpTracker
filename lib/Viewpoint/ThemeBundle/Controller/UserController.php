@@ -137,6 +137,16 @@ class UserController extends AbstractController
         );
     }
 
+    #[Route("/informations/rooms/visited", name: "app_user_room_visited")]
+    public function emptyVu(ThemeResolver $themeResolver): Response
+    {
+        return $this->render(
+            $themeResolver->getThemePathPrefix(
+                "/core/informations/contents/empty-recently-seen.html.twig"
+            )
+        );
+    }
+
     #[Route("/activation", name: "app_account_activation")]
     public function accountActivation(): Response
     {
