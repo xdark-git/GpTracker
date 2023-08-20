@@ -124,6 +124,7 @@ class RoomRepository extends ServiceEntityRepository
             ->andWhere("r.isDeleted = :isDeleted")
             ->setParameter("user", $user)
             ->setParameter("isDeleted", false)
+            ->orderBy("r.updatedAt", "ASC")
             ->getQuery();
     }
 }
