@@ -9,7 +9,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Viewpoint\ThemeBundle\Service\ThemeResolver;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 use Viewpoint\ThemeBundle\Data\ContactData;
 use Viewpoint\ThemeBundle\Entity\City;
@@ -18,7 +17,7 @@ use Viewpoint\ThemeBundle\Form\ContactFormType;
 use Viewpoint\ThemeBundle\Form\SearchFormType;
 use Viewpoint\ThemeBundle\Repository\RoomRepository;
 
-class HomeController extends AbstractController
+class AppController extends AbstractController
 {
     public function __construct(
         private ThemeResolver $themeResolver,
