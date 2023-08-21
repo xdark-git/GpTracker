@@ -63,6 +63,7 @@ main .gp-room-detail > .content .section-1 .informations {
     .dropdown-content {
         display: none;
         position: absolute;
+        min-width: fit-content;
         background-color: #fff;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
         z-index: 1;
@@ -70,18 +71,19 @@ main .gp-room-detail > .content .section-1 .informations {
         right: 0;
         max-width: 30px;
         flex-direction: column;
-
-        .edit-btn,
-        .del-btn {
-            border: none;
-            padding: 8px 16px;
+        button{
+           font-size: 1rem;
+           padding: 0.6rem;
+           border: none;
             margin: 0;
             background: none;
             cursor: pointer;
             width: 100%;
             text-align: left;
         }
+        
         .edit-btn {
+            border-bottom: $light-gray-color 1px solid;
             &:hover {
                 color: $base-color;
             }
@@ -148,10 +150,12 @@ main
     .modal-content
     .modal-buttons {
     display: flex;
-    justify-content: center;
+    // justify-content: center;
+    gap:1rem;
     width: 50%;
     align-self: center;
     button {
+        width: 100%;
         padding: 0.5rem 1rem;
         margin-left: 1rem;
         border: none;
