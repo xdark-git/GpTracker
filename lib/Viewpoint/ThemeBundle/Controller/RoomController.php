@@ -17,7 +17,7 @@ use Viewpoint\ThemeBundle\Form\RoomSortType;
 use Viewpoint\ThemeBundle\Form\SearchFormType;
 use Viewpoint\ThemeBundle\Repository\RoomRepository;
 
-#[Route("/rooms")]
+#[Route("/annonce")]
 class RoomController extends AbstractController
 {
     public function __construct(
@@ -53,7 +53,7 @@ class RoomController extends AbstractController
         ]);
     }
 
-    #[Route("/new", name: "app_room_creation", methods: ["GET", "POST", "PUT"])]
+    #[Route("/creation", name: "app_room_creation", methods: ["GET", "POST", "PUT"])]
     public function create(Request $request, EntityManagerInterface $entityManager): Response
     {
         /** @var User */
@@ -96,7 +96,7 @@ class RoomController extends AbstractController
         );
     }
 
-    #[Route("/s/{slug}", name: "app_room_detail", methods: ["GET"])]
+    #[Route("/{slug}", name: "app_room_detail", methods: ["GET"])]
     public function show(string $slug, EntityManagerInterface $entityManager)
     {
         /** @var Room  */
