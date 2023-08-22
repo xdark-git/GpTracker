@@ -31,12 +31,12 @@ class RoomFormType extends AbstractType
     {
         $builder
             ->add("departureLocation", TextType::class, [
-                "label" => "Lieu de depart",
+                "label" => "Ville de depart",
                 "help" => "Mettre les informations necessaires",
                 "mapped" => false,
             ])
             ->add("arrivalLocation", TextType::class, [
-                "label" => "Lieu d’arrivée",
+                "label" => "Ville d’arrivée",
                 "help" => "Mettre les informations necessaires",
                 "mapped" => false,
             ])
@@ -149,6 +149,27 @@ class RoomFormType extends AbstractType
             }
 
             $event->setData($entity);
+        });
+
+        $builder->addEventListener(FormEvents::POST_SET_DATA, function (FormEvent $event) {
+            /** @var Room|null */
+            $room = $event->getData();
+            $form = $event->getForm();
+
+            if (!$room) {
+                return;
+            }
+
+            // Get the current departure and arrival locations
+            $departureLocation = $room->getDepartureLocation();
+            $arrivalLocation = $room->getArrivalLocation();
+            
+            $form
+                ->get("departureLocation")
+                ->setData($departureLocation ? $departureLocation->getName() : null);
+            $form
+                ->get("arrivalLocation")
+                ->setData($arrivalLocation ? $arrivalLocation->getName() : null);
         });
     }
 
