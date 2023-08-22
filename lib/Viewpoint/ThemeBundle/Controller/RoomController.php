@@ -96,6 +96,58 @@ class RoomController extends AbstractController
         );
     }
 
+    #[Route("/{slug}", name: "app_room_detail", methods: ["GET"])]
+    public function show(string $slug, EntityManagerInterface $entityManager)
+    {
+        /** @var Room  */
+        $room = $entityManager
+            ->getRepository(Room::class)
+            ->findOneBy(["slug" => $slug, "isDeleted" => false]);
+
+        if (!$room) {
+            throw $this->createNotFoundException("Page Introuvable");
+        }
+
+        if ($room->getUser() != $this->getUser()) {
+            $currentDateTime = new \DateTime();
+
+            /** @var RoomViewsHistory */
+            $userLastTimeVisited = $entityManager
+                ->getRepository(RoomViewsHistory::class)
+                ->findOneBy([
+                    "room" => $room,
+                    "user" => $this->getUser(),
+                ]);
+
+            if (!$userLastTimeVisited) {
+                $newViewer = (new RoomViewsHistory())
+                    ->setUser($this->getUser())
+                    ->setRoom($room)
+                    ->setLastTimeVisited($currentDateTime);
+
+                $entityManager->persist($newViewer);
+                $entityManager->flush();
+            } else {
+                $userLastTimeVisited->setLastTimeVisited($currentDateTime);
+                $entityManager->flush();
+            }
+        }
+        $viewHistory = $entityManager
+            ->getRepository(RoomViewsHistory::class)
+            ->findBy(["room" => $room]);
+        $viewCount = count($viewHistory);
+        $roomName = $room->getName();
+
+        return $this->render(
+            $this->themeResolver->getThemePathPrefix("/core/room-detail.html.twig"),
+            [
+                "room" => $room,
+                "viewCount" => $viewCount,
+                "roomName" => $roomName,
+            ]
+        );
+    }
+
     #[Route("/modification/{slug}", name: "app_room_update")]
     public function update(string $slug, Request $request): Response
     {
@@ -161,62 +213,11 @@ class RoomController extends AbstractController
 
             $this->addFlash("success", "Votre annonce a été supprimée avec succès");
 
-            return $this->redirectToRoute("app_user_package");
+            return $this->redirectToRoute("app_rooms");
         }
 
         // This code should never be reached, but it's good to include as a fallback
         throw new \Exception("Token introuvable");
     }
 
-    #[Route("/{slug}", name: "app_room_detail", methods: ["GET"])]
-    public function show(string $slug, EntityManagerInterface $entityManager)
-    {
-        /** @var Room  */
-        $room = $entityManager
-            ->getRepository(Room::class)
-            ->findOneBy(["slug" => $slug, "isDeleted" => false]);
-
-        if (!$room) {
-            throw $this->createNotFoundException("Page Introuvable");
-        }
-
-        if ($room->getUser() != $this->getUser()) {
-            $currentDateTime = new \DateTime();
-
-            /** @var RoomViewsHistory */
-            $userLastTimeVisited = $entityManager
-                ->getRepository(RoomViewsHistory::class)
-                ->findOneBy([
-                    "room" => $room,
-                    "user" => $this->getUser(),
-                ]);
-
-            if (!$userLastTimeVisited) {
-                $newViewer = (new RoomViewsHistory())
-                    ->setUser($this->getUser())
-                    ->setRoom($room)
-                    ->setLastTimeVisited($currentDateTime);
-
-                $entityManager->persist($newViewer);
-                $entityManager->flush();
-            } else {
-                $userLastTimeVisited->setLastTimeVisited($currentDateTime);
-                $entityManager->flush();
-            }
-        }
-        $viewHistory = $entityManager
-            ->getRepository(RoomViewsHistory::class)
-            ->findBy(["room" => $room]);
-        $viewCount = count($viewHistory);
-        $roomName = $room->getName();
-
-        return $this->render(
-            $this->themeResolver->getThemePathPrefix("/core/room-detail.html.twig"),
-            [
-                "room" => $room,
-                "viewCount" => $viewCount,
-                "roomName" => $roomName,
-            ]
-        );
-    }
 }
