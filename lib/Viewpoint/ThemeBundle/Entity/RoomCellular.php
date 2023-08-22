@@ -72,7 +72,7 @@ class RoomCellular
         return $this->secondary;
     }
 
-    public function setSecondary(string $secondary): self
+    public function setSecondary(?string $secondary): self
     {
         $this->secondary = preg_replace('/[^0-9+]/', '', $secondary);
         return $this;
