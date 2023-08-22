@@ -20,7 +20,7 @@ class City
 
     #[ORM\Column(length: 100)]
     private ?string $country = null;
-
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -46,5 +46,10 @@ class City
     {
         $this->country = $country;
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->getName();
     }
 }
