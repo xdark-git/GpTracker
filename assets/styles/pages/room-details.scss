@@ -63,25 +63,29 @@ main .gp-room-detail > .content .section-1 .informations {
     .dropdown-content {
         display: none;
         position: absolute;
-        min-width: fit-content;
-        background-color: #fff;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-        z-index: 1;
         top: 100%;
         right: 0;
-        max-width: 30px;
+        min-width: fit-content;
+        max-width: 165px;
+        width: 50%;        
         flex-direction: column;
-        button{
-           font-size: 1rem;
-           padding: 0.6rem;
-           border: none;
+        background-color: #fff;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+
+        z-index: 1;
+        a,
+        button {
+            display: flex;
+            font-size: 1rem;
+            padding: 0.6rem 1rem;
+            border: none;
             margin: 0;
             background: none;
             cursor: pointer;
             width: 100%;
             text-align: left;
         }
-        
+
         .edit-btn {
             border-bottom: $light-gray-color 1px solid;
             &:hover {
@@ -151,7 +155,7 @@ main
     .modal-buttons {
     display: flex;
     // justify-content: center;
-    gap:1rem;
+    gap: 1rem;
     width: 50%;
     align-self: center;
     button {
