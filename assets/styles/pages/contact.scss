@@ -1,9 +1,9 @@
 main > .contact-form {
     position: relative;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 16px;
-    width: 77vw;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 70%;
     background-color: #fff;
     margin-top: 1rem;
     border-radius: 20px;
@@ -12,7 +12,6 @@ main > .contact-form {
 
     .form-title {
         text-align: center;
-        grid-column: 1 / -1;
         h4 {
             margin-bottom: 8px;
             color: #888;
@@ -25,7 +24,15 @@ main > .contact-form {
         }
     }
 
-    .form-group {
+    .form-group{
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        width: 100%;
+    }
+
+    .input-container {
+        width: 100%;
         label {
             display: block;
             color: #888;
@@ -41,7 +48,8 @@ main > .contact-form {
             display: block;
             width: 100%;
             border-radius: 8px;
-            padding: 25px 16px;
+            font-size: 1rem;
+            padding: 1rem;
             background-color: #f3f3f3;
             transition: 0.4s;
 
@@ -52,19 +60,22 @@ main > .contact-form {
         }
 
         textarea {
-            resize: none;
-            min-height: 100px;
+            // resize: none;
             width: 100%;
+            min-width: 100%;
+            max-width: 100%;
+            max-height: 300px;
+            min-height: 100px;
         }
     }
 
-    .form-group.full {
-        grid-column: 1 / -1;
-    }
+    // .input-container {
+    //     grid-column: 1 / -1;
+    // }
 
-    .form-group.full textarea {
-        width: 100%;
-    }
+    // .input-container textarea {
+    //     width: 100%;
+    // }
     .submit-group {
         grid-column: 1 / -1;
         display: flex;

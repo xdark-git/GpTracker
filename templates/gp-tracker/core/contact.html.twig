@@ -14,42 +14,52 @@
             <h2>Ecrivez-nous !</h2>
         </div>
         <div class="form-group">
+            <div class="input-container">
             {{ form_row(contactForm.firstname, {
                 'attr':{
                     'class': 'form-element',
                     'value': app.user ? app.user.firstname :''
                 }
             }) }}
+            </div>
+            <div class="input-container">
+                {{ form_row(contactForm.lastname, {
+                    'attr':{
+                        'class': 'form-element',
+                        'value': app.user ? app.user.lastname :''
+                    }
+                }) }}
+            </div>
         </div>
         <div class="form-group">
-            {{ form_row(contactForm.lastname, {
-                'attr':{
-                    'class': 'form-element',
-                    'value': app.user ? app.user.lastname :''
-                }
-            }) }}
+            <div class="input-container">
+                {{ form_row(contactForm.email, {
+                    'attr':{
+                        'class': 'form-element',
+                        'value': app.user ? app.user.email :''
+                    }
+                }) }}
+            </div>
         </div>
         <div class="form-group">
-            {{ form_row(contactForm.email, {
-                'attr':{
-                    'class': 'form-element',
-                    'value': app.user ? app.user.email :''
-                }
-            }) }}
-        </div>
-        <div class="form-group">
-            {{ form_row(contactForm.object, {
-                'attr':{
-                    'class': 'form-element',
-                }
-            }) }}
+            <div class="input-container">
+                {{ form_row(contactForm.object, {
+                    'attr':{
+                        'class': 'form-element',
+                    }
+                }) }}
+            </div>
         </div>
         <div class="form-group full">
-            {{ form_row(contactForm.message, {
-                'attr':{
-                    'class': 'form-element'
-                }
-            }) }}
+            <div class="input-container">
+                {{ form_row(contactForm.message, {
+                    'attr':{
+                        'class': 'form-element',
+                        'rows': '4',
+                        'cols': '50'
+                    }
+                }) }}
+            </div>
         </div>
         <div class="submit-group">
             {{ form_row(contactForm._token) }}
