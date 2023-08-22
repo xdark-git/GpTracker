@@ -109,7 +109,7 @@ class RoomController extends AbstractController
         }
 
         // Check if the current user is the owner of the room
-        if ($room->getUser() !== $this->getUser()) {
+        if ($room->getUser() !== $this->getUser() && !$this->isGranted("ROLE_ADMIN")) {
             throw $this->createAccessDeniedException("You are not authorized to update this room.");
         }
 
