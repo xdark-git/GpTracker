@@ -16,13 +16,13 @@
             <section class="section-1">
                 <div class="informations">
                     <h2>Détails</h2>
-                    {% if app.user == room.user %}
+                    {% if app.user == room.user or is_granted('ROLE_ADMIN') %}
                         <div class="dropdown">
                             <button id="dropdown-btn" class="dropdown-btn">
                                 <i class="fa-solid fa-ellipsis-v"></i>
                             </button>
                             <div class="dropdown-content">
-                                <button class="edit-btn" id="btn-edit">Modifier </button>
+                                <a class="edit-btn" id="btn-edit" href="{{ path('app_room_update', {'slug': room.slug}) }}">Modifier</a>
                                 <button class="del-btn" id="btn-delete">Supprimer</button>
                             </div>
                         </div>
@@ -31,7 +31,8 @@
                                 <h2>Confirmer la suppression</h2>
                                 <p>Voulez-vous vraiment supprimer votre salon ?</p>
                                 <div class="modal-buttons">
-                                    <form action="#">
+                                    <form action="{{ url('app_room_delete', { slug: room.slug }) }}" method="POST">
+                                        <input type="hidden" name="token" value="{{ csrf_token('delete-room') }}">
                                         <button id="confirmDelete" class="confirm-deletion">Oui</button>
                                     </form>
                                     <button id="cancelDelete" class="cancel-deletion">Non</button>
