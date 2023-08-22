@@ -4,7 +4,9 @@ import $ from "jquery";
 ---------------------------------*/
 
 $(function() {
-    $('input[required], textarea[required]').each(function() {
+    const $contactForm = $("#contact-form");
+
+    $contactForm.find('input[required], textarea[required]').each(function() {
       var label = $('label[for="' + $(this).attr('id') + '"]');
       label.append(' *');
     });
