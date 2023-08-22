@@ -90,23 +90,29 @@ class AppFixtures extends Fixture implements FixtureGroupInterface
 
         /* CURRENCIES CREATION */
         $currenciesList = [
-            ['name' => 'US Dollar', 'code' => 'USD', 'symbol' => '$'],
-            ['name' => 'Euro', 'code' => 'EUR', 'symbol' => '€'],
-            ['name' => 'British Pound', 'code' => 'GBP', 'symbol' => '£'],
-            ['name' => 'Japanese Yen', 'code' => 'JPY', 'symbol' => '¥'],
-            ['name' => 'Canadian Dollar', 'code' => 'CAD', 'symbol' => 'CA$'],
+            ['name' => 'US Dollar', 'code' => 'USD', 'symbol' => '$', 'exchangeRate' => 1.0],
+            ['name' => 'Euro', 'code' => 'EUR', 'symbol' => '€', 'exchangeRate' => 0.85],
+            ['name' => 'British Pound', 'code' => 'GBP', 'symbol' => '£', 'exchangeRate' => 0.73],
+            ['name' => 'Japanese Yen', 'code' => 'JPY', 'symbol' => '¥', 'exchangeRate' => 110.0],
+            ['name' => 'Canadian Dollar', 'code' => 'CAD', 'symbol' => 'CA$', 'exchangeRate' => 1.25],
         ];
-
+        
         $currencies = [];
         foreach ($currenciesList as $currencyData) {
             $currency = new Currency();
             $currency->setName($currencyData['name']);
             $currency->setCode($currencyData['code']);
             $currency->setSymbol($currencyData['symbol']);
+            $currency->setExchangeRate($currencyData['exchangeRate']);
+
+            if($currencyData['code'] == 'USD'){
+                $currency->setIsDefault(true);
+            }
             
             $manager->persist($currency);
             $currencies[] = $currency;
         }
+        
         $manager->flush();
 
         /* ROOM CREATION */

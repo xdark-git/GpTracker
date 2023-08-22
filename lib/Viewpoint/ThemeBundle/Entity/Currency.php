@@ -21,8 +21,14 @@ class Currency
     #[ORM\Column(length: 3, unique:true)]
     private ?string $code = null;
 
+    #[ORM\Column(type: "decimal", precision: 10, scale: 4)]
+    private ?float $exchangeRate = null;
+
     #[ORM\Column(length: 10, unique:true)]
     private ?string $symbol = null;
+
+    #[ORM\Column(type: "boolean")]
+    private bool $isDefault = false;
 
     public function getId(): ?int
     {
@@ -51,6 +57,17 @@ class Currency
         return $this;
     }
 
+    public function getExchangeRate(): ?float
+    {
+        return $this->exchangeRate;
+    }
+
+    public function setExchangeRate(float $exchangeRate): self
+    {
+        $this->exchangeRate = $exchangeRate;
+        return $this;
+    }
+
     public function getSymbol(): ?string
     {
         return $this->symbol;
@@ -59,6 +76,17 @@ class Currency
     public function setSymbol(?string $symbol): self
     {
         $this->symbol = $symbol;
+        return $this;
+    }
+
+    public function getIsDefault(): bool
+    {
+        return $this->isDefault;
+    }
+
+    public function setIsDefault(bool $isDefault): self
+    {
+        $this->isDefault = $isDefault;
         return $this;
     }
 }
