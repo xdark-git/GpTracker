@@ -8,15 +8,14 @@ use Viewpoint\ThemeBundle\Repository\RoomRepository;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\DBAL\Types\Types;
 use Viewpoint\AdminBundle\Entity\User;
-use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Viewpoint\ThemeBundle\Validator as ThemeAssert;
 use Viewpoint\ThemeBundle\Entity\City;
+
 #[ORM\Entity(repositoryClass: RoomRepository::class)]
 #[ThemeAssert\RoomDates()]
 #[ThemeAssert\RoomLocations()]
-#[ORM\HasLifecycleCallbacks]
 class Room
 {
     use TimestampableEntity;
@@ -36,7 +35,6 @@ class Room
     ]
     private ?string $name = null;
 
-    #[Gedmo\Slug(fields: ["name"], prefix: "gp-")]
     #[ORM\Column(type: Types::STRING, unique: true, length: 255)]
     private ?string $slug = null;
 
@@ -273,17 +271,4 @@ class Room
         return $this->viewsHistory;
     }
 
-    #[ORM\PrePersist]
-    #[ORM\PreUpdate]
-    public function generateSlug(): void
-    {
-        $newSlug = sprintf(
-            "%s-%s-%s",
-            $this->departureLocation->getName(),
-            $this->arrivalLocation->getName(),
-            $this->name
-        );
-        // Gedmo\Slug will take care of the urlization
-        $this->setSlug($newSlug);
-    }
 }
