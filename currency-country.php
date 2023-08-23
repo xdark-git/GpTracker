@@ -252,7 +252,8 @@ $citiesData = [
         ['name' => 'Nord Foire', 'country'=> 'Senegal'],
         ['name' => 'Ouest Foire', 'country'=> 'Senegal'],
         ['name' => 'Grand Yoff', 'country'=> 'Senegal'],
-        ['name' => 'Patte d\'oie', 'country'=> 'Senegal']
+        ['name' => 'Patte d\'oie', 'country'=> 'Senegal'],
+        ['name'=> 'Bargny', 'country'=> 'Senegal'],
     ],
     'Mali' => [
         ['name' => 'Bamako', 'country' => 'Mali'],
