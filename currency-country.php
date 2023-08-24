@@ -85,9 +85,6 @@ $citiesData = [
         ['name' => 'Meknes', 'country' => 'Maroc'],
         ['name' => 'Kenitra', 'country' => 'Maroc'],  
     ],
-    'Nigeria' => [
-        ['name' => 'Lagos', 'country' => 'Nigeria'],
-    ],
     'Côte d\'Ivoire' => [
         ['name' => 'Abidjan', 'country' => 'Côte d\'Ivoire'],
         ['name' => 'Bouaké', 'country' => 'Côte d\'Ivoire'],
