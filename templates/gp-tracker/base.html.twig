@@ -12,8 +12,13 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-       <link rel="icon" href="#">
+        <title>{% block title %}Bienvenu!{% endblock %}</title>
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('theme/assets/img/favicon/favicon-1.png') }}">
+        <meta name="author" content="GP-Tracker">
+        {% block metatags %}
+            
+        {% endblock %}
+        
         
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
