@@ -105,22 +105,6 @@ $citiesData = [
         ['name' => 'Barcelona', 'country' => 'Espagne'],
         ['name' => 'Valencia', 'country' => 'Espagne'],
     ],
-    'Portugal' => [
-        ['name' => 'Lisbon', 'country' => 'Portugal'],
-    ],
-    'Luxembourg' => [
-        ['name' => 'Luxembourg', 'country' => 'Luxembourg'],
-    ],
-    'Benin' => [
-        ['name' => 'Cotonou', 'country' => 'Benin'],
-        ['name' => 'Porto-Novo', 'country' => 'Benin'],
-    ],
-    'Dubai' => [
-        ['name' => 'Dubai', 'country' => 'Emirates arabes unis'],
-    ],
-    'Qatar' => [
-        ['name' => 'Doha', 'country' => 'Qatar'],
-    ],
     'Turquie' => [
         ['name' => 'Istanbul', 'country' => 'Turquie'],
     ],
