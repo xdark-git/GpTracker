@@ -100,7 +100,6 @@ $citiesData = [
     'Espagne' => [
         ['name' => 'Madrid', 'country' => 'Espagne'],
         ['name' => 'Barcelona', 'country' => 'Espagne'],
-        ['name' => 'Valencia', 'country' => 'Espagne'],
     ],
     'Turquie' => [
         ['name' => 'Istanbul', 'country' => 'Turquie'],
