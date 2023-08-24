@@ -28,7 +28,6 @@ $citiesData = [
     ],
     'Angleterre' => [
         ['name' => 'London', 'country' => 'Angleterre'],
-        ['name' => 'Birmingham', 'country' => 'Angleterre'],
         ['name' => 'Manchester', 'country' => 'Angleterre'],
         ['name' => 'Liverpool', 'country' => 'Angleterre'],
     ],
