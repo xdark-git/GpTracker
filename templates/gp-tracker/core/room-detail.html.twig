@@ -157,17 +157,17 @@
                 </div>
                 <div class="share">
                     <h2>Partager</h2>
-                    <div class="links">
-                        <a href="#" class="facebook" target="_blank" rel="noopener noreferrer">
+                   <div class="links">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ app.request.uri }}" class="facebook" target="_blank" rel="noopener noreferrer">
                             <i class="fa-brands fa-facebook"></i>
                         </a>
-                        <a href="#" class="twitter" target="_blank" rel="noopener noreferrer">
+                        <a href="https://twitter.com/intent/tweet?url={{ app.request.uri }}" class="twitter" target="_blank" rel="noopener noreferrer">
                             <i class="fa-brands fa-twitter"></i>
                         </a>
-                        <a href="#" class="whatsapp" target="_blank" rel="noopener noreferrer">
+                        <a href="whatsapp://send?text={{ app.request.uri }}" class="whatsapp" target="_blank" rel="noopener noreferrer">
                             <i class="fa-brands fa-whatsapp"></i>
                         </a>
-                        <a href="#" class="email" target="_blank" rel="noopener noreferrer">
+                        <a href="mailto:?subject=Check%20out%20this%20link&body={{ app.request.uri }}" class="email" target="_blank" rel="noopener noreferrer">
                             <i class="fa-regular fa-envelope"></i>
                         </a>
                         <button id="copyButton">
