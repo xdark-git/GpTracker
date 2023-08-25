@@ -36,9 +36,9 @@
 <main>
     <div class="container gp-room-detail">
        <div class="page-root">
-            <a href="#" class="rooms">Salons</a>
+            <a href="{{ path('app_rooms') }}" class="rooms">Annonces</a>
             <span>></span>
-            <a href="#" class="room-title">{{ room.name|default('') }}</a>
+            <span href="#" class="room-title">{{ room.name|default('') }}</span>
        </div>
        <div class="content">
             <section class="section-1">
@@ -223,9 +223,6 @@
                         {% endif %}
                         <div class="user-details">
                             <h2>{{ room.user.firstName|default('-') ~ ' ' ~ room.user.lastName|default('-') }}</h2>
-                            {% if app.user == room.user %}
-                                <div class="rooms-created">{{ viewCount == 0 or viewCount == 1 ? viewCount ~ " vu": viewCount ~ " vus" }} </div>
-                            {% endif %}
                         </div>
                     </div>
                 </div>

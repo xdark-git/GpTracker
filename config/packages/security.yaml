@@ -34,12 +34,9 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { route: app_rooms, roles: ROLE_USER }
         - { route: app_login|app_register|app_forgot_password|app_new_password, allow_if: "!is_granted('ROLE_USER')" }
-        - { route: app_room_detail, roles: ROLE_USER }
         - { route: app_room_creation, roles: ROLE_USER }
         - { path: ^/informations, roles: ROLE_USER }
-        # - { path: ^/profile, roles: ROLE_USER }
 
 when@test:
     security:
