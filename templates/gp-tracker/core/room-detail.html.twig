@@ -222,7 +222,7 @@
                             <img src="{{asset('theme/assets/img/profil/default-user-profile.png')}}" alt="User Profile Image">
                         {% endif %}
                         <div class="user-details">
-                            {% if is_granted('ROLE_ADMIN')  %}
+                            {% if 'ROLE_ADMIN' in room.user.roles  %}
                                 <h2>Administrateur</h2>
                             {% else %}
                                 <h2>{{ room.user.firstName|default('-') ~ ' ' ~ room.user.lastName|default('-') }}</h2>
