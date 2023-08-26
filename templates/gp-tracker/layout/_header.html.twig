@@ -96,22 +96,6 @@
     <section class="section-2">
         <ul id="gp-header-nav">
             <i class="fa-regular fa-xmark"></i>
-            {# <li class="language-switcher">
-                <div class="current" id="current-language">
-                    <img src="{{asset('/theme/assets/img/flag/fr_img.png')}}" alt="fr">
-                    <span>Français</span>
-                </div>
-                <div class="options">
-                    <a href="#">
-                        <img src="{{asset('/theme/assets/img/flag/fr_img.png')}}" alt="fr">
-                        <span>Français</span>
-                    </a>
-                    <a href="#">
-                        <img src="{{asset('/theme/assets/img/flag/fr_img.png')}}" alt="fr">
-                        <span>Français</span>
-                    </a>
-                </div>
-            </li> #}
             <li>
                 <a href="{{ path('app_home') }}" class="{{ app.request.attributes.get('_route') == 'app_home' ? 'active' : '' }}">Accueil</a>
             </li>
