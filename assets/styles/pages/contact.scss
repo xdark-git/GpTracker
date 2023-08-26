@@ -114,3 +114,9 @@ main > .contact-form {
         box-shadow: unset;
     }
 }
+
+@mixin contact-max-width--775px{
+    main > .contact-form .form-group{
+    flex-direction: column;
+    }
+}
