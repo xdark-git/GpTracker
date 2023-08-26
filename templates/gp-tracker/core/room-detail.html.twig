@@ -222,7 +222,11 @@
                             <img src="{{asset('theme/assets/img/profil/default-user-profile.png')}}" alt="User Profile Image">
                         {% endif %}
                         <div class="user-details">
-                            <h2>{{ room.user.firstName|default('-') ~ ' ' ~ room.user.lastName|default('-') }}</h2>
+                            {% if is_granted('ROLE_ADMIN')  %}
+                                <h2>Administrateur</h2>
+                            {% else %}
+                                <h2>{{ room.user.firstName|default('-') ~ ' ' ~ room.user.lastName|default('-') }}</h2>
+                            {% endif %} 
                         </div>
                     </div>
                 </div>
