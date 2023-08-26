@@ -41,6 +41,9 @@ main > .gp-informations > .nav-content {
         background-color: $white-color;
         overflow: auto;
     }
+    .content > .header > .title .back-arrow {
+        display: none;
+    }
 }
 
 main > .gp-informations > .nav-content > .nav {
@@ -139,10 +142,25 @@ main > .gp-informations > .nav-content > .content {
         overflow: unset;
         @include settings-informations-max-width--960px;
     }
+    .header > .title .back-arrow {
+        display: inline;
+    }
 }
 
 @mixin information-max-width--775px {
     main > .gp-informations > .nav-content > .content {
         @include account-information-max-width--775px;
+        .header > .title {
+            display: flex;
+            flex-direction: row;
+            gap: 0.8rem;
+            a {
+                color: #14438b;
+                text-decoration: none;
+            }
+        }
+        .header > .title .back-arrow {
+            display: inline;
+        }
     }
 }

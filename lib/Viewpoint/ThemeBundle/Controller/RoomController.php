@@ -108,7 +108,7 @@ class RoomController extends AbstractController
             throw $this->createNotFoundException("Page Introuvable");
         }
 
-        if ($room->getUser() != $this->getUser()) {
+        if ($this->getUser() && $room->getUser() != $this->getUser()) {
             $currentDateTime = new \DateTime();
 
             /** @var RoomViewsHistory */
@@ -132,17 +132,13 @@ class RoomController extends AbstractController
                 $entityManager->flush();
             }
         }
-        $viewHistory = $entityManager
-            ->getRepository(RoomViewsHistory::class)
-            ->findBy(["room" => $room]);
-        $viewCount = count($viewHistory);
+        
         $roomName = $room->getName();
 
         return $this->render(
             $this->themeResolver->getThemePathPrefix("/core/room-detail.html.twig"),
             [
                 "room" => $room,
-                "viewCount" => $viewCount,
                 "roomName" => $roomName,
             ]
         );
