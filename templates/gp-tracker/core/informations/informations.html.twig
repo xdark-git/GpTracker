@@ -1,6 +1,6 @@
 {% extends 'gp-tracker/base.html.twig' %}
 {% block title %}
-   Information 
+   Mes Informations
 {% endblock %}
 
 {% block body %}
@@ -41,9 +41,9 @@
                     </li>
                 </ul>
                 <ul class="params">
-                    <li class="{{ app.request.attributes.get('_route') == 'app_adresse' ? 'active' : '' }}">
+                    {# <li class="{{ app.request.attributes.get('_route') == 'app_adresse' ? 'active' : '' }}">
                         <a href="{{ path('app_adresse') }}">Adresses</a>
-                    </li>
+                    </li> #}
                     <li class="{{ app.request.attributes.get('_route') == 'app_settings' ? 'active' : '' }}">
                         <a href="{{ path('app_settings') }}">Paramatère du compte</a>
                     </li>
