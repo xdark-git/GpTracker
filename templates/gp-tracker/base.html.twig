@@ -12,13 +12,19 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <title>{% block title %}Bienvenu!{% endblock %}</title>
+        <title>
+        {% block title %}
+            GP-Tracker : Faciliter et Soutenir le Réseau Mondial de Gratuite Partielle (GP)
+        {% endblock %}
+        </title>
         <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('theme/assets/img/favicon/favicon-1.png') }}">
         <meta name="author" content="GP-Tracker">
         {% block metatags %}
             
         {% endblock %}
-        
+        <meta property="og:url" content="{{ app.request.uri }}">
+        <meta name="twitter:image" content="{{ absolute_url(asset('/theme/assets/img/image-link.jpeg')) }}"/>
+        <meta property="og:image" content="{{ absolute_url(asset('/theme/assets/img/image-link.jpg')) }}"/>
         
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}

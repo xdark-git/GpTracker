@@ -1,7 +1,11 @@
 {% extends 'gp-tracker/base.html.twig' %}
 
 {% block title %}
-   Accueil
+   GP-Tracker : Faciliter et Soutenir le Réseau Mondial de Gratuite Partielle (GP)
+{% endblock %}
+
+{% block metatags %}
+    {{ include('gp-tracker/layout/metatags/_home.html.twig') }}
 {% endblock %}
 
 {% block body %}
