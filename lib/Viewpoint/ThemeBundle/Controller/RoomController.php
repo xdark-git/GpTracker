@@ -82,7 +82,7 @@ class RoomController extends AbstractController
 
             $slug = $room->getSlug();
 
-            $this->addFlash("success", "Votre annonce a été très bien publié");
+            $this->addFlash("success", "Votre annonce a été très bien publiée.");
 
             return $this->redirectToRoute("app_room_detail", ["slug" => $slug]);
         }
@@ -132,7 +132,7 @@ class RoomController extends AbstractController
                 $entityManager->flush();
             }
         }
-        
+
         $roomName = $room->getName();
 
         return $this->render(
@@ -215,5 +215,4 @@ class RoomController extends AbstractController
         // This code should never be reached, but it's good to include as a fallback
         throw new \Exception("Token introuvable");
     }
-
 }
