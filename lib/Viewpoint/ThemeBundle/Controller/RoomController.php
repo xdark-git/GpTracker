@@ -44,7 +44,8 @@ class RoomController extends AbstractController
 
         $rooms = $paginator->paginate($availableRoomsQuery, $request->query->getInt("page", 1), 12);
 
-        $cities = $this->entityManager->getRepository(City::class)->findAll();
+        $cities = $this->entityManager->getRepository(City::class)->findAllSortedByName();
+
         return $this->render($this->themeResolver->getThemePathPrefix("/core/rooms.html.twig"), [
             "rooms" => $rooms,
             "cities" => $cities,
@@ -63,7 +64,7 @@ class RoomController extends AbstractController
             return $this->redirectToRoute("app_informations_user");
         }
 
-        $cities = $entityManager->getRepository(City::class)->findAll();
+        $cities = $entityManager->getRepository(City::class)->findAllSortedByName();
 
         $form = $this->createForm(RoomFormType::class);
         $form->handleRequest($request);
@@ -175,7 +176,7 @@ class RoomController extends AbstractController
             return $this->redirectToRoute("app_room_detail", ["slug" => $newSlug]);
         }
 
-        $cities = $this->entityManager->getRepository(City::class)->findAll();
+        $cities = $this->entityManager->getRepository(City::class)->findAllSortedByName();
 
         return $this->render(
             $this->themeResolver->getThemePathPrefix("/core/room-creation.html.twig"),

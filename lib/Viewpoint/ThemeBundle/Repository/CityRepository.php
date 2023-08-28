@@ -20,4 +20,12 @@ class CityRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, City::class);
     }
+
+    public function findAllSortedByName()
+    {
+        return $this->createQueryBuilder('c')
+            ->orderBy('c.name', 'ASC') // Sort by product name in ascending order
+            ->getQuery()
+            ->getResult();
+    }
 }

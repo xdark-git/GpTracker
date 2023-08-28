@@ -34,7 +34,7 @@ class AppController extends AbstractController
         $searchForm = $this->createForm(type: SearchFormType::class, options: [
             'action' => $this->generateUrl('app_rooms')
         ]);
-        $cities = $this->entityManager->getRepository(City::class)->findAll();
+        $cities = $this->entityManager->getRepository(City::class)->findAllSortedByName();
         return $this->render($this->themeResolver->getThemePathPrefix("/core/home.html.twig"), [
             "rooms" => $rooms,
             "searchForm" => $searchForm,
