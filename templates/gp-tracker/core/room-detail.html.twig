@@ -100,8 +100,7 @@
                                     <p>{{ room.unitPrice ~ ' ' ~ room.currency.symbol|default('') }}</p>
                                 {% else %}
                                     <p>NA</p>
-                                {% endif %}
-                                
+                                {% endif %}  
                             </span>
                         </div>
                         <div>
@@ -177,7 +176,7 @@
                         <a href="https://twitter.com/intent/tweet?url={{ app.request.uri }}" class="twitter" target="_blank" rel="noopener noreferrer">
                             <i class="fa-brands fa-twitter"></i>
                         </a>
-                        <a href="whatsapp://send?text={{ app.request.uri }}" class="whatsapp" target="_blank" rel="noopener noreferrer">
+                        <a href="https://wa.me/?text={{ app.request.uri }}" class="whatsapp" target="_blank" rel="noopener noreferrer">
                             <i class="fa-brands fa-whatsapp"></i>
                         </a>
                         <a href="mailto:?subject=Check%20out%20this%20link&body={{ app.request.uri }}" class="email" target="_blank" rel="noopener noreferrer">
@@ -218,9 +217,9 @@
                 <div class="user-info">
                     <div class="btn-container">
                         {% set phoneNumber = room.cellular.primary|replace({ '+': '' }) %}
-                        {% set whatsappUrl = 'https://api.whatsapp.com/send?phone=' ~ phoneNumber %}
+                        {% set whatsappUrl = 'https://wa.me/' ~ phoneNumber %}
                         {% set messageText = 'Salut, je suis intéressé par votre annonce : ' ~ app.request.uri %}
-                       <a id="start-chat" href="{{ whatsappUrl }}&text={{ messageText|url_encode }}"  target="_blank" rel="noopener noreferrer">Contacter </a>
+                       <a id="start-chat" href="{{ whatsappUrl }}?text={{ messageText|url_encode }}"  target="_blank" rel="noopener noreferrer">Contacter </a>
                     </div>
                 </div>
             </section>
