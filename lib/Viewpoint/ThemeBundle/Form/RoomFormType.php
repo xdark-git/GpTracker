@@ -79,10 +79,12 @@ class RoomFormType extends AbstractType
             ->add("unitPrice", TextType::class, [
                 "label" => "Prix unitaire",
                 "help" => "Saisir le prix par kg",
+                "required" => false
             ])
             ->add("weight", TextType::class, [
                 "label" => "Espace",
                 "help" => "Saisir la taille de votre sac",
+                "required" => false
             ])
             ->add("codeConducts", CheckboxType::class, [
                 "mapped" => false,

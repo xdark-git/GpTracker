@@ -96,7 +96,12 @@
                             </span>
                             <span>
                                 <h3>Prix</h3>
-                                <p>{{ room.unitPrice|default('-') ~ ' ' ~ room.currency.symbol|default('') }}</p>
+                                {% if room.unitPrice is not null %}
+                                    <p>{{ room.unitPrice ~ ' ' ~ room.currency.symbol|default('') }}</p>
+                                {% else %}
+                                    <p>NA</p>
+                                {% endif %}
+                                
                             </span>
                         </div>
                         <div>
@@ -105,7 +110,11 @@
                             </span>
                             <span>
                                 <h3>Espace disponible</h3>
-                                <p>{{ room.weight|default('-') }} Kg</p>
+                                {% if room.weight is not null %}
+                                <p>{{ room.weight }} Kg</p>
+                                {% else %}
+                                    <p>NA</p>
+                                {% endif %}
                             </span>
                         </div>
                         <div>

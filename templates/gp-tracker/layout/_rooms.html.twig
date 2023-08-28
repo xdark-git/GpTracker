@@ -22,9 +22,11 @@
             <div class="price-details">
                 
                 <div class="price">
-                    {# {% if currencySymbols[room.currency] is defined %} #}
+                    {% if room.unitPrice is not null %}
                         {{room.unitPrice|number_format(0, '.', ',') ~ ' ' ~ room.currency.symbol }} /kg
-                    {# {% endif %} #}
+                    {% else %}
+                        NA
+                    {% endif %}
                 </div>
                 <a href="{{ path('app_room_detail', {'slug': room.slug}) }}" class="see-details">Voir détails</a>
             </div>
@@ -32,7 +34,12 @@
         <div class="weight">
             <span class="description">Poids disponible</span>
             <span class="divider"></span>
-            <span class="price">{{ room.weight|default('-') }} kg</span>
+            {% if room.weight is not null %}
+                <span class="price">{{ room.weight }} kg</span>
+            {% else %}
+                <span class="price">NA</span>
+            {% endif %}
+            
         </div>
     </div>  
 {% endfor %}

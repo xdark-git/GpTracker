@@ -42,12 +42,12 @@ class Room
     #[ORM\JoinColumn(nullable: false)]
     private ?Currency $currency = null;
 
-    #[ORM\Column(type: Types::DECIMAL)]
-    #[Assert\Sequentially([new Assert\NotBlank(), new Assert\Type("float")])]
+    #[ORM\Column(type: Types::DECIMAL, nullable: true)]
+    #[Assert\Sequentially([new Assert\NotBlank(allowNull: true), new Assert\Type("float")])]
     private ?float $unitPrice = null;
 
-    #[ORM\Column(type: Types::DECIMAL)]
-    #[Assert\Sequentially([new Assert\NotBlank(), new Assert\Type("float")])]
+    #[ORM\Column(type: Types::DECIMAL, nullable: true)]
+    #[Assert\Sequentially([new Assert\NotBlank(allowNull: true), new Assert\Type("float")])]
     private ?float $weight = null;
 
     #[ORM\ManyToOne(targetEntity: City::class, fetch: "EAGER")]
