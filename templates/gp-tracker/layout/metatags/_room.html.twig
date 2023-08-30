@@ -1,7 +1,7 @@
 <meta 
         name="description" 
         content="Découvrez une annonce exceptionnelle de gratuité partielle (GP) entre {{room.departureLocation.name}} et {{room.arrivalLocation.name}}.
-            Profitez de tarifs avantageux à {{room.unitPrice ~ room.currency.symbol}} par kilogramme. Cliquez pour en savoir plus et réservez dès maintenant !" 
+            Profitez de tarifs avantageux {% if room.unitPrice is not null %} à {{room.unitPrice ~ room.currency.symbol}} par kilogramme {% endif %}. Cliquez pour en savoir plus et réservez dès maintenant !" 
         />
 <meta name="keywords" content="" />
 
@@ -10,7 +10,7 @@
 <meta property="og:title" content="{{ ('GP ' ~ room.departureLocation.name ~ ' - ' ~  room.arrivalLocation.name)|default('GP') }}">
 <meta property="og:description"
     content="Découvrez une annonce exceptionnelle de gratuité partielle (GP) entre {{room.departureLocation.name}} et {{room.arrivalLocation.name}}.
-    Profitez de tarifs avantageux à {{room.unitPrice ~ room.currency.symbol}} par kilogramme. Cliquez pour en savoir plus et réservez dès maintenant !" 
+    Profitez de tarifs avantageux {% if room.unitPrice is not null %} à {{room.unitPrice ~ room.currency.symbol}} par kilogramme {% endif %}. Cliquez pour en savoir plus et réservez dès maintenant !" 
 />
 {# <meta property="og:image" content="{{ absolute_url(asset('/theme/assets/img/image-link.jpg')) }}"/> #}
 {# <meta property="og:url" content="{{ app.request.uri }}"> #}
@@ -20,6 +20,6 @@
 <meta name="twitter:title" content="{{ ('GP ' ~ room.departureLocation.name ~ ' - ' ~  room.arrivalLocation.name)|default('GP') }}">
 <meta name="twitter:description" 
     content="Découvrez une annonce exceptionnelle de gratuité partielle (GP) entre {{room.departureLocation.name}} et {{room.arrivalLocation.name}}.
-    Profitez de tarifs avantageux à {{room.unitPrice ~ room.currency.symbol}} par kilogramme. Cliquez pour en savoir plus et réservez dès maintenant !" 
+    Profitez de tarifs avantageux {% if room.unitPrice is not null %} à {{room.unitPrice ~ room.currency.symbol}} par kilogramme {% endif %}. Cliquez pour en savoir plus et réservez dès maintenant !" 
 />
 {# <meta name="twitter:image" content="{{ absolute_url(asset('/theme/assets/img/image-link.jpeg')) }}"/> #}
