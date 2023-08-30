@@ -148,7 +148,7 @@ class Room
         return $this->unitPrice;
     }
 
-    public function setUnitPrice(float $unitPrice): self
+    public function setUnitPrice(?float $unitPrice): self
     {
         $this->unitPrice = $unitPrice;
 
@@ -160,7 +160,7 @@ class Room
         return $this->weight;
     }
 
-    public function setWeight(float $weight): self
+    public function setWeight(?float $weight): self
     {
         $this->weight = $weight;
         return $this;
