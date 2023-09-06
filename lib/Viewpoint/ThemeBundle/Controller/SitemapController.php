@@ -67,4 +67,20 @@ class SitemapController extends AbstractController
 
         return $response;
     }
+
+    #[Route("/ads.txt", defaults: ["_format" => "txt"])]
+    public function ads(
+        ThemeResolver $themeResolver,
+    ): Response {
+        
+
+        $response = new Response(
+            $this->renderView($themeResolver->getThemePathPrefix("/sitemap/ads.html.twig")),
+            200
+        );
+
+        $response->headers->set("Content-type", "text/plain");
+
+        return $response;
+    }
 }
