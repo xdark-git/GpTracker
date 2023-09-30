@@ -39,7 +39,7 @@ class RoomDatesValidator extends ConstraintValidator
         }
 
         // Validate the departure date is before the arrival date
-        if ($receipt->getDepartureDate() >= $receipt->getArrivalDate()) {
+        if ($receipt->getArrivalDate() && ($receipt->getDepartureDate() >= $receipt->getArrivalDate())) {
             $this->context->buildViolation($constraint->messageDepartureAfterArrival)
                 ->atPath('departureDate')
                 ->addViolation();

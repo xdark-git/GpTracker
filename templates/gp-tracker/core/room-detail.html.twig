@@ -86,8 +86,12 @@
                                 <i class="fa-solid fa-calendar-days"></i>
                             </span>
                             <span>
-                                <h3>Date d'arrivéé</h3>
-                                <p>{{ room.arrivalDate|date('d/m/Y')|default('-') }}</p>
+                                <h3>Date d'arrivée</h3>
+                                {% if room.arrivalDate  %}
+                                    <p>{{ room.arrivalDate|date('d/m/Y') }}</p>
+                                {% else %}
+                                    <p>-</p>
+                                {% endif %}
                             </span>
                         </div>
                         <div>
@@ -207,7 +211,7 @@
                         {% endif %}
                         <div class="user-details">
                             {% if 'ROLE_ADMIN' in room.user.roles  %}
-                                <h2>Administrateur</h2>
+                                <h2>{{ room.name|upper }}</h2>
                             {% else %}
                                 <h2>{{ room.user.firstName|default('-') ~ ' ' ~ room.user.lastName|default('-') }}</h2>
                             {% endif %} 

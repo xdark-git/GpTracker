@@ -1,7 +1,7 @@
 {% set sliceMax = 8  %}
 {% for room in rooms %}
     <div class="room">
-        <h4>{{ room.name|default('gp tracker') }}</h4>
+        <h4>{{ room.name|default('gp tracker')|upper }}</h4>
         <div class="trip">
             <div class="trip-list">
                 <div class="departure-arrival">

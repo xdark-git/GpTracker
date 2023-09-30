@@ -62,8 +62,8 @@ class Room
     #[Assert\Sequentially([new Assert\NotBlank(), new Assert\Type("\DateTimeInterface")])]
     private ?\DateTime $departureDate = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    #[Assert\Sequentially([new Assert\NotBlank(), new Assert\Type("\DateTimeInterface")])]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    #[Assert\Sequentially([new Assert\NotBlank(allowNull: true), new Assert\Type("\DateTimeInterface")])]
     private ?\DateTime $arrivalDate = null;
 
     #[ORM\Column(type: "boolean")]
@@ -204,7 +204,7 @@ class Room
         return $this->arrivalDate;
     }
 
-    public function setArrivalDate(\DateTime $arrivalDate): self
+    public function setArrivalDate(?\DateTime $arrivalDate): self
     {
         $this->arrivalDate = $arrivalDate;
         return $this;

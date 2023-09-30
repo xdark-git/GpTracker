@@ -55,6 +55,7 @@ class RoomFormType extends AbstractType
                 "attr" => [
                     "class" => "gp-room-datepicker",
                 ],
+                "required" => false
             ])
             ->add("cellular", RoomCellularFormType::class)
             ->add("name", TextType::class, [
