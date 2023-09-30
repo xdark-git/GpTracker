@@ -23,6 +23,20 @@ $(function () {
 });
 
 /*--------------------------------------
+    DYNAMICALLY ADD * TO REQUIRED LABELS
+--------------------------------------*/
+$(function () {
+    $("form label").each(function () {
+        var inputId = $(this).attr("for");
+        var input = $("#" + inputId);
+
+        if (input && input.prop("required")) {
+            $(this).append('<span style="color: red;"> *</span>');
+        }
+    });
+});
+
+/*--------------------------------------
     FORM MULTI STEPS FUNCTIONALITIES
  --------------------------------------*/
 $(function () {
@@ -257,8 +271,12 @@ function displayPreviewDialog() {
             inputValue = $input.find("option:selected").text();
         } else if ($input.is("input[type='date']")) {
             var dateValue = $input.val();
-            var date = new Date(dateValue);
-            inputValue = date.toLocaleDateString();
+            if (dateValue != "") {
+                var date = new Date(dateValue);
+                inputValue = date.toLocaleDateString();
+            } else {
+                inputValue = "-";
+            }
         } else {
             inputValue = $input.val();
         }
