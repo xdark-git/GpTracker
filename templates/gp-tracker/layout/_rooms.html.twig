@@ -3,7 +3,6 @@
 
 
 {% for room in rooms %}
-    {% set departureDate = room.departureDate|date("d-m-Y") %}
     <div class="room">
         <h4>{{ room.name|default('gp tracker')|upper }}</h4>
         <div class="trip">
@@ -35,7 +34,7 @@
                 <a href="{{ path('app_room_detail', {'slug': room.slug}) }}" class="see-details">Voir détails</a>
             </div>
         </div>
-        {% if departureDate >= now  %}
+        {% if room.currentDateTime <= room.departureDate  %}
             <div class="weight">
                 <span class="description">Poids disponible</span>
                 <span class="divider"></span>

@@ -48,8 +48,6 @@ class RoomRepository extends ServiceEntityRepository
         ?SearchData $search = null,
         ?string $sortData = null
     ): Query {
-        $currentDateTime = new \DateTime();
-
         $qb = $this->createQueryBuilder("r")
             ->andWhere("r.isDeleted = :isDeleted")
             ->innerJoin("r.user", "u") // Join with the user entity

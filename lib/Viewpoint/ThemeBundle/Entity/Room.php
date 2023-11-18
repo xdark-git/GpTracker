@@ -2,16 +2,17 @@
 
 namespace Viewpoint\ThemeBundle\Entity;
 
+use DateTime;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Viewpoint\AdminBundle\Entity\User;
+use Viewpoint\ThemeBundle\Entity\City;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Viewpoint\ThemeBundle\Validator as ThemeAssert;
 use Viewpoint\ThemeBundle\Repository\RoomRepository;
 use Symfony\Component\Validator\Constraints as Assert;
-use Doctrine\DBAL\Types\Types;
-use Viewpoint\AdminBundle\Entity\User;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Viewpoint\ThemeBundle\Validator as ThemeAssert;
-use Viewpoint\ThemeBundle\Entity\City;
 
 #[ORM\Entity(repositoryClass: RoomRepository::class)]
 #[ThemeAssert\RoomDates()]
@@ -60,11 +61,11 @@ class Room
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     #[Assert\Sequentially([new Assert\NotBlank(), new Assert\Type("\DateTimeInterface")])]
-    private ?\DateTime $departureDate = null;
+    private ?DateTime $departureDate = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     #[Assert\Sequentially([new Assert\NotBlank(allowNull: true), new Assert\Type("\DateTimeInterface")])]
-    private ?\DateTime $arrivalDate = null;
+    private ?DateTime $arrivalDate = null;
 
     #[ORM\Column(type: "boolean")]
     private ?bool $isDeleted = false;
@@ -98,9 +99,12 @@ class Room
     #[Assert\NotBlank(allowNull: true)]
     private ?Collection $viewsHistory = null;
 
+    private DateTime $currentDateTime;
+
     public function __construct()
     {
         $this->viewsHistory = new ArrayCollection();
+        
     }
 
     public function getId(): ?int
@@ -188,23 +192,23 @@ class Room
         return $this;
     }
 
-    public function getDepartureDate(): ?\DateTime
+    public function getDepartureDate(): ?DateTime
     {
         return $this->departureDate;
     }
 
-    public function setDepartureDate(\DateTime $departureDate): self
+    public function setDepartureDate(DateTime $departureDate): self
     {
         $this->departureDate = $departureDate;
         return $this;
     }
 
-    public function getArrivalDate(): ?\DateTime
+    public function getArrivalDate(): ?DateTime
     {
         return $this->arrivalDate;
     }
 
-    public function setArrivalDate(?\DateTime $arrivalDate): self
+    public function setArrivalDate(?DateTime $arrivalDate): self
     {
         $this->arrivalDate = $arrivalDate;
         return $this;
@@ -269,6 +273,13 @@ class Room
     public function getViewsHistor(): ?Collection
     {
         return $this->viewsHistory;
+    }
+
+    public function getCurrentDateTime(): ?DateTime
+    {
+        $currentDateTime = new DateTime();
+        
+        return $this->currentDateTime = $currentDateTime;
     }
 
 }
