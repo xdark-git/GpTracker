@@ -35,7 +35,7 @@
                 <a href="{{ path('app_room_detail', {'slug': room.slug}) }}" class="see-details">Voir détails</a>
             </div>
         </div>
-        {% if room.departureDate >= now  %}
+        {% if departureDate >= now  %}
             <div class="weight">
                 <span class="description">Poids disponible</span>
                 <span class="divider"></span>
