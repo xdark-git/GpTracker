@@ -1,5 +1,9 @@
-{% set sliceMax = 8  %}
+{% set sliceMax = 8 %}
+{% set now = "now"|date("Y-m-d", "UTC") %}
+
+
 {% for room in rooms %}
+    {% set departureDate = room.departureDate|date("d-m-Y") %}
     <div class="room">
         <h4>{{ room.name|default('gp tracker')|upper }}</h4>
         <div class="trip">
@@ -31,15 +35,20 @@
                 <a href="{{ path('app_room_detail', {'slug': room.slug}) }}" class="see-details">Voir détails</a>
             </div>
         </div>
-        <div class="weight">
-            <span class="description">Poids disponible</span>
-            <span class="divider"></span>
-            {% if room.weight is not null %}
-                <span class="price">{{ room.weight }} kg</span>
-            {% else %}
-                <span class="price">NA</span>
-            {% endif %}
-            
-        </div>
+        {% if room.departureDate >= now  %}
+            <div class="weight">
+                <span class="description">Poids disponible</span>
+                <span class="divider"></span>
+                {% if room.weight is not null %}
+                    <span class="price">{{ room.weight }} kg</span>
+                {% else %}
+                    <span class="price">NA</span>
+                {% endif %}
+            </div>
+        {% else %}
+            <div class="weight">
+                <span class="price" style="color:red!important;font-size: 14px!important;">Fermé</span>
+            </div>
+        {% endif %}
     </div>  
 {% endfor %}
