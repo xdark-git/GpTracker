@@ -32,7 +32,7 @@ class SearchFormType extends AbstractType
                 "label" => false,
                 "widget" => "single_text",
                 "required" => false,
-                "data" => new \DateTime(),
+                // "data" => new \DateTime(),
             ])
             ->add("maxDate", DateType::class, [
                 "label" => false,
