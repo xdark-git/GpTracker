@@ -5,12 +5,15 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use DateTime;
+use App\Repository\User\UserRepository;
 
+#[ORM\Entity(repositoryClass: UserRepository::class)]
 class User extends BaseEntity
 {
     use TimestampableEntity;
 
     // table fields
+    public const TABLE          = "user";
     public const ID             = "id";
     public const FIRST_NAME     = "first_name";
     public const LAST_NAME      = "last_name";
