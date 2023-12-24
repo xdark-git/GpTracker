@@ -21,7 +21,7 @@ class UserRepository extends ServiceEntityRepository
             ->setMaxResults(1)
             ->getQuery();
 
-        return $query->getResult();
+        return $query->getOneOrNullResult();
     }
 
     public function create(array $data): User
@@ -35,7 +35,6 @@ class UserRepository extends ServiceEntityRepository
         $user->setUsername($data[User::USERNAME]);
         $user->setEmail($data[User::EMAIL]);
         $user->setPassword($data[User::PASSWORD]);
-        $user->setIsActive($data[User::IS_ACTIVE]);
         $user->setIsVerified($data[User::IS_VERIFIED]);
         $user->setIsDeleted($data[User::IS_DELETED]);
         $user->setCreatedAt($data[User::CREATED_AT]);

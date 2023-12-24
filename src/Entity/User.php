@@ -23,7 +23,6 @@ class User extends BaseEntity
     public const USERNAME       = "username";
     public const EMAIL          = "email";
     public const PASSWORD       = "password";
-    public const IS_ACTIVE      = "is_active";
     public const IS_VERIFIED    = "is_verified";
     public const IS_DELETED     = "is_deleted";
     public const CREATED_AT     = "created_at";
@@ -57,9 +56,6 @@ class User extends BaseEntity
 
     #[ORM\Column(type: "string", length: 255)]
     private ?string $password = null;
-
-    #[ORM\Column(type: "boolean")]
-    private bool $isActive = false;
 
     #[ORM\Column(type: "boolean")]
     private bool $isVerified = false;
@@ -111,11 +107,6 @@ class User extends BaseEntity
     public function getPassword(): ?string
     {
         return $this->password;
-    }
-
-    public function getIsActive(): bool
-    {
-        return $this->isActive;
     }
 
     public function getIsVerified(): bool
@@ -174,12 +165,6 @@ class User extends BaseEntity
     public function setPassword(?string $password): self
     {
         $this->password = $password;
-        return $this;
-    }
-
-    public function setIsActive(bool $isActive): self
-    {
-        $this->isActive = $isActive;
         return $this;
     }
 
