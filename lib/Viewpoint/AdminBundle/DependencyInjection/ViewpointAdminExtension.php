@@ -10,7 +10,7 @@ use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 
 class ViewpointAdminExtension extends Extension implements PrependExtensionInterface
 {
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yaml'); 
@@ -29,7 +29,8 @@ class ViewpointAdminExtension extends Extension implements PrependExtensionInter
         
     }
 
-    public function prepend(ContainerBuilder $container){
+    public function prepend(ContainerBuilder $container): void
+    {
         // Prepend the configuration to make it available
         // $config = $container->getExtensionConfig($this->getAlias());
         // dd($config);
