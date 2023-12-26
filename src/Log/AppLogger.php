@@ -3,16 +3,13 @@
 namespace App\Log;
 
 use Monolog\Logger;
+use Psr\Log\AbstractLogger;
 use DateTimeZone;
 
-class AppLogger extends Logger
+class AppLogger extends AbstractLogger
 {
-    public function __construct(
-        string $name,
-        array $handlers = [],
-        array $processors = [],
-        DateTimeZone|null $timezone = null
-    ) {
-        parent::__construct($name, $handlers, $processors, $timezone);
+    public function log($level, string|\Stringable $message, array $context = []): void
+    {
+        parent::log($level, $message, $context);
     }
 }
