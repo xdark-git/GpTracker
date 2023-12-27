@@ -20,9 +20,10 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
     App\Log\AppLogger:
-        public: true
         autowire: true
-        arguments:
-            $name: 'AppLogger'
+    App\Controller\Controller:
+        calls:
+            # inject ApppLogger when configured
+            - setLogger: ['@Psr\Log\LoggerInterface']
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

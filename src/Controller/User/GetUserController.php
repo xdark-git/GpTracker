@@ -20,7 +20,7 @@ class GetUserController extends Controller
     public function index(): Response
     {
         try {
-            $this->logger->info('User found');
+            $this->logger->warning('User found');
             $user = $this->userService->findById(1);
 
             return $this->json([
