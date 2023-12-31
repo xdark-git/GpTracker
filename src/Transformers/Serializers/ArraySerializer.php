@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Transformers\Serializers;
+namespace App\Transformers\Serializers;
 
 use League\Fractal\Serializer\ArraySerializer as FractalArraySerializer;
 

@@ -9,8 +9,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Service\User\UserService;
 use Throwable;
 use App\Transformers\API\User\UserTransformer;
+use Symfony\Component\HttpFoundation\Request;
 
-class GetUserController extends Controller
+#[Route("/api/user/{id}", name: "app_show_user")]
+class ShowUserController extends Controller
 {
     public function __construct(
         private readonly UserService $userService, 
@@ -20,12 +22,12 @@ class GetUserController extends Controller
         parent::__construct();
     }
 
-    #[Route("/api/user", name: "app_get_user")]
-    public function index(): Response
+    public function __invoke(Request $request, int $id): Response
     {
         try {
             $this->logger->warning("User found");
-            $user = $this->userService->findById(1);
+            
+            $user = $this->userService->findById($id);
 
             if (!$user instanceof User) {
                 return $this->errorResponse(
