@@ -10,8 +10,9 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use League\Fractal\Manager as FractalManager;
 use League\Fractal\TransformerAbstract;
-use App\Http\Transformers\Serializers\ArraySerializer;
+use App\Service\Helpers;
 use League\Fractal\Resource\Item;
+use App\Transformers\Serializers\ArraySerializer;
 
 class Controller extends AbstractController
 {
@@ -59,9 +60,7 @@ class Controller extends AbstractController
     {
         // we avoid erasing any previous set includes in controller, we save them in tmp variable
         $requestedIncludes = $this->fractalManager->getRequestedIncludes();
-        $this->fractalManager->parseIncludes(
-            (string) array_key_exists("include", $_GET) ? $_GET["include"] : ""
-        );
+        $this->fractalManager->parseIncludes((string) Helpers::ArrayGet($_GET, "include", ""));
 
         // merge back old includes
         $this->fractalManager->parseIncludes(
@@ -85,11 +84,10 @@ class Controller extends AbstractController
     }
 
     #[Required]
-    public function setFractalManager(FractalManager $fractalManager)
+    public function setFractalManager(FractalManager $fractalManager, ArraySerializer $arraySerializer)
     {
         $this->fractalManager = $fractalManager;
-        // TODO: fix this
-        // $this->fractalManager->setSerializer($this->container->get(ArraySerializer::class));
-        // $this->fractalManager->setRecursionLimit(15);
+        $this->fractalManager->setSerializer($arraySerializer);
+        $this->fractalManager->setRecursionLimit(15);
     }
 }
