@@ -11,7 +11,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Service\User\UserService;
 use Throwable;
 use App\Transformers\API\User\UserTransformer;
-use Symfony\Component\HttpFoundation\Request;
 
 #[Route("/api/user/{id}", name: "app_show_user")]
 class ShowUserController extends Controller
