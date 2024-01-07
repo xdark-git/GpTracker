@@ -221,4 +221,10 @@ class User extends BaseEntity implements UserInterface, PasswordAuthenticatedUse
     {
 
     }
+
+    // fix bug in CheckVerifiedUserSubscriber
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
+    }
 }
