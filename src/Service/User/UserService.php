@@ -1,7 +1,8 @@
 <?php
 namespace App\Service\User;
 
-use App\Manager\UserManager;
+use App\Entity\User;
+use App\Manager\User\UserManager;
 
 class UserService
 {
@@ -11,7 +12,7 @@ class UserService
     {
     }
 
-    public function findById(int $id)
+    public function findById(int $id): ?User
     {
         return $this->userManager->findById($id);
     }

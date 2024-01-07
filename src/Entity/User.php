@@ -6,15 +6,18 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use DateTime;
 use App\Repository\User\UserRepository;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-class User extends BaseEntity
+class User extends BaseEntity implements UserInterface, PasswordAuthenticatedUserInterface
 {
     use TimestampableEntity;
 
     // table fields
     public const TABLE          = "user";
     public const ID             = "id";
+    public const ROLE_ID        = "role_id";
     public const FIRST_NAME     = "first_name";
     public const LAST_NAME      = "last_name";
     public const SEXE           = "sexe";
@@ -23,15 +26,20 @@ class User extends BaseEntity
     public const USERNAME       = "username";
     public const EMAIL          = "email";
     public const PASSWORD       = "password";
-    public const IS_VERIFIED    = "is_verified";
-    public const IS_DELETED     = "is_deleted";
+    public const IS_VERIFIED    = "isVerified";
+    public const IS_DELETED     = "isDeleted";
     public const CREATED_AT     = "created_at";
     public const UPDATED_AT     = "updated_at";
+
+    public const ROLE_USER      = "ROLE_USER";
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
+
+    #[ORM\Column(type: "integer", nullable: false)]
+    private ?int $roleId = null;
 
     #[ORM\Column(type: "string", length: 50, nullable: true)]
     private ?string $firstName = null;
@@ -63,10 +71,18 @@ class User extends BaseEntity
     #[ORM\Column(type: "boolean")]
     private bool $isDeleted = false;
 
-    // getters
+    private array $roles = [
+        self::ROLE_USER
+    ];
+
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getRoleId(): ?int
+    {
+        return $this->roleId;
     }
 
     public function getFirstName(): ?string
@@ -119,7 +135,12 @@ class User extends BaseEntity
         return $this->isDeleted;
     }
 
-    // setters
+    public function setRoleId(?int $id): self
+    {
+        $this->id = $id;
+        return $this;
+    }
+
     public function setFirstName(?string $firstName): self
     {
         $this->firstName = $firstName;
@@ -178,5 +199,26 @@ class User extends BaseEntity
     {
         $this->isDeleted = $isDeleted;
         return $this;
+    }
+
+    public function getRoles(): array
+    {
+        return $this->roles;
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+        return $this;
+    }
+
+    public function getUserIdentifier(): string
+    {
+        return $this->email;
+    }
+
+    public function eraseCredentials(): void 
+    {
+
     }
 }

@@ -17,11 +17,38 @@ class UserRepository extends ServiceEntityRepository
     {
         $query = $this->createQueryBuilder(User::TABLE)
             ->where(sprintf("%s.%s = :%s", User::TABLE, User::ID, User::ID))
+            ->andWhere(sprintf("%s.%s = :%s", User::TABLE, User::IS_DELETED, User::IS_DELETED))
             ->setParameter(User::ID, $id)
+            ->setParameter(User::IS_DELETED, false)
             ->setMaxResults(1)
             ->getQuery();
 
         return $query->getOneOrNullResult();
+    }
+
+    public function findByUsernameOrEmail(string $usernameOrEmail): ?User
+    {
+        $query = $this->createQueryBuilder(User::TABLE)
+            ->where(sprintf("%s.%s = :%s", User::TABLE, User::IS_DELETED, User::IS_DELETED))
+            ->andWhere(sprintf("%s.%s = :%s", User::TABLE, User::USERNAME, User::USERNAME))
+            ->orWhere(sprintf("%s.%s = :%s", User::TABLE, User::EMAIL, User::EMAIL))
+            ->setParameter(User::IS_DELETED, false)
+            ->setParameter(User::USERNAME, $usernameOrEmail)
+            ->setParameter(User::EMAIL, $usernameOrEmail)
+            ->setMaxResults(1)
+            ->getQuery();
+
+        return $query->getOneOrNullResult();
+    }
+
+    public function getPaginated(int $page, int $limit): array
+    {
+        $query = $this->createQueryBuilder(User::TABLE)
+            ->setFirstResult(($page - 1) * $limit)
+            ->setMaxResults($limit)
+            ->getQuery();
+
+        return $query->getResult();
     }
 
     public function create(array $data): User

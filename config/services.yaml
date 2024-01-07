@@ -21,12 +21,7 @@ services:
             - '../src/Kernel.php'
     App\Log\AppLogger:
         autowire: true
-    App\Controller\Controller:
-        calls:
-            # inject ApppLogger when configured
-            - setLogger: ['@Psr\Log\LoggerInterface']
-            - setFractalManager: ['@League\Fractal\Manager']
-    
+
     League\Fractal\Manager:
         autowire: true
     # add more service definitions when explicit configuration is needed

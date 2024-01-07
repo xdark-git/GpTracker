@@ -9,6 +9,8 @@ security:
             entity:
                 class: Viewpoint\AdminBundle\Entity\User
                 property: email
+        user_provider_service:
+            id: App\Service\User\UserProviderService
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -20,9 +22,11 @@ security:
                 check_path: /api/login_check
                 success_handler: lexik_jwt_authentication.handler.authentication_success
                 failure_handler: lexik_jwt_authentication.handler.authentication_failure
+                provider: user_provider_service
         api:
-            pattern:   ^/api
+            pattern: ^/api
             stateless: true
+            provider: user_provider_service
             jwt: ~
         main:
             lazy: true
