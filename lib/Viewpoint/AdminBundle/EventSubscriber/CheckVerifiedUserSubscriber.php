@@ -59,7 +59,7 @@ class CheckVerifiedUserSubscriber implements EventSubscriberInterface{
 
         /** @var User */
         $user = $this->security->getUser();
-        // TODO: refactor this code asap, it will cause weird behavior when user is not verified
+        // TODO: refactor this code asap, it will cause weird behavior when user is not verified using api
         if ($this->security->isGranted('IS_AUTHENTICATED_FULLY') && !$user->isVerified()) {
                 $response = new RedirectResponse($this->urlGenerator->generate('non_verified_user_page'));
                 $event->setResponse($response);
