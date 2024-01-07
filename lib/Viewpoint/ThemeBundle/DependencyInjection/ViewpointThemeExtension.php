@@ -9,7 +9,7 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 class ViewpointThemeExtension extends Extension
 {
-    public function load(array $configs, ContainerBuilder $containerBuilder)
+    public function load(array $configs, ContainerBuilder $containerBuilder): void
     {
         $loader = new YamlFileLoader($containerBuilder, new FileLocator(__DIR__ .'/../Resources/config'));
         $loader->load('services.yaml');

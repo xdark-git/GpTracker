@@ -29,9 +29,9 @@ class UserRepository extends ServiceEntityRepository
     public function findByUsernameOrEmail(string $usernameOrEmail): ?User
     {
         $query = $this->createQueryBuilder(User::TABLE)
-            ->where(sprintf("%s.%s = :%s", User::TABLE, User::IS_DELETED, User::IS_DELETED))
-            ->andWhere(sprintf("%s.%s = :%s", User::TABLE, User::USERNAME, User::USERNAME))
+            ->where(sprintf("%s.%s = :%s", User::TABLE, User::USERNAME, User::USERNAME))
             ->orWhere(sprintf("%s.%s = :%s", User::TABLE, User::EMAIL, User::EMAIL))
+            ->andWhere(sprintf("%s.%s = :%s", User::TABLE, User::IS_DELETED, User::IS_DELETED))
             ->setParameter(User::IS_DELETED, false)
             ->setParameter(User::USERNAME, $usernameOrEmail)
             ->setParameter(User::EMAIL, $usernameOrEmail)
