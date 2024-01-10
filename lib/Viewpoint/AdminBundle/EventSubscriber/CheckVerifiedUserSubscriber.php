@@ -20,12 +20,11 @@ class CheckVerifiedUserSubscriber implements EventSubscriberInterface{
     {
         $this->security = $security;
         $this->urlGenerator = $urlGenerator;
-        $this-> excludedRoutes = [
+        $this->excludedRoutes = [
             'non_verified_user_page',
             'app_verify_email',
             'app_resend_verify_email'
         ];
-        
     }
     public static function getSubscribedEvents(): array
     {
