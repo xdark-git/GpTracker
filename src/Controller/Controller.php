@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Log\AppLogger;
 use Psr\Log\LoggerInterface;
@@ -13,6 +14,8 @@ use League\Fractal\TransformerAbstract;
 use App\Service\Helpers;
 use League\Fractal\Resource\Item;
 use App\Transformers\Serializers\ArraySerializer;
+use Symfony\Component\Security\Core\User\UserInterface;
+use LoginUserNotVerifiedException;
 
 class Controller extends AbstractController
 {
@@ -77,6 +80,32 @@ class Controller extends AbstractController
         return $this->fractalManager->createData($fractalResource)->toArray();
     }
 
+    /**
+     * @param bool $isVerificationFromApi
+     * @throws LoginUserNotVerifiedException
+     */
+    public function assertLoginUserVerified(bool $isVerificationFromApi = true): void
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        if (!$user instanceof UserInterface) {
+            return;
+        }
+
+        $userIsVerified = $user->getIsVerified();
+
+        if ($userIsVerified) {
+            return;
+        }
+
+        if (!$userIsVerified && $isVerificationFromApi) {
+            throw new LoginUserNotVerifiedException("User is not verified");
+        }
+
+        $this->redirectToRoute("non_verified_user_page");
+    }
+
     #[Required]
     public function setLogger(LoggerInterface $logger)
     {
@@ -84,8 +113,10 @@ class Controller extends AbstractController
     }
 
     #[Required]
-    public function setFractalManager(FractalManager $fractalManager, ArraySerializer $arraySerializer)
-    {
+    public function setFractalManager(
+        FractalManager $fractalManager,
+        ArraySerializer $arraySerializer
+    ) {
         $this->fractalManager = $fractalManager;
         $this->fractalManager->setSerializer($arraySerializer);
         $this->fractalManager->setRecursionLimit(15);
