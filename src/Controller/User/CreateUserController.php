@@ -20,8 +20,7 @@ class CreateUserController extends Controller
         parent::__construct();
     }
 
-    // #[Route("/api/user", name: "app_get_user", )]
-    public function index(): Response
+    public function __invoke(): Response
     {
         try {
             $this->logger->warning("User found");

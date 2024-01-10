@@ -7,12 +7,10 @@ use App\Entity\User;
 use App\Log\LogParameterList;
 use App\Service\Feature\FeatureList;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use App\Service\User\UserService;
 use Throwable;
 use App\Transformers\API\User\UserTransformer;
 
-#[Route("/api/user/{id}", name: "app_show_user")]
 class ShowUserController extends Controller
 {
     public function __construct(
