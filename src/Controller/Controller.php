@@ -60,7 +60,7 @@ class Controller extends AbstractController
     {
         // we avoid erasing any previous set includes in controller, we save them in tmp variable
         $requestedIncludes = $this->fractalManager->getRequestedIncludes();
-        $this->fractalManager->parseIncludes((string) Helpers::ArrayGet($_GET, "include", ""));
+        $this->fractalManager->parseIncludes((string) Helpers::arrayGet($_GET, "include", ""));
 
         // merge back old includes
         $this->fractalManager->parseIncludes(

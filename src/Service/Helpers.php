@@ -4,8 +4,12 @@ namespace App\Service;
 
 class Helpers
 {
-    public static function ArrayGet(array $array, $key, $default = null): mixed
+    public static function arrayGet(array $array, $key, $default = null): mixed
     {
-        return $array[$key] ?? $default;
+        if (array_key_exists($key, $array) && isset($array[$key])) {
+            return $array[$key];
+        }
+
+        return $default;
     }
 }
