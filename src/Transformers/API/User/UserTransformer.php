@@ -12,15 +12,19 @@ class UserTransformer extends TransformerAbstract
     public const EMAIL          = "email";
     public const IS_VERIFIED    = "is_verified";
     public const FULL_NAME      = "full_name";
-    
+    public const PROFILE        = "profile";
+    public const ROLES          = "roles";
+
     public function transform(User $user): array
     {
         return [
-            self::ID => $user->getId(),
-            self::FIRST_NAME => $user->getFirstName(),
-            self::LAST_NAME => $user->getLastName(),
-            self::EMAIL => $user->getEmail(),
-            self::IS_VERIFIED => $user->getIsVerified(),
+            self::ID            => $user->getId(),
+            self::FIRST_NAME    => $user->getFirstName(),
+            self::LAST_NAME     => $user->getLastName(),
+            self::EMAIL         => $user->getEmail(),
+            self::IS_VERIFIED   => $user->getIsVerified(),
+            self::PROFILE       => $user->getProfile(),
+            self::ROLES         => $user->getRoles(),
         ];
     }
 }
