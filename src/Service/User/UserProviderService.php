@@ -82,8 +82,11 @@ class UserProviderService implements UserProviderInterface, PasswordUpgraderInte
         }
 
         $role = $this->roleManager->findById($user->getRoleId());
-        $user->setRoles(array_unique([$role->getName()]));
 
+        if ($role instanceof Role) {
+            $user->setRoles(array_unique([$role->getName()]));
+        }
+        
         return $user;
     }
 }
