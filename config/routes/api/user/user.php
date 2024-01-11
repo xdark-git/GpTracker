@@ -1,6 +1,7 @@
 <?php
 
 use App\Controller\User\CreateUserController;
+use App\Controller\User\ShowUserController;
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 
 return static function (RoutingConfigurator $routes): void {
@@ -10,10 +11,10 @@ return static function (RoutingConfigurator $routes): void {
         ->methods(['POST']);
 
    $routes
-        ->add('app_show_user', '/{userId}')
-        ->controller(CreateUserController::class)
+        ->add('app_show_user', '/{id}')
+        ->controller(ShowUserController::class)
         ->methods(['GET'])
         ->requirements([
-            'userId' => '\d+'
+            'id' => '\d+'
         ]);
 };
