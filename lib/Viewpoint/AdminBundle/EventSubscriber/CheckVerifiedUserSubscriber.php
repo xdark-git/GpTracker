@@ -10,7 +10,7 @@ use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Viewpoint\AdminBundle\Entity\User;
-
+// TODO: delete this class when v2 deployed
 class CheckVerifiedUserSubscriber implements EventSubscriberInterface{
     private Security $security;
     private UrlGeneratorInterface $urlGenerator;
@@ -57,11 +57,11 @@ class CheckVerifiedUserSubscriber implements EventSubscriberInterface{
         }
 
         /** @var User */
-        $user = $this->security->getUser();
+        // $user = $this->security->getUser();
         // TODO: refactor this code asap, it will cause weird behavior when user is not verified using api
-        if ($this->security->isGranted('IS_AUTHENTICATED_FULLY') && !$user->isVerified()) {
-                $response = new RedirectResponse($this->urlGenerator->generate('non_verified_user_page'));
-                $event->setResponse($response);
-        }
+        // if ($this->security->isGranted('IS_AUTHENTICATED_FULLY') && !$user->isVerified()) {
+        //         $response = new RedirectResponse($this->urlGenerator->generate('non_verified_user_page'));
+        //         $event->setResponse($response);
+        // }
     }
 }

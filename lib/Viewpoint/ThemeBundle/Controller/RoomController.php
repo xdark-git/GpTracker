@@ -2,6 +2,7 @@
 
 namespace Viewpoint\ThemeBundle\Controller;
 
+use App\Controller\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,9 +17,11 @@ use Viewpoint\ThemeBundle\Entity\RoomViewsHistory;
 use Viewpoint\ThemeBundle\Form\RoomSortType;
 use Viewpoint\ThemeBundle\Form\SearchFormType;
 use Viewpoint\ThemeBundle\Repository\RoomRepository;
+use App\Exceptions\LoginUserNotVerifiedException;
+use Throwable;
 
 #[Route("/annonce")]
-class RoomController extends AbstractController
+class RoomController extends Controller
 {
     public function __construct(
         private ThemeResolver $themeResolver,
@@ -32,6 +35,12 @@ class RoomController extends AbstractController
         PaginatorInterface $paginator,
         RoomRepository $repository
     ): Response {
+        try {
+            $this->assertLoginUserVerified();
+        } catch (LoginUserNotVerifiedException $e) {
+            return $this->redirectToNonVerifiedUserPage();
+        }
+
         $searchForm = $this->createForm(SearchFormType::class);
         $searchForm->handleRequest($request);
         $searchFormData = $searchForm->getData();
@@ -57,6 +66,12 @@ class RoomController extends AbstractController
     #[Route("/creation", name: "app_room_creation", methods: ["GET", "POST", "PUT"])]
     public function create(Request $request, EntityManagerInterface $entityManager): Response
     {
+        try {
+            $this->assertLoginUserVerified();
+        } catch (LoginUserNotVerifiedException $e) {
+            return $this->redirectToNonVerifiedUserPage();
+        }
+
         /** @var User */
         $user = $this->getUser();
         if (!$user->isAccountCompleted()) {
@@ -100,6 +115,12 @@ class RoomController extends AbstractController
     #[Route("/{slug}", name: "app_room_detail", methods: ["GET"])]
     public function show(string $slug, EntityManagerInterface $entityManager)
     {
+        try {
+            $this->assertLoginUserVerified();
+        } catch (LoginUserNotVerifiedException $e) {
+            return $this->redirectToNonVerifiedUserPage();
+        }
+
         /** @var Room  */
         $room = $entityManager
             ->getRepository(Room::class)
@@ -148,6 +169,12 @@ class RoomController extends AbstractController
     #[Route("/modification/{slug}", name: "app_room_update")]
     public function update(string $slug, Request $request): Response
     {
+        try {
+            $this->assertLoginUserVerified();
+        } catch (LoginUserNotVerifiedException $e) {
+            return $this->redirectToNonVerifiedUserPage();
+        }
+
         /** @var Room */
         $room = $this->entityManager
             ->getRepository(Room::class)
@@ -190,6 +217,12 @@ class RoomController extends AbstractController
     #[Route("/suppression/{slug}", name: "app_room_delete", methods: ["POST"])]
     public function delete(string $slug, Request $request): Response
     {
+        try {
+            $this->assertLoginUserVerified();
+        } catch (LoginUserNotVerifiedException $e) {
+            return $this->redirectToNonVerifiedUserPage();
+        }
+
         /** @var Room */
         $room = $this->entityManager->getRepository(Room::class)->findOneBy(["slug" => $slug]);
 

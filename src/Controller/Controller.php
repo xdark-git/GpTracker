@@ -15,7 +15,7 @@ use App\Service\Helpers;
 use League\Fractal\Resource\Item;
 use App\Transformers\Serializers\ArraySerializer;
 use Symfony\Component\Security\Core\User\UserInterface;
-use LoginUserNotVerifiedException;
+use App\Exceptions\LoginUserNotVerifiedException;
 
 class Controller extends AbstractController
 {
@@ -84,11 +84,10 @@ class Controller extends AbstractController
      * @param bool $isVerificationFromApi
      * @throws LoginUserNotVerifiedException
      */
-    public function assertLoginUserVerified(bool $isVerificationFromApi = true): void
-    {
+    protected function assertLoginUserVerified(): void {
         /** @var User $user */
         $user = $this->getUser();
-
+        
         if (!$user instanceof UserInterface) {
             return;
         }
@@ -99,11 +98,12 @@ class Controller extends AbstractController
             return;
         }
 
-        if (!$userIsVerified && $isVerificationFromApi) {
-            throw new LoginUserNotVerifiedException("User is not verified");
-        }
+        throw new LoginUserNotVerifiedException("User is not verified");
+    }
 
-        $this->redirectToRoute("non_verified_user_page");
+    protected function redirectToNonVerifiedUserPage(): Response
+    {
+        return $this->redirectToRoute("non_verified_user_page");
     }
 
     #[Required]

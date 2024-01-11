@@ -2,9 +2,9 @@
 
 namespace Viewpoint\ThemeBundle\Controller;
 
+use App\Controller\Controller;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Viewpoint\ThemeBundle\Service\ThemeResolver;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,8 +16,9 @@ use Viewpoint\ThemeBundle\Entity\Room;
 use Viewpoint\ThemeBundle\Form\ContactFormType;
 use Viewpoint\ThemeBundle\Form\SearchFormType;
 use Viewpoint\ThemeBundle\Repository\RoomRepository;
+use App\Exceptions\LoginUserNotVerifiedException;
 
-class AppController extends AbstractController
+class AppController extends Controller
 {
     public function __construct(
         private ThemeResolver $themeResolver,
@@ -27,6 +28,12 @@ class AppController extends AbstractController
     #[Route("/", name: "app_home")]
     public function index(): Response
     {
+        try {
+            $this->assertLoginUserVerified();
+        } catch (LoginUserNotVerifiedException $e) {
+            return $this->redirectToNonVerifiedUserPage();
+        }
+
         /** @var RoomRepository */ 
         $roomRepository = $this->entityManager->getRepository(Room::class);
         $rooms = $roomRepository->findAvailableRoomForHomePage();
@@ -45,6 +52,12 @@ class AppController extends AbstractController
     #[Route('/contact', name: 'app_contact')]
     public function contact(Request $request, MailerInterface $mailer): Response
     {
+        try {
+            $this->assertLoginUserVerified();
+        } catch (LoginUserNotVerifiedException $e) {
+            return $this->redirectToNonVerifiedUserPage();
+        }
+
         $contactForm = $this->createForm(ContactFormType::class);
         $contactForm->handleRequest($request);
 
@@ -84,6 +97,12 @@ class AppController extends AbstractController
     #[Route("/activation", name: "app_account_activation")]
     public function accountActivation(): Response
     {
+        try {
+            $this->assertLoginUserVerified();
+        } catch (LoginUserNotVerifiedException $e) {
+            return $this->redirectToNonVerifiedUserPage();
+        }
+
         return $this->render(
             $this->themeResolver->getThemePathPrefix("/core/email_verification.html.twig")
         );
@@ -92,18 +111,36 @@ class AppController extends AbstractController
     #[Route("/a-propos-de-nous", name: "app_about_us")]
     public function aboutUs(): Response
     {
+        try {
+            $this->assertLoginUserVerified();
+        } catch (LoginUserNotVerifiedException $e) {
+            return $this->redirectToNonVerifiedUserPage();
+        }
+
         return $this->render($this->themeResolver->getThemePathPrefix("/core/about-us.html.twig"));
     }
 
     #[Route("/code-of-conduct", name: "app_Code_of_Conduct")]
     public function CodeOfConduct(): Response
     {
+        try {
+            $this->assertLoginUserVerified();
+        } catch (LoginUserNotVerifiedException $e) {
+            return $this->redirectToNonVerifiedUserPage();
+        }
+
         return $this->render($this->themeResolver->getThemePathPrefix("/core/CodeOfConduct.html.twig"));
     }
 
     #[Route("/security-measures", name: "app_Security_measures")]
     public function securityMeasures(): Response
     {
+        try {
+            $this->assertLoginUserVerified();
+        } catch (LoginUserNotVerifiedException $e) {
+            return $this->redirectToNonVerifiedUserPage();
+        }
+
         return $this->render(
             $this->themeResolver->getThemePathPrefix("/core/securityMeasures.html.twig")
         );

@@ -2,6 +2,7 @@
 
 namespace Viewpoint\ThemeBundle\Controller;
 
+use App\Controller\Controller;
 use Doctrine\ORM\EntityManagerInterface;
 use Gedmo\Sluggable\Util\Urlizer;
 use Knp\Component\Pager\PaginatorInterface;
@@ -19,9 +20,10 @@ use Viewpoint\ThemeBundle\Entity\Room;
 use Viewpoint\ThemeBundle\Entity\RoomViewsHistory;
 use Viewpoint\ThemeBundle\Repository\RoomRepository;
 use Viewpoint\ThemeBundle\Repository\RoomViewsHistoryRepository;
+use App\Exceptions\LoginUserNotVerifiedException;
 
 #[Route("/informations")]
-class UserController extends AbstractController
+class UserController extends Controller
 {
     public function __construct(
         private EntityManagerInterface $entityManager,
@@ -32,6 +34,11 @@ class UserController extends AbstractController
     #[Route("/mon-compte", name: "app_informations_user")]
     public function completeProfile(Request $request): Response
     {
+        try {
+            $this->assertLoginUserVerified();
+        } catch (LoginUserNotVerifiedException $e) {
+            return $this->redirectToNonVerifiedUserPage();
+        }
         /** @var User $user */
         $user = $this->getUser();
         $form = $this->createForm(ProfileCompletionType::class, $user);
@@ -81,6 +88,12 @@ class UserController extends AbstractController
         Request $request,
         UserPasswordHasherInterface $userPasswordHasher
     ): Response {
+        try {
+            $this->assertLoginUserVerified();
+        } catch (LoginUserNotVerifiedException $e) {
+            return $this->redirectToNonVerifiedUserPage();
+        }
+
         $form = $this->createForm(ChangePasswordFormType::class);
         $form->handleRequest($request);
 
@@ -116,12 +129,18 @@ class UserController extends AbstractController
     #[Route("/mes-annonces", name: "app_user_package")]
     public function emptyPackage(Request $request, PaginatorInterface $paginator): Response
     {
+        try {
+            $this->assertLoginUserVerified();
+        } catch (LoginUserNotVerifiedException $e) {
+            return $this->redirectToNonVerifiedUserPage();
+        }
+
         /** @var RoomRepository */
         $roomRepository = $this->entityManager->getRepository(Room::class);
 
         $userRoomsQuery = $roomRepository->findCurrentUserRoomQuery($this->getUser());
         $rooms = $paginator->paginate($userRoomsQuery, $request->query->getInt("page", 1), 4);
-        
+
         if ($rooms->getTotalItemCount() == 0) {
             return $this->render(
                 $this->themeResolver->getThemePathPrefix(
@@ -143,12 +162,24 @@ class UserController extends AbstractController
     #[Route("/annonces/historique", name: "app_user_room_visited")]
     public function roomViewsHistory(Request $request, PaginatorInterface $paginator): Response
     {
+        try {
+            $this->assertLoginUserVerified();
+        } catch (LoginUserNotVerifiedException $e) {
+            return $this->redirectToNonVerifiedUserPage();
+        }
+        
         /** @var RoomViewsHistoryRepository */
         $roomViewHistoryRepository = $this->entityManager->getRepository(RoomViewsHistory::class);
 
-        $userVisitedRoomsQuery = $roomViewHistoryRepository->findVisitedRoomsByCurrentUser($this->getUser());
-        $roomsVisited = $paginator->paginate($userVisitedRoomsQuery, $request->query->getInt("page", 1), 4);
-        
+        $userVisitedRoomsQuery = $roomViewHistoryRepository->findVisitedRoomsByCurrentUser(
+            $this->getUser()
+        );
+        $roomsVisited = $paginator->paginate(
+            $userVisitedRoomsQuery,
+            $request->query->getInt("page", 1),
+            4
+        );
+
         if ($roomsVisited->getTotalItemCount() == 0) {
             return $this->render(
                 $this->themeResolver->getThemePathPrefix(
@@ -161,9 +192,8 @@ class UserController extends AbstractController
                 "/core/informations/contents/recently_visited.html.twig"
             ),
             [
-                "roomsVisited" => $roomsVisited
+                "roomsVisited" => $roomsVisited,
             ]
         );
     }
-
 }
