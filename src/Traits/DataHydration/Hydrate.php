@@ -5,6 +5,7 @@ namespace App\Traits\DataHydration;
 use App\Entity\User;
 use App\Manager\Role\RoleManager;
 use App\Entity\Role;
+use App\Service\ServiceLocator;
 
 trait Hydrate {
     private function hydrateUser(User $user, int $depth = 0): User
@@ -15,17 +16,14 @@ trait Hydrate {
 
         $depth++;
         
-        // TODO: fix bug here
-        /** @var RoleManager $roleManger */
-        $roleManager = $this->container->get(RoleManager::class);
+        /** @var RoleManager */
+        $roleManager = ServiceLocator::get(RoleManager::class);
 
         $role = $roleManager->findById($user->getRoleId());
 
         if ($role instanceof Role) {
-            $user->setRoles(array_unique([$role->getName()]));
+            $user->setRoles($role->getName());
         }
-
-        $user->setRoles($user->getRoles());
 
         return $user;
     }

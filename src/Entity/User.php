@@ -15,23 +15,23 @@ class User extends BaseEntity implements UserInterface, PasswordAuthenticatedUse
     use TimestampableEntity;
 
     // table fields
-    public const TABLE          = "user";
-    public const ID             = "id";
-    public const ROLE_ID        = "role_id";
-    public const FIRST_NAME     = "first_name";
-    public const LAST_NAME      = "last_name";
-    public const SEXE           = "sexe";
-    public const BIRTH          = "birth";
-    public const PROFILE        = "profile";
-    public const USERNAME       = "username";
-    public const EMAIL          = "email";
-    public const PASSWORD       = "password";
-    public const IS_VERIFIED    = "isVerified";
-    public const IS_DELETED     = "isDeleted";
-    public const CREATED_AT     = "created_at";
-    public const UPDATED_AT     = "updated_at";
+    public const TABLE = "user";
+    public const ID = "id";
+    public const ROLE_ID = "role_id";
+    public const FIRST_NAME = "first_name";
+    public const LAST_NAME = "last_name";
+    public const SEXE = "sexe";
+    public const BIRTH = "birth";
+    public const PROFILE = "profile";
+    public const USERNAME = "username";
+    public const EMAIL = "email";
+    public const PASSWORD = "password";
+    public const IS_VERIFIED = "isVerified";
+    public const IS_DELETED = "isDeleted";
+    public const CREATED_AT = "created_at";
+    public const UPDATED_AT = "updated_at";
 
-    public const ROLE_USER      = "ROLE_USER";
+    public const ROLE_USER = "ROLE_USER";
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -71,9 +71,7 @@ class User extends BaseEntity implements UserInterface, PasswordAuthenticatedUse
     #[ORM\Column(type: "boolean")]
     private bool $isDeleted = false;
 
-    private array $roles = [
-        self::ROLE_USER
-    ];
+    private array $roles = [self::ROLE_USER];
 
     public function getId(): ?int
     {
@@ -206,9 +204,9 @@ class User extends BaseEntity implements UserInterface, PasswordAuthenticatedUse
         return $this->roles;
     }
 
-    public function setRoles(array $roles): self
+    public function setRoles(string ...$roles): self
     {
-        $this->roles = $roles;
+        $this->roles = array_unique(array_merge($this->roles, $roles));
         return $this;
     }
 
@@ -217,9 +215,8 @@ class User extends BaseEntity implements UserInterface, PasswordAuthenticatedUse
         return $this->email;
     }
 
-    public function eraseCredentials(): void 
+    public function eraseCredentials(): void
     {
-
     }
 
     // fix bug in CheckVerifiedUserSubscriber
