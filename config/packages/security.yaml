@@ -9,10 +9,25 @@ security:
             entity:
                 class: Viewpoint\AdminBundle\Entity\User
                 property: email
+        user_provider_service:
+            id: App\Service\User\UserProviderService
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+        login:
+            pattern: ^/api/login
+            stateless: true
+            json_login:
+                check_path: /api/login_check
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+                provider: user_provider_service
+        api:
+            pattern: ^/api
+            stateless: true
+            provider: user_provider_service
+            jwt: ~
         main:
             lazy: true
             provider: app_user_provider
@@ -37,6 +52,9 @@ security:
         - { route: app_login|app_register|app_forgot_password|app_new_password, allow_if: "!is_granted('ROLE_USER')" }
         - { route: app_room_creation, roles: ROLE_USER }
         - { path: ^/informations, roles: ROLE_USER }
+        # api
+        - { path: ^/api/login, roles: PUBLIC_ACCESS }
+        - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }
 
 when@test:
     security:

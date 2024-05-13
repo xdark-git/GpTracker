@@ -19,6 +19,19 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
+            
+    App\Service\:
+        resource: '../src/Service/*'
+        public: true
 
+    App\Manager\:
+        resource: '../src/Manager/*'
+        public: true
+
+    App\Log\AppLogger:
+        autowire: true
+
+    League\Fractal\Manager:
+        autowire: true
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

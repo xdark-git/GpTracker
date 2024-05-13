@@ -17,7 +17,9 @@ use Doctrine\Common\Collections\Collection;
 use Viewpoint\ThemeBundle\Entity\Room;
 use Viewpoint\ThemeBundle\Entity\RoomViewsHistory;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
-
+/**
+ * @deprecated use App/Entity/User instead
+ */
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity("username", message: 'Le nom d\'utilisateur {{ value }} existe déjà')]
 #[AdminAssert\UniqueEmail(mode: "loose")]
@@ -305,7 +307,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @see UserInterface
      */
-    public function eraseCredentials()
+    public function eraseCredentials(): void
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;

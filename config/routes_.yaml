@@ -7,3 +7,5 @@ viewpoint_admin:
     resource: '@ViewpointAdminBundle/Resources/config/routes.yaml'
 viewpoint_theme:
     resource: '@ViewpointThemeBundle/Resources/config/routes.yaml'
+api_login_check:
+    path: /api/login_check
